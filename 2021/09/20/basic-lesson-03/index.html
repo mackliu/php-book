@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一個完整程式的執行通常都題為了解決一個特定的問題，而問題可以被拆解成為步驟，每個步驟都包含一些程式指令，這些指令可能只是一個運算的結果，也可能是一個判斷或邏輯處理的結果。 程式會由檔案的第一行順序執行，中間遇到不同的指令可能產生不同的執行步驟變化，這個過程我們稱流程控制。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[基礎課程] Lesson 3 PHP程式流程控制">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-03/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="一個完整程式的執行通常都題為了解決一個特定的問題，而問題可以被拆解成為步驟，每個步驟都包含一些程式指令，這些指令可能只是一個運算的結果，也可能是一個判斷或邏輯處理的結果。 程式會由檔案的第一行順序執行，中間遇到不同的指令可能產生不同的執行步驟變化，這個過程我們稱流程控制。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-09-20T07:55:10.000Z">
+<meta property="article:modified_time" content="2021-09-20T08:12:59.016Z">
+<meta property="article:author" content="Mack liu">
+<meta property="article:tag" content="流程控制">
+<meta property="article:tag" content="判斷結構">
+<meta property="article:tag" content="重覆結構">
+<meta property="article:tag" content="選擇結構">
+<meta property="article:tag" content="if">
+<meta property="article:tag" content="loop">
+<meta property="article:tag" content="choice">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-03/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[基礎課程] Lesson 3 PHP程式流程控制 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [基礎課程] Lesson 3 PHP程式流程控制
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-09-20 15:55:10 / 修改時間：16:12:59" itemprop="dateCreated datePublished" datetime="2021-09-20T15:55:10+08:00">2021-09-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一個完整程式的執行通常都題為了解決一個特定的問題，而問題可以被拆解成為步驟，每個步驟都包含一些程式指令，這些指令可能只是一個運算的結果，也可能是一個判斷或邏輯處理的結果。</p>
+<p>程式會由檔案的第一行順序執行，中間遇到不同的指令可能產生不同的執行步驟變化，這個過程我們稱流程控制。</p>
+<span id="more"></span>
+
+<p>在PHP中主要的流程控制指令有三類：</p>
+<ul>
+<li>選擇結構</li>
+<li>重覆結構</li>
+<li>巢狀結構</li>
+</ul>
+<h2 id="選擇結構"><a href="#選擇結構" class="headerlink" title="選擇結構"></a>選擇結構</h2><h4 id="if…else-if…elseif…else"><a href="#if…else-if…elseif…else" class="headerlink" title="if…else / if…elseif…else"></a>if…else / if…elseif…else</h4><h4 id="switch…case"><a href="#switch…case" class="headerlink" title="switch…case"></a>switch…case</h4><h4 id="三元運算子"><a href="#三元運算子" class="headerlink" title="三元運算子"></a>三元運算子</h4><h2 id="重覆結構"><a href="#重覆結構" class="headerlink" title="重覆結構"></a>重覆結構</h2><h4 id="for-loop"><a href="#for-loop" class="headerlink" title="for loop"></a>for loop</h4><h4 id="while-do…while"><a href="#while-do…while" class="headerlink" title="while / do…while"></a>while / do…while</h4><h4 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h4><h2 id="巢狀流程控制"><a href="#巢狀流程控制" class="headerlink" title="巢狀流程控制"></a>巢狀流程控制</h2><h2 id="流程結構練習"><a href="#流程結構練習" class="headerlink" title="流程結構練習"></a>流程結構練習</h2><ul>
+<li>判斷成績及格學生</li>
+<li>分配成績等級</li>
+<li>閏年判斷</li>
+<li>依據學生成績等級給予評價</li>
+<li>九九乘法表</li>
+<li>尋找字元(使用while)</li>
+<li>以*符號為基礎在網頁上排列出下列圖形:<ul>
+<li>直角三角型</li>
+<li>倒直角三角型</li>
+<li>正三角型</li>
+<li>菱型</li>
+<li>矩形</li>
+<li>內含對角線的矩形</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/php-book/tags/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" rel="tag"># 流程控制</a>
+              <a href="/php-book/tags/%E5%88%A4%E6%96%B7%E7%B5%90%E6%A7%8B/" rel="tag"># 判斷結構</a>
+              <a href="/php-book/tags/%E9%87%8D%E8%A6%86%E7%B5%90%E6%A7%8B/" rel="tag"># 重覆結構</a>
+              <a href="/php-book/tags/%E9%81%B8%E6%93%87%E7%B5%90%E6%A7%8B/" rel="tag"># 選擇結構</a>
+              <a href="/php-book/tags/if/" rel="tag"># if</a>
+              <a href="/php-book/tags/loop/" rel="tag"># loop</a>
+              <a href="/php-book/tags/choice/" rel="tag"># choice</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/20/basic-lesson-02/" rel="prev" title="[基礎課程] Lesson 2 PHP程式語言基礎">
+      <i class="fa fa-chevron-left"></i> [基礎課程] Lesson 2 PHP程式語言基礎
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%B8%E6%93%87%E7%B5%90%E6%A7%8B"><span class="nav-number">1.</span> <span class="nav-text">選擇結構</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if%E2%80%A6else-if%E2%80%A6elseif%E2%80%A6else"><span class="nav-number">1.0.1.</span> <span class="nav-text">if…else &#x2F; if…elseif…else</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switch%E2%80%A6case"><span class="nav-number">1.0.2.</span> <span class="nav-text">switch…case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">1.0.3.</span> <span class="nav-text">三元運算子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%86%E7%B5%90%E6%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">重覆結構</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#for-loop"><span class="nav-number">2.0.1.</span> <span class="nav-text">for loop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#while-do%E2%80%A6while"><span class="nav-number">2.0.2.</span> <span class="nav-text">while &#x2F; do…while</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#foreach"><span class="nav-number">2.0.3.</span> <span class="nav-text">foreach</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A2%E7%8B%80%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">巢狀流程控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E7%B5%90%E6%A7%8B%E7%B7%B4%E7%BF%92"><span class="nav-number">4.</span> <span class="nav-text">流程結構練習</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack liu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/muse.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
