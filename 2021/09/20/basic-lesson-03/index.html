@@ -28,7 +28,7 @@
 <meta property="og:description" content="一個完整程式的執行通常都題為了解決一個特定的問題，而問題可以被拆解成為步驟，每個步驟都包含一些程式指令，這些指令可能只是一個運算的結果，也可能是一個判斷或邏輯處理的結果。 程式會由檔案的第一行順序執行，中間遇到不同的指令可能產生不同的執行步驟變化，這個過程我們稱流程控制。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-20T07:55:10.000Z">
-<meta property="article:modified_time" content="2021-09-20T08:12:59.016Z">
+<meta property="article:modified_time" content="2021-09-20T13:23:45.807Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="流程控制">
 <meta property="article:tag" content="判斷結構">
@@ -192,7 +192,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-09-20 15:55:10 / 修改時間：16:12:59" itemprop="dateCreated datePublished" datetime="2021-09-20T15:55:10+08:00">2021-09-20</time>
+              <time title="創建時間：2021-09-20 15:55:10 / 修改時間：21:23:45" itemprop="dateCreated datePublished" datetime="2021-09-20T15:55:10+08:00">2021-09-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,22 +225,64 @@
 <li>重覆結構</li>
 <li>巢狀結構</li>
 </ul>
-<h2 id="選擇結構"><a href="#選擇結構" class="headerlink" title="選擇結構"></a>選擇結構</h2><h4 id="if…else-if…elseif…else"><a href="#if…else-if…elseif…else" class="headerlink" title="if…else / if…elseif…else"></a>if…else / if…elseif…else</h4><h4 id="switch…case"><a href="#switch…case" class="headerlink" title="switch…case"></a>switch…case</h4><h4 id="三元運算子"><a href="#三元運算子" class="headerlink" title="三元運算子"></a>三元運算子</h4><h2 id="重覆結構"><a href="#重覆結構" class="headerlink" title="重覆結構"></a>重覆結構</h2><h4 id="for-loop"><a href="#for-loop" class="headerlink" title="for loop"></a>for loop</h4><h4 id="while-do…while"><a href="#while-do…while" class="headerlink" title="while / do…while"></a>while / do…while</h4><h4 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h4><h2 id="巢狀流程控制"><a href="#巢狀流程控制" class="headerlink" title="巢狀流程控制"></a>巢狀流程控制</h2><h2 id="流程結構練習"><a href="#流程結構練習" class="headerlink" title="流程結構練習"></a>流程結構練習</h2><ul>
-<li>判斷成績及格學生</li>
-<li>分配成績等級</li>
-<li>閏年判斷</li>
-<li>依據學生成績等級給予評價</li>
-<li>九九乘法表</li>
-<li>尋找字元(使用while)</li>
-<li>以*符號為基礎在網頁上排列出下列圖形:<ul>
+<h2 id="選擇結構"><a href="#選擇結構" class="headerlink" title="選擇結構"></a>選擇結構</h2><h3 id="if…else-if…elseif…else"><a href="#if…else-if…elseif…else" class="headerlink" title="if…else / if…elseif…else"></a>if…else / if…elseif…else</h3><h3 id="switch…case"><a href="#switch…case" class="headerlink" title="switch…case"></a>switch…case</h3><h3 id="三元運算子"><a href="#三元運算子" class="headerlink" title="三元運算子"></a>三元運算子</h3><h2 id="重覆結構"><a href="#重覆結構" class="headerlink" title="重覆結構"></a>重覆結構</h2><h3 id="for-loop"><a href="#for-loop" class="headerlink" title="for loop"></a>for loop</h3><h3 id="while-do…while"><a href="#while-do…while" class="headerlink" title="while / do…while"></a>while / do…while</h3><h3 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h3><h2 id="巢狀流程控制"><a href="#巢狀流程控制" class="headerlink" title="巢狀流程控制"></a>巢狀流程控制</h2><h2 id="流程結構練習"><a href="#流程結構練習" class="headerlink" title="流程結構練習"></a>流程結構練習</h2><blockquote>
+<p>判斷成績及格學生</p>
+</blockquote>
+<ul>
+<li>給定一個成績數字，判斷是否及格(60)分</li>
+</ul>
+<blockquote>
+<p>分配成績等級</p>
+</blockquote>
+<ul>
+<li>給定一個成績數字，根據成績所在的區間，給定等級</li>
+<li>0 ~ 59 =&gt; E</li>
+<li>60 ~ 69 =&gt; D</li>
+<li>70 ~ 79 =&gt; C</li>
+<li>80 ~ 89 =&gt; B</li>
+<li>90 ~ 100 =&gt; A</li>
+</ul>
+<blockquote>
+<p>依據學生成績等級給予評價</p>
+</blockquote>
+<ul>
+<li>根據學生不同的成績等級在網頁上印出不同的文字評價</li>
+</ul>
+<blockquote>
+<p>閏年判斷，給定一個西元年份，判斷是否為閏年</p>
+</blockquote>
+<ul>
+<li>地球對太陽的公轉一年的真實時間大約是365天5小時48分46秒，因此以365天定為一年 的狀況下，每年會多出近六小時的時間，所以每隔四年設置一個閏年來消除這多出來的一天。</li>
+<li>公元年分除以4不可整除，為平年。</li>
+<li>公元年分除以4可整除但除以100不可整除，為閏年。</li>
+<li>公元年分除以100可整除但除以400不可整除，為平年。</li>
+</ul>
+<blockquote>
+<p>九九乘法表</p>
+</blockquote>
+<ul>
+<li>以表格排列的九九乘法表</li>
+<li>以交叉計算結果呈現的九九乘法表</li>
+</ul>
+<blockquote>
+<p>尋找字元(使用while)</p>
+</blockquote>
+<ul>
+<li>給定一個字串句子</li>
+<li>給定一個單字或字母</li>
+<li>尋找相符的內容</li>
+<li>印出尋找到的單字或字母所在句子中的位置</li>
+</ul>
+<blockquote>
+<p>以 * 符號為基礎在網頁上排列出下列圖形:</p>
+</blockquote>
+<ul>
 <li>直角三角型</li>
 <li>倒直角三角型</li>
 <li>正三角型</li>
 <li>菱型</li>
 <li>矩形</li>
 <li>內含對角線的矩形</li>
-</ul>
-</li>
 </ul>
 
     </div>
@@ -269,7 +311,10 @@
     <a href="/php-book/2021/09/20/basic-lesson-02/" rel="prev" title="[基礎課程] Lesson 2 PHP程式語言基礎">
       <i class="fa fa-chevron-left"></i> [基礎課程] Lesson 2 PHP程式語言基礎
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/20/basic-lesson-04/" rel="next" title="[基礎課程] Lesson 4 陣列">
+      [基礎課程] Lesson 4 陣列 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -328,7 +373,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%B8%E6%93%87%E7%B5%90%E6%A7%8B"><span class="nav-number">1.</span> <span class="nav-text">選擇結構</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if%E2%80%A6else-if%E2%80%A6elseif%E2%80%A6else"><span class="nav-number">1.0.1.</span> <span class="nav-text">if…else &#x2F; if…elseif…else</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switch%E2%80%A6case"><span class="nav-number">1.0.2.</span> <span class="nav-text">switch…case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">1.0.3.</span> <span class="nav-text">三元運算子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%86%E7%B5%90%E6%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">重覆結構</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#for-loop"><span class="nav-number">2.0.1.</span> <span class="nav-text">for loop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#while-do%E2%80%A6while"><span class="nav-number">2.0.2.</span> <span class="nav-text">while &#x2F; do…while</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#foreach"><span class="nav-number">2.0.3.</span> <span class="nav-text">foreach</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A2%E7%8B%80%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">巢狀流程控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E7%B5%90%E6%A7%8B%E7%B7%B4%E7%BF%92"><span class="nav-number">4.</span> <span class="nav-text">流程結構練習</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%B8%E6%93%87%E7%B5%90%E6%A7%8B"><span class="nav-number">1.</span> <span class="nav-text">選擇結構</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if%E2%80%A6else-if%E2%80%A6elseif%E2%80%A6else"><span class="nav-number">1.1.</span> <span class="nav-text">if…else &#x2F; if…elseif…else</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switch%E2%80%A6case"><span class="nav-number">1.2.</span> <span class="nav-text">switch…case</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">1.3.</span> <span class="nav-text">三元運算子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%86%E7%B5%90%E6%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">重覆結構</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-loop"><span class="nav-number">2.1.</span> <span class="nav-text">for loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while-do%E2%80%A6while"><span class="nav-number">2.2.</span> <span class="nav-text">while &#x2F; do…while</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#foreach"><span class="nav-number">2.3.</span> <span class="nav-text">foreach</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A2%E7%8B%80%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">巢狀流程控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E7%B5%90%E6%A7%8B%E7%B7%B4%E7%BF%92"><span class="nav-number">4.</span> <span class="nav-text">流程結構練習</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -342,7 +387,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -355,7 +400,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/php-book/tags/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

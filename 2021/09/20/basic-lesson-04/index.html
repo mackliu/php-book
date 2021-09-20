@@ -20,22 +20,23 @@
     var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="我們選擇PHP做為了解程式語言的開始，這階段所提到的觀念和用法是所有程式語言都相通的，差別只在於不同的程式語言會有不同的指令及撰寫的格式要求。">
+  <meta name="description" content="陣列可以當成是一種進階的變數，通常一個變數只會儲存或代表一筆資料，假如今天我們要處理十筆資料，那就需要建立十個變數，這會讓變數的管理變得複雜，陣列在這個情境下發揮很好的作用，可以把十筆資料用一個變數來管理，我們只需知道這個十筆資料在這個單一變數中的位置和取用方式就可以了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[基礎課程] Lesson 2 PHP程式語言基礎">
-<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-02/index.html">
+<meta property="og:title" content="[基礎課程] Lesson 4 陣列">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-04/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
-<meta property="og:description" content="我們選擇PHP做為了解程式語言的開始，這階段所提到的觀念和用法是所有程式語言都相通的，差別只在於不同的程式語言會有不同的指令及撰寫的格式要求。">
+<meta property="og:description" content="陣列可以當成是一種進階的變數，通常一個變數只會儲存或代表一筆資料，假如今天我們要處理十筆資料，那就需要建立十個變數，這會讓變數的管理變得複雜，陣列在這個情境下發揮很好的作用，可以把十筆資料用一個變數來管理，我們只需知道這個十筆資料在這個單一變數中的位置和取用方式就可以了。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-09-20T07:22:35.000Z">
-<meta property="article:modified_time" content="2021-09-20T12:50:41.543Z">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-04/basic-lesson-04-001.jpg">
+<meta property="article:published_time" content="2021-09-20T12:37:58.000Z">
+<meta property="article:modified_time" content="2021-09-20T13:14:12.054Z">
 <meta property="article:author" content="Mack liu">
-<meta property="article:tag" content="變數">
-<meta property="article:tag" content="資料型態">
-<meta property="article:tag" content="運算子">
+<meta property="article:tag" content="陣列">
+<meta property="article:tag" content="array">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-04/basic-lesson-04-001.jpg">
 
-<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-02/">
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-04/">
 
 
 <script id="page-configurations">
@@ -48,7 +49,7 @@
   };
 </script>
 
-  <title>[基礎課程] Lesson 2 PHP程式語言基礎 | 月光林地的網頁技術部</title>
+  <title>[基礎課程] Lesson 4 陣列 | 月光林地的網頁技術部</title>
   
 
 
@@ -164,7 +165,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-02/">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/php-book/images/avatar.gif">
@@ -177,7 +178,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [基礎課程] Lesson 2 PHP程式語言基礎
+          [基礎課程] Lesson 4 陣列
         </h1>
 
         <div class="post-meta">
@@ -188,7 +189,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-09-20 15:22:35 / 修改時間：20:50:41" itemprop="dateCreated datePublished" datetime="2021-09-20T15:22:35+08:00">2021-09-20</time>
+              <time title="創建時間：2021-09-20 20:37:58 / 修改時間：21:14:12" itemprop="dateCreated datePublished" datetime="2021-09-20T20:37:58+08:00">2021-09-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,32 +212,129 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>我們選擇PHP做為了解程式語言的開始，這階段所提到的觀念和用法是所有程式語言都相通的，差別只在於不同的程式語言會有不同的指令及撰寫的格式要求。</p>
+        <p>陣列可以當成是一種進階的變數，通常一個變數只會儲存或代表一筆資料，假如今天我們要處理十筆資料，那就需要建立十個變數，這會讓變數的管理變得複雜，陣列在這個情境下發揮很好的作用，可以把十筆資料用一個變數來管理，我們只需知道這個十筆資料在這個單一變數中的位置和取用方式就可以了。</p>
 <span id="more"></span>
 
-<h2 id="變數"><a href="#變數" class="headerlink" title="變數"></a>變數</h2><p>變數是所有程式語言的基礎，我們會使用變數來承載一些資料或是運算的結果，正如其名，變數在整個程式運行的過程中是可以被改變的，與之相對的就是</p>
-<h3 id="變數宣告"><a href="#變數宣告" class="headerlink" title="變數宣告"></a>變數宣告</h3><h3 id="值的指定"><a href="#值的指定" class="headerlink" title="值的指定"></a>值的指定</h3><h3 id="區域性"><a href="#區域性" class="headerlink" title="區域性"></a>區域性</h3><h2 id="常數"><a href="#常數" class="headerlink" title="常數"></a>常數</h2><p>相較與變數，常數則是在整個程式運行的過程中不允許被改變的，常被用作為簡化一些複雜難記憶的數字或文字。</p>
-<h3 id="常數宣告"><a href="#常數宣告" class="headerlink" title="常數宣告"></a>常數宣告</h3><h3 id="值的指定-1"><a href="#值的指定-1" class="headerlink" title="值的指定"></a>值的指定</h3><h3 id="區域性-1"><a href="#區域性-1" class="headerlink" title="區域性"></a>區域性</h3><h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>我們通常會在宣告變數或常數時也指定一種資料型態過去，不同的資料型態會有不同的特性及處理方式。</p>
-<ul>
-<li>數值</li>
-<li>文字</li>
-<li>陣列</li>
-<li>物件</li>
-<li>資源</li>
+<h2 id="PHP的陣列宣告方式"><a href="#PHP的陣列宣告方式" class="headerlink" title="PHP的陣列宣告方式"></a>PHP的陣列宣告方式</h2><ul>
+<li>$a=array();</li>
+<li>$a=[];</li>
+<li>$a[1]=“A”;</li>
+<li>$a[]=“A”;</li>
+<li>$a=[“A”,”B”,”C”];</li>
+<li>$a=[1=&gt;”A”,2=&gt;”B”,3=&gt;”C”];</li>
+<li>$a=array(“A”,”B”,”C”);</li>
 </ul>
-<h2 id="運算子"><a href="#運算子" class="headerlink" title="運算子"></a>運算子</h2><p>簡單來說，運算子就是一般知道的加減乘除符號，只不過在程式語言的世界中，增加了不少類似的符號，用來處理各式的運算需求。</p>
-<h3 id="一元運算子"><a href="#一元運算子" class="headerlink" title="一元運算子"></a>一元運算子</h3><ol>
-<li><strong>!</strong></li>
-<li><strong>++<strong>、</strong>–</strong><h3 id="二元運算子"><a href="#二元運算子" class="headerlink" title="二元運算子"></a>二元運算子</h3></li>
-<li>算術運算子 - +、-、*、/、%</li>
-<li>指派運算子 - =、=&gt;</li>
-<li>比較運算子 - ==、!=、&gt;、&lt;=</li>
-<li>字串運算子 - .</li>
-<li>邏輯運算子 - &amp;&amp;、AND、||、OR、XOR</li>
-</ol>
-<h3 id="三元運算子"><a href="#三元運算子" class="headerlink" title="三元運算子"></a>三元運算子</h3><ol>
-<li>? : </li>
-</ol>
+<h2 id="陣列指定值的方式"><a href="#陣列指定值的方式" class="headerlink" title="陣列指定值的方式"></a>陣列指定值的方式</h2><ul>
+<li>$a[1]=“A”;</li>
+<li>$a=[“A”,”B”,”C”];</li>
+<li>$a=array(“A”,”B”,”C”);</li>
+<li>$a=[1=&gt;”A”,2=&gt;”B”,3=&gt;”C”];</li>
+</ul>
+<h2 id="陣列的維度"><a href="#陣列的維度" class="headerlink" title="陣列的維度"></a>陣列的維度</h2><ul>
+<li>一維陣列</li>
+<li>多維陣列</li>
+</ul>
+<h2 id="PHP陣列的特性"><a href="#PHP陣列的特性" class="headerlink" title="PHP陣列的特性"></a>PHP陣列的特性</h2><ul>
+<li>如果不是純索引的型式，那就一定是key-value</li>
+<li>陣列中的元素資料型態不必相同</li>
+<li>陣列的長度是可變的</li>
+</ul>
+<h2 id="陣列常用函式"><a href="#陣列常用函式" class="headerlink" title="陣列常用函式"></a>陣列常用函式</h2><table>
+<thead>
+<tr>
+<th>函式名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>is_array()</td>
+<td>檢查是否為陣列</td>
+</tr>
+<tr>
+<td>in_array()</td>
+<td>檢查某值是否在陣列中</td>
+</tr>
+<tr>
+<td>sort()</td>
+<td>排序陣列</td>
+</tr>
+<tr>
+<td>rsort()</td>
+<td>反序排序陣列</td>
+</tr>
+<tr>
+<td>array_fill()</td>
+<td>在陣列中填滿某值</td>
+</tr>
+<tr>
+<td>array_search()</td>
+<td>在陣列中尋找某值</td>
+</tr>
+<tr>
+<td>array_keys()</td>
+<td>將key或index取出為一個陣列</td>
+</tr>
+<tr>
+<td>array_merge()</td>
+<td>合併陣列</td>
+</tr>
+<tr>
+<td>serialize()</td>
+<td>序列化/字串化陣列</td>
+</tr>
+<tr>
+<td>unserialize()</td>
+<td>反序列化/陣列化字串</td>
+</tr>
+<tr>
+<td>implode()</td>
+<td>以字串或符號把陣列轉為字串</td>
+</tr>
+</tbody></table>
+<h2 id="陣列操作練習"><a href="#陣列操作練習" class="headerlink" title="陣列操作練習"></a>陣列操作練習</h2><blockquote>
+<p>建立一個學生成績陣列</p>
+</blockquote>
+<ul>
+<li>設計一個陣列(一維或多維)來存放學生的成績資料<br><img src="basic-lesson-04-001.jpg" alt="學生成績表"></li>
+</ul>
+<blockquote>
+<p>利用程式來產生陣列</p>
+</blockquote>
+<ul>
+<li>以迴圈的方式產生一個九九乘法表</li>
+<li>將九九乘法表的每個項目以字串型式存入陣列中</li>
+<li>再以迴圈方式將陣列內容印出</li>
+</ul>
+<blockquote>
+<p>威力彩電腦選號沒有重覆號碼</p>
+</blockquote>
+<ul>
+<li>使用亂數函式rand($a,$b)來產生號碼</li>
+<li>將產生的號碼順序存入陣列中</li>
+<li>每次存入陣列中時會先檢查陣列中的資料有沒有重覆</li>
+<li>完成選號後將陣列內容印出</li>
+</ul>
+<blockquote>
+<p>找出五百年內的閏年</p>
+</blockquote>
+<ul>
+<li>請依照閏年公式找出五百年內的閏年</li>
+<li>使用陣列來儲存閏年</li>
+<li>使用迴圈來印出閏年</li>
+</ul>
+<blockquote>
+<p>已知西元1024年為甲字年，請設計一支程式，可以接受任一西元年份，輸出對應的天干地支的年別。</p>
+</blockquote>
+<ul>
+<li>天干：甲乙丙丁戊己庚辛壬癸</li>
+<li>地支：子丑寅卯辰巳午未申酉戌亥</li>
+</ul>
+<blockquote>
+<p>請設計一支程式，在不產生新陣列的狀況下，將一個陣列的元素順序反轉</p>
+</blockquote>
+<ul>
+<li>例：$a=[2,4,6,1,8] &nbsp;&nbsp; 反轉後 &nbsp;&nbsp;  $a=[8,1,6,4,2]</li>
+</ul>
 
     </div>
 
@@ -246,9 +344,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/php-book/tags/%E8%AE%8A%E6%95%B8/" rel="tag"># 變數</a>
-              <a href="/php-book/tags/%E8%B3%87%E6%96%99%E5%9E%8B%E6%85%8B/" rel="tag"># 資料型態</a>
-              <a href="/php-book/tags/%E9%81%8B%E7%AE%97%E5%AD%90/" rel="tag"># 運算子</a>
+              <a href="/php-book/tags/%E9%99%A3%E5%88%97/" rel="tag"># 陣列</a>
+              <a href="/php-book/tags/array/" rel="tag"># array</a>
           </div>
 
         
@@ -257,12 +354,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/20/basic-lesson-01/" rel="prev" title="[基礎課程] lesson 1 開發環境及工具建置">
-      <i class="fa fa-chevron-left"></i> [基礎課程] lesson 1 開發環境及工具建置
+    <a href="/php-book/2021/09/20/basic-lesson-03/" rel="prev" title="[基礎課程] Lesson 3 PHP程式流程控制">
+      <i class="fa fa-chevron-left"></i> [基礎課程] Lesson 3 PHP程式流程控制
     </a></div>
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/20/basic-lesson-03/" rel="next" title="[基礎課程] Lesson 3 PHP程式流程控制">
-      [基礎課程] Lesson 3 PHP程式流程控制 <i class="fa fa-chevron-right"></i>
+    <a href="/php-book/2021/09/20/basic-lesson-05/" rel="next" title="[基礎課程] Lesson 5 字串處理">
+      [基礎課程] Lesson 5 字串處理 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -322,7 +419,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%8A%E6%95%B8"><span class="nav-number">1.</span> <span class="nav-text">變數</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%8A%E6%95%B8%E5%AE%A3%E5%91%8A"><span class="nav-number">1.1.</span> <span class="nav-text">變數宣告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%BC%E7%9A%84%E6%8C%87%E5%AE%9A"><span class="nav-number">1.2.</span> <span class="nav-text">值的指定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%80%E5%9F%9F%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">區域性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E6%95%B8"><span class="nav-number">2.</span> <span class="nav-text">常數</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E6%95%B8%E5%AE%A3%E5%91%8A"><span class="nav-number">2.1.</span> <span class="nav-text">常數宣告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%BC%E7%9A%84%E6%8C%87%E5%AE%9A-1"><span class="nav-number">2.2.</span> <span class="nav-text">值的指定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%80%E5%9F%9F%E6%80%A7-1"><span class="nav-number">2.3.</span> <span class="nav-text">區域性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%9E%8B%E6%85%8B"><span class="nav-number">3.</span> <span class="nav-text">資料型態</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">4.</span> <span class="nav-text">運算子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%85%83%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">4.1.</span> <span class="nav-text">一元運算子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%85%83%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">4.2.</span> <span class="nav-text">二元運算子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">4.3.</span> <span class="nav-text">三元運算子</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E7%9A%84%E9%99%A3%E5%88%97%E5%AE%A3%E5%91%8A%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">PHP的陣列宣告方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%A3%E5%88%97%E6%8C%87%E5%AE%9A%E5%80%BC%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">陣列指定值的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%A3%E5%88%97%E7%9A%84%E7%B6%AD%E5%BA%A6"><span class="nav-number">3.</span> <span class="nav-text">陣列的維度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E9%99%A3%E5%88%97%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">PHP陣列的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%A3%E5%88%97%E5%B8%B8%E7%94%A8%E5%87%BD%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">陣列常用函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%A3%E5%88%97%E6%93%8D%E4%BD%9C%E7%B7%B4%E7%BF%92"><span class="nav-number">6.</span> <span class="nav-text">陣列操作練習</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
