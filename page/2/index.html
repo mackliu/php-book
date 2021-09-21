@@ -159,6 +159,472 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/21/db-lession-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/21/db-lession-02/" class="post-title-link" itemprop="url">[資料庫應用] Lesson 2 關聯式資料表操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-09-21 11:29:40 / 修改時間：12:45:42" itemprop="dateCreated datePublished" datetime="2021-09-21T11:29:40+08:00">2021-09-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E8%B3%87%E6%96%99%E5%BA%AB/" itemprop="url" rel="index"><span itemprop="name">資料庫</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>實務上，大多數的資料庫都會不只一張資料表，而資料表和資料表之間也不會是完全獨立的關係，當某個資料表中的特定欄位內容是來自於另外一張資料表時，我們就會稱這兩張資料表是有<strong>關聯</strong>的。</p>
+<p>資料表的關聯型態非常多，我們只先介紹最簡單的關聯觀念，進一步的應用會在後續的補充內容中再提到。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2021/09/21/db-lession-02/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/21/db-lession-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/21/db-lession-01/" class="post-title-link" itemprop="url">[資料庫應用] Lesson 1 SQL資料庫基本操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-09-21 11:06:52 / 修改時間：12:45:39" itemprop="dateCreated datePublished" datetime="2021-09-21T11:06:52+08:00">2021-09-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E8%B3%87%E6%96%99%E5%BA%AB/" itemprop="url" rel="index"><span itemprop="name">資料庫</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>資料庫的應用場境並不倨限在網頁技術上，行動裝置或企業內部應用都有資料庫系統可以發揮的地方。</p>
+<p>目前大多數所稱的資料庫系統以<strong>關聯式資料庫</strong>為主流，其他類型的資料庫則依照應用場境的需求而有不同。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2021/09/21/db-lession-01/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/21/web-lession-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/21/web-lession-02/" class="post-title-link" itemprop="url">[網頁技術] Lesson 2 網頁狀態管理 COOKIE 和 SESSION</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-09-21 09:47:21 / 修改時間：10:10:14" itemprop="dateCreated datePublished" datetime="2021-09-21T09:47:21+08:00">2021-09-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">網頁技術</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>GET 和 POST 主要是在提供個別網頁間的傳遞之用，適合用在傳遞的動作只做一次，或是這個資料只會使用一次的情境。<br>但是如果要在多個網頁間傳遞資料，會需要在每個網頁上都建立相關的傳遞機制，使用上會很不方便。<br>因此，網頁技術中提供了另外一種傳遞資料的做法，使用暫存資料的方式，讓各個網頁都可以去存取這個資料，而不需要依賴網頁間的傳遞，在PHP技術中，有兩個做法可以達到這個目的：</p>
+<ul>
+<li>Cookie</li>
+<li>Session</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2021/09/21/web-lession-02/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/21/web-lession-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/21/web-lession-01/" class="post-title-link" itemprop="url">[網頁技術] Lesson 1 網頁傳值</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-09-21 09:21:51 / 修改時間：10:10:22" itemprop="dateCreated datePublished" datetime="2021-09-21T09:21:51+08:00">2021-09-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">網頁技術</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>目前的網站通常不會是只有單一靜態頁面，為了增加網站的互動性和功能性，我們會透過表單或連結來傳遞資料到其他頁面去，這個步驟就是網頁傳值的過程。<br>比如我們在google.com的搜尋欄輸入關鍵字，按下搜尋後，會轉移到別的頁面去，而這個轉移後的頁面必須能接收傳過來的關鍵字，最後把搜尋的結果呈現在頁面上。<br>目前表單功能只支援兩種傳遞資料的方式：</p>
+<ul>
+<li>GET</li>
+<li>POST</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2021/09/21/web-lession-01/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/21/basic-lesson-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/21/basic-lesson-06/" class="post-title-link" itemprop="url">[基礎課程] Lesson 6 時間及日期處理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-09-21 00:02:42 / 修改時間：12:41:00" itemprop="dateCreated datePublished" datetime="2021-09-21T00:02:42+08:00">2021-09-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>日期與時間的處理一直是許多程式語言中必備的功能，相關的函式也非常多，在各式問題的解決上，時間與日期經常都是要同時考量的項目之一。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2021/09/21/basic-lesson-06/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/20/basic-lesson-05/" class="post-title-link" itemprop="url">[基礎課程] Lesson 5 字串處理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-20 23:50:23" itemprop="dateCreated datePublished" datetime="2021-09-20T23:50:23+08:00">2021-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-21 00:01:03" itemprop="dateModified" datetime="2021-09-21T00:01:03+08:00">2021-09-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>字串處理是網頁開發的基礎能力，因為網頁開發的原理就是從伺服器產生包含HTML標籤及CSS屬性給客戶端的瀏灠器去解析成網頁供大眾瀏灠，因此可以說網頁開發的過程就是在產生各式字串。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2021/09/20/basic-lesson-05/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -457,93 +923,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/19/basic-lesson-00/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.gif">
-      <meta itemprop="name" content="Mack liu">
-      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2021/09/19/basic-lesson-00/" class="post-title-link" itemprop="url">[基礎課程]Lesson 0 課程介紹與學習目標</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-09-19 21:55:45" itemprop="dateCreated datePublished" datetime="2021-09-19T21:55:45+08:00">2021-09-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-20 13:59:09" itemprop="dateModified" datetime="2021-09-20T13:59:09+08:00">2021-09-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本課程將教授學員認識網頁程式設計，涵蓋前端、後端、視覺、資料庫等知識，並期望學員能理解網頁技術的運作與整合，進而在結訓後能從事網頁程式技術相關的工作。</p>
-<p>本課程預設的訓練對像為高中畢業以上，對網頁程式技術有興趣並想從事相關工作的待業者。</p>
-<p>本課程預期結訓學員應有基本的網頁程式開發及視覺設計的基礎能力，能獨力處理第一線的程式碼編寫、除錯及維護的工作</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2021/09/19/basic-lesson-00/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/php-book/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/php-book/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/php-book/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/php-book/">1</a><span class="page-number current">2</span><a class="page-number" href="/php-book/page/3/">3</a><a class="extend next" rel="next" href="/php-book/page/3/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -609,7 +992,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -622,7 +1005,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/php-book/tags/">
           
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
