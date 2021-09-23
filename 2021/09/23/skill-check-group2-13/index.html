@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前台問卷調查雖然也有區分登入前和登入後的不同狀態，但是並沒有限制會員一人只能投一票，因此做完此功能後可以先多投幾票，讓長條圖的效果顯示出來，可以節省評閱的時間。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[技能檢定]題組二 步驟13  製作前台問卷調查功能">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group2-13/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="前台問卷調查雖然也有區分登入前和登入後的不同狀態，但是並沒有限制會員一人只能投一票，因此做完此功能後可以先多投幾票，讓長條圖的效果顯示出來，可以節省評閱的時間。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-09-23T04:11:08.000Z">
+<meta property="article:modified_time" content="2021-09-23T04:18:19.742Z">
+<meta property="article:author" content="Mack liu">
+<meta property="article:tag" content="php,web,javascript,html,mysql,css">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group2-13/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[技能檢定]題組二 步驟13  製作前台問卷調查功能 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group2-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [技能檢定]題組二 步驟13  製作前台問卷調查功能
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-09-23 12:11:08 / 修改時間：12:18:19" itemprop="dateCreated datePublished" datetime="2021-09-23T12:11:08+08:00">2021-09-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%A1%8C%E7%B5%84%E4%BA%8C/" itemprop="url" rel="index"><span itemprop="name">題組二</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前台問卷調查雖然也有區分登入前和登入後的不同狀態，但是並沒有限制會員一人只能投一票，因此做完此功能後可以先多投幾票，讓長條圖的效果顯示出來，可以節省評閱的時間。</p>
+<span id="more"></span>
+<ol>
+<li>在 <code>./front/</code> 目錄下增加 <code>que.php</code> 檔案，並撰寫問卷問題列表及會員功能限制</li>
+<li>在 <code>./front/</code> 目錄下增加 <code>result.php</code> 檔案，並撰寫問卷結果功能</li>
+<li>問卷結果的長條圖我們直接利用 <code>&lt;div&gt;&lt;/div&gt;</code> 就可以了，長度的計算根據投票比例去換算再寫入到style中</li>
+<li>在 <code>./front/</code> 目錄下增加 <code>vote.php</code> 檔案，並撰寫投票功能</li>
+<li>在 <code>./api/</code> 目錄下增加 <code>vote.php</code> 檔案，並撰寫接受投票及更新資料庫的功能</li>
+<li>為了簡化前台的程式碼，所以我們在做資料表更新時，除了更新選項的計數外，也會同時去更新題目的計數，這樣就不用在 <code>result.php</code> 中再去計算一次總票數了。</li>
+</ol>
+<h2 id="最後的檢查"><a href="#最後的檢查" class="headerlink" title="最後的檢查"></a>最後的檢查</h2><p>題組二雖然每個功能都不用花太多時間製作，但是在檢查時要格式小心，大多數監評都會檢查註冊功能及登入是否正常，之後也會驗證文章和問卷功能中和會員有關的判斷是否都正常，因此如果提早做完了功能，那就要記得從頭到尾的功能細節都要檢查過一次。</p>
+<p>另外，<code>2019年</code>修訂的素材中把第二題的css從原本的高度<strong>888px</strong>改成了<strong>768px</strong>，隨之而來的問題是加上了標題圖片和尾頁的QR code後，整個版面還是被撐過了768px的大小，由於這個問題在新版本的素材中會很明顯，擔心會造成評閱時的爭議，因此建議最後有空時修改一下CSS的設定，把整體版面控制在 <strong>1024px x 768px</strong> 的範圍會比較好：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">css檔中第二個 <span class="selector-id">#mm</span> 的地方</span><br><span class="line"><span class="selector-id">#mm</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">min-height</span>:<span class="number">540px</span>; <span class="comment">/* 570 -&gt; 540 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#lef</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">width</span>:<span class="number">18.2%</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">2px</span>;</span><br><span class="line">	<span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">../icon/02B04.png</span>) repeat-y;</span><br><span class="line">	<span class="comment">/*background-size:100% auto;*/</span></span><br><span class="line">	<span class="attribute">min-height</span>:<span class="number">538px</span>;  <span class="comment">/* 568 -&gt; 538 */</span></span><br><span class="line">	<span class="attribute">display</span>:inline-block;</span><br><span class="line">	<span class="attribute">vertical-align</span>:top;</span><br><span class="line">	<span class="attribute">position</span>:relative;</span><br><span class="line">	<span class="attribute">top</span>:-<span class="number">3px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#main</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">display</span>:inline-block;</span><br><span class="line">	<span class="attribute">width</span>:<span class="number">78%</span>;</span><br><span class="line">	<span class="attribute">height</span>:<span class="number">538px</span>;  <span class="comment">/* 565 -&gt; 538 */</span></span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">4px</span>;</span><br><span class="line">	<span class="attribute">border</span>:solid <span class="number">1px</span> <span class="number">#000000</span>;</span><br><span class="line">	<span class="attribute">overflow</span>:auto;</span><br><span class="line">	<span class="attribute">position</span>:relative;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">1%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#bottom</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">text-align</span><span class="selector-pseudo">:right</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">0</span> <span class="number">24px</span>; <span class="comment">/* 24px -&gt; 0 24px */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/23/skill-check-group2-12/" rel="prev" title="[技能檢定]題組二 步驟12  製作問卷管理功能">
+      <i class="fa fa-chevron-left"></i> [技能檢定]題組二 步驟12  製作問卷管理功能
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/23/skill-check-group3-02/" rel="next" title="[技能檢定]題組三 步驟2 建立資料表">
+      [技能檢定]題組三 步驟2 建立資料表 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%BE%8C%E7%9A%84%E6%AA%A2%E6%9F%A5"><span class="nav-number">1.</span> <span class="nav-text">最後的檢查</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack liu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/muse.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

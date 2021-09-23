@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="購物功能被我們切成兩個部份來製作，一個是會員登入及註冊，一個則是登入後的購物功能，題目在這邊的描述並不是很清楚，簡單來說，就是購物車的功能必須是登入的會員才能看到及使用的，如果不是登入的會員則會被導引去進行會員註冊或登入。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[技能檢定]題組四 步驟13 製作前台購物功能">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group4-13/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="購物功能被我們切成兩個部份來製作，一個是會員登入及註冊，一個則是登入後的購物功能，題目在這邊的描述並不是很清楚，簡單來說，就是購物車的功能必須是登入的會員才能看到及使用的，如果不是登入的會員則會被導引去進行會員註冊或登入。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-09-23T15:32:21.000Z">
+<meta property="article:modified_time" content="2021-09-23T15:44:09.151Z">
+<meta property="article:author" content="Mack liu">
+<meta property="article:tag" content="php,web,javascript,html,mysql,css">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group4-13/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[技能檢定]題組四 步驟13 製作前台購物功能 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group4-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [技能檢定]題組四 步驟13 製作前台購物功能
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-09-23 23:32:21 / 修改時間：23:44:09" itemprop="dateCreated datePublished" datetime="2021-09-23T23:32:21+08:00">2021-09-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%A1%8C%E7%B5%84%E5%9B%9B/" itemprop="url" rel="index"><span itemprop="name">題組四</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>購物功能被我們切成兩個部份來製作，一個是會員登入及註冊，一個則是登入後的購物功能，題目在這邊的描述並不是很清楚，簡單來說，就是購物車的功能必須是登入的會員才能看到及使用的，如果不是登入的會員則會被導引去進行會員註冊或登入。</p>
+<span id="more"></span>
+<h4 id="購物車功能"><a href="#購物車功能" class="headerlink" title="購物車功能"></a>購物車功能</h4><ol>
+<li>先前在 <code>./api/chk_pw.php</code> 中已經增加了一個session變數，用來紀錄使用者登入的狀況</li>
+<li>在 <code>./front/buycart.php</code> 中增加對會員登入的判斷，如果使用者是登入的狀況，則可以看到購物車的內容，如果使用者不是登入的狀況，則將使用者導向會員登入頁面</li>
+<li>接著增加把選購商品加入購物車的程式碼，這邊我們使用一個session變數來代表購物車，選購的商品都會先存放到這個變數中形成一個陣列，等最後確認購買完成，才會把商品內容存到資料表中</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先判斷網址是否帶有商品，有的話先加入到購物車</span></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>]))&#123;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$_SESSION</span>[<span class="string">&#x27;cart&#x27;</span>][<span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>]]=<span class="variable">$_GET</span>[<span class="string">&#x27;qt&#x27;</span>];</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;cart&#x27;</span>]) || <span class="keyword">empty</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;cart&#x27;</span>]))&#123; <span class="comment">//判斷購物車是否為空車及購物車是否存在</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=&#x27;ct&#x27;&gt;請選擇商品&lt;/h2&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判斷是否為登入的使用者，未登入則導向登入頁</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">empty</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;member&#x27;</span>]))&#123;</span><br><span class="line">    </span><br><span class="line">    to(<span class="string">&quot;?do=login&quot;</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在建立購物商品列表時，使用內建的css 樣式.all時會發現表格的大小超出版面範圍，這時可以去css檔案調整一下內距和右側區塊的大小，讓畫面可以容納更多的內容。</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.all</span> <span class="selector-tag">td</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">min-width</span>:<span class="number">86px</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>雖然參考畫面中的購物車列表把商品數量以input的欄位來顯示，但題目中並沒有說明這個input欄位是否有其它的功能，<code>比如改變數量時，小計欄位也會跟著改變</code>，為了減少不必要的爭議，這邊我是使用直接顯示的方式來處理，如果要改變數量的話，可以回到商品詳細內容去填入數量即可。</li>
+<li>刪除購物車商品的功能我們延用先前寫好的**del(table,id)函式即可，將要刪除的商品id傳到後台api去，然後由api來刪除session中的商品內容，完成後再重新導向 <code>buycart.php</code> 一次並清除網址帶的商品參數，此時因為購物車內的商品數量減少了，所以列表就會少一樣商品，達成題目要求的功能</li>
+<li>在 <code>./api/</code> 目錄中增加一個 <code>del_cart.php</code>的檔案，並撰寫刪除購物車商品的功能。</li>
+</ol>
+<h4 id="結帳櫃台功能"><a href="#結帳櫃台功能" class="headerlink" title="結帳櫃台功能"></a>結帳櫃台功能</h4><ol>
+<li>在 <code>./front/</code> 目錄中增加 <code>check.php</code> 檔案，並撰寫列出會員資料及商品清單功能，這邊的填寫資料內容會完整的寫入訂單資料表中，而不是以參照的方式去更新會員資料表，理由是在電商網站的流程中，本來就允許訂購者和收件人的資料是不同的，這邊只是題目沒說明清楚而已。</li>
+<li>在傳送訂單資料方面我們採用ajax的方式來傳送表單的內容，這樣在處理彈出視窗訊息時會比較單純一些。</li>
+<li>另外一個題目沒提到的細節是在送出訂單後的購物車及會員登入狀態要怎麼處理？如果檢定時只照題目的流程走一遍，那做到寫入訂單就可以了，但是當要操作第二筆訂單時，就會發生原有的購物車內容還有上一筆訂單的資料在的狀況，所以這邊建議如果時間上來得及，同時也已經做到這一步了，可以把一些細節補上，這樣在評分時會減少一些爭議。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buy</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//建立表單的資料</span></span><br><span class="line">    <span class="keyword">let</span> data=$(<span class="string">&quot;input&quot;</span>).serialize();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//傳送表單的資料到後做訂單處理</span></span><br><span class="line">    $.post(<span class="string">&#x27;api/buy.php&#x27;</span>,data,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//顯示提示訊息後將頁面導向首頁</span></span><br><span class="line">        alert(<span class="string">&quot;訂購成功\n感謝您的選購&quot;</span>)</span><br><span class="line">        location.href=<span class="string">&quot;index.php&quot;</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>我的做法是在ajax傳送表單資料後彈出感謝訊息的視窗，然後把使用者導回首頁去；而此同時，在後端的api除了收集ajax傳來的內容並寫入資料表外，也會同時清除購物車的session內容，這樣使用者就有一台空的購物車可以進行第二筆訂單。</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//儲存訂單資料</span></span><br><span class="line"><span class="variable">$Ord</span>-&gt;save(<span class="variable">$data</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//刪除購物車(檢定可不做)</span></span><br><span class="line"><span class="keyword">unset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;cart&#x27;</span>]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>最後的補強是在首頁的功能連結上，針對會員登入的連結加入判斷，如果會員登入成功，則會員登入改成登出。</li>
+<li>在 <code>./api/logout.php</code> 中撰寫登出功能，這邊我們為了兼容前台會員登出及後台的管理者登出，因此使用switch..case的方式來分辨要登出的對像，如果是管理者登出，則只要清楚管理者的session，如果是會員登出，則除了清楚會員的session，也會一併清除會員的購物車session。</li>
+<li>在 <code>index.php</code> 中的會員登出連結上加入 <code>logout=member</code> 的參數，同時也可以順手在 <code>admin.php</code> 的登出功能上加入 <code>logout=admin</code> 參數。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/23/skill-check-group4-12/" rel="prev" title="[技能檢定]題組四 步驟12 製作前台商品分類區">
+      <i class="fa fa-chevron-left"></i> [技能檢定]題組四 步驟12 製作前台商品分類區
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/23/skill-check-group4-14/" rel="next" title="[技能檢定]題組四 步驟14 後台訂單功能製作-訂單詳細內容">
+      [技能檢定]題組四 步驟14 後台訂單功能製作-訂單詳細內容 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B3%BC%E7%89%A9%E8%BB%8A%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">購物車功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B5%90%E5%B8%B3%E6%AB%83%E5%8F%B0%E5%8A%9F%E8%83%BD"><span class="nav-number">2.</span> <span class="nav-text">結帳櫃台功能</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack liu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/muse.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
