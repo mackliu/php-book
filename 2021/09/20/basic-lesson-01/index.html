@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="網頁是透過伺服器傳送網頁資料給客戶端的，因此網頁的程式及檔案都是放在遠端的伺服器，有使用者對這個網站提出閱讀的請求時，才會傳送資料。 但是開發作業通常不會直接在伺服器上開發，因此我們會在本地端建立一個模擬遠端伺服器的環境，並在本地端確認開發的成果後，再部署到遠端伺服器去。">
+  <meta name="description" content="網頁是透過伺服器傳送網頁資料給客戶端的，因此網頁的程式及相關檔案都是放在遠端的 網頁伺服器(web server) 中，當有使用者對這個網站提出閱讀或使用的 請求(request) 時，才會開始傳送資料給使用者。 但是開發作業通常不會直接在伺服器上開發，因此我們會在本地端建立一個模擬遠端伺服器的環境，並在本地端確認開發的成果後，再 部署(deploy) 到遠端伺服器去。 工欲善其事，必先利其器，本">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[基礎課程] lesson 1 開發環境及工具建置">
 <meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
-<meta property="og:description" content="網頁是透過伺服器傳送網頁資料給客戶端的，因此網頁的程式及檔案都是放在遠端的伺服器，有使用者對這個網站提出閱讀的請求時，才會傳送資料。 但是開發作業通常不會直接在伺服器上開發，因此我們會在本地端建立一個模擬遠端伺服器的環境，並在本地端確認開發的成果後，再部署到遠端伺服器去。">
+<meta property="og:description" content="網頁是透過伺服器傳送網頁資料給客戶端的，因此網頁的程式及相關檔案都是放在遠端的 網頁伺服器(web server) 中，當有使用者對這個網站提出閱讀或使用的 請求(request) 時，才會開始傳送資料給使用者。 但是開發作業通常不會直接在伺服器上開發，因此我們會在本地端建立一個模擬遠端伺服器的環境，並在本地端確認開發的成果後，再 部署(deploy) 到遠端伺服器去。 工欲善其事，必先利其器，本">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/zCY6qKD.png">
 <meta property="og:image" content="https://i.imgur.com/6AJZngv.png">
@@ -66,20 +66,27 @@
 <meta property="og:image" content="https://i.imgur.com/Yrs0Dcm.png">
 <meta property="og:image" content="https://i.imgur.com/3VrudBN.png">
 <meta property="og:image" content="https://i.imgur.com/8yvMjiz.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-007.jpg">
 <meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-001.jpg">
 <meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-002.jpg">
 <meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-003.jpg">
 <meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-006.jpg">
 <meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-004.jpg">
 <meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-005.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-008.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-009.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-010.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-011.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-012.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-013.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-014.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-015.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-016.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-017.jpg">
 <meta property="article:published_time" content="2021-09-20T03:22:01.000Z">
-<meta property="article:modified_time" content="2021-09-22T14:48:08.298Z">
+<meta property="article:modified_time" content="2021-09-25T03:51:10.016Z">
 <meta property="article:author" content="Mack liu">
-<meta property="article:tag" content="基礎">
 <meta property="article:tag" content="xampp">
-<meta property="article:tag" content="apache">
-<meta property="article:tag" content="php">
-<meta property="article:tag" content="mysql">
 <meta property="article:tag" content="visaul studio code">
 <meta property="article:tag" content="git">
 <meta property="article:tag" content="github">
@@ -245,7 +252,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-22 22:48:08" itemprop="dateModified" datetime="2021-09-22T22:48:08+08:00">2021-09-22</time>
+                <time title="修改時間：2021-09-25 11:51:10" itemprop="dateModified" datetime="2021-09-25T11:51:10+08:00">2021-09-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,33 +275,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>網頁是透過伺服器傳送網頁資料給客戶端的，因此網頁的程式及檔案都是放在遠端的伺服器，有使用者對這個網站提出閱讀的請求時，才會傳送資料。</p>
-<p>但是開發作業通常不會直接在伺服器上開發，因此我們會在本地端建立一個模擬遠端伺服器的環境，並在本地端確認開發的成果後，再部署到遠端伺服器去。</p>
+        <p>網頁是透過伺服器傳送網頁資料給客戶端的，因此網頁的程式及相關檔案都是放在遠端的 <strong>網頁伺服器(web server)</strong> 中，當有使用者對這個網站提出閱讀或使用的 <strong>請求(request)</strong> 時，才會開始傳送資料給使用者。</p>
+<p>但是開發作業通常不會直接在伺服器上開發，因此我們會在本地端建立一個模擬遠端伺服器的環境，並在本地端確認開發的成果後，再 <strong>部署(deploy)</strong> 到遠端伺服器去。</p>
+<p>工欲善其事，必先利其器，本章節將介紹幾款本課程會使用到的網頁開發工具，協助大家可以更順利的進行開發作業。</p>
 <span id="more"></span>
 
-<h1 id="Xampp-整合型伺服器套件"><a href="#Xampp-整合型伺服器套件" class="headerlink" title="Xampp 整合型伺服器套件"></a>Xampp 整合型伺服器套件</h1><p>xampp為一個整合型的網頁開發環境軟體，裏頭已經先行整合了網頁常用的開發環境需要的設定和套件，包含了網頁伺服器(Apache)、資料庫(MySQL)、程式語言(PHP)、資料庫管理軟體(PhpMyAdmin)，因此推薦給剛入門的新手來安裝使用，省去逐個下載安裝設定的麻煩。</p>
-<p>該套件有不同平台的版本，也有虛擬機的版本，長期更新，為本地開發者常用的整合型套件。</p>
+<h1 id="Xampp-整合型網頁開發套件"><a href="#Xampp-整合型網頁開發套件" class="headerlink" title="Xampp 整合型網頁開發套件"></a>Xampp 整合型網頁開發套件</h1><p>xampp為一個整合型的網頁開發環境套件，裏頭已經先行整合了網頁常用的開發環境需要的設定和套件，包含了 **網頁伺服器(Apache)<strong>、</strong>資料庫(MySQL)<strong>、</strong>程式語言(PHP)<strong>、</strong>資料庫管理軟體(PhpMyAdmin)**，因此推薦給剛入門的新手來安裝使用，省去逐個下載安裝設定的麻煩。</p>
+<p>該套件有不同平台的版本，也有虛擬機的版本，長期有專人在更新版本，為本機端開發者常用的整合型套件。</p>
 <ul>
-<li><strong>Apache</strong> - 目前主流的網頁伺服器，負責所有http及https的請求和回應，同類選擇還有nginx</li>
-</ul>
-<ul>
-<li><p><strong>MySQL</strong> - 目前被Orcale收購，但有社群免費版本，原作者另外開發了全免費的mariaDB開放給大眾使用，一般人還是會用MySQL來同時稱呼MySQL及mariaDB</p>
+<li><p><strong>Apache</strong> - 目前主流的網頁伺服器，負責所有http及https的請求和回應，同類選擇還有 <strong>nginx</strong></p>
 </li>
-<li><p><strong>phpmyadmin</strong> - 可以搭配MySQL及mariaDB使用的圖形化資料庫管理軟體</p>
+<li><p><strong>MySQL</strong> - 目前被Orcale收購，但有社群免費版本，原作者另外開發了全免費的 <strong>mariaDB</strong> 開放給大眾使用，不過一般人還是會用MySQL來同時稱呼MySQL及mariaDB</p>
 </li>
-<li><p><strong>PHP</strong> - PHP為目前網站後端使用頗多的程式語言，加上歷史悠久，相關的維護及更新需求一直都存在，同類的選擇有C#、Java、Ruby、Python、node.js…etc</p>
+<li><p><strong>phpmyadmin</strong> - 可以搭配 <strong>MySQL</strong> 及 <strong>mariaDB</strong> 使用的圖形化資料庫管理軟體</p>
+</li>
+<li><p><strong>PHP</strong> - PHP為目前網站後端使用頗多的程式語言，加上歷史悠久，相關的維護及更新需求一直都存在，同類的選擇有<strong>C#<strong>、</strong>Java</strong>、<strong>Ruby</strong>、<strong>Python</strong>、<strong>node.js</strong> …etc</p>
 </li>
 </ul>
 <h2 id="1-下載Xampp"><a href="#1-下載Xampp" class="headerlink" title="1.下載Xampp"></a>1.下載Xampp</h2><p>首先，直接在瀏灠器上輸入關鍵字 <code>xampp</code> ，即可找到xampp的官網或下載頁面：</p>
 <p><img src="https://i.imgur.com/zCY6qKD.png"></p>
-<p>進入下載頁面後，請先下載7.0系列的版本，8.0以上的版本因為剛推出沒多久，還有些相容性問題存在，建議等2021年中後再來安裝使用，這裏我們選擇的是7.4的版本：</p>
+<p>進入下載頁面後，請先下載7.0系列的版本，8.0以上的版本因為剛推出沒多久，還有些相容性問題存在，建議等穩定一些再來安裝使用，由於本課程屬於程式設計的基礎，內容適用於各個版本，因此這裏我們選擇的是較為穩定的7.4的版本：</p>
 <p><img src="https://i.imgur.com/6AJZngv.png"></p>
 <h2 id="2-執行安裝"><a href="#2-執行安裝" class="headerlink" title="2.執行安裝"></a>2.執行安裝</h2><p>使用瀏灠器下載完成後會在左下角顯示下載已完成的提示，點擊左下角的下載檔名稱即可開始安裝，如果是下載後將安裝檔放在別的目錄或磁碟機的，則找到安裝檔後，直接連點安裝檔即可開始安裝。</p>
 <p><img src="https://i.imgur.com/Owm4aCs.png"></p>
 <p><img src="https://i.imgur.com/HPcUmeh.png"></p>
 <p>點擊<code>next</code>按鈕後即可以開始安裝</p>
 <p><img src="https://i.imgur.com/xTpMNAr.png"></p>
-<p>接著進入安裝細節畫面，由於我們先以PHP網頁設計為目標，因此可以先取消勾選無關的其它套件和軟體，這可以加快安裝的速度，同時也提開虛擬開發環境的穩定性。</p>
+<p>接著進入安裝細節畫面，由於我們先以PHP網頁設計為目標，因此可以先取消勾選無關的其它套件和軟體，這可以加快安裝的速度，同時也提高開發環境的穩定性。</p>
 <p><img src="https://i.imgur.com/Tp3ZinB.png"></p>
 <p>在解壓縮安裝前，<code>xampp</code>會先跳出一個瀏灠器視窗來宣傳<code>xampp</code>的官網，請先關閉這個視窗或最小化，可以看到安裝畫面在瀏灠器後面，此時再點擊<code>next</code>按鈕後才算真正開始安裝</p>
 <p><img src="https://i.imgur.com/sycCFEJ.png"><br><img src="https://i.imgur.com/NUOBP5P.png"></p>
@@ -304,9 +311,9 @@
 <p>點選<code>admin</code>按鈕會開啟瀏灠器，如果畫面顯示正常，表示<code>Apache</code>運作正常。</p>
 <p><img src="https://i.imgur.com/wcDvh34.png"></p>
 <p>如果在啟用<code>Apache</code>和<code>MySQL</code>時跳出防火牆警告，表示電腦是第一次安裝<code>Xampp</code>相關的軟體，請按<code>允許存取</code>來讓這兩個軟體可以通過防火牆來運作.<br><img src="https://i.imgur.com/rByxrhS.png"><br><img src="https://i.imgur.com/rBZmHtd.png"></p>
-<h2 id="3、變更網站根目錄"><a href="#3、變更網站根目錄" class="headerlink" title="3、變更網站根目錄"></a>3、變更網站根目錄</h2><p>網站的開發一般是以<code>專案</code>為一個單位，反映在電腦中的具體呈現方式就是<code>資料夾目錄</code>，因此我們會習慣一個網站的系統都放在同一個資料夾來保存維護，如果要建立新的網站或新的專案，則會開啟另外的資料夾目錄來存放；但是<code>Apache</code>安裝完成時，預設的網站目錄為c槽下的<code>\xampp\htdocs</code>目錄，如果我們想開啟新的專案或將網站存放在別的位置時，則需要變更<code>Apache</code>管理的網站目錄路徑，這樣<code>Apache</code>才會認識我們自己建立的網站目錄，並且呈現網站內容。</p>
+<h2 id="3、變更網站根目錄"><a href="#3、變更網站根目錄" class="headerlink" title="3、變更網站根目錄"></a>3、變更網站根目錄</h2><p>網站的開發一般是以<code>專案</code>為一個單位，反應在電腦中的具體呈現方式就是<code>資料夾目錄</code>，因此我們會習慣一個網站的內容都放在同一個資料夾來保存維護，如果要建立新的網站或新的專案，則會開啟另外的資料夾目錄來存放；但是<code>Apache</code>安裝完成時，預設的網站目錄為c槽下的<code>\xampp\htdocs</code>目錄，如果我們想開啟新的專案或將網站存放在別的位置時，則需要變更<code>Apache</code>管理的網站目錄路徑，這樣<code>Apache</code>才會認識我們自己建立的網站目錄，並且呈現網站內容。</p>
 <p>首先，先在電腦中的任何磁碟區位置，建立一個用來存放專案網頁檔的資料夾，這裏以F槽為例，建立了一個<code>web</code>目錄<br><img src="https://i.imgur.com/amlRCKc.png"></p>
-<p>接著在<code>xampp</code>的控制台視窗中，點選<code>Apache</code>項目後的<code>config</code>按鈕，在彈出選單中找到<code>Apache(httpd.conf)</code>項目：<br><img src="https://i.imgur.com/L8iQ9Oq.png"></p>
+<p>接著在<code>xampp</code>的控制台視窗 中，點選<code>Apache</code>項目後的<code>config</code>按鈕，在彈出選單中找到<code>Apache(httpd.conf)</code>項目：<br><img src="https://i.imgur.com/L8iQ9Oq.png"></p>
 <p>預設會以記事本的方式來開啟<code>httpd.conf</code>檔，這個檔案中記錄了所有<code>Apache</code>這個軟體在啟動及運作時會用到的設定值，請按下鍵盤上的<code>Ctrl+F</code>組合鍵來開啟尋找視窗，在輸入框中輸入<code>documentroot</code>來尋找根目錄路徑的設定值：<br><img src="https://i.imgur.com/GWabSDW.png"><br>如下圖；在DocumentRoot及Directory兩個設定項目的後方將原本的<code>C:/xampp/htdocs</code>改成我們在F槽建立的web目錄，改完後記得存檔，並且需要先關閉Apache再開啟才會生效。<br><img src="https://i.imgur.com/1VuU5MF.png"></p>
 <p>重啟<code>Apache</code>後再按下<code>Admin</code>按鈕即可發現瀏灠器呈現的頁面內容和剛安裝時的內容不一樣，此時因為目錄中沒有任何檔案，因此畫面應該會是和下圖一樣：<br><img src="https://i.imgur.com/NfHli5b.png"></p>
 <hr>
@@ -350,48 +357,80 @@
 <p><img src="https://i.imgur.com/3VrudBN.png"></p>
 <p>點選<code>Apache</code>項目中的<code>Admin</code>按鈕，或是在瀏灠器的網址列中輸入 <strong><a target="_blank" rel="noopener" href="http://localhost/">http://localhost</a></strong> ，如果設定都正確，則會看到剛才輸入的 <strong>hello world</strong> 字樣，至此表示網頁程式設計的開發環境已建置完成</p>
 <p><img src="https://i.imgur.com/8yvMjiz.png"></p>
-<h2 id="Chrome-DevTool-瀏灠器開發者工具"><a href="#Chrome-DevTool-瀏灠器開發者工具" class="headerlink" title="Chrome DevTool - 瀏灠器開發者工具"></a>Chrome DevTool - 瀏灠器開發者工具</h2><p>目前主流的瀏灠器都有提供開發者工具，主要目的在方便網頁開發者可以進行即時的瀏灠和測試。</p>
+<div class="note danger no-icon">
+            <h4 id="VS-Code-打開後一片黑，連功能選單都沒有的狀況"><a href="#VS-Code-打開後一片黑，連功能選單都沒有的狀況" class="headerlink" title="VS Code 打開後一片黑，連功能選單都沒有的狀況"></a>VS Code 打開後一片黑，連功能選單都沒有的狀況</h4>
+          </div>
+
+<p>這是因為在部份的電腦系統中，顯示卡的硬體加功能和VS CODE有所衝突造成的，遇到這種狀況，需要關閉VS CODE的硬體加速支援功能。</p>
+<blockquote>
+<p>找到VS CODE設定檔的位置，一般會在 <code>C:\Users\user\.vscode</code> 這個目錄下的 <strong>argv.json</strong><br><img src="basic-lesson-01-007.jpg"><br>使用記事本或其他純文字編輯器來打開這個檔案<br>找到 <strong><code>// &quot;disable-hardware-acceleration&quot;: true,</code></strong> 這段文字<br>把前面的兩個斜線拿掉，就可以關閉硬體加速功能，VS CODE的開啟應該就會正常了</p>
+</blockquote>
+<h1 id="Chrome-DevTool-瀏灠器開發者工具"><a href="#Chrome-DevTool-瀏灠器開發者工具" class="headerlink" title="Chrome DevTool - 瀏灠器開發者工具"></a>Chrome DevTool - 瀏灠器開發者工具</h1><p>目前主流的瀏灠器都有提供開發者工具，主要目的在方便網頁開發者可以進行即時的瀏灠和測試。</p>
 <p>按下鍵盤上的<strong>F12</strong>按鍵或是在瀏灠器的頁面區任何地點按下滑鼠右鍵選單中的<strong>檢視</strong>都可以開啟瀏灠器開發者工具<br><img src="basic-lesson-01-001.jpg"></p>
 <div style="text-align:center;padding:0;margin:0;font-weight:bolder">開發者工具畫面</div>
 
 <p><img src="basic-lesson-01-002.jpg"></p>
-<h4 id="元件檢視"><a href="#元件檢視" class="headerlink" title="元件檢視"></a>元件檢視</h4><p>最基本的功能，可以用來檢查網頁中的原始碼是否和預期產出的內容一致。</p>
+<h2 id="元件檢視"><a href="#元件檢視" class="headerlink" title="元件檢視"></a>元件檢視</h2><p>最基本的功能，可以用來檢查網頁中的原始碼是否和預期產出的內容一致。</p>
 <p><img src="basic-lesson-01-003.jpg"></p>
-<h4 id="流動版面檢視"><a href="#流動版面檢視" class="headerlink" title="流動版面檢視"></a>流動版面檢視</h4><p>透過不同裝置的螢幕大小及方向性，可以檢視網頁程式碼在不同裝置上呈現的狀況。</p>
+<h2 id="流動版面檢視"><a href="#流動版面檢視" class="headerlink" title="流動版面檢視"></a>流動版面檢視</h2><p>透過不同裝置的螢幕大小及方向性，可以檢視網頁程式碼在不同裝置上呈現的狀況。</p>
 <p><img src="basic-lesson-01-006.jpg"></p>
-<h4 id="網路監測-Network"><a href="#網路監測-Network" class="headerlink" title="網路監測 - Network"></a>網路監測 - Network</h4><p>用來監測請求和回應的內容，並可以監控流量和資料狀況。</p>
+<h2 id="網路監測-Network"><a href="#網路監測-Network" class="headerlink" title="網路監測 - Network"></a>網路監測 - Network</h2><p>用來監測請求和回應的內容，並可以監控流量和資料狀況。</p>
 <p><img src="basic-lesson-01-004.jpg"></p>
-<h4 id="終端機功能-console"><a href="#終端機功能-console" class="headerlink" title="終端機功能 - console"></a>終端機功能 - console</h4><p>主要是做為 <strong>javascript</strong> 程式碼在前端的測試或是用來檢視和後端的溝通是否正常</p>
+<h2 id="終端機功能-console"><a href="#終端機功能-console" class="headerlink" title="終端機功能 - console"></a>終端機功能 - console</h2><p>主要是做為 <strong>javascript</strong> 程式碼在前端的測試或是用來檢視和後端的溝通是否正常</p>
 <p><img src="basic-lesson-01-005.jpg"></p>
-<h2 id="Git-版本管理工具"><a href="#Git-版本管理工具" class="headerlink" title="Git - 版本管理工具"></a>Git - 版本管理工具</h2><p>git 是繼subversion後最多人使用的版本管理工具，並結合雲端服務衍生許多應用來。<br>git 本身可以只在單機上執行版本管理的工具，建立起server端的托管倉庫後則又可以提供多人合作開發的應用，使用上非常有彈性。</p>
-<h4 id="安裝與設定"><a href="#安裝與設定" class="headerlink" title="安裝與設定"></a>安裝與設定</h4><ol>
-<li>連上<a target="_blank" rel="noopener" href="https://git-scm.com/">Git官網</a>，依據用的平台下載相符的安裝程式</li>
-<li>點擊安裝程式進行安裝</li>
-<li>開啟終端機程式輸入 git –version 如果有看到版本訊息則是安裝功能</li>
-<li>部份windows 7或是舊型的電腦及作業系統，可能需要重新啟動電腦才能安裝完成。</li>
+<h1 id="Git-版本管理工具"><a href="#Git-版本管理工具" class="headerlink" title="Git - 版本管理工具"></a>Git - 版本管理工具</h1><p>git 是繼subversion後最多人使用的版本管理工具，並結合雲端服務衍生許多應用來。<br>git 本身可以只在單機上執行版本管理的工具，建立起server端的托管倉庫後則又可以提供多人合作開發的應用，使用上非常有彈性。</p>
+<h2 id="安裝與設定"><a href="#安裝與設定" class="headerlink" title="安裝與設定"></a>安裝與設定</h2><ol>
+<li>連上<a target="_blank" rel="noopener" href="https://git-scm.com/">Git官網</a>，依據使用的作業系統(win/mac/linux)平台下載相符的安裝程式</li>
 </ol>
-<h4 id="基本操作介紹"><a href="#基本操作介紹" class="headerlink" title="基本操作介紹"></a>基本操作介紹</h4><ol>
-<li>git init</li>
-<li>git add .</li>
-<li>git commit </li>
-<li>git config </li>
+<p><img src="basic-lesson-01-008.jpg"></p>
+<p><img src="basic-lesson-01-009.jpg"></p>
+<ol start="2">
+<li>windows平台的話下載安裝程式後，點擊安裝程式就可以進行安裝，其它平台請見官網說明使用shell指令進行安裝</li>
 </ol>
-<h2 id="Github-遠端程式碼托管倉庫"><a href="#Github-遠端程式碼托管倉庫" class="headerlink" title="Github - 遠端程式碼托管倉庫"></a>Github - 遠端程式碼托管倉庫</h2><p>github 是一個以git為基礎的雲端程式碼托管服務，目前已被微軟收購，並開放個人使用者可以使用全部的功能，只對企業用戶有收費。</p>
+<p><img src="basic-lesson-01-010.jpg"></p>
+<ol start="3">
+<li>開啟終端機程式輸入 <code>git --version</code> 如果有看到版本訊息則是安裝成功</li>
+</ol>
+<p><img src="basic-lesson-01-011.jpg"></p>
+<ol start="4">
+<li>部份windows 7或是舊型的電腦及作業系統可能需要重新啟動電腦才能看到版本訊息。</li>
+</ol>
+<h2 id="基本操作介紹"><a href="#基本操作介紹" class="headerlink" title="基本操作介紹"></a>基本操作介紹</h2><ol>
+<li>git init - 初始化專案資料夾，只需在建立專案時做一次。</li>
+</ol>
+<p><img src="basic-lesson-01-012.jpg"></p>
+<ol start="2">
+<li>git add . - 將有變動的檔案加入git的監控中</li>
+<li>git status - 查看目前專案的檔案狀況</li>
+<li>git commit - 將有變動的檔案建立起變動紀錄</li>
+<li>git log - 查看專案的版本紀錄</li>
+<li>git config - 進行設定</li>
+</ol>
+<h1 id="Github-遠端程式碼托管倉庫"><a href="#Github-遠端程式碼托管倉庫" class="headerlink" title="Github - 遠端程式碼托管倉庫"></a>Github - 遠端程式碼托管倉庫</h1><p>github 是一個以git為基礎的雲端程式碼托管服務，目前已被微軟收購，並開放個人使用者可以使用全部的功能，只對企業用戶有收費。</p>
 <p>github 目前也漸漸成為軟體工程師的一種社交平台，許多軟體職位會要求應試者附上github的帳號，藉此了解求職者的技術能力及程式碼經營能力。</p>
-<h4 id="申請帳號"><a href="#申請帳號" class="headerlink" title="申請帳號"></a>申請帳號</h4><ol>
+<h2 id="申請帳號"><a href="#申請帳號" class="headerlink" title="申請帳號"></a>申請帳號</h2><ol>
 <li>連線至<a target="_blank" rel="noopener" href="https://github.com/">github官網</a></li>
+</ol>
+<p><img src="basic-lesson-01-013.jpg"></p>
+<ol start="2">
 <li>註冊新帳號</li>
+</ol>
+<p><img src="basic-lesson-01-014.jpg"></p>
+<ol start="3">
 <li>登入帳號</li>
 </ol>
-<h4 id="建立倉庫"><a href="#建立倉庫" class="headerlink" title="建立倉庫"></a>建立倉庫</h4><ul>
+<p><img src="basic-lesson-01-015.jpg"></p>
+<h2 id="建立倉庫"><a href="#建立倉庫" class="headerlink" title="建立倉庫"></a>建立倉庫</h2><ul>
 <li>操作github提供的功能來建立一個雲端倉庫</li>
 </ul>
-<h4 id="與本地專案連結"><a href="#與本地專案連結" class="headerlink" title="與本地專案連結"></a>與本地專案連結</h4><ul>
+<p><img src="basic-lesson-01-016.jpg"></p>
+<p><img src="basic-lesson-01-017.jpg"></p>
+<h2 id="與本地專案連結"><a href="#與本地專案連結" class="headerlink" title="與本地專案連結"></a>與本地專案連結</h2><ul>
 <li>git remote add name <a target="_blank" rel="noopener" href="https://github.com/youraccount/repo.git">https://github.com/youraccount/repo.git</a></li>
 </ul>
-<h4 id="程式碼推送"><a href="#程式碼推送" class="headerlink" title="程式碼推送"></a>程式碼推送</h4><ul>
-<li>git pull name master</li>
-<li>git push name master</li>
+<h2 id="程式碼推送"><a href="#程式碼推送" class="headerlink" title="程式碼推送"></a>程式碼推送</h2><ul>
+<li>git pull name master - 把專案從遠端的倉庫拉回來</li>
+<li>git push name master - 把專案推送到遠端的倉庫去</li>
 </ul>
 
     </div>
@@ -402,11 +441,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/php-book/tags/%E5%9F%BA%E7%A4%8E/" rel="tag"># 基礎</a>
               <a href="/php-book/tags/xampp/" rel="tag"># xampp</a>
-              <a href="/php-book/tags/apache/" rel="tag"># apache</a>
-              <a href="/php-book/tags/php/" rel="tag"># php</a>
-              <a href="/php-book/tags/mysql/" rel="tag"># mysql</a>
               <a href="/php-book/tags/visaul-studio-code/" rel="tag"># visaul studio code</a>
               <a href="/php-book/tags/git/" rel="tag"># git</a>
               <a href="/php-book/tags/github/" rel="tag"># github</a>
@@ -483,7 +518,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Xampp-%E6%95%B4%E5%90%88%E5%9E%8B%E4%BC%BA%E6%9C%8D%E5%99%A8%E5%A5%97%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">Xampp 整合型伺服器套件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BC%89Xampp"><span class="nav-number">1.1.</span> <span class="nav-text">1.下載Xampp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9F%B7%E8%A1%8C%E5%AE%89%E8%A3%9D"><span class="nav-number">1.2.</span> <span class="nav-text">2.執行安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%AE%8A%E6%9B%B4%E7%B6%B2%E7%AB%99%E6%A0%B9%E7%9B%AE%E9%8C%84"><span class="nav-number">1.3.</span> <span class="nav-text">3、變更網站根目錄</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Visual-Studio-Code-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%B7%A8%E8%BC%AF%E6%95%B4%E5%90%88%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">Visual Studio Code 程式碼編輯整合工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BC%89Visual-Studio-Code"><span class="nav-number">2.1.</span> <span class="nav-text">1.下載Visual Studio Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9F%B7%E8%A1%8C%E5%AE%89%E8%A3%9D-1"><span class="nav-number">2.2.</span> <span class="nav-text">2.執行安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.3.</span> <span class="nav-text">3.基本設定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%AA%9E%E7%B3%BB"><span class="nav-number">2.3.1.</span> <span class="nav-text">3-1. 安裝中文語系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%A8%AD%E5%AE%9APHP%E5%9F%B7%E8%A1%8C%E8%B7%AF%E5%BE%91"><span class="nav-number">2.3.2.</span> <span class="nav-text">3-2. 設定PHP執行路徑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%B8%AC%E8%A9%A6%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E5%8F%8A%E5%B7%A5%E5%85%B7%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E9%81%8B%E4%BD%9C"><span class="nav-number">2.4.</span> <span class="nav-text">4.測試開發環境及工具是否正常運作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-VS-Code%E7%9A%84%E9%96%8B%E5%95%9F%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.1.</span> <span class="nav-text">4.1 VS Code的開啟方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8BPHP%E7%B6%B2%E9%A0%81%E6%AA%94"><span class="nav-number">2.4.2.</span> <span class="nav-text">4.2 建立第一個PHP網頁檔</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome-DevTool-%E7%80%8F%E7%81%A0%E5%99%A8%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%A5%E5%85%B7"><span class="nav-number">2.5.</span> <span class="nav-text">Chrome DevTool - 瀏灠器開發者工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%83%E4%BB%B6%E6%AA%A2%E8%A6%96"><span class="nav-number">2.5.0.1.</span> <span class="nav-text">元件檢視</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E5%8B%95%E7%89%88%E9%9D%A2%E6%AA%A2%E8%A6%96"><span class="nav-number">2.5.0.2.</span> <span class="nav-text">流動版面檢視</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B6%B2%E8%B7%AF%E7%9B%A3%E6%B8%AC-Network"><span class="nav-number">2.5.0.3.</span> <span class="nav-text">網路監測 - Network</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B5%82%E7%AB%AF%E6%A9%9F%E5%8A%9F%E8%83%BD-console"><span class="nav-number">2.5.0.4.</span> <span class="nav-text">終端機功能 - console</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">2.6.</span> <span class="nav-text">Git - 版本管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E8%88%87%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.6.0.1.</span> <span class="nav-text">安裝與設定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E4%BB%8B%E7%B4%B9"><span class="nav-number">2.6.0.2.</span> <span class="nav-text">基本操作介紹</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-%E9%81%A0%E7%AB%AF%E7%A8%8B%E5%BC%8F%E7%A2%BC%E6%89%98%E7%AE%A1%E5%80%89%E5%BA%AB"><span class="nav-number">2.7.</span> <span class="nav-text">Github - 遠端程式碼托管倉庫</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%B3%E8%AB%8B%E5%B8%B3%E8%99%9F"><span class="nav-number">2.7.0.1.</span> <span class="nav-text">申請帳號</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%80%89%E5%BA%AB"><span class="nav-number">2.7.0.2.</span> <span class="nav-text">建立倉庫</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%88%87%E6%9C%AC%E5%9C%B0%E5%B0%88%E6%A1%88%E9%80%A3%E7%B5%90"><span class="nav-number">2.7.0.3.</span> <span class="nav-text">與本地專案連結</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E6%8E%A8%E9%80%81"><span class="nav-number">2.7.0.4.</span> <span class="nav-text">程式碼推送</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Xampp-%E6%95%B4%E5%90%88%E5%9E%8B%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC%E5%A5%97%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">Xampp 整合型網頁開發套件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BC%89Xampp"><span class="nav-number">1.1.</span> <span class="nav-text">1.下載Xampp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9F%B7%E8%A1%8C%E5%AE%89%E8%A3%9D"><span class="nav-number">1.2.</span> <span class="nav-text">2.執行安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%AE%8A%E6%9B%B4%E7%B6%B2%E7%AB%99%E6%A0%B9%E7%9B%AE%E9%8C%84"><span class="nav-number">1.3.</span> <span class="nav-text">3、變更網站根目錄</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Visual-Studio-Code-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%B7%A8%E8%BC%AF%E6%95%B4%E5%90%88%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">Visual Studio Code 程式碼編輯整合工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BC%89Visual-Studio-Code"><span class="nav-number">2.1.</span> <span class="nav-text">1.下載Visual Studio Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9F%B7%E8%A1%8C%E5%AE%89%E8%A3%9D-1"><span class="nav-number">2.2.</span> <span class="nav-text">2.執行安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.3.</span> <span class="nav-text">3.基本設定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%AA%9E%E7%B3%BB"><span class="nav-number">2.3.1.</span> <span class="nav-text">3-1. 安裝中文語系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%A8%AD%E5%AE%9APHP%E5%9F%B7%E8%A1%8C%E8%B7%AF%E5%BE%91"><span class="nav-number">2.3.2.</span> <span class="nav-text">3-2. 設定PHP執行路徑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%B8%AC%E8%A9%A6%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E5%8F%8A%E5%B7%A5%E5%85%B7%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E9%81%8B%E4%BD%9C"><span class="nav-number">2.4.</span> <span class="nav-text">4.測試開發環境及工具是否正常運作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-VS-Code%E7%9A%84%E9%96%8B%E5%95%9F%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.1.</span> <span class="nav-text">4.1 VS Code的開啟方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8BPHP%E7%B6%B2%E9%A0%81%E6%AA%94"><span class="nav-number">2.4.2.</span> <span class="nav-text">4.2 建立第一個PHP網頁檔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VS-Code-%E6%89%93%E9%96%8B%E5%BE%8C%E4%B8%80%E7%89%87%E9%BB%91%EF%BC%8C%E9%80%A3%E5%8A%9F%E8%83%BD%E9%81%B8%E5%96%AE%E9%83%BD%E6%B2%92%E6%9C%89%E7%9A%84%E7%8B%80%E6%B3%81"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">VS Code 打開後一片黑，連功能選單都沒有的狀況</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chrome-DevTool-%E7%80%8F%E7%81%A0%E5%99%A8%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">Chrome DevTool - 瀏灠器開發者工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E4%BB%B6%E6%AA%A2%E8%A6%96"><span class="nav-number">3.1.</span> <span class="nav-text">元件檢視</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E5%8B%95%E7%89%88%E9%9D%A2%E6%AA%A2%E8%A6%96"><span class="nav-number">3.2.</span> <span class="nav-text">流動版面檢視</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%B2%E8%B7%AF%E7%9B%A3%E6%B8%AC-Network"><span class="nav-number">3.3.</span> <span class="nav-text">網路監測 - Network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%82%E7%AB%AF%E6%A9%9F%E5%8A%9F%E8%83%BD-console"><span class="nav-number">3.4.</span> <span class="nav-text">終端機功能 - console</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">4.</span> <span class="nav-text">Git - 版本管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E8%88%87%E8%A8%AD%E5%AE%9A"><span class="nav-number">4.1.</span> <span class="nav-text">安裝與設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E4%BB%8B%E7%B4%B9"><span class="nav-number">4.2.</span> <span class="nav-text">基本操作介紹</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Github-%E9%81%A0%E7%AB%AF%E7%A8%8B%E5%BC%8F%E7%A2%BC%E6%89%98%E7%AE%A1%E5%80%89%E5%BA%AB"><span class="nav-number">5.</span> <span class="nav-text">Github - 遠端程式碼托管倉庫</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B3%E8%AB%8B%E5%B8%B3%E8%99%9F"><span class="nav-number">5.1.</span> <span class="nav-text">申請帳號</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%80%89%E5%BA%AB"><span class="nav-number">5.2.</span> <span class="nav-text">建立倉庫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%87%E6%9C%AC%E5%9C%B0%E5%B0%88%E6%A1%88%E9%80%A3%E7%B5%90"><span class="nav-number">5.3.</span> <span class="nav-text">與本地專案連結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E6%8E%A8%E9%80%81"><span class="nav-number">5.4.</span> <span class="nav-text">程式碼推送</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -510,7 +545,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/php-book/tags/">
           
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
