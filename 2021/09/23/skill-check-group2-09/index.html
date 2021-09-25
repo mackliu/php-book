@@ -28,7 +28,7 @@
 <meta property="og:description" content="在上一步時我們完成了文章的列表，這一步我們要來處理會員登入後的不同功能，我們需要考慮以下的議題：">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T04:07:33.000Z">
-<meta property="article:modified_time" content="2021-09-23T04:18:03.944Z">
+<meta property="article:modified_time" content="2021-09-25T14:48:31.332Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章</a>
 
   </li>
   </ul>
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 12:07:33 / 修改時間：12:18:03" itemprop="dateCreated datePublished" datetime="2021-09-23T12:07:33+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 12:07:33" itemprop="dateCreated datePublished" datetime="2021-09-23T12:07:33+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-25 22:48:31" itemprop="dateModified" datetime="2021-09-25T22:48:31+08:00">2021-09-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -229,7 +235,7 @@
 <li>修改 <code>./js/js.js</code> 檔案中的api路徑，指向 <code>./api/good.php</code></li>
 <li>撰寫 <code>./api/good.php</code> 中的程式碼，依據 <code>type</code> 來決定是要新增一筆紀錄還是刪除一筆紀錄</li>
 <li>在更新完 <code>log</code> 資料表的內容後，同時也更新一下 <code>news</code> 資料表中的 <code>good</code> 欄位</li>
-<li>複製按讚相關的程式碼到 <code>./front/pop.php</code> 中並做相應的修改<h2 id=""><a href="#" class="headerlink" title=""></a></h2></li>
+<li>複製按讚相關的程式碼到 <code>./front/pop.php</code> 中並做相應的修改</li>
 </ol>
 
     </div>
@@ -311,7 +317,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -325,7 +330,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -338,7 +343,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/php-book/tags/">
           
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

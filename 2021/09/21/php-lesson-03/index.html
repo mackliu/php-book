@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="接下來我們要開始來進入動態網頁的製作，在此之前，請先確認已經掌握了以下的知識點及基本的操作或撰寫  HTML - 了解常用的標籤意義，並能以文字編輯器來撰寫需要的頁面結構 CSS - 了解常用的屬性意義及效果，能自行設計需要的類別組合，並讓網頁呈現應用的外觀。 PHP - 了解基本的程式語言特性及程式的撰寫方式，能獨立分析需要的程式指令步驟，並撰寫與執行程式 SQL - 了解資料庫的基本知識，能自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[PHP] Lesson 3 PHP + MySQL">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/21/php-lesson-03/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="接下來我們要開始來進入動態網頁的製作，在此之前，請先確認已經掌握了以下的知識點及基本的操作或撰寫  HTML - 了解常用的標籤意義，並能以文字編輯器來撰寫需要的頁面結構 CSS - 了解常用的屬性意義及效果，能自行設計需要的類別組合，並讓網頁呈現應用的外觀。 PHP - 了解基本的程式語言特性及程式的撰寫方式，能獨立分析需要的程式指令步驟，並撰寫與執行程式 SQL - 了解資料庫的基本知識，能自">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-09-21T06:00:10.000Z">
+<meta property="article:modified_time" content="2021-09-25T13:44:31.398Z">
+<meta property="article:author" content="Mack liu">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/21/php-lesson-03/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[PHP] Lesson 3 PHP + MySQL | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/21/php-lesson-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [PHP] Lesson 3 PHP + MySQL
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-21 14:00:10" itemprop="dateCreated datePublished" datetime="2021-09-21T14:00:10+08:00">2021-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-25 21:44:31" itemprop="dateModified" datetime="2021-09-25T21:44:31+08:00">2021-09-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">網頁技術</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>接下來我們要開始來進入動態網頁的製作，在此之前，請先確認已經掌握了以下的知識點及基本的操作或撰寫</p>
+<ul>
+<li><strong>HTML</strong> - 了解常用的標籤意義，並能以文字編輯器來撰寫需要的頁面結構</li>
+<li><strong>CSS</strong> - 了解常用的屬性意義及效果，能自行設計需要的類別組合，並讓網頁呈現應用的外觀。</li>
+<li><strong>PHP</strong> - 了解基本的程式語言特性及程式的撰寫方式，能獨立分析需要的程式指令步驟，並撰寫與執行程式</li>
+<li><strong>SQL</strong> - 了解資料庫的基本知識，能自己撰寫基礎的增改刪查語法，應依需要建立資料庫及資料表</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="PHP連線資料庫的方式"><a href="#PHP連線資料庫的方式" class="headerlink" title="PHP連線資料庫的方式"></a>PHP連線資料庫的方式</h2><p>由於PHP是一個壽命頗長的程式語言，因此在其發展上根據不同的階段，在和其他系統的配合上也衍生出了多種的搭配方式，針對和MySQL資料庫的連線，目前有三種做法：</p>
+<ul>
+<li><strong>mysql_connect</strong> - 最原始的做法，在舊版的PHP版本上還可以看到，但因安全性問題，己經不建議。</li>
+<li><strong>mysqli_connect</strong> - 函式字尾加上<strong>i</strong>系列的語法為安全性增強的語法，也是目前許多PHP系統常見的用法。</li>
+<li><strong>PDO</strong> - 為一個將資料庫連線抽象化後的機制，可以相容多種資料庫，同時也兼顧一定的安全性，為近期建議的做法，我們也將採用PDO的連線方式來進行相關的資料庫操作。</li>
+</ul>
+<h2 id="指令的傳遞與回傳"><a href="#指令的傳遞與回傳" class="headerlink" title="指令的傳遞與回傳"></a>指令的傳遞與回傳</h2><p>PHP與資料庫連線的目的只有兩個，一個是將SQL語法送進資料庫系統，一個是取得SQL語法執行後的結果。</p>
+<h3 id="SQL指令的傳遞"><a href="#SQL指令的傳遞" class="headerlink" title="SQL指令的傳遞"></a>SQL指令的傳遞</h3><ul>
+<li><p>建立查詢指令</p>
+</li>
+<li><p>以函式傳遞指令</p>
+</li>
+</ul>
+<h3 id="取得回傳值"><a href="#取得回傳值" class="headerlink" title="取得回傳值"></a>取得回傳值</h3><ul>
+<li>以函式取得回傳值並指定給變數</li>
+</ul>
+<h2 id="回傳值-資料的使用"><a href="#回傳值-資料的使用" class="headerlink" title="回傳值/資料的使用"></a>回傳值/資料的使用</h2><p>回傳值的內容會因為傳遞時的SQL語法而有不同的結果，有時是單一個值，有時是一個一維陣列，有時是多維陣列，在運用時要了解自己傳遞的SQL語法會得到的結果。</p>
+<h3 id="逐筆取回或是一次全部取回"><a href="#逐筆取回或是一次全部取回" class="headerlink" title="逐筆取回或是一次全部取回"></a>逐筆取回或是一次全部取回</h3><h3 id="使用索引或欄位名來取出資料"><a href="#使用索引或欄位名來取出資料" class="headerlink" title="使用索引或欄位名來取出資料"></a>使用索引或欄位名來取出資料</h3><h2 id="PHP-MySQL練習"><a href="#PHP-MySQL練習" class="headerlink" title="PHP + MySQL練習"></a>PHP + MySQL練習</h2><div class="note success">
+
+<p><strong>簡易註冊系統</strong></p>
+<ul>
+<li>建立一個資料表來存放使用者的帳號、密碼及個人資料</li>
+<li>建立一個網頁表單可以讓使用者輸入自己的帳號、密碼及個人資料</li>
+<li>送出表單後可以將使用者的資料存入資料表</li>
+</ul>
+</div>
+
+<div class="note success">
+
+<p><strong>簡易登入系統</strong></p>
+<ul>
+<li>建立一個資料表來存放使用者的帳號及密碼</li>
+<li>在網頁上輸入帳號密碼後，向資料庫比對帳密是否正確</li>
+<li>如果正確則導向另一個頁面並顯示登入成功</li>
+<li>如果錯誤則回到登入頁，並顯示”帳號或密碼錯誤”，請重新輸入”的提示</li>
+</ul>
+</div>
+
+<h2 id="資料庫與PHP網頁作業"><a href="#資料庫與PHP網頁作業" class="headerlink" title="資料庫與PHP網頁作業"></a>資料庫與PHP網頁作業</h2><div class="note success">
+
+<p><strong>請建立一個投票系統可以提供投票功能，並能查看投票的結果</strong></p>
+<ul>
+<li>請分析需要的功能及設計資料表</li>
+<li>請充分運用學到的各項網頁知識來美化這個投票系統的畫面</li>
+<li>請設計一個頁面可以用來輸入投票的題目</li>
+<li>請設計一個頁面可以看到目前進行投票的項目</li>
+<li>請設計一個頁面可以看到投票統計的結果</li>
+<li>進階功能<ul>
+<li>請整合註冊及登入系統</li>
+<li>能以長條圖或圖像化的方式來呈現統計的結果</li>
+<li>能判斷使用者的狀態，避免重覆投票</li>
+</ul>
+</li>
+</ul>
+</div>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/php-book/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/php-book/tags/PHP/" rel="tag"># PHP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/21/db-lesson-06/" rel="prev" title="[資料庫] Lesson 6 SQL 語句順序">
+      <i class="fa fa-chevron-left"></i> [資料庫] Lesson 6 SQL 語句順序
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/21/php-lesson-04/" rel="next" title="[PHP] Lesson 4 PHP程式檔案拆分">
+      [PHP] Lesson 4 PHP程式檔案拆分 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E9%80%A3%E7%B7%9A%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">PHP連線資料庫的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E7%9A%84%E5%82%B3%E9%81%9E%E8%88%87%E5%9B%9E%E5%82%B3"><span class="nav-number">2.</span> <span class="nav-text">指令的傳遞與回傳</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL%E6%8C%87%E4%BB%A4%E7%9A%84%E5%82%B3%E9%81%9E"><span class="nav-number">2.1.</span> <span class="nav-text">SQL指令的傳遞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E5%BE%97%E5%9B%9E%E5%82%B3%E5%80%BC"><span class="nav-number">2.2.</span> <span class="nav-text">取得回傳值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E5%82%B3%E5%80%BC-%E8%B3%87%E6%96%99%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">回傳值&#x2F;資料的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%90%E7%AD%86%E5%8F%96%E5%9B%9E%E6%88%96%E6%98%AF%E4%B8%80%E6%AC%A1%E5%85%A8%E9%83%A8%E5%8F%96%E5%9B%9E"><span class="nav-number">3.1.</span> <span class="nav-text">逐筆取回或是一次全部取回</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%E6%88%96%E6%AC%84%E4%BD%8D%E5%90%8D%E4%BE%86%E5%8F%96%E5%87%BA%E8%B3%87%E6%96%99"><span class="nav-number">3.2.</span> <span class="nav-text">使用索引或欄位名來取出資料</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-MySQL%E7%B7%B4%E7%BF%92"><span class="nav-number">4.</span> <span class="nav-text">PHP + MySQL練習</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87PHP%E7%B6%B2%E9%A0%81%E4%BD%9C%E6%A5%AD"><span class="nav-number">5.</span> <span class="nav-text">資料庫與PHP網頁作業</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack liu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/muse.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

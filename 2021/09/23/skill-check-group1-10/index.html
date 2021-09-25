@@ -28,7 +28,7 @@
 <meta property="og:description" content="題目並沒有很明確的指出登入功能一定要綁管理者帳號的資料表，所以這裹就算是寫死的，只要可以做到題目要求的登入後跳到後台頁面就可以了，但是這邊我們還是採用比較正常合理的方式來製作登入功能，因此我們要先在資料表中建立一個管理者帳號，帳號是”admin”，密碼是”1234”。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T01:42:50.000Z">
-<meta property="article:modified_time" content="2021-09-23T01:58:04.221Z">
+<meta property="article:modified_time" content="2021-09-25T14:48:31.332Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章</a>
 
   </li>
   </ul>
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 09:42:50 / 修改時間：09:58:04" itemprop="dateCreated datePublished" datetime="2021-09-23T09:42:50+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 09:42:50" itemprop="dateCreated datePublished" datetime="2021-09-23T09:42:50+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-25 22:48:31" itemprop="dateModified" datetime="2021-09-25T22:48:31+08:00">2021-09-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -222,7 +228,7 @@
 <li>撰寫 <code>./api/logout.php</code> 的登出功能，清除session後，要配合題目指示回到管理登入頁面(<code>index.php?do=login</code>)</li>
 <li>在 <code>./front/login.php</code> 中撰寫登入功能，登入成功時增一個session來記錄登入狀態</li>
 <li>題組一中並沒有要求要使用session或cookie來處理登入的功能，所以額外的功能建議是時間有餘時再來製作。</li>
-<li>在 <code>indexlphp</code> 中修改管理登入連結的按鈕，依據session來決定要顯示的文字及連結內容<h2 id=""><a href="#" class="headerlink" title=""></a></h2></li>
+<li>在 <code>indexlphp</code> 中修改管理登入連結的按鈕，依據session來決定要顯示的文字及連結內容</li>
 </ul>
 
     </div>
@@ -304,7 +310,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -318,7 +323,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -331,7 +336,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/php-book/tags/">
           
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

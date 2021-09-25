@@ -28,7 +28,7 @@
 <meta property="og:description" content="在先前的網站標題圖片的項目中，我們讓資料的欄位名稱都相同，所以在API中，我們使用$data陣列在存放資料時，這個陣列的內容和資料表的欄位必須是一致的，因此才能使用save()這個函式去做新增和更新的動作。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T01:41:14.000Z">
-<meta property="article:modified_time" content="2021-09-23T01:57:53.050Z">
+<meta property="article:modified_time" content="2021-09-25T14:48:31.332Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章</a>
 
   </li>
   </ul>
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 09:41:14 / 修改時間：09:57:53" itemprop="dateCreated datePublished" datetime="2021-09-23T09:41:14+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 09:41:14" itemprop="dateCreated datePublished" datetime="2021-09-23T09:41:14+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-25 22:48:31" itemprop="dateModified" datetime="2021-09-25T22:48:31+08:00">2021-09-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -221,7 +227,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//依據不同的資料表來做不同的動作</span></span><br><span class="line"><span class="keyword">switch</span>(<span class="variable">$table</span>)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;title&quot;</span>:</span><br><span class="line">        <span class="comment">//將欄位內容更新成表單傳遞過來的內容</span></span><br><span class="line">        <span class="variable">$data</span>[<span class="string">&#x27;text&#x27;</span>]=<span class="variable">$_POST</span>[<span class="string">&#x27;text&#x27;</span>][<span class="variable">$key</span>];</span><br><span class="line">        <span class="variable">$data</span>[<span class="string">&#x27;sh&#x27;</span>]=(<span class="variable">$id</span>==<span class="variable">$_POST</span>[<span class="string">&#x27;sh&#x27;</span>])?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;admin&quot;</span>:</span><br><span class="line">        <span class="variable">$data</span>[<span class="string">&#x27;acc&#x27;</span>]=<span class="variable">$_POST</span>[<span class="string">&#x27;acc&#x27;</span>][<span class="variable">$key</span>];</span><br><span class="line">        <span class="variable">$data</span>[<span class="string">&#x27;pw&#x27;</span>]=<span class="variable">$_POST</span>[<span class="string">&#x27;pw&#x27;</span>][<span class="variable">$key</span>];                </span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;menu&quot;</span>:</span><br><span class="line">        <span class="variable">$data</span>[<span class="string">&#x27;text&#x27;</span>]=<span class="variable">$_POST</span>[<span class="string">&#x27;text&#x27;</span>][<span class="variable">$key</span>];</span><br><span class="line">        <span class="variable">$data</span>[<span class="string">&#x27;href&#x27;</span>]=<span class="variable">$_POST</span>[<span class="string">&#x27;href&#x27;</span>][<span class="variable">$key</span>];</span><br><span class="line">        <span class="variable">$data</span>[<span class="string">&#x27;sh&#x27;</span>]=(in_array(<span class="variable">$id</span>,<span class="variable">$_POST</span>[<span class="string">&#x27;sh&#x27;</span>]))?<span class="number">1</span>:<span class="number">0</span>;                  </span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="comment">//將欄位內容更新成表單傳遞過來的內容</span></span><br><span class="line">        <span class="variable">$data</span>[<span class="string">&#x27;text&#x27;</span>]=<span class="variable">$_POST</span>[<span class="string">&#x27;text&#x27;</span>][<span class="variable">$key</span>];</span><br><span class="line">        <span class="variable">$data</span>[<span class="string">&#x27;sh&#x27;</span>]=(in_array(<span class="variable">$id</span>,<span class="variable">$_POST</span>[<span class="string">&#x27;sh&#x27;</span>]))?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>我們在API這邊設計的主要考量是希望功能類似的就儘量套用同樣的程式碼，因此我們透過$table這個變數，讓同一支API程式可以自動去判斷要對那一張資表進行操作，這樣才可以大幅度的減少需要撰寫的程式碼，同時透過變數的應用，也可以減低出錯率。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+
     </div>
 
     
@@ -301,7 +307,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -315,7 +320,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -328,7 +333,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/php-book/tags/">
           
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

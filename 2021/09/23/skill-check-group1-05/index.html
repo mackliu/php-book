@@ -28,7 +28,7 @@
 <meta property="og:description" content="除了 total及bottom，其他七項後台的功能版面都很像，我們先以”網站標題管理”這個功能來做示範，先完成這個功能後，相同的程式碼可以快速套用到其它功能去；">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T01:39:42.000Z">
-<meta property="article:modified_time" content="2021-09-23T01:57:46.572Z">
+<meta property="article:modified_time" content="2021-09-25T14:48:31.333Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章</a>
 
   </li>
   </ul>
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 09:39:42 / 修改時間：09:57:46" itemprop="dateCreated datePublished" datetime="2021-09-23T09:39:42+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 09:39:42" itemprop="dateCreated datePublished" datetime="2021-09-23T09:39:42+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-25 22:48:31" itemprop="dateModified" datetime="2021-09-25T22:48:31+08:00">2021-09-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -235,7 +241,7 @@
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">note:</span><br><span class="line">實際解題時如果一個功能一個功能照順序做，那幾乎不太可能在時間完成，</span><br><span class="line">因此這邊只是示範單一功能的完整開發過程；</span><br><span class="line">實際應檢時，會同時考量多個類似功能的情形，並在完成一個模組後，快速複製套用；</span><br><span class="line">比如我們延用網址參數$do來當成table的變數，應用在功能中的各個需要顯示資料表名的地方，</span><br><span class="line">在完成標題管理的HTML程式碼後，</span><br><span class="line">就可以把修改好的HTML碼快速複製到類似的ad,mvim,image,news,admin,menu去，</span><br><span class="line">然後修改欄位到符合題目要求，這樣就可以快速完成前端頁面的HTML碼處理，然後再接著寫API，</span><br><span class="line">API的撰寫也會考量是否可以同時適用多個功能。</span><br></pre></td></tr></table></figure>
 
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+
     </div>
 
     
@@ -315,7 +321,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -329,7 +334,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -342,7 +347,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/php-book/tags/">
           
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

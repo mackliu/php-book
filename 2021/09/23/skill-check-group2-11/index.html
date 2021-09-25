@@ -28,7 +28,7 @@
 <meta property="og:description" content="最新文章管理功能的步驟算是很簡單的應用，和題組一的後台幾乎一模一樣，只差在沒有內容編輯的要求而已，因此只要熟悉題組一的解法，這邊就照著做即可：">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T04:09:55.000Z">
-<meta property="article:modified_time" content="2021-09-23T04:18:12.224Z">
+<meta property="article:modified_time" content="2021-09-25T14:48:31.332Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章</a>
 
   </li>
   </ul>
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 12:09:55 / 修改時間：12:18:12" itemprop="dateCreated datePublished" datetime="2021-09-23T12:09:55+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 12:09:55" itemprop="dateCreated datePublished" datetime="2021-09-23T12:09:55+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-25 22:48:31" itemprop="dateModified" datetime="2021-09-25T22:48:31+08:00">2021-09-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -218,7 +224,7 @@
 <ol>
 <li>在前台的文章功能中已經先匯入文章到資料庫了，因此項目一算是送分</li>
 <li>依題意製作文章列表及分頁功能，編號功能可以考慮使用 <code>&lt;ol&gt;</code> 的序列清單來製作，也可以使用表格方式來製作，後者需自行計算分頁後的項目編號起始值</li>
-<li>在 <code>./api/</code> 目錄中新增 <code>news.php</code> 檔案，用來撰寫控制文章顯示及刪除的程式碼<h2 id=""><a href="#" class="headerlink" title=""></a></h2></li>
+<li>在 <code>./api/</code> 目錄中新增 <code>news.php</code> 檔案，用來撰寫控制文章顯示及刪除的程式碼</li>
 </ol>
 
     </div>
@@ -300,7 +306,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -314,7 +319,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -327,7 +332,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/php-book/tags/">
           
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

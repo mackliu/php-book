@@ -28,7 +28,7 @@
 <meta property="og:description" content="每個題組依狀況不同，在這一步有不同的做法，視自己對題目的熟悉程度來做應變，可以一次把全部資料表建完，也可以視解題的進度來逐步建立或修改資料表。這裏我們採用的做法是利用phpmyadmin的複製資料表功能，快速的複製五張欄位相同的資料表（title,ad,mvim,image,news)，五張類似的資料表並不是所有的欄位都會用得上，我們只是取巧來節省建資料表的時間。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T01:33:53.000Z">
-<meta property="article:modified_time" content="2021-09-23T01:57:33.843Z">
+<meta property="article:modified_time" content="2021-09-25T14:48:31.332Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章</a>
 
   </li>
   </ul>
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 09:33:53 / 修改時間：09:57:33" itemprop="dateCreated datePublished" datetime="2021-09-23T09:33:53+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 09:33:53" itemprop="dateCreated datePublished" datetime="2021-09-23T09:33:53+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-09-25 22:48:31" itemprop="dateModified" datetime="2021-09-25T22:48:31+08:00">2021-09-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -604,7 +610,7 @@
 </ul>
 <ol start="2">
 <li>total,bottom,admin這三張表可以先直接手動塞一筆資料進去，如果對資料夠熟悉，也可以每張表都先塞資料進去，這樣在後續製作功能時，可以更快看到成果</li>
-<li>為了解題順利，可以把資料表中的一些欄位設為可接受空值的狀況，這樣即使未設定內容，也能正常新增或更改資料，不過這個做法只是為了先求解題完成而做的取巧，實務上應該根據需求及功能來決定欄位是否可以接受空值，並在程式端檢查來源資料是否為空值<h2 id=""><a href="#" class="headerlink" title=""></a></h2></li>
+<li>為了解題順利，可以把資料表中的一些欄位設為可接受空值的狀況，這樣即使未設定內容，也能正常新增或更改資料，不過這個做法只是為了先求解題完成而做的取巧，實務上應該根據需求及功能來決定欄位是否可以接受空值，並在程式端檢查來源資料是否為空值</li>
 </ol>
 
     </div>
@@ -621,8 +627,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/22/skill-check-group4-01/" rel="prev" title="[技能檢定]題組四 步驟1  切版、建置前後台畫面">
-      <i class="fa fa-chevron-left"></i> [技能檢定]題組四 步驟1  切版、建置前後台畫面
+    <a href="/php-book/2021/09/23/skill-check-group1-01/" rel="prev" title="[技能檢定]題組一 步驟1 切版、建置前後台畫面">
+      <i class="fa fa-chevron-left"></i> [技能檢定]題組一 步驟1 切版、建置前後台畫面
     </a></div>
       <div class="post-nav-item">
     <a href="/php-book/2021/09/23/skill-check-group1-03/" rel="next" title="[技能檢定]題組一 步驟3 製作訪客計數器及頁尾版權文字">
@@ -686,7 +692,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -700,7 +705,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -713,7 +718,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/php-book/tags/">
           
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
