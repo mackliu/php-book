@@ -20,21 +20,19 @@
     var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="陣列可以當成是一種進階的變數，通常一個變數只會儲存或代表一筆資料，假如今天我們要處理十筆資料，那就需要建立十個變數，這會讓變數的管理變得複雜，陣列在這個情境下發揮很好的作用，可以把十筆資料用一個變數來管理，我們只需知道這個十筆資料在這個單一變數中的位置和取用方式就可以了。">
+  <meta name="description" content="字串處理是網頁開發的基礎能力，因為網頁開發的原理就是從伺服器產生包含HTML標籤及CSS屬性給客戶端的瀏灠器去解析成網頁供大眾瀏灠，因此可以說網頁開發的過程就是在產生各式字串。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[基礎課程] Lesson 4 陣列">
+<meta property="og:title" content="[基礎課程] Lesson 4 字串處理">
 <meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-04/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
-<meta property="og:description" content="陣列可以當成是一種進階的變數，通常一個變數只會儲存或代表一筆資料，假如今天我們要處理十筆資料，那就需要建立十個變數，這會讓變數的管理變得複雜，陣列在這個情境下發揮很好的作用，可以把十筆資料用一個變數來管理，我們只需知道這個十筆資料在這個單一變數中的位置和取用方式就可以了。">
+<meta property="og:description" content="字串處理是網頁開發的基礎能力，因為網頁開發的原理就是從伺服器產生包含HTML標籤及CSS屬性給客戶端的瀏灠器去解析成網頁供大眾瀏灠，因此可以說網頁開發的過程就是在產生各式字串。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-04/basic-lesson-04-001.jpg">
-<meta property="article:published_time" content="2021-09-20T12:37:58.000Z">
-<meta property="article:modified_time" content="2021-10-03T13:51:56.643Z">
+<meta property="article:published_time" content="2021-09-20T15:50:23.000Z">
+<meta property="article:modified_time" content="2021-10-17T15:43:36.803Z">
 <meta property="article:author" content="Mack liu">
-<meta property="article:tag" content="陣列">
-<meta property="article:tag" content="array">
+<meta property="article:tag" content="字串">
+<meta property="article:tag" content="string">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-04/basic-lesson-04-001.jpg">
 
 <link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-04/">
 
@@ -49,7 +47,7 @@
   };
 </script>
 
-  <title>[基礎課程] Lesson 4 陣列 | 月光林地的網頁技術部</title>
+  <title>[基礎課程] Lesson 4 字串處理 | 月光林地的網頁技術部</title>
   
 
 
@@ -178,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [基礎課程] Lesson 4 陣列
+          [基礎課程] Lesson 4 字串處理
         </h1>
 
         <div class="post-meta">
@@ -188,14 +186,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2021-09-20 20:37:58" itemprop="dateCreated datePublished" datetime="2021-09-20T20:37:58+08:00">2021-09-20</time>
+              <time title="創建時間：2021-09-20 23:50:23" itemprop="dateCreated datePublished" datetime="2021-09-20T23:50:23+08:00">2021-09-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-03 21:51:56" itemprop="dateModified" datetime="2021-10-03T21:51:56+08:00">2021-10-03</time>
+                <time title="修改時間：2021-10-17 23:43:36" itemprop="dateModified" datetime="2021-10-17T23:43:36+08:00">2021-10-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -204,6 +202,10 @@
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E/" itemprop="url" rel="index"><span itemprop="name">程式設計基礎</span></a>
                 </span>
             </span>
 
@@ -218,142 +220,92 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>陣列可以當成是一種進階的變數，通常一個變數只會儲存或代表一筆資料，假如今天我們要處理十筆資料，那就需要建立十個變數，這會讓變數的管理變得複雜，陣列在這個情境下發揮很好的作用，可以把十筆資料用一個變數來管理，我們只需知道這個十筆資料在這個單一變數中的位置和取用方式就可以了。</p>
+        <p>字串處理是網頁開發的基礎能力，因為網頁開發的原理就是從伺服器產生包含HTML標籤及CSS屬性給客戶端的瀏灠器去解析成網頁供大眾瀏灠，因此可以說網頁開發的過程就是在產生各式字串。</p>
 <span id="more"></span>
 
-<h2 id="PHP的陣列宣告方式"><a href="#PHP的陣列宣告方式" class="headerlink" title="PHP的陣列宣告方式"></a>PHP的陣列宣告方式</h2><ul>
-<li>$a=array();</li>
-<li>$a=[];</li>
-<li>$a[1]=“A”;</li>
-<li>$a[]=“A”;</li>
-<li>$a=[“A”,”B”,”C”];</li>
-<li>$a=[1=&gt;”A”,2=&gt;”B”,3=&gt;”C”];</li>
-<li>$a=array(“A”,”B”,”C”);</li>
-</ul>
-<h2 id="陣列指定值的方式"><a href="#陣列指定值的方式" class="headerlink" title="陣列指定值的方式"></a>陣列指定值的方式</h2><ul>
-<li>$a[1]=“A”;</li>
-<li>$a=[“A”,”B”,”C”];</li>
-<li>$a=array(“A”,”B”,”C”);</li>
-<li>$a=[1=&gt;”A”,2=&gt;”B”,3=&gt;”C”];</li>
-</ul>
-<h2 id="陣列的維度"><a href="#陣列的維度" class="headerlink" title="陣列的維度"></a>陣列的維度</h2><ul>
-<li>一維陣列<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$a</span>=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$b</span>=[<span class="string">&#x27;小明&#x27;</span>,<span class="string">&#x27;阿三&#x27;</span>,<span class="string">&#x27;小美&#x27;</span>,<span class="string">&#x27;大頭&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$c</span>=[</span><br><span class="line">    <span class="string">&#x27;國文&#x27;</span>=&gt;<span class="number">89</span>,</span><br><span class="line">    <span class="string">&#x27;數學&#x27;</span>=&gt;<span class="number">75</span>,</span><br><span class="line">    <span class="string">&#x27;英文&#x27;</span>=&gt;<span class="number">64</span></span><br><span class="line">   ];</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>多維陣列<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$a</span>=[</span><br><span class="line">     [<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>,<span class="number">55</span>],</span><br><span class="line">     [<span class="number">29</span>,<span class="number">12</span>,<span class="number">33</span>,<span class="number">77</span>],</span><br><span class="line">     [<span class="number">98</span>,<span class="number">22</span>]</span><br><span class="line">   ];</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>=[</span><br><span class="line">    <span class="string">&#x27;數學&#x27;</span>=&gt;[</span><br><span class="line">                [</span><br><span class="line">                    <span class="string">&#x27;姓名&#x27;</span>=&gt;<span class="string">&#x27;小明&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;成績&#x27;</span>=&gt;<span class="number">98</span></span><br><span class="line">                ],</span><br><span class="line">                [</span><br><span class="line">                    <span class="string">&#x27;姓名&#x27;</span>=&gt;<span class="string">&#x27;小美&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;成績&#x27;</span>=&gt;<span class="number">22</span></span><br><span class="line">                ],</span><br><span class="line">                [</span><br><span class="line">                    <span class="string">&#x27;姓名&#x27;</span>=&gt;<span class="string">&#x27;阿明&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;成績&#x27;</span>=&gt;<span class="number">60</span></span><br><span class="line">                ]</span><br><span class="line">        </span><br><span class="line">            ],</span><br><span class="line">    <span class="string">&#x27;國文&#x27;</span>=&gt;[</span><br><span class="line">                [</span><br><span class="line">                    <span class="string">&#x27;姓名&#x27;</span>=&gt;<span class="string">&#x27;小明&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;成績&#x27;</span>=&gt;<span class="number">58</span></span><br><span class="line">                ],</span><br><span class="line">                [</span><br><span class="line">                    <span class="string">&#x27;姓名&#x27;</span>=&gt;<span class="string">&#x27;小美&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;成績&#x27;</span>=&gt;<span class="number">73</span></span><br><span class="line">                ],</span><br><span class="line">                [</span><br><span class="line">                    <span class="string">&#x27;姓名&#x27;</span>=&gt;<span class="string">&#x27;阿明&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;成績&#x27;</span>=&gt;<span class="number">90</span></span><br><span class="line">                ]</span><br><span class="line">        </span><br><span class="line">            ]</span><br><span class="line">];</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="PHP陣列的特性"><a href="#PHP陣列的特性" class="headerlink" title="PHP陣列的特性"></a>PHP陣列的特性</h2><ul>
-<li>如果不是純索引的型式，那就一定是key-value</li>
-<li>陣列中的元素資料型態不必相同</li>
-<li>陣列的長度是動態可變的</li>
-</ul>
-<h2 id="陣列常用函式"><a href="#陣列常用函式" class="headerlink" title="陣列常用函式"></a>陣列常用函式</h2><table>
+<h2 id="字串常用函式"><a href="#字串常用函式" class="headerlink" title="字串常用函式"></a>字串常用函式</h2><table>
 <thead>
 <tr>
-<th>函式名</th>
+<th>函式</th>
 <th>功能</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>is_array()</td>
-<td>檢查是否為陣列</td>
+<td>substr()</td>
+<td>mb_substr()</td>
 </tr>
 <tr>
-<td>in_array()</td>
-<td>檢查某值是否在陣列中</td>
+<td>trim()</td>
+<td>去除頭尾空白</td>
 </tr>
 <tr>
-<td>sort()</td>
-<td>排序陣列</td>
+<td>str_repeat()</td>
+<td>重覆指定字元</td>
 </tr>
 <tr>
-<td>rsort()</td>
-<td>反序排序陣列</td>
+<td>str_replace()</td>
+<td>取代字串</td>
 </tr>
 <tr>
-<td>array_fill()</td>
-<td>在陣列中填滿某值</td>
-</tr>
-<tr>
-<td>array_search()</td>
-<td>在陣列中尋找某值</td>
-</tr>
-<tr>
-<td>array_keys()</td>
-<td>將key或index取出為一個陣列</td>
-</tr>
-<tr>
-<td>array_merge()</td>
-<td>合併陣列</td>
-</tr>
-<tr>
-<td>serialize()</td>
-<td>序列化/字串化陣列</td>
-</tr>
-<tr>
-<td>unserialize()</td>
-<td>反序列化/陣列化字串</td>
+<td>explode()</td>
+<td>以特定字串/字元/符號分割字串</td>
 </tr>
 <tr>
 <td>implode()</td>
-<td>以字串或符號把陣列轉為字串</td>
+<td>以特定字串/字元/符號將陣列元素合併成字串</td>
+</tr>
+<tr>
+<td>strpos()</td>
+<td>返回某字元在字串中首次出現的位置</td>
+</tr>
+<tr>
+<td>strlen()</td>
+<td>字串長度</td>
 </tr>
 </tbody></table>
-<h2 id="陣列操作練習"><a href="#陣列操作練習" class="headerlink" title="陣列操作練習"></a>陣列操作練習</h2><div class="note success">
+<h2 id="字串處理練習"><a href="#字串處理練習" class="headerlink" title="字串處理練習"></a>字串處理練習</h2><div class="note success">
 
-<p><strong>建立一個學生成績陣列</strong></p>
+<p><strong>字串取代</strong></p>
 <ul>
-<li>設計一個陣列(一維或多維)來存放學生的成績資料</li>
-</ul>
-<p><img src="basic-lesson-04-001.jpg" alt="學生成績表"></p>
-</div>
-
-<div class="note success">
-
-<p><strong>利用程式來產生陣列</strong></p>
-<p>*以迴圈的方式產生一個九九乘法表</p>
-<ul>
-<li>將九九乘法表的每個項目以字串型式存入陣列中</li>
-<li>再以迴圈方式將陣列內容印出</li>
+<li>將”aaddw1123”改成”*********”</li>
 </ul>
 </div>
 
 <div class="note success">
 
-<p><strong>威力彩電腦選號沒有重覆號碼</strong></p>
+<p><strong>字串分割</strong></p>
 <ul>
-<li>使用亂數函式rand($a,$b)來產生號碼</li>
-<li>將產生的號碼順序存入陣列中</li>
-<li>每次存入陣列中時會先檢查陣列中的資料有沒有重覆</li>
-<li>完成選號後將陣列內容印出</li>
+<li>將”this,is,a,book”依”,”切割後成為陣列</li>
 </ul>
 </div>
 
 <div class="note success">
 
-<p><strong>找出五百年內的閏年</strong></p>
+<p><strong>字串組合</strong></p>
 <ul>
-<li>請依照閏年公式找出五百年內的閏年</li>
-<li>使用陣列來儲存閏年</li>
-<li>使用迴圈來印出閏年</li>
+<li>將上例陣列重新組合成“this is a book”</li>
 </ul>
 </div>
 
 <div class="note success">
 
-<p><strong>已知西元1024年為甲子年，請設計一支程式，可以接受任一西元年份，輸出對應的天干地支的年別。</strong></p>
+<p><strong>子字串取用</strong></p>
 <ul>
-<li>天干：甲乙丙丁戊己庚辛壬癸</li>
-<li>地支：子丑寅卯辰巳午未申酉戌亥</li>
-<li>天干地支配對：甲子、乙丑、丙寅….甲戌、乙亥、丙子….</li>
+<li>將” The reason why a great man is great is that he resolves to be a great man”只取前十字成為” The reason…”</li>
 </ul>
 </div>
+
 
 <div class="note success">
 
-<p><strong>請設計一支程式，在不產生新陣列的狀況下，將一個陣列的元素順序反轉</strong></p>
+<p><strong>尋找字串與HTML、css整合應用</strong></p>
 <ul>
-<li>例：$a=[2,4,6,1,8] &nbsp;&nbsp; 反轉後 &nbsp;&nbsp;  $a=[8,1,6,4,2]</li>
+<li>給定一個句子，將指定的關鍵字放大</li>
+<li>“學會PHP網頁程式設計，薪水會加倍，工作會好找”</li>
+<li>請將上句中的 <strong>“程式設計”</strong> 放大字型或變色.</li>
 </ul>
 </div>
+
 
     </div>
 
@@ -363,8 +315,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/php-book/tags/%E9%99%A3%E5%88%97/" rel="tag"># 陣列</a>
-              <a href="/php-book/tags/array/" rel="tag"># array</a>
+              <a href="/php-book/tags/%E5%AD%97%E4%B8%B2/" rel="tag"># 字串</a>
+              <a href="/php-book/tags/string/" rel="tag"># string</a>
           </div>
 
         
@@ -373,12 +325,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/20/basic-lesson-03/" rel="prev" title="[基礎課程] Lesson 3 PHP程式流程控制">
-      <i class="fa fa-chevron-left"></i> [基礎課程] Lesson 3 PHP程式流程控制
+    <a href="/php-book/2021/09/20/basic-lesson-03/" rel="prev" title="[基礎課程] Lesson 3 陣列">
+      <i class="fa fa-chevron-left"></i> [基礎課程] Lesson 3 陣列
     </a></div>
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/20/basic-lesson-05/" rel="next" title="[基礎課程] Lesson 5 字串處理">
-      [基礎課程] Lesson 5 字串處理 <i class="fa fa-chevron-right"></i>
+    <a href="/php-book/2021/09/21/basic-lesson-05/" rel="next" title="[基礎課程] Lesson 5 時間及日期處理">
+      [基礎課程] Lesson 5 時間及日期處理 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -438,7 +390,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E7%9A%84%E9%99%A3%E5%88%97%E5%AE%A3%E5%91%8A%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">PHP的陣列宣告方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%A3%E5%88%97%E6%8C%87%E5%AE%9A%E5%80%BC%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">陣列指定值的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%A3%E5%88%97%E7%9A%84%E7%B6%AD%E5%BA%A6"><span class="nav-number">3.</span> <span class="nav-text">陣列的維度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E9%99%A3%E5%88%97%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">PHP陣列的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%A3%E5%88%97%E5%B8%B8%E7%94%A8%E5%87%BD%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">陣列常用函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%A3%E5%88%97%E6%93%8D%E4%BD%9C%E7%B7%B4%E7%BF%92"><span class="nav-number">6.</span> <span class="nav-text">陣列操作練習</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%B8%B2%E5%B8%B8%E7%94%A8%E5%87%BD%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">字串常用函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%B8%B2%E8%99%95%E7%90%86%E7%B7%B4%E7%BF%92"><span class="nav-number">2.</span> <span class="nav-text">字串處理練習</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -452,20 +404,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/php-book/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/php-book/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

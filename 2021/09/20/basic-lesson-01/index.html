@@ -20,89 +20,20 @@
     var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="網頁是透過伺服器傳送網頁資料給客戶端的，因此網頁的程式及相關檔案都是放在遠端的 網頁伺服器(web server) 中，當有使用者對這個網站提出閱讀或使用的 請求(request) 時，才會開始傳送資料給使用者。 但是開發作業通常不會直接在伺服器上開發，因此我們會在本地端建立一個模擬遠端伺服器的環境，並在本地端確認開發的成果後，再 部署(deploy) 到遠端伺服器去。 工欲善其事，必先利其器，本">
+  <meta name="description" content="我們選擇PHP做為了解程式語言的開始，這階段所提到的觀念和用法是大多數程式語言都相通的，差別只在於不同的程式語言會有不同的指令及撰寫的格式要求。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[基礎課程] lesson 1 開發環境及工具建置">
+<meta property="og:title" content="[基礎課程] Lesson 1 PHP程式語言基礎">
 <meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
-<meta property="og:description" content="網頁是透過伺服器傳送網頁資料給客戶端的，因此網頁的程式及相關檔案都是放在遠端的 網頁伺服器(web server) 中，當有使用者對這個網站提出閱讀或使用的 請求(request) 時，才會開始傳送資料給使用者。 但是開發作業通常不會直接在伺服器上開發，因此我們會在本地端建立一個模擬遠端伺服器的環境，並在本地端確認開發的成果後，再 部署(deploy) 到遠端伺服器去。 工欲善其事，必先利其器，本">
+<meta property="og:description" content="我們選擇PHP做為了解程式語言的開始，這階段所提到的觀念和用法是大多數程式語言都相通的，差別只在於不同的程式語言會有不同的指令及撰寫的格式要求。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/zCY6qKD.png">
-<meta property="og:image" content="https://i.imgur.com/6AJZngv.png">
-<meta property="og:image" content="https://i.imgur.com/Owm4aCs.png">
-<meta property="og:image" content="https://i.imgur.com/HPcUmeh.png">
-<meta property="og:image" content="https://i.imgur.com/xTpMNAr.png">
-<meta property="og:image" content="https://i.imgur.com/Tp3ZinB.png">
-<meta property="og:image" content="https://i.imgur.com/sycCFEJ.png">
-<meta property="og:image" content="https://i.imgur.com/NUOBP5P.png">
-<meta property="og:image" content="https://i.imgur.com/6Q949w9.png">
-<meta property="og:image" content="https://i.imgur.com/hYb2lrI.png">
-<meta property="og:image" content="https://i.imgur.com/3VrudBN.png">
-<meta property="og:image" content="https://i.imgur.com/wcDvh34.png">
-<meta property="og:image" content="https://i.imgur.com/rByxrhS.png">
-<meta property="og:image" content="https://i.imgur.com/rBZmHtd.png">
-<meta property="og:image" content="https://i.imgur.com/amlRCKc.png">
-<meta property="og:image" content="https://i.imgur.com/L8iQ9Oq.png">
-<meta property="og:image" content="https://i.imgur.com/GWabSDW.png">
-<meta property="og:image" content="https://i.imgur.com/1VuU5MF.png">
-<meta property="og:image" content="https://i.imgur.com/NfHli5b.png">
-<meta property="og:image" content="https://i.imgur.com/BbsM4Nv.png">
-<meta property="og:image" content="https://i.imgur.com/Mxdcewo.png">
-<meta property="og:image" content="https://i.imgur.com/mT9d6tj.png">
-<meta property="og:image" content="https://i.imgur.com/XN91jmz.png">
-<meta property="og:image" content="https://i.imgur.com/1BnnIxM.png">
-<meta property="og:image" content="https://i.imgur.com/fWyW62L.png">
-<meta property="og:image" content="https://i.imgur.com/YVSAp4L.png">
-<meta property="og:image" content="https://i.imgur.com/f7q7Lc4.png">
-<meta property="og:image" content="https://i.imgur.com/ADgS0ef.png">
-<meta property="og:image" content="https://i.imgur.com/8w2mHex.png">
-<meta property="og:image" content="https://i.imgur.com/VPgfjpv.png">
-<meta property="og:image" content="https://i.imgur.com/Z98uYGK.png">
-<meta property="og:image" content="https://i.imgur.com/6DuEEgT.png">
-<meta property="og:image" content="https://i.imgur.com/dLOiwYE.png">
-<meta property="og:image" content="https://i.imgur.com/qDf9Svw.png">
-<meta property="og:image" content="https://i.imgur.com/7PaJ0h1.png">
-<meta property="og:image" content="https://i.imgur.com/FDk9f7A.png">
-<meta property="og:image" content="https://i.imgur.com/Yrs0Dcm.png">
-<meta property="og:image" content="https://i.imgur.com/3VrudBN.png">
-<meta property="og:image" content="https://i.imgur.com/8yvMjiz.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-007.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-001.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-002.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-003.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-006.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-004.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-005.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-008.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-009.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-010.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-011.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-012.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-013.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-014.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-015.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-016.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-017.jpg">
-<meta property="og:image" content="https://i.imgur.com/BKR9epx.png">
-<meta property="og:image" content="https://i.imgur.com/VuATEhP.png">
-<meta property="og:image" content="https://i.imgur.com/9nyypJe.png">
-<meta property="og:image" content="https://i.imgur.com/iJuEE6N.png">
-<meta property="og:image" content="https://i.imgur.com/T7LwUCc.png">
-<meta property="og:image" content="https://i.imgur.com/ZzbJz8J.png">
-<meta property="og:image" content="https://i.imgur.com/HK890qK.png">
-<meta property="og:image" content="https://i.imgur.com/mOCzW8A.png">
-<meta property="og:image" content="https://i.imgur.com/y0thnw6.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-018.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/basic-lesson-01-019.jpg">
-<meta property="article:published_time" content="2021-09-20T03:22:01.000Z">
-<meta property="article:modified_time" content="2021-10-03T11:33:56.448Z">
+<meta property="article:published_time" content="2021-09-20T07:22:35.000Z">
+<meta property="article:modified_time" content="2021-10-17T15:42:17.422Z">
 <meta property="article:author" content="Mack liu">
-<meta property="article:tag" content="xampp">
-<meta property="article:tag" content="visaul studio code">
-<meta property="article:tag" content="git">
-<meta property="article:tag" content="github">
+<meta property="article:tag" content="變數">
+<meta property="article:tag" content="資料型態">
+<meta property="article:tag" content="運算子">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/zCY6qKD.png">
 
 <link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-01/">
 
@@ -117,7 +48,7 @@
   };
 </script>
 
-  <title>[基礎課程] lesson 1 開發環境及工具建置 | 月光林地的網頁技術部</title>
+  <title>[基礎課程] Lesson 1 PHP程式語言基礎 | 月光林地的網頁技術部</title>
   
 
 
@@ -246,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [基礎課程] lesson 1 開發環境及工具建置
+          [基礎課程] Lesson 1 PHP程式語言基礎
         </h1>
 
         <div class="post-meta">
@@ -256,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2021-09-20 11:22:01" itemprop="dateCreated datePublished" datetime="2021-09-20T11:22:01+08:00">2021-09-20</time>
+              <time title="創建時間：2021-09-20 15:22:35" itemprop="dateCreated datePublished" datetime="2021-09-20T15:22:35+08:00">2021-09-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-03 19:33:56" itemprop="dateModified" datetime="2021-10-03T19:33:56+08:00">2021-10-03</time>
+                <time title="修改時間：2021-10-17 23:42:17" itemprop="dateModified" datetime="2021-10-17T23:42:17+08:00">2021-10-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,6 +203,10 @@
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E/" itemprop="url" rel="index"><span itemprop="name">程式設計基礎</span></a>
                 </span>
             </span>
 
@@ -286,203 +221,58 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>網頁是透過伺服器傳送網頁資料給客戶端的，因此網頁的程式及相關檔案都是放在遠端的 <strong>網頁伺服器(web server)</strong> 中，當有使用者對這個網站提出閱讀或使用的 <strong>請求(request)</strong> 時，才會開始傳送資料給使用者。</p>
-<p>但是開發作業通常不會直接在伺服器上開發，因此我們會在本地端建立一個模擬遠端伺服器的環境，並在本地端確認開發的成果後，再 <strong>部署(deploy)</strong> 到遠端伺服器去。</p>
-<p>工欲善其事，必先利其器，本章節將介紹幾款本課程會使用到的網頁開發工具，協助大家可以更順利的進行開發作業。</p>
+        <p>我們選擇PHP做為了解程式語言的開始，這階段所提到的觀念和用法是大多數程式語言都相通的，差別只在於不同的程式語言會有不同的指令及撰寫的格式要求。</p>
 <span id="more"></span>
 
-<h1 id="Xampp-整合型網頁開發套件"><a href="#Xampp-整合型網頁開發套件" class="headerlink" title="Xampp 整合型網頁開發套件"></a>Xampp 整合型網頁開發套件</h1><p>xampp為一個整合型的網頁開發環境套件，裏頭已經先行整合了網頁常用的開發環境需要的設定和套件，包含了 **網頁伺服器(Apache)<strong>、</strong>資料庫(MySQL)<strong>、</strong>程式語言(PHP)<strong>、</strong>資料庫管理軟體(PhpMyAdmin)**，因此推薦給剛入門的新手來安裝使用，省去逐個下載安裝設定的麻煩。</p>
-<p>該套件有不同平台的版本，也有虛擬機的版本，長期有專人在更新版本，為本機端開發者常用的整合型套件。</p>
+<h1 id="變數"><a href="#變數" class="headerlink" title="變數"></a>變數</h1><p><strong>變數</strong> 是程式語言的基礎，我們會使用變數來承載一些資料或是運算的結果，正如其名，變數在整個程式運行的過程中是可以被改變的，與之相對的就是 <strong>常數</strong>。</p>
+<h2 id="變數宣告"><a href="#變數宣告" class="headerlink" title="變數宣告"></a>變數宣告</h2><p>在PHP中，變數一律加上$這個符號即可，由於PHP本質是一種直譯式的描述性語言，因此在宣告變數時不需要再指定資料型態。</p>
+<p>宣告變數時，第一個字元不要是數字，其它規則很自由；要注意命名儘量是容易閱讀的，方便之後的維護。</p>
+<h2 id="值的指定"><a href="#值的指定" class="headerlink" title="值的指定"></a>值的指定</h2><p>PHP的變數在指定時有很大的彈性和自由，以下的方式都可以用來把值或結果指定給變數:</p>
+<ol>
+<li><p>直接指定</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$price</span>=<span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$name</span>=<span class="string">&quot;劉勤永&quot;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>運算後指定</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$price</span>=<span class="number">50</span>*<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$full_name</span>=<span class="variable">$first_name</span> . <span class="variable">$last_name</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>函式結果指定</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$total</span>=count(<span class="variable">$array</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$merge</span>=array_merge(<span class="variable">$array1</span>,<span class="variable">$array2</span>,.....);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="區域性"><a href="#區域性" class="headerlink" title="區域性"></a>區域性</h2><p>程式的運作通常具有區域性，指的是一個變數可以在程式檔案中被呼叫及引用的範圍，大多數狀況下，在單一php檔案中的變數都是全域變數，一旦宣告了，之後的程式都可以引用這個變數。</p>
+<p>只有在函式和類別中，變數會變成區域變數，只在該函式及該類別中有效果。</p>
+<h1 id="常數"><a href="#常數" class="headerlink" title="常數"></a>常數</h1><p>相較與變數，常數則是在整個程式運行的過程中不允許被改變的，常被用作為簡化一些複雜難記憶的數字或文字。</p>
+<h2 id="常數宣告"><a href="#常數宣告" class="headerlink" title="常數宣告"></a>常數宣告</h2><ul>
+<li>define($name,$value);</li>
+<li>const (PHP5.3之後);</li>
+</ul>
+<h2 id="值的指定-1"><a href="#值的指定-1" class="headerlink" title="值的指定"></a>值的指定</h2><p>常數只能值定固定的值，以數值類及字串為主，一旦指定後就不能變更。</p>
+<h2 id="區域性-1"><a href="#區域性-1" class="headerlink" title="區域性"></a>區域性</h2><p>常數的作用域大多都是全域性的，因此常數的宣告和指定通常都在函式或類別之外。</p>
+<h1 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h1><p>我們通常會在宣告變數或常數時也指定一種資料型態過去，不同的資料型態會有不同的特性及處理方式。</p>
 <ul>
-<li><p><strong>Apache</strong> - 目前主流的網頁伺服器，負責所有http及https的請求和回應，同類選擇還有 <strong>nginx</strong></p>
-</li>
-<li><p><strong>MySQL</strong> - 目前被Orcale收購，但有社群免費版本，原作者另外開發了全免費的 <strong>mariaDB</strong> 開放給大眾使用，不過一般人還是會用MySQL來同時稱呼MySQL及mariaDB</p>
-</li>
-<li><p><strong>phpmyadmin</strong> - 可以搭配 <strong>MySQL</strong> 及 <strong>mariaDB</strong> 使用的圖形化資料庫管理軟體</p>
-</li>
-<li><p><strong>PHP</strong> - PHP為目前網站後端使用頗多的程式語言，加上歷史悠久，相關的維護及更新需求一直都存在，同類的選擇有<strong>C#<strong>、</strong>Java</strong>、<strong>Ruby</strong>、<strong>Python</strong>、<strong>node.js</strong> …etc</p>
-</li>
+<li>數值</li>
+<li>文字</li>
+<li>陣列</li>
+<li>物件</li>
+<li>資源</li>
 </ul>
-<h2 id="1-下載Xampp"><a href="#1-下載Xampp" class="headerlink" title="1.下載Xampp"></a>1.下載Xampp</h2><p>首先，直接在瀏灠器上輸入關鍵字 <code>xampp</code> ，即可找到xampp的官網或下載頁面：</p>
-<p><img src="https://i.imgur.com/zCY6qKD.png"></p>
-<p>進入下載頁面後，請先下載7.0系列的版本，8.0以上的版本因為剛推出沒多久，還有些相容性問題存在，建議等穩定一些再來安裝使用，由於本課程屬於程式設計的基礎，內容適用於各個版本，因此這裏我們選擇的是較為穩定的7.4的版本：</p>
-<p><img src="https://i.imgur.com/6AJZngv.png"></p>
-<h2 id="2-執行安裝"><a href="#2-執行安裝" class="headerlink" title="2.執行安裝"></a>2.執行安裝</h2><p>使用瀏灠器下載完成後會在左下角顯示下載已完成的提示，點擊左下角的下載檔名稱即可開始安裝，如果是下載後將安裝檔放在別的目錄或磁碟機的，則找到安裝檔後，直接連點安裝檔即可開始安裝。</p>
-<p><img src="https://i.imgur.com/Owm4aCs.png"></p>
-<p><img src="https://i.imgur.com/HPcUmeh.png"></p>
-<p>點擊<code>next</code>按鈕後即可以開始安裝</p>
-<p><img src="https://i.imgur.com/xTpMNAr.png"></p>
-<p>接著進入安裝細節畫面，由於我們先以PHP網頁設計為目標，因此可以先取消勾選無關的其它套件和軟體，這可以加快安裝的速度，同時也提高開發環境的穩定性。</p>
-<p><img src="https://i.imgur.com/Tp3ZinB.png"></p>
-<p>在解壓縮安裝前，<code>xampp</code>會先跳出一個瀏灠器視窗來宣傳<code>xampp</code>的官網，請先關閉這個視窗或最小化，可以看到安裝畫面在瀏灠器後面，此時再點擊<code>next</code>按鈕後才算真正開始安裝</p>
-<p><img src="https://i.imgur.com/sycCFEJ.png"><br><img src="https://i.imgur.com/NUOBP5P.png"></p>
-<p>安裝過程大約三至五分鐘，完成後會跳出安裝完成的訊息畫面，點選<code>finish</code>按鈕來完成安裝並啟動xampp</p>
-<p><img src="https://i.imgur.com/6Q949w9.png"><br>在啟動視窗中點選<code>Apache</code>項目的<code>start</code>按鈕及<code>MySql</code>的<code>start</code>按鈕，如果兩個都呈現綠燈即表示安裝成功，如果無法正常啟動，則查看錯誤訊息來排除，或重新安裝。</p>
-<p><img src="https://i.imgur.com/hYb2lrI.png"><br><img src="https://i.imgur.com/3VrudBN.png"></p>
-<p>點選<code>admin</code>按鈕會開啟瀏灠器，如果畫面顯示正常，表示<code>Apache</code>運作正常。</p>
-<p><img src="https://i.imgur.com/wcDvh34.png"></p>
-<p>如果在啟用<code>Apache</code>和<code>MySQL</code>時跳出防火牆警告，表示電腦是第一次安裝<code>Xampp</code>相關的軟體，請按<code>允許存取</code>來讓這兩個軟體可以通過防火牆來運作.<br><img src="https://i.imgur.com/rByxrhS.png"><br><img src="https://i.imgur.com/rBZmHtd.png"></p>
-<h2 id="3、變更網站根目錄"><a href="#3、變更網站根目錄" class="headerlink" title="3、變更網站根目錄"></a>3、變更網站根目錄</h2><p>網站的開發一般是以<code>專案</code>為一個單位，反應在電腦中的具體呈現方式就是<code>資料夾目錄</code>，因此我們會習慣一個網站的內容都放在同一個資料夾來保存維護，如果要建立新的網站或新的專案，則會開啟另外的資料夾目錄來存放；但是<code>Apache</code>安裝完成時，預設的網站目錄為c槽下的<code>\xampp\htdocs</code>目錄，如果我們想開啟新的專案或將網站存放在別的位置時，則需要變更<code>Apache</code>管理的網站目錄路徑，這樣<code>Apache</code>才會認識我們自己建立的網站目錄，並且呈現網站內容。</p>
-<p>首先，先在電腦中的任何磁碟區位置，建立一個用來存放專案網頁檔的資料夾，這裏以F槽為例，建立了一個<code>web</code>目錄<br><img src="https://i.imgur.com/amlRCKc.png"></p>
-<p>接著在<code>xampp</code>的控制台視窗 中，點選<code>Apache</code>項目後的<code>config</code>按鈕，在彈出選單中找到<code>Apache(httpd.conf)</code>項目：<br><img src="https://i.imgur.com/L8iQ9Oq.png"></p>
-<p>預設會以記事本的方式來開啟<code>httpd.conf</code>檔，這個檔案中記錄了所有<code>Apache</code>這個軟體在啟動及運作時會用到的設定值，請按下鍵盤上的<code>Ctrl+F</code>組合鍵來開啟尋找視窗，在輸入框中輸入<code>documentroot</code>來尋找根目錄路徑的設定值：<br><img src="https://i.imgur.com/GWabSDW.png"><br>如下圖；在DocumentRoot及Directory兩個設定項目的後方將原本的<code>C:/xampp/htdocs</code>改成我們在F槽建立的web目錄，改完後記得存檔，並且需要先關閉Apache再開啟才會生效。<br><img src="https://i.imgur.com/1VuU5MF.png"></p>
-<p>重啟<code>Apache</code>後再按下<code>Admin</code>按鈕即可發現瀏灠器呈現的頁面內容和剛安裝時的內容不一樣，此時因為目錄中沒有任何檔案，因此畫面應該會是和下圖一樣：<br><img src="https://i.imgur.com/NfHli5b.png"></p>
-<div class="note danger">
-在重啟Apache前，請務必確認根目資料夾已經先建立完成了，否則會因為Apache重啟時找不到目錄，而發生無法啟動Apache的問題
+<h1 id="運算子"><a href="#運算子" class="headerlink" title="運算子"></a>運算子</h1><p>簡單來說，運算子就是一般知道的加減乘除符號，只不過在程式語言的世界中，增加了不少類似的符號，用來處理各式的運算需求。</p>
+<h2 id="一元運算子"><a href="#一元運算子" class="headerlink" title="一元運算子"></a>一元運算子</h2><ol>
+<li><strong>!</strong></li>
+<li><strong>++<strong>、</strong>–</strong></li>
+</ol>
+<h2 id="二元運算子"><a href="#二元運算子" class="headerlink" title="二元運算子"></a>二元運算子</h2><ol>
+<li>算術運算子 - +、-、*、/、%</li>
+<li>指派運算子 - =、=&gt;</li>
+<li>比較運算子 - ==、!=、&gt;、&lt;=</li>
+<li>字串運算子 - .</li>
+<li>邏輯運算子 - &amp;&amp;、AND、||、OR、XOR</li>
+</ol>
+<h2 id="三元運算子"><a href="#三元運算子" class="headerlink" title="三元運算子"></a>三元運算子</h2><ol>
+<li>? : - 可以視為是判斷式if…else的簡寫法；<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$level</span>=(<span class="variable">$score</span>&gt;=<span class="number">60</span>)?<span class="string">&#x27;及格&#x27;</span>:<span class="string">&#x27;不及格&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//以上程式碼相當於</span></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$score</span>&gt;=<span class="number">60</span>)&#123;</span><br><span class="line">    <span class="variable">$level</span>=<span class="string">&#x27;及格&#x27;</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="variable">$level</span>=<span class="string">&#x27;不及格&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="基礎練習"><a href="#基礎練習" class="headerlink" title="基礎練習"></a>基礎練習</h1><div class="note success">
+
+<p><strong>給定兩個變數，請思考如何交換兩個變數的值</strong></p>
+<p>例：<br>$a = 10; $b = 50;<br>交換後<br>$a = 50; $b = 10;</p>
 </div>
-<div class="note info">
-Xampp預設的根目錄在C:\xampp\htdocs，因此要直接在這個預設目錄下開發網頁也是可以的，只是習慣上為了方便專案管理的需要，會將專案的目錄移至其它地方，因此會需要根據專案的需要而變動Apache根目錄。
-</div>
-
-<hr>
-<h1 id="Visual-Studio-Code-程式碼編輯整合工具"><a href="#Visual-Studio-Code-程式碼編輯整合工具" class="headerlink" title="Visual Studio Code 程式碼編輯整合工具"></a>Visual Studio Code 程式碼編輯整合工具</h1><p>VS Code為微軟推出的一個免費文字編輯器，因其內建多項對前端開發友善的功能加上內建套件市集，因此在短時間內普及，目前為許多網頁開發者首選的程式碼編輯器。</p>
-<h2 id="1-下載Visual-Studio-Code"><a href="#1-下載Visual-Studio-Code" class="headerlink" title="1.下載Visual Studio Code"></a>1.下載Visual Studio Code</h2><p>首先，直接在瀏灠器上輸入關鍵字 <code>vs code</code> ，即可找到<strong>Visual Studio Code</strong>的官網或下載頁面：<br><img src="https://i.imgur.com/BbsM4Nv.png"></p>
-<p>點選首頁中的<code>Download for Windows</code>按鈕即可啟動下載</p>
-<p><img src="https://i.imgur.com/Mxdcewo.png"></p>
-<p>下載完成後會在瀏灠器左下方顯示下載完成提示：<br><img src="https://i.imgur.com/mT9d6tj.png"></p>
-<h2 id="2-執行安裝-1"><a href="#2-執行安裝-1" class="headerlink" title="2.執行安裝"></a>2.執行安裝</h2><p>在下載完成後，直接點擊安裝檔，即可開啟安裝：<br><img src="https://i.imgur.com/XN91jmz.png"></p>
-<p>在附加的工作項目中，建議勾選以下的項目，在日後的操作上會比較方便一些。<br><img src="https://i.imgur.com/1BnnIxM.png"></p>
-<p>勾選完附加工作後點選<code>下一步</code>按鈕，即可開始安裝，安裝過程非常快，不用一分鐘即可完成。<br><img src="https://i.imgur.com/fWyW62L.png"></p>
-<p>安裝完成後點選<code>完成</code>按鈕即會開啟<code>Visual Studio Code</code>軟體。<br><img src="https://i.imgur.com/YVSAp4L.png"><br><img src="https://i.imgur.com/f7q7Lc4.png"></p>
-<h2 id="3-基本設定"><a href="#3-基本設定" class="headerlink" title="3.基本設定"></a>3.基本設定</h2><p>Visual Studio Code本身已經內建了一些網頁程式設計常用的語法檢測及格式設定等內容，因此需要做的基本設定並不多，再加上VS Code內建軟體市集，有需要任何額外的功能都可以透過市集來完成。</p>
-<h3 id="3-1-安裝中文語系"><a href="#3-1-安裝中文語系" class="headerlink" title="3-1. 安裝中文語系"></a>3-1. 安裝中文語系</h3><p>點選左側的軟體市集圖示，在上方的搜尋框中輸入<code>chinese</code>下方即會出現語系檔，我們選擇<code>繁體</code>來安裝，按下<code>install</code>圖示即可開始安裝。</p>
-<p><img src="https://i.imgur.com/ADgS0ef.png"></p>
-<p>部份外掛套件需要重啟<code>VS Code</code>才會生效，請關閉VS Code或是點選右下的<code>restart</code>提示訊息，重開後的VS Code即可看到中文繁體的操作界面。</p>
-<p><img src="https://i.imgur.com/8w2mHex.png"></p>
-<h3 id="3-2-設定PHP執行路徑"><a href="#3-2-設定PHP執行路徑" class="headerlink" title="3-2. 設定PHP執行路徑"></a>3-2. 設定PHP執行路徑</h3><p>VS Code已有內建PHP的除錯程式，但除錯工具需要搭配PHP的執行程式才能運作，因此接下來我們需要告知VS Code去那裏找到PHP的執行程式，讓除錯功能可以運作；</p>
-<p>從選單項目的<code>檔案</code>中找到<strong>喜好設定</strong>並在右側選單中找到<strong>設定</strong>這個項目；</p>
-<p><img src="https://i.imgur.com/VPgfjpv.png"></p>
-<p>在設定視窗中找到<code>延伸模組</code>中的<code>PHP</code>項目，再找到由上到下數來的第三個設定值<code>PHP．Validate Executable Path</code>，點擊在下方的<code>在settings.json內編輯</code>來開啟設定檔：</p>
-<p><img src="https://i.imgur.com/Z98uYGK.png"></p>
-<p>找到電腦中的<strong>php.exe</strong>檔在的位置(預設通常在C:\xampp\php中)，並將完整路徑填寫在<code>php.validate.executablePath</code>之後，要注意的是如果路徑用了倒斜線，則需再加上一條倒斜線才不會解讀錯誤，改完後存檔即完成基本的設定。</p>
-<p><img src="https://i.imgur.com/6DuEEgT.png"></p>
-<p>之後在撰寫PHP程式時，只要語法上有錯誤存在就會自動在可能發生錯誤的那一行程式下方出現紅色的底線來提示。</p>
-<h2 id="4-測試開發環境及工具是否正常運作"><a href="#4-測試開發環境及工具是否正常運作" class="headerlink" title="4.測試開發環境及工具是否正常運作"></a>4.測試開發環境及工具是否正常運作</h2><h3 id="4-1-VS-Code的開啟方式"><a href="#4-1-VS-Code的開啟方式" class="headerlink" title="4.1 VS Code的開啟方式"></a>4.1 VS Code的開啟方式</h3><p>開發者工具畫面<br>VS Code有多種的開啟方式來配合不同的使用情境：</p>
-<p><strong>1.拖放式</strong></p>
-<p>先開啟VS Code後，將要編輯的專案目錄或單一檔案以滑鼠拖拉進VS Code的視窗，即可開啟該專案目錄或檔案：<br><img src="https://i.imgur.com/dLOiwYE.png"></p>
-<p><strong>2.右鍵選單</strong></p>
-<p>在專案目錄或檔案上按下滑鼠右鍵，即可在選單中看到<code>以Code開啟</code>的選項，選擇後即可開啟該專案目錄或檔案：</p>
-<p><img src="https://i.imgur.com/qDf9Svw.png"></p>
-<p>在專案目錄中的空白處理，沒有選擇任何檔案的狀況下，按下滑鼠右鍵選擇<code>以Code開啟</code>的話則效果等同於開啟整個專案目錄：</p>
-<p><img src="https://i.imgur.com/7PaJ0h1.png"></p>
-<h3 id="4-2-建立第一個PHP網頁檔"><a href="#4-2-建立第一個PHP網頁檔" class="headerlink" title="4.2 建立第一個PHP網頁檔"></a>4.2 建立第一個PHP網頁檔</h3><p>點選VS Code左側功能圖示的第一個圖示，會開出一個側邊欄，這裏可以用來瀏灠我們專案目錄中的所有檔案，在目錄名稱的右邊有四個小icon分別代表不同的能，先點選第一個icon來新增檔案：</p>
-<p><img src="https://i.imgur.com/FDk9f7A.png"></p>
-<p>網站中的第一個檔案都是預設為index做為檔名，因為我們使php來開發，所以請先建立一個index.php檔案：</p>
-<p><img src="https://i.imgur.com/Yrs0Dcm.png"></p>
-<p>完成新增檔案後，游標會自動定位到右側的編輯區，請先鍵入以下的程式碼：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">echo &quot;hello world&quot;;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>然後存檔，接著開啟<strong>xampp</strong>，並啟用<strong>Apache</strong>：</p>
-<p><img src="https://i.imgur.com/3VrudBN.png"></p>
-<p>點選<code>Apache</code>項目中的<code>Admin</code>按鈕，或是在瀏灠器的網址列中輸入 <strong><a target="_blank" rel="noopener" href="http://localhost/">http://localhost</a></strong> ，如果設定都正確，則會看到剛才輸入的 <strong>hello world</strong> 字樣，至此表示網頁程式設計的開發環境已建置完成</p>
-<p><img src="https://i.imgur.com/8yvMjiz.png"></p>
-<div class="note danger no-icon">
-            <h4 id="VS-Code-打開後一片黑，連功能選單都沒有的狀況"><a href="#VS-Code-打開後一片黑，連功能選單都沒有的狀況" class="headerlink" title="VS Code 打開後一片黑，連功能選單都沒有的狀況"></a>VS Code 打開後一片黑，連功能選單都沒有的狀況</h4>
-          </div>
-
-<p>這是因為在部份的電腦系統中，顯示卡的硬體加功能和VS CODE有所衝突造成的，遇到這種狀況，需要關閉VS CODE的硬體加速支援功能。</p>
-<blockquote>
-<p>找到VS CODE設定檔的位置，一般會在 <code>C:\Users\user\.vscode</code> 這個目錄下的 <strong>argv.json</strong><br><img src="basic-lesson-01-007.jpg"><br>使用記事本或其他純文字編輯器來打開這個檔案<br>找到 <strong><code>// &quot;disable-hardware-acceleration&quot;: true,</code></strong> 這段文字<br>把前面的兩個斜線拿掉，就可以關閉硬體加速功能，VS CODE的開啟應該就會正常了</p>
-</blockquote>
-<h1 id="Chrome-DevTool-瀏灠器開發者工具"><a href="#Chrome-DevTool-瀏灠器開發者工具" class="headerlink" title="Chrome DevTool - 瀏灠器開發者工具"></a>Chrome DevTool - 瀏灠器開發者工具</h1><p>目前主流的瀏灠器都有提供開發者工具，主要目的在方便網頁開發者可以進行即時的瀏灠和測試。</p>
-<p>按下鍵盤上的<strong>F12</strong>按鍵或是在瀏灠器的頁面區任何地點按下滑鼠右鍵選單中的<strong>檢視</strong>都可以開啟瀏灠器開發者工具<br><img src="basic-lesson-01-001.jpg"></p>
-<div style="text-align:center;padding:0;margin:0;font-weight:bolder">開發者工具畫面</div>
-
-<p><img src="basic-lesson-01-002.jpg"></p>
-<h2 id="元件檢視"><a href="#元件檢視" class="headerlink" title="元件檢視"></a>元件檢視</h2><p>最基本的功能，可以用來檢查網頁中的原始碼是否和預期產出的內容一致。</p>
-<p><img src="basic-lesson-01-003.jpg"></p>
-<h2 id="流動版面檢視"><a href="#流動版面檢視" class="headerlink" title="流動版面檢視"></a>流動版面檢視</h2><p>透過不同裝置的螢幕大小及方向性，可以檢視網頁程式碼在不同裝置上呈現的狀況。</p>
-<p><img src="basic-lesson-01-006.jpg"></p>
-<h2 id="網路監測-Network"><a href="#網路監測-Network" class="headerlink" title="網路監測 - Network"></a>網路監測 - Network</h2><p>用來監測請求和回應的內容，並可以監控流量和資料狀況。</p>
-<p><img src="basic-lesson-01-004.jpg"></p>
-<h2 id="終端機功能-console"><a href="#終端機功能-console" class="headerlink" title="終端機功能 - console"></a>終端機功能 - console</h2><p>主要是做為 <strong>javascript</strong> 程式碼在前端的測試或是用來檢視和後端的溝通是否正常</p>
-<p><img src="basic-lesson-01-005.jpg"></p>
-<h1 id="Git-版本管理工具"><a href="#Git-版本管理工具" class="headerlink" title="Git - 版本管理工具"></a>Git - 版本管理工具</h1><p>git 是繼subversion後最多人使用的版本管理工具，並結合雲端服務衍生許多應用來。<br>git 本身可以只在單機上執行版本管理的工具，建立起server端的托管倉庫後則又可以提供多人合作開發的應用，使用上非常有彈性。</p>
-<h2 id="安裝與設定"><a href="#安裝與設定" class="headerlink" title="安裝與設定"></a>安裝與設定</h2><ol>
-<li>連上<a target="_blank" rel="noopener" href="https://git-scm.com/">Git官網</a>，依據使用的作業系統(win/mac/linux)平台下載相符的安裝程式</li>
-</ol>
-<p><img src="basic-lesson-01-008.jpg"></p>
-<p><img src="basic-lesson-01-009.jpg"></p>
-<ol start="2">
-<li>windows平台的話下載安裝程式後，點擊安裝程式就可以進行安裝，其它平台請見官網說明使用shell指令進行安裝</li>
-</ol>
-<p><img src="basic-lesson-01-010.jpg"></p>
-<ol start="3">
-<li>開啟終端機程式輸入 <code>git --version</code> 如果有看到版本訊息則是安裝成功</li>
-</ol>
-<p><img src="basic-lesson-01-011.jpg"></p>
-<ol start="4">
-<li>部份windows 7或是舊型的電腦及作業系統可能需要重新啟動電腦才能看到版本訊息。</li>
-</ol>
-<h2 id="基本操作介紹"><a href="#基本操作介紹" class="headerlink" title="基本操作介紹"></a>基本操作介紹</h2><ol>
-<li>git init - 初始化專案資料夾，只需在建立專案時做一次。</li>
-</ol>
-<p><img src="basic-lesson-01-012.jpg"></p>
-<ol start="2">
-<li>git add . - 將有變動的檔案加入git的監控中</li>
-<li>git status - 查看目前專案的檔案狀況</li>
-<li>git commit - 將有變動的檔案建立起變動紀錄</li>
-<li>git log - 查看專案的版本紀錄</li>
-<li>git config - 進行設定</li>
-</ol>
-<h1 id="Github-遠端程式碼托管倉庫"><a href="#Github-遠端程式碼托管倉庫" class="headerlink" title="Github - 遠端程式碼托管倉庫"></a>Github - 遠端程式碼托管倉庫</h1><p>github 是一個以git為基礎的雲端程式碼托管服務，目前已被微軟收購，並開放個人使用者可以使用全部的功能，只對企業用戶有收費。</p>
-<p>github 目前也漸漸成為軟體工程師的一種社交平台，許多軟體職位會要求應試者附上github的帳號，藉此了解求職者的技術能力及程式碼經營能力。</p>
-<h2 id="申請帳號"><a href="#申請帳號" class="headerlink" title="申請帳號"></a>申請帳號</h2><ol>
-<li>連線至<a target="_blank" rel="noopener" href="https://github.com/">github官網</a></li>
-</ol>
-<p><img src="basic-lesson-01-013.jpg"></p>
-<ol start="2">
-<li>註冊新帳號</li>
-</ol>
-<p><img src="basic-lesson-01-014.jpg"></p>
-<ol start="3">
-<li>登入帳號</li>
-</ol>
-<p><img src="basic-lesson-01-015.jpg"></p>
-<h2 id="建立倉庫"><a href="#建立倉庫" class="headerlink" title="建立倉庫"></a>建立倉庫</h2><ul>
-<li>操作github提供的功能來建立一個雲端倉庫</li>
-</ul>
-<p><img src="basic-lesson-01-016.jpg"></p>
-<p><img src="basic-lesson-01-017.jpg"></p>
-<h2 id="與本地專案連結"><a href="#與本地專案連結" class="headerlink" title="與本地專案連結"></a>與本地專案連結</h2><ul>
-<li>git remote add name <a target="_blank" rel="noopener" href="https://github.com/youraccount/repo.git">https://github.com/youraccount/repo.git</a></li>
-</ul>
-<h2 id="程式碼推送"><a href="#程式碼推送" class="headerlink" title="程式碼推送"></a>程式碼推送</h2><ul>
-<li>git pull name master - 把專案從遠端的倉庫拉回來</li>
-<li>git push name master - 把專案推送到遠端的倉庫去</li>
-</ul>
-<h1 id="其它相關設定"><a href="#其它相關設定" class="headerlink" title="其它相關設定"></a>其它相關設定</h1><h2 id="xampp的預設編輯器修改"><a href="#xampp的預設編輯器修改" class="headerlink" title="xampp的預設編輯器修改"></a>xampp的預設編輯器修改</h2><p>Xampp預設使用windows內建的記事本做為編輯器，但某些設定檔在記事本中沒有斷行，使用上不是很方便，因此我們可以修改預設編輯器，指定其它編輯器來替代</p>
-<p>在Xampp control Panel中選擇最右側功能按鈕中的<strong>config</strong>按鈕<br><img src="https://i.imgur.com/BKR9epx.png"></p>
-<p>畫面跳出設定畫面，其中第一個項目就是預設編輯器的設定，填入替代的編輯器執行路徑即可</p>
-<p><img src="https://i.imgur.com/VuATEhP.png"></p>
-<p>VS Code 預設路徑為 <strong>C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe</strong></p>
-<h2 id="資料庫帳號密碼變更"><a href="#資料庫帳號密碼變更" class="headerlink" title="資料庫帳號密碼變更"></a>資料庫帳號密碼變更</h2><p>在Xampp安裝完成時，預設的資料庫是沒有密碼的，在學習和單機開發階段，為了方便，通常會保持無密碼的狀態，但如果要正式上線或對外公開時，則需要設定密碼，以防任何人都可以連入資料庫進行存取。<br>這裏我們透過phpmyadmin來進行資料庫帳號密碼的修改，首先在Xampp control panel中的MySQL模組中按下<strong>admin</strong>項目按鈕或是在瀏灠器的網址列鍵入<code>http://localhost/phpmyadmin</code>，即可連上Phpmyadmin<br><img src="https://i.imgur.com/9nyypJe.png"></p>
-<p><img src="https://i.imgur.com/iJuEE6N.png"></p>
-<p>在php的首頁上點選<strong>使用者帳號</strong>項目，即可看到MySQL的使用者帳號；<br><img src="https://i.imgur.com/T7LwUCc.png"></p>
-<p>點選root帳號的<strong>編輯權限</strong>功能即可修改密碼</p>
-<p><img src="https://i.imgur.com/ZzbJz8J.png"><br><img src="https://i.imgur.com/HK890qK.png"></p>
-<h2 id="Phpmyadmin登入密碼修改"><a href="#Phpmyadmin登入密碼修改" class="headerlink" title="Phpmyadmin登入密碼修改"></a>Phpmyadmin登入密碼修改</h2><p>由於Phpmyadmin只是一個MySQL的輔助管理工具，因此Phpmyadmin需要有MySQL的帳號密碼才能連線使用，資料庫的預設密碼被修改後，Phpmyadmin就無法連線進資料庫進行管理作業，因此需要一併修改phpmyadmin的連線設定，才能正常使用。</p>
-<p>在Xampp control panel中的Apache模組中，選擇<strong>config</strong>按鈕，並執行 <strong>phpMyAdmin(config.inc.php)</strong> 項目，即會開啟phpmyadmin的設定檔，</p>
-<p><img src="https://i.imgur.com/mOCzW8A.png"></p>
-<p>找到其中 <strong>/</strong> *<strong>Authentication type and info</strong> ***/** 的認證設定區塊，可以看到phpmyadmin的預設認證方式是透過 <strong>config</strong> 檔來連線資料庫的，因此必須在 <strong>config</strong> 檔中先提供資料庫的帳號密碼給phpmyadmin。</p>
-<p><img src="https://i.imgur.com/y0thnw6.png"></p>
-<p>在下方的設定項目中的[‘password’]中填入你資料庫的密碼，存檔後再次連線MySQL或是在網址鍵入<code>http://localhost/phpmyadmin</code>，即可重新連入資料庫</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;auth_type&#x27;</span>] = <span class="string">&#x27;config&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;user&#x27;</span>] = <span class="string">&#x27;root&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;password&#x27;</span>] = <span class="string">&#x27;填入密碼&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><p>在初學階段，Xampp預設的PHP環境己經足夠使用，所以不太需要再做什麼設定上的修改，以下提供幾項常見的設定供學員了解：<br>PHP的設定檔名為php.ini，一樣可以在Apache的<strong>config</strong>按鈕中找到。</p>
-<h4 id="短標籤"><a href="#短標籤" class="headerlink" title="短標籤"></a>短標籤</h4><p>原本PHP的語法需要包在<code>&lt;?php......?&gt;</code>區塊中才能被執行，短標籤的作用是讓區塊語法可以縮短成<code>&lt;?.....?&gt;</code>，大多數的虛擬空間都有開啟短標籤的設定，但是要小心和其它類似語法衝突。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">short_open_tag=On</span><br></pre></td></tr></table></figure>
-<h4 id="時區設定"><a href="#時區設定" class="headerlink" title="時區設定"></a>時區設定</h4><p>在php.ini中進行時區設定的話，則全伺服器都會共用這個設定，因此在設定時要先確認網站要服務的地區為何；</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Date]</span><br><span class="line">date.timezone=Asia/Taipei</span><br></pre></td></tr></table></figure>
-<h4 id="上傳檔案大小限制"><a href="#上傳檔案大小限制" class="headerlink" title="上傳檔案大小限制"></a>上傳檔案大小限制</h4><p>原本的PHP設定限制上傳單一檔案的大小為2mb，不過目前Xampp預設的上傳限制已經調升到40mb了，足夠一般的使用；</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upload_max_filesize=40M</span><br></pre></td></tr></table></figure>
-
-<h2 id="輔助工具-Hackmd"><a href="#輔助工具-Hackmd" class="headerlink" title="輔助工具 - Hackmd"></a>輔助工具 - Hackmd</h2><p><strong><a target="_blank" rel="noopener" href="https://hackmd.io/">hackmd.io</a></strong></p>
-<p>這是一個線上筆記系統，採用markdown語法來撰寫網頁，支援多人協作，程式碼高亮等功能</p>
-<p><img src="basic-lesson-01-018.jpg"></p>
-<h2 id="輔助工具-CodePen"><a href="#輔助工具-CodePen" class="headerlink" title="輔助工具 - CodePen"></a>輔助工具 - CodePen</h2><p><strong><a target="_blank" rel="noopener" href="https://codepen.io/">codepen.io</a></strong></p>
-<p>這是一個前端線上即時編輯器，可以直接看到html/css/javascript的結果</p>
-<p><img src="basic-lesson-01-019.jpg"></p>
-
     </div>
 
     
@@ -491,10 +281,9 @@ Xampp預設的根目錄在C:\xampp\htdocs，因此要直接在這個預設目錄
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/php-book/tags/xampp/" rel="tag"># xampp</a>
-              <a href="/php-book/tags/visaul-studio-code/" rel="tag"># visaul studio code</a>
-              <a href="/php-book/tags/git/" rel="tag"># git</a>
-              <a href="/php-book/tags/github/" rel="tag"># github</a>
+              <a href="/php-book/tags/%E8%AE%8A%E6%95%B8/" rel="tag"># 變數</a>
+              <a href="/php-book/tags/%E8%B3%87%E6%96%99%E5%9E%8B%E6%85%8B/" rel="tag"># 資料型態</a>
+              <a href="/php-book/tags/%E9%81%8B%E7%AE%97%E5%AD%90/" rel="tag"># 運算子</a>
           </div>
 
         
@@ -507,8 +296,8 @@ Xampp預設的根目錄在C:\xampp\htdocs，因此要直接在這個預設目錄
       <i class="fa fa-chevron-left"></i> [基礎課程]Lesson 0 課程介紹與學習目標
     </a></div>
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/20/basic-lesson-02/" rel="next" title="[基礎課程] Lesson 2 PHP程式語言基礎">
-      [基礎課程] Lesson 2 PHP程式語言基礎 <i class="fa fa-chevron-right"></i>
+    <a href="/php-book/2021/09/20/basic-lesson-02/" rel="next" title="[基礎課程] Lesson 2 PHP程式流程控制">
+      [基礎課程] Lesson 2 PHP程式流程控制 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -568,7 +357,7 @@ Xampp預設的根目錄在C:\xampp\htdocs，因此要直接在這個預設目錄
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Xampp-%E6%95%B4%E5%90%88%E5%9E%8B%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC%E5%A5%97%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">Xampp 整合型網頁開發套件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BC%89Xampp"><span class="nav-number">1.1.</span> <span class="nav-text">1.下載Xampp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9F%B7%E8%A1%8C%E5%AE%89%E8%A3%9D"><span class="nav-number">1.2.</span> <span class="nav-text">2.執行安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%AE%8A%E6%9B%B4%E7%B6%B2%E7%AB%99%E6%A0%B9%E7%9B%AE%E9%8C%84"><span class="nav-number">1.3.</span> <span class="nav-text">3、變更網站根目錄</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Visual-Studio-Code-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%B7%A8%E8%BC%AF%E6%95%B4%E5%90%88%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">Visual Studio Code 程式碼編輯整合工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BC%89Visual-Studio-Code"><span class="nav-number">2.1.</span> <span class="nav-text">1.下載Visual Studio Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9F%B7%E8%A1%8C%E5%AE%89%E8%A3%9D-1"><span class="nav-number">2.2.</span> <span class="nav-text">2.執行安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.3.</span> <span class="nav-text">3.基本設定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%AA%9E%E7%B3%BB"><span class="nav-number">2.3.1.</span> <span class="nav-text">3-1. 安裝中文語系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%A8%AD%E5%AE%9APHP%E5%9F%B7%E8%A1%8C%E8%B7%AF%E5%BE%91"><span class="nav-number">2.3.2.</span> <span class="nav-text">3-2. 設定PHP執行路徑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%B8%AC%E8%A9%A6%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E5%8F%8A%E5%B7%A5%E5%85%B7%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E9%81%8B%E4%BD%9C"><span class="nav-number">2.4.</span> <span class="nav-text">4.測試開發環境及工具是否正常運作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-VS-Code%E7%9A%84%E9%96%8B%E5%95%9F%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.1.</span> <span class="nav-text">4.1 VS Code的開啟方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E5%80%8BPHP%E7%B6%B2%E9%A0%81%E6%AA%94"><span class="nav-number">2.4.2.</span> <span class="nav-text">4.2 建立第一個PHP網頁檔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VS-Code-%E6%89%93%E9%96%8B%E5%BE%8C%E4%B8%80%E7%89%87%E9%BB%91%EF%BC%8C%E9%80%A3%E5%8A%9F%E8%83%BD%E9%81%B8%E5%96%AE%E9%83%BD%E6%B2%92%E6%9C%89%E7%9A%84%E7%8B%80%E6%B3%81"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">VS Code 打開後一片黑，連功能選單都沒有的狀況</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chrome-DevTool-%E7%80%8F%E7%81%A0%E5%99%A8%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">Chrome DevTool - 瀏灠器開發者工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E4%BB%B6%E6%AA%A2%E8%A6%96"><span class="nav-number">3.1.</span> <span class="nav-text">元件檢視</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E5%8B%95%E7%89%88%E9%9D%A2%E6%AA%A2%E8%A6%96"><span class="nav-number">3.2.</span> <span class="nav-text">流動版面檢視</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%B2%E8%B7%AF%E7%9B%A3%E6%B8%AC-Network"><span class="nav-number">3.3.</span> <span class="nav-text">網路監測 - Network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%82%E7%AB%AF%E6%A9%9F%E5%8A%9F%E8%83%BD-console"><span class="nav-number">3.4.</span> <span class="nav-text">終端機功能 - console</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">4.</span> <span class="nav-text">Git - 版本管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E8%88%87%E8%A8%AD%E5%AE%9A"><span class="nav-number">4.1.</span> <span class="nav-text">安裝與設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E4%BB%8B%E7%B4%B9"><span class="nav-number">4.2.</span> <span class="nav-text">基本操作介紹</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Github-%E9%81%A0%E7%AB%AF%E7%A8%8B%E5%BC%8F%E7%A2%BC%E6%89%98%E7%AE%A1%E5%80%89%E5%BA%AB"><span class="nav-number">5.</span> <span class="nav-text">Github - 遠端程式碼托管倉庫</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B3%E8%AB%8B%E5%B8%B3%E8%99%9F"><span class="nav-number">5.1.</span> <span class="nav-text">申請帳號</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%80%89%E5%BA%AB"><span class="nav-number">5.2.</span> <span class="nav-text">建立倉庫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%87%E6%9C%AC%E5%9C%B0%E5%B0%88%E6%A1%88%E9%80%A3%E7%B5%90"><span class="nav-number">5.3.</span> <span class="nav-text">與本地專案連結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E6%8E%A8%E9%80%81"><span class="nav-number">5.4.</span> <span class="nav-text">程式碼推送</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E7%9B%B8%E9%97%9C%E8%A8%AD%E5%AE%9A"><span class="nav-number">6.</span> <span class="nav-text">其它相關設定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xampp%E7%9A%84%E9%A0%90%E8%A8%AD%E7%B7%A8%E8%BC%AF%E5%99%A8%E4%BF%AE%E6%94%B9"><span class="nav-number">6.1.</span> <span class="nav-text">xampp的預設編輯器修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%BA%AB%E5%B8%B3%E8%99%9F%E5%AF%86%E7%A2%BC%E8%AE%8A%E6%9B%B4"><span class="nav-number">6.2.</span> <span class="nav-text">資料庫帳號密碼變更</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phpmyadmin%E7%99%BB%E5%85%A5%E5%AF%86%E7%A2%BC%E4%BF%AE%E6%94%B9"><span class="nav-number">6.3.</span> <span class="nav-text">Phpmyadmin登入密碼修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP"><span class="nav-number">6.4.</span> <span class="nav-text">PHP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%AD%E6%A8%99%E7%B1%A4"><span class="nav-number">6.4.0.1.</span> <span class="nav-text">短標籤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%82%E5%8D%80%E8%A8%AD%E5%AE%9A"><span class="nav-number">6.4.0.2.</span> <span class="nav-text">時區設定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8A%E5%82%B3%E6%AA%94%E6%A1%88%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6"><span class="nav-number">6.4.0.3.</span> <span class="nav-text">上傳檔案大小限制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BC%94%E5%8A%A9%E5%B7%A5%E5%85%B7-Hackmd"><span class="nav-number">6.5.</span> <span class="nav-text">輔助工具 - Hackmd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BC%94%E5%8A%A9%E5%B7%A5%E5%85%B7-CodePen"><span class="nav-number">6.6.</span> <span class="nav-text">輔助工具 - CodePen</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%8A%E6%95%B8"><span class="nav-number">1.</span> <span class="nav-text">變數</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%8A%E6%95%B8%E5%AE%A3%E5%91%8A"><span class="nav-number">1.1.</span> <span class="nav-text">變數宣告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%80%BC%E7%9A%84%E6%8C%87%E5%AE%9A"><span class="nav-number">1.2.</span> <span class="nav-text">值的指定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%80%E5%9F%9F%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">區域性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E6%95%B8"><span class="nav-number">2.</span> <span class="nav-text">常數</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E6%95%B8%E5%AE%A3%E5%91%8A"><span class="nav-number">2.1.</span> <span class="nav-text">常數宣告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%80%BC%E7%9A%84%E6%8C%87%E5%AE%9A-1"><span class="nav-number">2.2.</span> <span class="nav-text">值的指定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%80%E5%9F%9F%E6%80%A7-1"><span class="nav-number">2.3.</span> <span class="nav-text">區域性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%9E%8B%E6%85%8B"><span class="nav-number">3.</span> <span class="nav-text">資料型態</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">4.</span> <span class="nav-text">運算子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%85%83%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">4.1.</span> <span class="nav-text">一元運算子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%85%83%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">4.2.</span> <span class="nav-text">二元運算子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">4.3.</span> <span class="nav-text">三元運算子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A4%8E%E7%B7%B4%E7%BF%92"><span class="nav-number">5.</span> <span class="nav-text">基礎練習</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -582,20 +371,20 @@ Xampp預設的根目錄在C:\xampp\htdocs，因此要直接在這個預設目錄
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/php-book/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/php-book/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
