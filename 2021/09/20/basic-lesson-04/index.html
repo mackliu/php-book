@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="字串處理是網頁開發的基礎能力，因為網頁開發的原理就是從伺服器產生包含HTML標籤及CSS屬性給客戶端的瀏灠器去解析成網頁供大眾瀏灠，因此可以說網頁開發的過程就是在產生各式字串。">
+  <meta name="description" content="字串處理是網頁開發的基礎能力，因為網頁開發的最原始做法就是從伺服器產生包含HTML標籤及CSS屬性給客戶端，再由客戶端的瀏灠器去解析成網頁供大眾瀏灠，因此可以說網頁開發的過程就是在產生各式字串。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[基礎課程] Lesson 4 字串處理">
 <meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/20/basic-lesson-04/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
-<meta property="og:description" content="字串處理是網頁開發的基礎能力，因為網頁開發的原理就是從伺服器產生包含HTML標籤及CSS屬性給客戶端的瀏灠器去解析成網頁供大眾瀏灠，因此可以說網頁開發的過程就是在產生各式字串。">
+<meta property="og:description" content="字串處理是網頁開發的基礎能力，因為網頁開發的最原始做法就是從伺服器產生包含HTML標籤及CSS屬性給客戶端，再由客戶端的瀏灠器去解析成網頁供大眾瀏灠，因此可以說網頁開發的過程就是在產生各式字串。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-20T15:50:23.000Z">
-<meta property="article:modified_time" content="2021-10-17T15:43:36.803Z">
+<meta property="article:modified_time" content="2021-10-21T06:54:24.605Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="字串">
 <meta property="article:tag" content="string">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-17 23:43:36" itemprop="dateModified" datetime="2021-10-17T23:43:36+08:00">2021-10-17</time>
+                <time title="修改時間：2021-10-21 14:54:24" itemprop="dateModified" datetime="2021-10-21T14:54:24+08:00">2021-10-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,7 +220,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>字串處理是網頁開發的基礎能力，因為網頁開發的原理就是從伺服器產生包含HTML標籤及CSS屬性給客戶端的瀏灠器去解析成網頁供大眾瀏灠，因此可以說網頁開發的過程就是在產生各式字串。</p>
+        <p>字串處理是網頁開發的基礎能力，因為網頁開發的最原始做法就是從伺服器產生包含HTML標籤及CSS屬性給客戶端，再由客戶端的瀏灠器去解析成網頁供大眾瀏灠，因此可以說網頁開發的過程就是在產生各式字串。</p>
 <span id="more"></span>
 
 <h2 id="字串常用函式"><a href="#字串常用函式" class="headerlink" title="字串常用函式"></a>字串常用函式</h2><table>
@@ -231,8 +231,8 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>substr()</td>
-<td>mb_substr()</td>
+<td>substr() / mb_substr()</td>
+<td>從原字串中取出部份字串</td>
 </tr>
 <tr>
 <td>trim()</td>
@@ -240,7 +240,7 @@
 </tr>
 <tr>
 <td>str_repeat()</td>
-<td>重覆指定字元</td>
+<td>重覆特定字元</td>
 </tr>
 <tr>
 <td>str_replace()</td>
@@ -251,7 +251,7 @@
 <td>以特定字串/字元/符號分割字串</td>
 </tr>
 <tr>
-<td>implode()</td>
+<td>implode() / join()</td>
 <td>以特定字串/字元/符號將陣列元素合併成字串</td>
 </tr>
 <tr>
