@@ -28,7 +28,7 @@
 <meta property="og:description" content="子查詢(SubQuery)算是比較進階的應用，在資料表關聯變得複雜或是要查詢特殊條件時就會用上子查詢。 比如要查詢全班平均及格以上的同學時，就會先用一個子查詢來算出全班的平均分數，再用這個平均分數放到Where句子中去做為條件。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-21T04:19:07.000Z">
-<meta property="article:modified_time" content="2021-09-25T11:01:35.805Z">
+<meta property="article:modified_time" content="2021-11-10T15:03:27.714Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="phpmyadmin">
 <meta property="article:tag" content="mariaDB">
@@ -195,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-25 19:01:35" itemprop="dateModified" datetime="2021-09-25T19:01:35+08:00">2021-09-25</time>
+                <time title="修改時間：2021-11-10 23:03:27" itemprop="dateModified" datetime="2021-11-10T23:03:27+08:00">2021-11-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,7 +226,14 @@
 <p>比如要查詢全班平均及格以上的同學時，就會先用一個子查詢來算出全班的平均分數，再用這個平均分數放到Where句子中去做為條件。</p>
 <span id="more"></span>
 
-<h2 id="在Select-區段的子查詢"><a href="#在Select-區段的子查詢" class="headerlink" title="在Select 區段的子查詢"></a>在Select 區段的子查詢</h2><h2 id="在from-區段的子查詢"><a href="#在from-區段的子查詢" class="headerlink" title="在from 區段的子查詢"></a>在from 區段的子查詢</h2><h2 id="在where-join-區段的字查詢"><a href="#在where-join-區段的字查詢" class="headerlink" title="在where(join) 區段的字查詢"></a>在where(join) 區段的字查詢</h2>
+<h2 id="在Select-區段的子查詢"><a href="#在Select-區段的子查詢" class="headerlink" title="在Select 區段的子查詢"></a>在Select 區段的子查詢</h2><p>用在SELECT中大多是一個值的結果，比如要同時列出學生的成績及全班的平均分數</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> `id`,`score`,<span class="built_in">avg</span>(`score`) <span class="keyword">as</span> <span class="string">&#x27;總平均&#x27;</span> <span class="keyword">FROM</span> `students`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="在from-區段的子查詢"><a href="#在from-區段的子查詢" class="headerlink" title="在from 區段的子查詢"></a>在from 區段的子查詢</h2><p>在FROM區段中的字查詢，其結果會被視為是一張資料表，因此等同於是做了一次結合查詢，通常會幫這個子查詢的結果命名一個暫時的資料表名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> `students`.`id`,`students`.`score`,`A`.`address` </span><br><span class="line"><span class="keyword">FROM</span> `students`,(<span class="keyword">SELECT</span> `id`,`address` <span class="keyword">FROM</span> `private`)A</span><br><span class="line"><span class="keyword">WHERE</span> `students`.`id`<span class="operator">=</span>`A`.`id`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="在where-join-區段的字查詢"><a href="#在where-join-區段的字查詢" class="headerlink" title="在where(join) 區段的字查詢"></a>在where(join) 區段的字查詢</h2><p>WHERE 區段的子查詢視需要可以很複雜，搭配各種限制語法及排序等可以得到各種查詢結果</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 欄位.... </span><br><span class="line"><span class="keyword">FROM</span> `<span class="keyword">table</span>`</span><br><span class="line"><span class="keyword">WHERE</span> `students`.`id`<span class="operator">=</span>(子查詢)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> 欄位.... </span><br><span class="line"><span class="keyword">FROM</span> `<span class="keyword">table</span>`</span><br><span class="line"><span class="keyword">WHERE</span> `students`.`id` <span class="keyword">IN</span>(子查詢)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
     </div>
 
     
