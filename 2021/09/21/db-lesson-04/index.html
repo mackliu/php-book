@@ -20,20 +20,19 @@
     var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="結合查詢通常使用在兩張以上有關聯的資料表上，依查詢目的不同，分為內部結合查詢(Inner join)和外部結合查詢(Out join)">
+  <meta name="description" content="聚合函式   函式 用途    AVG 計算欄位的平均值   COUNT 計算查詢結果的筆數   MAX 取出欄位中的最大值   MIN 取出欄位中的最小值   SUM 計算欄位的總計   字串函式   函式 用途    CHAR_LENGTH 取得字串的長度(以多字元字集方式)   LENGTH 取得字串的長度(bytes)   CONCAT 字串合併   GROUP_CONCAT 將GROUP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[資料庫] Lesson 4 結合查詢 JOIN">
+<meta property="og:title" content="[資料庫] Lesson 4 SQL 常見函式">
 <meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/21/db-lesson-04/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
-<meta property="og:description" content="結合查詢通常使用在兩張以上有關聯的資料表上，依查詢目的不同，分為內部結合查詢(Inner join)和外部結合查詢(Out join)">
+<meta property="og:description" content="聚合函式   函式 用途    AVG 計算欄位的平均值   COUNT 計算查詢結果的筆數   MAX 取出欄位中的最大值   MIN 取出欄位中的最小值   SUM 計算欄位的總計   字串函式   函式 用途    CHAR_LENGTH 取得字串的長度(以多字元字集方式)   LENGTH 取得字串的長度(bytes)   CONCAT 字串合併   GROUP_CONCAT 將GROUP">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-09-21T04:10:08.000Z">
-<meta property="article:modified_time" content="2021-09-25T11:01:39.176Z">
+<meta property="article:published_time" content="2021-09-21T03:53:00.000Z">
+<meta property="article:modified_time" content="2021-11-13T03:22:05.305Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="phpmyadmin">
 <meta property="article:tag" content="mariaDB">
 <meta property="article:tag" content="SQL">
-<meta property="article:tag" content="JOIN">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/21/db-lesson-04/">
@@ -49,7 +48,7 @@
   };
 </script>
 
-  <title>[資料庫] Lesson 4 結合查詢 JOIN | 月光林地的網頁技術部</title>
+  <title>[資料庫] Lesson 4 SQL 常見函式 | 月光林地的網頁技術部</title>
   
 
 
@@ -178,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [資料庫] Lesson 4 結合查詢 JOIN
+          [資料庫] Lesson 4 SQL 常見函式
         </h1>
 
         <div class="post-meta">
@@ -188,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2021-09-21 12:10:08" itemprop="dateCreated datePublished" datetime="2021-09-21T12:10:08+08:00">2021-09-21</time>
+              <time title="創建時間：2021-09-21 11:53:00" itemprop="dateCreated datePublished" datetime="2021-09-21T11:53:00+08:00">2021-09-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-25 19:01:39" itemprop="dateModified" datetime="2021-09-25T19:01:39+08:00">2021-09-25</time>
+                <time title="修改時間：2021-11-13 11:22:05" itemprop="dateModified" datetime="2021-11-13T11:22:05+08:00">2021-11-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,12 +221,165 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>結合查詢通常使用在兩張以上有關聯的資料表上，依查詢目的不同，分為內部結合查詢(Inner join)和外部結合查詢(Out join)</p>
-<span id="more"></span>
+        <h2 id="聚合函式"><a href="#聚合函式" class="headerlink" title="聚合函式"></a>聚合函式</h2><table>
+<thead>
+<tr>
+<th>函式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AVG</td>
+<td>計算欄位的平均值</td>
+</tr>
+<tr>
+<td>COUNT</td>
+<td>計算查詢結果的筆數</td>
+</tr>
+<tr>
+<td>MAX</td>
+<td>取出欄位中的最大值</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>取出欄位中的最小值</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>計算欄位的總計</td>
+</tr>
+</tbody></table>
+<h2 id="字串函式"><a href="#字串函式" class="headerlink" title="字串函式"></a>字串函式</h2><table>
+<thead>
+<tr>
+<th>函式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CHAR_LENGTH</td>
+<td>取得字串的長度(以多字元字集方式)</td>
+</tr>
+<tr>
+<td>LENGTH</td>
+<td>取得字串的長度(bytes)</td>
+</tr>
+<tr>
+<td>CONCAT</td>
+<td>字串合併</td>
+</tr>
+<tr>
+<td>GROUP_CONCAT</td>
+<td>將GROUP BY結果中的某個欄位內容串成一個字串</td>
+</tr>
+<tr>
+<td>LEFT</td>
+<td>取出由左邊開始的指定長度的字串</td>
+</tr>
+<tr>
+<td>RIGHT</td>
+<td>取出由右邊開始的指定長度的字串</td>
+</tr>
+<tr>
+<td>SUBSTRING</td>
+<td>取出指定位置開始的指定長度的字串</td>
+</tr>
+</tbody></table>
+<h2 id="日期-時間函式"><a href="#日期-時間函式" class="headerlink" title="日期/時間函式"></a>日期/時間函式</h2><table>
+<thead>
+<tr>
+<th>函式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CURRENT_DATE</td>
+<td>取出當前的系統日期</td>
+</tr>
+<tr>
+<td>CURRENT_TIME</td>
+<td>取出當前的系統時間</td>
+</tr>
+<tr>
+<td>NOW</td>
+<td>取出當前的系統日期及時間</td>
+</tr>
+<tr>
+<td>DATEDIFF</td>
+<td>計算兩個日期間差距的天數</td>
+</tr>
+<tr>
+<td>TIMESTAMPDIFF</td>
+<td>計算兩個日期時間差距的單位，可選擇要返回的數值是時間還是日期</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>取出日期時間格的資料中年的部份</td>
+</tr>
+<tr>
+<td>MONTH</td>
+<td>取出日期時間格的資料中月的部份</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>取出日期時間格的資料中日期的部份</td>
+</tr>
+<tr>
+<td>HOUR</td>
+<td>取出日期時間格的資料中小時的部份</td>
+</tr>
+<tr>
+<td>MINUTE</td>
+<td>取出日期時間格的資料中分鐘的部份</td>
+</tr>
+<tr>
+<td>SECOND</td>
+<td>取出日期時間格的資料中秒的部份</td>
+</tr>
+</tbody></table>
+<h2 id="流程控制函式"><a href="#流程控制函式" class="headerlink" title="流程控制函式"></a>流程控制函式</h2><table>
+<thead>
+<tr>
+<th>函式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CASE</td>
+<td>類似switch case的用法</td>
+</tr>
+<tr>
+<td>IF</td>
+<td>和if else一樣的用法</td>
+</tr>
+<tr>
+<td>IFNULL</td>
+<td>判斷第一個參數是否為null，決定返回的值</td>
+</tr>
+</tbody></table>
+<p><strong>CASE</strong><br>case運算式有兩種用法分別是和switch..case一樣的根據一個結果來決定回傳值；另一個用法則是和if..elseif…else一樣，可以做多個條件的判斷並回傳不同的結果</p>
+<ul>
+<li>用法一</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CASE</span> `gender`</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">1</span> <span class="keyword">THEN</span> <span class="string">&#x27;男&#x27;</span></span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2</span> <span class="keyword">THEN</span> <span class="string">&#x27;女&#x27;</span></span><br><span class="line">         <span class="keyword">ELSE</span> <span class="string">&#x27;多元性別&#x27;</span></span><br><span class="line">       <span class="keyword">END</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Inner-Join-內部結合查詢"><a href="#Inner-Join-內部結合查詢" class="headerlink" title="Inner Join 內部結合查詢"></a>Inner Join 內部結合查詢</h2><p>基本就是Where語法的另一種表現，查詢的結果也和WHERE一樣。<br>內部結合查詢的結果只會出現所有資料表共有的內容。</p>
-<h2 id="Out-Join-外部結合查詢"><a href="#Out-Join-外部結合查詢" class="headerlink" title="Out Join 外部結合查詢"></a>Out Join 外部結合查詢</h2><p>外部結合查詢的目的在於固定一張資料表的內容，結合的另一張表即使沒有對應的資料，最後也會留下來所有的內容。<br>外部結合查詢又依照要保留的資料不同分為右結合及左結合</p>
-<h3 id="Left-Join"><a href="#Left-Join" class="headerlink" title="Left Join"></a>Left Join</h3><h3 id="Right-Join"><a href="#Right-Join" class="headerlink" title="Right Join"></a>Right Join</h3>
+
+
+<ul>
+<li>用法二</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CASE</span> </span><br><span class="line">         <span class="keyword">WHEN</span> `salary` <span class="operator">&lt;=</span> <span class="number">30000</span> <span class="keyword">THEN</span> <span class="string">&#x27;年終一個月&#x27;</span></span><br><span class="line">         <span class="keyword">WHEN</span> `salary` <span class="operator">&gt;</span> <span class="number">30000</span> <span class="keyword">AND</span> `salary` <span class="operator">&lt;=</span><span class="number">45000</span>  <span class="keyword">THEN</span> <span class="string">&#x27;年終兩個月&#x27;</span></span><br><span class="line">         <span class="keyword">WHEN</span> `salary <span class="operator">&gt;</span> <span class="number">45000</span> <span class="keyword">THEN</span> <span class="string">&#x27;年終三個月&#x27;</span></span><br><span class="line">       <span class="keyword">END</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>IF</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> IF(`gender`<span class="operator">=</span><span class="number">1</span>,<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;女&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>IFNULL</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> IFNULL(`score`,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+
     </div>
 
     
@@ -239,7 +391,6 @@
               <a href="/php-book/tags/phpmyadmin/" rel="tag"># phpmyadmin</a>
               <a href="/php-book/tags/mariaDB/" rel="tag"># mariaDB</a>
               <a href="/php-book/tags/SQL/" rel="tag"># SQL</a>
-              <a href="/php-book/tags/JOIN/" rel="tag"># JOIN</a>
           </div>
 
         
@@ -252,8 +403,8 @@
       <i class="fa fa-chevron-left"></i> [資料庫] Lesson 3 SQL 語法
     </a></div>
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/21/db-lesson-05/" rel="next" title="[資料庫] Lesson 5 子查詢">
-      [資料庫] Lesson 5 子查詢 <i class="fa fa-chevron-right"></i>
+    <a href="/php-book/2021/09/21/db-lesson-05/" rel="next" title="[資料庫] Lesson 5 結合查詢 JOIN">
+      [資料庫] Lesson 5 結合查詢 JOIN <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -313,7 +464,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inner-Join-%E5%85%A7%E9%83%A8%E7%B5%90%E5%90%88%E6%9F%A5%E8%A9%A2"><span class="nav-number">1.</span> <span class="nav-text">Inner Join 內部結合查詢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Out-Join-%E5%A4%96%E9%83%A8%E7%B5%90%E5%90%88%E6%9F%A5%E8%A9%A2"><span class="nav-number">2.</span> <span class="nav-text">Out Join 外部結合查詢</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Left-Join"><span class="nav-number">2.1.</span> <span class="nav-text">Left Join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Right-Join"><span class="nav-number">2.2.</span> <span class="nav-text">Right Join</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">聚合函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%B8%B2%E5%87%BD%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">字串函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F-%E6%99%82%E9%96%93%E5%87%BD%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">日期&#x2F;時間函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%87%BD%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">流程控制函式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -327,7 +478,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
