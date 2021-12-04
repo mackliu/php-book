@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="先宣告全部函式都會用到的資料庫連線設定及建立PDO資料庫物件 12$dsn&#x3D;&quot;mysql:host&#x3D;localhost;charset&#x3D;utf8;dbname&#x3D;dbname&quot;;$pdo&#x3D;new PDO($dsn,&amp;#x27;root&amp;#x27;,&amp;#x27;password&amp;#x27;);      all()-給定資料表名和條件後，會回傳符合條件的所有資料 1234567">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[PHP]練習解答 01 常用自訂函式">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/11/30/php-practice-anser-01/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="先宣告全部函式都會用到的資料庫連線設定及建立PDO資料庫物件 12$dsn&#x3D;&quot;mysql:host&#x3D;localhost;charset&#x3D;utf8;dbname&#x3D;dbname&quot;;$pdo&#x3D;new PDO($dsn,&amp;#x27;root&amp;#x27;,&amp;#x27;password&amp;#x27;);      all()-給定資料表名和條件後，會回傳符合條件的所有資料 1234567">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-11-30T02:30:42.000Z">
+<meta property="article:modified_time" content="2021-11-30T07:17:25.027Z">
+<meta property="article:author" content="Mack liu">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/11/30/php-practice-anser-01/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[PHP]練習解答 01 常用自訂函式 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/11/30/php-practice-anser-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [PHP]練習解答 01 常用自訂函式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-11-30 10:30:42 / 修改時間：15:17:25" itemprop="dateCreated datePublished" datetime="2021-11-30T10:30:42+08:00">2021-11-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">網頁技術</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="note info">
+
+<p><strong>先宣告全部函式都會用到的資料庫連線設定及建立PDO資料庫物件</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$dsn</span>=<span class="string">&quot;mysql:host=localhost;charset=utf8;dbname=dbname&quot;</span>;</span><br><span class="line"><span class="variable">$pdo</span>=<span class="keyword">new</span> PDO(<span class="variable">$dsn</span>,<span class="string">&#x27;root&#x27;</span>,<span class="string">&#x27;password&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+</div>
+
+<div class="note success">
+
+<p><strong>all()-給定資料表名和條件後，會回傳符合條件的所有資料</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * $table - 資料表名稱 字串型式</span></span><br><span class="line"><span class="comment"> * ...$arg - 參數型態</span></span><br><span class="line"><span class="comment"> *           1. 沒有參數，撈出資料表全部資料</span></span><br><span class="line"><span class="comment"> *           2. 一個參數：</span></span><br><span class="line"><span class="comment"> *              a. 陣列 - 撈出符合陣列key = value 條件的全部資料</span></span><br><span class="line"><span class="comment"> *              b. 字串 - 撈出符合SQL字串語句的全部資料</span></span><br><span class="line"><span class="comment"> *           3. 二個參數：</span></span><br><span class="line"><span class="comment"> *              a. 第一個參數必須為陣列，同2-a描述</span></span><br><span class="line"><span class="comment"> *              b. 第二個參數必須為字串，同2-b描述</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">all</span>(<span class="params"><span class="variable">$table</span>,...<span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line"><span class="keyword">global</span> <span class="variable">$pdo</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立共有的基本SQL語法</span></span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM <span class="subst">$table</span> &quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//依參數數量來決定進行的動作因此使用switch...case</span></span><br><span class="line"><span class="keyword">switch</span>(count(<span class="variable">$arg</span>))&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判斷參數是否為陣列</span></span><br><span class="line">        <span class="keyword">if</span>(is_array(<span class="variable">$arg</span>[<span class="number">0</span>]))&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//使用迴圈來建立條件語句的字串型式，並暫存在陣列中</span></span><br><span class="line">            <span class="keyword">foreach</span>(<span class="variable">$arg</span>[<span class="number">0</span>] <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line"></span><br><span class="line">                <span class="variable">$tmp</span>[]=<span class="string">&quot;`<span class="subst">$key</span>`=&#x27;<span class="subst">$value</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//使用implode()來轉換陣列為字串並和原本的$sql字串再結合</span></span><br><span class="line">            <span class="variable">$sql</span>.=<span class="string">&quot; WHERE &quot;</span>. implode(<span class="string">&quot; AND &quot;</span> ,<span class="variable">$tmp</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//如果參數不是陣列，那應該是SQL語句字串，因此直接接在原本的$sql字串之後即可</span></span><br><span class="line">            <span class="variable">$sql</span>.=<span class="variable">$arg</span>[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line"></span><br><span class="line">        <span class="comment">//第一個參數必須為陣列，使用迴圈來建立條件語句的陣列</span></span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$arg</span>[<span class="number">0</span>] <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$tmp</span>[]=<span class="string">&quot;`<span class="subst">$key</span>`=&#x27;<span class="subst">$value</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//將條件語句的陣列使用implode()來轉成字串，最後再接上第二個參數(必須為字串)</span></span><br><span class="line">        <span class="variable">$sql</span>.=<span class="string">&quot; WHERE &quot;</span>. implode(<span class="string">&quot; AND &quot;</span> ,<span class="variable">$tmp</span>) . <span class="variable">$arg</span>[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//執行連線資料庫查詢並回傳sql語句執行的結果</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$pdo</span>-&gt;query(<span class="variable">$sql</span>)-&gt;fetchAll(PDO::FETCH_ASSOC);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="note success">
+
+<p><strong>find()-會回傳資料表指定條件的單筆資料</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * $table - 資料表名稱 字串型式</span></span><br><span class="line"><span class="comment"> * $arg 參數型態</span></span><br><span class="line"><span class="comment"> *      1. 陣列 - 撈出符合陣列key = value 條件的單筆資料</span></span><br><span class="line"><span class="comment"> *      2. 字串 - 必須是資料表的id，數字型態，且資料表有id這個欄位</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params"><span class="variable">$table</span>,<span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line"><span class="keyword">global</span> <span class="variable">$pdo</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM <span class="subst">$table</span> WHERE &quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(is_array(<span class="variable">$arg</span>))&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$arg</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$tmp</span>[]=<span class="string">&quot;`<span class="subst">$key</span>`=&#x27;<span class="subst">$value</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$sql</span>.=implode(<span class="string">&quot; AND &quot;</span> ,<span class="variable">$tmp</span>);</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$sql</span>.=<span class="string">&quot; `id`=&#x27;<span class="subst">$arg</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$pdo</span>-&gt;query(<span class="variable">$sql</span>)-&gt;fetch(PDO::FETCH_ASSOC);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+
+<div class="note success">
+
+<p><strong>update()-給定資料表的條件後，會去更新相應的資料。</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * $table - 資料表名稱 字串型式</span></span><br><span class="line"><span class="comment"> * $cols - 陣列 - 更新指定欄位的值</span></span><br><span class="line"><span class="comment"> *         陣列中必須有一個欄位是&#x27;id&#x27;，才能指定該id的資料進行更新</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//更新指定id的單筆資料</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params"><span class="variable">$table</span>,<span class="variable">$cols</span></span>)</span>&#123;</span><br><span class="line"><span class="keyword">global</span> <span class="variable">$pdo</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$cols</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$key</span>!=<span class="string">&#x27;id&#x27;</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$tmp</span>[]=<span class="string">&quot;`<span class="subst">$key</span>`=&#x27;<span class="subst">$value</span>&#x27;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$sql</span>.=<span class="string">&quot;UPDATE <span class="subst">$table</span> SET &quot;</span>.implode(<span class="string">&quot; AND &quot;</span> ,<span class="variable">$tmp</span>).<span class="string">&quot; WHERE `id`=&#x27;<span class="subst">&#123;$cols[&#x27;id&#x27;]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$pdo</span>-&gt;exec(<span class="variable">$sql</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * $table - 資料表名稱 字串型式</span></span><br><span class="line"><span class="comment"> * $cols - 陣列 - 更新指定欄位的值</span></span><br><span class="line"><span class="comment"> * $where - 陣列 - 更新的條件，以陣列方式存放</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//更新指定條件的多筆資料</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params"><span class="variable">$table</span>,<span class="variable">$cols</span>,<span class="variable">$where</span></span>)</span>&#123;</span><br><span class="line"><span class="keyword">global</span> <span class="variable">$pdo</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$cols</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$tmp_cols</span>[]=<span class="string">&quot;`<span class="subst">$key</span>`=&#x27;<span class="subst">$value</span>&#x27;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$where</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$tmp_where</span>[]=<span class="string">&quot;`<span class="subst">$key</span>`=&#x27;<span class="subst">$value</span>&#x27;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$sql</span>.=<span class="string">&quot;UPDATE <span class="subst">$table</span> SET &quot;</span>.implode(<span class="string">&quot;,&quot;</span> ,<span class="variable">$tmp_cols</span>).<span class="string">&quot; WHERE `&quot;</span>.implode(<span class="string">&quot; AND &quot;</span> ,<span class="variable">$tmp_where</span>).;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$pdo</span>-&gt;exec(<span class="variable">$sql</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div>
+<div class="note success">
+
+<p><strong>insert()-給定資料內容後，會去新增資料到資料表</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * $table - 資料表名稱 字串型式</span></span><br><span class="line"><span class="comment"> * $arg - 陣列 - 新增資料指定的欄位的和值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params"><span class="variable">$table</span>,<span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line"><span class="keyword">global</span> <span class="variable">$pdo</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用array_keys()函式將陣列中的key值取出做成一個獨立的陣列</span></span><br><span class="line">    <span class="variable">$cols</span>=implode(<span class="string">&quot;`,`&quot;</span>,<span class="variable">$array_keys</span>(<span class="variable">$arg</span>));</span><br><span class="line">    <span class="variable">$values</span>=implode(<span class="string">&quot;&#x27;,&#x27;&quot;</span>,<span class="variable">$arg</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$sql</span>=<span class="string">&quot;INSERT INTO <span class="subst">$table</span> (`<span class="subst">$cols</span>`) VALUES(&#x27;<span class="subst">$values</span>&#x27;)&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$pdo</span>-&gt;exec(<span class="variable">$sql</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="note success">
+
+<p><strong>del()-給定條件後，會去刪除指定的資料</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * $table - 資料表名稱 字串型式</span></span><br><span class="line"><span class="comment"> * $arg 參數型態</span></span><br><span class="line"><span class="comment"> *      1. 陣列 - 刪除符合陣列key = value 條件的所有資料</span></span><br><span class="line"><span class="comment"> *      2. 字串 - 必須是資料表的id，數字型態，且資料表有id這個欄位</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">del</span>(<span class="params"><span class="variable">$table</span>,<span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line"><span class="keyword">global</span> <span class="variable">$pdo</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;DELETE FROM <span class="subst">$table</span> WHERE &quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(is_array(<span class="variable">$arg</span>))&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$arg</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$tmp</span>[]=<span class="string">&quot;`<span class="subst">$key</span>`=&#x27;<span class="subst">$value</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$sql</span>.=implode(<span class="string">&quot; AND &quot;</span> ,<span class="variable">$tmp</span>);</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$sql</span>.=<span class="string">&quot; `id`=&#x27;<span class="subst">$arg</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$pdo</span>-&gt;exec(<span class="variable">$sql</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success">
+
+<p><strong>math()-使用指定的聚合函數進行資料表的計算或取值</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * $table - 資料表名稱 字串型式</span></span><br><span class="line"><span class="comment"> * $math - 聚合函式名稱，必須有，支援以下聚合函式：</span></span><br><span class="line"><span class="comment"> *         count、max、min、avg、sum</span></span><br><span class="line"><span class="comment"> * $col - 要進行計算的欄位 字串型式</span></span><br><span class="line"><span class="comment"> * ...$arg - 參數型態</span></span><br><span class="line"><span class="comment"> *           1. 沒有參數，針對資料表全部資料進行計算</span></span><br><span class="line"><span class="comment"> *           2. 陣列 - 計算符合陣列key = value 條件的全部資料</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">math</span>(<span class="params"><span class="variable">$table</span>,<span class="variable">$math</span>,<span class="variable">$col</span>,...<span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line"><span class="keyword">global</span> <span class="variable">$pdo</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT <span class="subst">$math</span>(`<span class="subst">$col</span>`) FROM <span class="subst">$table</span> &quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$arg</span>[<span class="number">0</span>]))&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$arg</span>[<span class="number">0</span>] <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$tmp</span>[]=<span class="string">&quot;`<span class="subst">$key</span>`=&#x27;<span class="subst">$value</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$sql</span>.=<span class="string">&quot; WHERE &quot;</span> . implode(<span class="string">&quot; AND &quot;</span> ,<span class="variable">$tmp</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$pdo</span>-&gt;exec(<span class="variable">$sql</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success">
+
+<p><strong>to()-頁面導向，取代header(‘location:url’)</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * $url - 要導向的檔案路徑及檔名</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>  <span class="title">to</span>(<span class="params"><span class="variable">$url</span></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    header(<span class="string">&quot;location:&quot;</span>.<span class="variable">$url</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success">
+
+<p><strong>q()-可以用來撰寫較為複雜的SQL語句，並回傳查詢結果的全部資料</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * $sql - SQL語句字串，取出符合SQL語句的全部資料</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>  <span class="title">q</span>(<span class="params"><span class="variable">$sql</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">global</span> <span class="variable">$pdo</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$pdo</span>-&gt;query(<span class="variable">$sql</span>)-&gt;fetchAll(PDO::FETCH_ASSOC);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success">
+
+<p><strong>save()-整合insert()和update()的功能為一支函式</strong></p>
+<p>如果以一次一筆資料來進行更新或新增時，我們可以發現兩個函式傳入的參數是類似的：</p>
+<p>新增 - insert($table,$arg);</p>
+<p>更新 - update($table,$arg);</p>
+<p>其中兩個$arg的主要差異在於是否有 <strong>id</strong> 這個欄位，新增的資料不會 <strong>id</strong> 這個欄位，而更新單筆資料時通常會需要指定 <strong>id</strong> 因此利用這個差異，我們設計讓兩個功能整合在一支函式中，可以擴展自訂函式的功用。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * $table - 資料表名稱 字串型式</span></span><br><span class="line"><span class="comment"> * $arg - 陣列型式</span></span><br><span class="line"><span class="comment"> *        1. 如果陣列中有key值為id，則執行更新(update)的功能</span></span><br><span class="line"><span class="comment"> *        2. 如果陣列中沒有key值為id，則執行新增(insert)的功能</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>  <span class="title">save</span>(<span class="params"><span class="variable">$table</span>,<span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">global</span> <span class="variable">$pdo</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$arg</span>[<span class="string">&#x27;id&#x27;</span>]))&#123;</span><br><span class="line">        <span class="comment">//update</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$arg</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$key</span>!=<span class="string">&#x27;id&#x27;</span>)&#123;</span><br><span class="line"></span><br><span class="line">                <span class="variable">$tmp</span>[]=<span class="string">&quot;`<span class="subst">$key</span>`=&#x27;<span class="subst">$value</span>&#x27;&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$sql</span>.=<span class="string">&quot;UPDATE <span class="subst">$table</span> SET &quot;</span>.implode(<span class="string">&quot; AND &quot;</span> ,<span class="variable">$tmp</span>).<span class="string">&quot; WHERE `id`=&#x27;<span class="subst">&#123;$arg[&#x27;id&#x27;]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//insert</span></span><br><span class="line">        <span class="variable">$cols</span>=implode(<span class="string">&quot;`,`&quot;</span>,<span class="variable">$array_keys</span>(<span class="variable">$arg</span>));</span><br><span class="line">        <span class="variable">$values</span>=implode(<span class="string">&quot;&#x27;,&#x27;&quot;</span>,<span class="variable">$arg</span>);</span><br><span class="line"></span><br><span class="line">        <span class="variable">$sql</span>=<span class="string">&quot;INSERT INTO <span class="subst">$table</span> (`<span class="subst">$cols</span>`) VALUES(&#x27;<span class="subst">$values</span>&#x27;)&quot;</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$pdo</span>-&gt;exec(<span class="variable">$sql</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/php-book/tags/php/" rel="tag"># php</a>
+              <a href="/php-book/tags/API/" rel="tag"># API</a>
+              <a href="/php-book/tags/web/" rel="tag"># web</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/10/17/dev-tools-07/" rel="prev" title="[開發環境]網頁開發輔助工具">
+      <i class="fa fa-chevron-left"></i> [開發環境]網頁開發輔助工具
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack liu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/muse.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
