@@ -28,7 +28,7 @@
 <meta property="og:description" content="由於第一題的前置作業較多，因此建議先把訪客計數器先完成，確認自訂函式及資料庫的存取正常，一來是先看到有個功能完成會比較心安，二來是確認一下前置作業的自訂函式部份有沒有問題。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T01:37:17.000Z">
-<meta property="article:modified_time" content="2021-09-25T14:48:31.332Z">
+<meta property="article:modified_time" content="2021-12-11T06:31:40.778Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-25 22:48:31" itemprop="dateModified" datetime="2021-09-25T22:48:31+08:00">2021-09-25</time>
+                <time title="修改時間：2021-12-11 14:31:40" itemprop="dateModified" datetime="2021-12-11T14:31:40+08:00">2021-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,14 +224,30 @@
 <ol>
 <li>先整理後台的進站總人數管理功能的頁面，調整HTML的部份符合題意要求的單欄資料內容</li>
 <li>確認可從資料表 <code>total</code> 中讀取到訪客計數資料</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$Total</span>-&gt;find(<span class="number">1</span>)[<span class="string">&#x27;total&#x27;</span>];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
 <li>建立 <code>./api/total.php</code> 並將資料更新的語法寫入</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$Total</span>-&gt;save([<span class="string">&#x27;id&#x27;</span>=&gt;<span class="number">1</span>,<span class="string">&#x27;total&#x27;</span>=&gt;<span class="variable">$_POST</span>[<span class="string">&#x27;total&#x27;</span>]]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
 <li>在 <code>base.php</code> 中寫入判斷訪客是否是首次進站，如為首次進站則建立 <code>session</code> 並更新資料表中的進站人數。</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;total&#x27;</span>]))&#123;</span><br><span class="line">  <span class="variable">$total</span>=<span class="variable">$Total</span>-&gt;find(<span class="number">1</span>);</span><br><span class="line">  <span class="variable">$total</span>[<span class="string">&#x27;total&#x27;</span>]++;</span><br><span class="line">  <span class="variable">$Total</span>-&gt;save(<span class="variable">$total</span>);</span><br><span class="line">  <span class="variable">$_SESSION</span>[]=<span class="variable">$total</span>[<span class="string">&#x27;total&#x27;</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
 <li>要注意的是原本的版型檔案中使用 <code>iframe</code> 的方式來傳遞表單資料，因此 <code>&lt;form&gt;</code> 標籤中會有 <code>target=&quot;back&quot;</code> 的設定，但我們不打算使用iframe，因此要拿掉 <code>index.php</code>及<code>admin.php</code>中的 <code>&lt;iframe&gt;</code>，並將原本的 <code>&lt;form&gt;</code> 標籤內容略做修改：</li>
 </ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">form method=&quot;post&quot; target=&quot;back&quot; action=&quot;?do=tii&quot;</span><br><span class="line">  改成</span><br><span class="line">form method=&quot;post&quot; action=&quot;./api/edit_info.php&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">form method=&quot;post&quot; target=&quot;back&quot; action=&quot;?do=tii&quot;</span><br><span class="line"></span><br><span class="line">改成</span><br><span class="line"></span><br><span class="line">form method=&quot;post&quot; action=&quot;./api/edit_info.php&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ol start="6">
 <li>在 <code>index.php</code>及<code>admin.php</code>的進站總人數位置，直接從資料表讀取資料來顯示</li>
 <li>完成進站人數的統計後，可以按照一樣的流程來製作頁尾版權文字，直接從資料表中取得資料即可</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$Bottom</span>-&gt;find(<span class="number">1</span>)[<span class="string">&#x27;bottom&#x27;</span>];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="8">
 <li>完成頁尾版權的後台功能後，在 <code>index.php</code>及<code>admin.php</code> 中加入讀取頁尾版權資料的程式碼，如此一來就可以看到頁尾版權資料的內容</li>
 </ol>
 

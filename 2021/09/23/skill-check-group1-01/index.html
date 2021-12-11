@@ -28,7 +28,7 @@
 <meta property="og:description" content="開立.&#x2F;css, .&#x2F;js, .&#x2F;img, .&#x2F;icon等常用目錄以利檔案分類及管理 將素材檔中的.css, .js, 及icon圖檔複製到相應的目錄下 更改版型素材的相關檔名，以符合解題的需要 01P01.html &#x3D;&gt; login.php 01P02.html &#x3D;&gt; index.php 01P03.html &#x3D;&gt; admin.php 01P04.html &#x3D;&gt; new">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T01:32:53.000Z">
-<meta property="article:modified_time" content="2021-09-25T14:46:46.900Z">
+<meta property="article:modified_time" content="2021-12-11T04:14:33.016Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-25 22:46:46" itemprop="dateModified" datetime="2021-09-25T22:46:46+08:00">2021-09-25</time>
+                <time title="修改時間：2021-12-11 12:14:33" itemprop="dateModified" datetime="2021-12-11T12:14:33+08:00">2021-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,11 +239,11 @@
 <li>從<code>index.php</code>及<code>admin.php</code>中分離出中間需要變動的區塊，採用<code>include</code>的方式來動態載入主要的內容區</li>
 <li>前台的 <code>login.php</code> 及 <code>news.php</code> 去除和 <code>index.php</code> 相同的部份，只留下中間區塊即可，並將兩個檔案移到 <code>./front</code> 目錄下</li>
 <li>前台的 <code>index.php</code> 控出的中間區塊成為獨立的 <code>home.php</code> 檔案，並搬移到 <code>./front/</code> 目錄下</li>
-<li>後台的 <code>admin.php</code> 則挖出中間的區塊成為獨立的元件，並搬移到<code>backend</code>目錄下，先建立一個檔案名為<code>title.php</code>，之後會成為九個後台功能的基礎版型檔案。</li>
+<li>後台的 <code>admin.php</code> 則挖出中間的區塊成為獨立的元件，並搬移到<code>./backend/</code>目錄下，先建立一個檔案名為<code>title.php</code>，之後會成為九個後台功能的基礎版型檔案。</li>
 <li>使用 <code>include</code> 指令來重新組合 <code>index.php</code> 及 <code>admin.php</code> 頁面，並加上判斷式來確保要組合的檔案是存在的。</li>
 <li>以 <code>get</code> 的方式來傳遞各頁面要組合的元件內容，比如 <code>do=login</code> 表示要看到的是登入頁面，因此在前台的 <code>include</code> 中可以併入 <code>login.php</code> 來呈現。</li>
 </ol>
-
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//index.php </span></span><br><span class="line"><span class="variable">$do</span>=(!<span class="keyword">empty</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;do&#x27;</span>]))?<span class="variable">$_GET</span>[<span class="string">&#x27;do&#x27;</span>]:<span class="string">&quot;main&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$file</span>=<span class="string">&#x27;front/&#x27;</span>.<span class="variable">$do</span>.<span class="string">&quot;.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(file_exists(<span class="variable">$file</span>))&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">include</span> <span class="variable">$file</span>;</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">echo</span> <span class="string">&quot;include檔 &#x27;&quot;</span>.<span class="variable">$file</span>.<span class="string">&quot;&#x27; 不存在&quot;</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//admin.php </span></span><br><span class="line"><span class="variable">$do</span>=(!<span class="keyword">empty</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;do&#x27;</span>]))?<span class="variable">$_GET</span>[<span class="string">&#x27;do&#x27;</span>]:<span class="string">&quot;title&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$file</span>=<span class="string">&#x27;backend/&#x27;</span>.<span class="variable">$do</span>.<span class="string">&quot;.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(file_exists(<span class="variable">$file</span>))&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">include</span> <span class="variable">$file</span>;</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">echo</span> <span class="string">&quot;include檔 &#x27;&quot;</span>.<span class="variable">$file</span>.<span class="string">&quot;&#x27; 不存在&quot;</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
     </div>
 
     
