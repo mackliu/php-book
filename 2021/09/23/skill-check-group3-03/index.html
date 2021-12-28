@@ -28,7 +28,7 @@
 <meta property="og:description" content="題組三的管理登入算是簡單的功能，並不需要有個管理者的資料表來做紀錄，因此這邊只要直接寫死帳密做檢查即可；另外，雖然題目中沒有提到，但為了避免每次要到後台時都要再一次輸入帳號密碼，這邊建議還是建一個session變數來紀錄登入的狀態：">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T04:31:50.000Z">
-<meta property="article:modified_time" content="2021-09-23T04:45:26.755Z">
+<meta property="article:modified_time" content="2021-12-28T05:50:48.736Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 12:31:50 / 修改時間：12:45:26" itemprop="dateCreated datePublished" datetime="2021-09-23T12:31:50+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 12:31:50" itemprop="dateCreated datePublished" datetime="2021-09-23T12:31:50+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-28 13:50:48" itemprop="dateModified" datetime="2021-12-28T13:50:48+08:00">2021-12-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -216,12 +222,12 @@
         <p>題組三的管理登入算是簡單的功能，並不需要有個管理者的資料表來做紀錄，因此這邊只要直接寫死帳密做檢查即可；另外，雖然題目中沒有提到，但為了避免每次要到後台時都要再一次輸入帳號密碼，這邊建議還是建一個session變數來紀錄登入的狀態：</p>
 <span id="more"></span>
 <ol>
-<li>在 <code>admin.php</code> 撰寫以session為判斷的登入程式，如果己經登入則可以選擇後台功能，如果未登入，則顯示登入表單。</li>
-<li>因為會使用到session，所以記得要先在 <code>admin.php</code> 的最前面 include <code>base.php</code> 來啟用session的功能</li>
+<li>在 <code>back.php</code> 撰寫以session為判斷的登入程式，如果己經登入則可以選擇後台功能，如果未登入，則顯示登入表單。</li>
+<li>因為會使用到session，所以記得要先在 <code>back.php</code> 的最前面 include <code>base.php</code> 來啟用session的功能</li>
 <li>撰寫登入判斷程式，帳號依題意寫死即可(帳號:admin,密碼:1234)</li>
 <li>這邊要注意的是在未登入的狀況下，只顯示登入表單而己，後台的功能選單在未登入時是不顯示的。</li>
 <li>由於素材提供的版型配色和字型等內容與題目的示意圖落差極大，因此題組三我們不太管示意圖的視覺配置了，只要功能符合就可以。</li>
-<li>修改 <code>admin.php</code> 中的內容區域寬度，方便後續的程式撰寫<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;rb tab&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:98%&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!---功能內容-----&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>修改 <code>back.php</code> 中的內容區域寬度，方便後續的程式撰寫<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;rb tab&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:98%&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!---功能內容-----&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li>這邊要小心判斷式中包含的html區段，避免漏了tag沒包到造成版面出錯</li>
 </ol>
 

@@ -28,7 +28,7 @@
 <meta property="og:description" content="這邊我們來處理排序的問題，題目要求要可以設定順序，但沒有說明設定的方式，因此有兩個方向可以製作，一個是提供一個調整順序的輸入框，直接輸入對應的順序，然後在步驟七中修改一下相應的頁面內容及api即可；這邊示範的是示意圖中的以按鈕的方式來調整順序的做法，我們利用ajax的方式來完成這個功能。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T04:32:15.000Z">
-<meta property="article:modified_time" content="2021-09-23T04:45:09.357Z">
+<meta property="article:modified_time" content="2021-12-28T05:55:44.306Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 12:32:15 / 修改時間：12:45:09" itemprop="dateCreated datePublished" datetime="2021-09-23T12:32:15+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 12:32:15" itemprop="dateCreated datePublished" datetime="2021-09-23T12:32:15+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-28 13:55:44" itemprop="dateModified" datetime="2021-12-28T13:55:44+08:00">2021-12-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -217,7 +223,7 @@
 <span id="more"></span>
 <p>不管採用那個做法，後面在院線片管理中也會使用到改變順序的功能，因此只要做一次就可以複製給另一個功能來使用。</p>
 <ol>
-<li>在 <code>./backend/poster.php</code> 中的按鈕標籤中增加資料的id值，這裏我們利用foreach迴圈的特性，同時計算出上一筆及下一筆的id值，然後帶入按鈕屬性中的id值。</li>
+<li>在 <code>./back/poster.php</code> 中的按鈕標籤中增加資料的id值，這裏我們利用foreach迴圈的特性，同時計算出上一筆及下一筆的id值，然後帶入按鈕屬性中的id值。</li>
 </ol>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$prev</span>=(<span class="variable">$k</span>!=<span class="number">0</span>)?<span class="variable">$rows</span>[<span class="variable">$k</span>-<span class="number">1</span>][<span class="string">&#x27;id&#x27;</span>]:<span class="variable">$row</span>[<span class="string">&#x27;id&#x27;</span>];</span><br><span class="line"><span class="variable">$next</span>=(<span class="variable">$k</span>!=(count(<span class="variable">$rows</span>)-<span class="number">1</span>))?<span class="variable">$rows</span>[<span class="variable">$k</span>+<span class="number">1</span>][<span class="string">&#x27;id&#x27;</span>]:<span class="variable">$row</span>[<span class="string">&#x27;id&#x27;</span>];</span><br></pre></td></tr></table></figure>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--如果要使用button 標籤，記得加上type=button的屬性，否則會預設為submit來使用--&gt;</span><br><span class="line">  &lt;button type=<span class="string">&quot;button&quot;</span> data-rank=<span class="string">&quot;&lt;?=<span class="subst">$row</span>[&#x27;id&#x27;].&quot;</span>-<span class="string">&quot;.<span class="subst">$prev</span>;?&gt;&quot;</span>&gt;往上&lt;/button&gt;</span><br><span class="line">  &lt;button type=<span class="string">&quot;button&quot;</span> data-rank=<span class="string">&quot;&lt;?=<span class="subst">$row</span>[&#x27;id&#x27;].&quot;</span>-<span class="string">&quot;.<span class="subst">$next</span>;?&gt;&quot;</span>&gt;往下&lt;/button&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>

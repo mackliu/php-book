@@ -28,7 +28,7 @@
 <meta property="og:description" content="示意圖給出的表單範例做起來有點囉嗦，所以這邊建議先把功能完成，回頭有空再來處理視覺的問題，而且因為這兩個功能加起來只有10分，如果不能在15分鐘內完成的話，實在不值得花太多時間在這裹，我這邊使用的做法先不管美觀和排版，先以縮短這兩個小項目的製作時間為主，如果沒有把握可以把兩個項目快速做完，會建議先去處理其它的功能再回頭來補完這兩個項目。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T04:33:11.000Z">
-<meta property="article:modified_time" content="2021-09-23T04:44:48.833Z">
+<meta property="article:modified_time" content="2021-12-28T05:57:13.824Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 12:33:11 / 修改時間：12:44:48" itemprop="dateCreated datePublished" datetime="2021-09-23T12:33:11+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 12:33:11" itemprop="dateCreated datePublished" datetime="2021-09-23T12:33:11+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-28 13:57:13" itemprop="dateModified" datetime="2021-12-28T13:57:13+08:00">2021-12-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -216,12 +222,12 @@
         <p>示意圖給出的表單範例做起來有點囉嗦，所以這邊建議先把功能完成，回頭有空再來處理視覺的問題，而且因為這兩個功能加起來只有10分，如果不能在15分鐘內完成的話，實在不值得花太多時間在這裹，我這邊使用的做法先不管美觀和排版，先以縮短這兩個小項目的製作時間為主，如果沒有把握可以把兩個項目快速做完，會建議先去處理其它的功能再回頭來補完這兩個項目。</p>
 <span id="more"></span>
 <ol>
-<li>在 <code>./backend/</code> 目錄下新增 <code>add_movie.php</code> 檔案，並撰寫需要的表單內容，示意圖中左側的”影片資料”及”劇情簡介”兩個字串並不是必須的，排列方式以簡單快速為主。</li>
+<li>在 <code>./back/</code> 目錄下新增 <code>add_movie.php</code> 檔案，並撰寫需要的表單內容，示意圖中左側的”影片資料”及”劇情簡介”兩個字串並不是必須的，排列方式以簡單快速為主。</li>
 <li>在 <code>./api/</code> 目錄下新增 <code>edit_movie.php</code> 檔案，並撰寫需要的PHP程式碼，這邊我們增加對id的判斷來讓這個程式可以同時處理新增及編輯功能。</li>
 <li>依題意最麻煩的是上映日期規定要使用三個下拉選單，但資料表中只有一個<strong>ondate</strong>欄位，因此要在api中將這三個欄位組合成日期格式後才能存入資料表。</li>
 <li>由於表單提供使用者可以上傳海報及影片，所以要記得做兩個判斷式來處理檔案上傳的動作</li>
 <li>另外要記得處理排序欄位及顯示欄位，排序欄位的值我們以sql語法直接向資料尋找id的最大值再加1來當成rank欄位的值</li>
-<li>複製 <code>./backend/add_movie.php</code> 成為 <code>./backend/edit_movie.php</code> ，並加入取得資料及在各欄位寫入欄位值。</li>
+<li>複製 <code>./back/add_movie.php</code> 成為 <code>./back/edit_movie.php</code> ，並加入取得資料及在各欄位寫入欄位值。</li>
 </ol>
 
     </div>

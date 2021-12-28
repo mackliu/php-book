@@ -28,7 +28,7 @@
 <meta property="og:description" content="這邊我們順著步驟九的功能接著把後台的一些簡單功能及頁面設置先做完，爭取更多的時間來製作比較麻煩的購物車及商品管理功能">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T15:30:41.000Z">
-<meta property="article:modified_time" content="2021-09-23T15:40:25.183Z">
+<meta property="article:modified_time" content="2021-12-28T06:05:37.940Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 23:30:41 / 修改時間：23:40:25" itemprop="dateCreated datePublished" datetime="2021-09-23T23:30:41+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 23:30:41" itemprop="dateCreated datePublished" datetime="2021-09-23T23:30:41+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-28 14:05:37" itemprop="dateModified" datetime="2021-12-28T14:05:37+08:00">2021-12-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -216,17 +222,17 @@
         <p>這邊我們順著步驟九的功能接著把後台的一些簡單功能及頁面設置先做完，爭取更多的時間來製作比較麻煩的購物車及商品管理功能</p>
 <span id="more"></span>
 <ol>
-<li>在 <code>./backend/admin.php</code> 中建置讀出管理帳號的頁面，這邊要注意過濾<strong>admin</strong>帳號為沒有功能按鈕的項目</li>
+<li>在 <code>./back/admin.php</code> 中建置讀出管理帳號的頁面，這邊要注意過濾<strong>admin</strong>帳號為沒有功能按鈕的項目</li>
 <li>為了方便測試，可以先手動建置幾個管理者帳號在資料表中</li>
 <li>直接利用js的語法來製作新增管理者的按鈕跳頁功能<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">&quot;location.href=&#x27;?do=add_admin&#x27;&quot;</span>&gt;新增管理員&lt;/button&gt;</span><br></pre></td></tr></table></figure></li>
 <li>在 <code>./js/js.js</code> 中建立一個javascript函式 <code>del(table,id)</code> 做為刪除資料的功能</li>
-<li>在 <code>./admin/</code> 目錄中建立 <code>add_admin.php</code> 檔案，並建立新增管理帳號的頁面及表單</li>
+<li>在 <code>./back/</code> 目錄中建立 <code>add_admin.php</code> 檔案，並建立新增管理帳號的頁面及表單</li>
 <li>在 <code>./api/</code> 目錄中建立 <code>save_admin.php</code> 檔案，並撰寫新增/更新管理帳號的程式碼</li>
-<li>複製一份 <code>./admin/add_admin.php</code> 並改名為 <code>edit_admin.php</code> ，然後根據 <code>$_GET[&#39;id&#39;]</code> 的值來取出資料</li>
+<li>複製一份 <code>./back/add_admin.php</code> 並改名為 <code>edit_admin.php</code> ，然後根據 <code>$_GET[&#39;id&#39;]</code> 的值來取出資料</li>
 <li>要記得在 <code>edit_admin.php</code> 中增加一個隱藏欄位把資料的<strong>id</strong>值帶入</li>
 <li>為了做到登入時的權限限制，我們需要透過session來紀錄使用者的登入狀態，而這個功能在後面的購物車時也會用到，因此我們在這個步驟中先把功能做掉會比較省事。</li>
 <li>在 <code>./api/chk_pw.php</code> 中增加登入成功後紀錄<strong>session</strong>的功能，會員和管理者我們都紀錄一份。</li>
-<li>在 <code>admin.php</code> 的最上面進行session的判斷並取出登入者的帳號資料，如果使用者不是正確的登入者，則不顯示 <code>admin.php</code> 的內容．</li>
+<li>在 <code>back.php</code> 的最上面進行session的判斷並取出登入者的帳號資料，如果使用者不是正確的登入者，則不顯示 <code>back.php</code> 的內容．</li>
 <li>將 <code>pr</code> 欄位的內容轉換成為權限陣列，然後在選單區進行判斷，藉此做到管理權限的功能</li>
 </ol>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=<span class="string">&quot;min-height:400px;&quot;</span>&gt;</span><br><span class="line">    &lt;a href=<span class="string">&quot;?do=admin&quot;</span>&gt;管理權限設置&lt;/a&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span></span><br><span class="line">        <span class="variable">$manager</span>=<span class="variable">$Admin</span>-&gt;find([<span class="string">&#x27;acc&#x27;</span>=&gt;<span class="variable">$_SESSION</span>[<span class="string">&#x27;admin&#x27;</span>]]);</span><br><span class="line">        <span class="variable">$pr</span>=unserialize(<span class="variable">$manager</span>[<span class="string">&#x27;pr&#x27;</span>]);</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">    &lt;a href=<span class="string">&quot;?do=th&quot;</span> style=<span class="string">&quot;display:&lt;?=(in_array(1,<span class="subst">$pr</span>))?&quot;</span>block<span class="string">&quot;:&quot;</span>none<span class="string">&quot;;?&gt;&quot;</span>&gt;商品分類與管理&lt;/a&gt;</span><br><span class="line">    &lt;a href=<span class="string">&quot;?do=order&quot;</span>  style=<span class="string">&quot;display:&lt;?=(in_array(2,<span class="subst">$pr</span>))?&quot;</span>block<span class="string">&quot;:&quot;</span>none<span class="string">&quot;;?&gt;&quot;</span>&gt;訂單管理&lt;/a&gt;</span><br><span class="line">    &lt;a href=<span class="string">&quot;?do=mem&quot;</span> style=<span class="string">&quot;display:&lt;?=(in_array(3,<span class="subst">$pr</span>))?&quot;</span>block<span class="string">&quot;:&quot;</span>none<span class="string">&quot;;?&gt;&quot;</span>&gt;會員管理&lt;/a&gt;</span><br><span class="line">    &lt;a href=<span class="string">&quot;?do=bot&quot;</span> style=<span class="string">&quot;display:&lt;?=(in_array(4,<span class="subst">$pr</span>))?&quot;</span>block<span class="string">&quot;:&quot;</span>none<span class="string">&quot;;?&gt;&quot;</span>&gt;頁尾版權管理&lt;/a&gt;</span><br><span class="line">    &lt;a href=<span class="string">&quot;?do=news&quot;</span> style=<span class="string">&quot;display:&lt;?=(in_array(5,<span class="subst">$pr</span>))?&quot;</span>block<span class="string">&quot;:&quot;</span>none<span class="string">&quot;;?&gt;&quot;</span>&gt;最新消息管理&lt;/a&gt;</span><br><span class="line">    &lt;a href=<span class="string">&quot;javascript:location.href=&#x27;api/logout.php?logout=admin&#x27;&quot;</span> style=<span class="string">&quot;color:#f00;&quot;</span>&gt;登出&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>

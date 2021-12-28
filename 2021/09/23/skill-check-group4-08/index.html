@@ -28,7 +28,7 @@
 <meta property="og:description" content="會員管理功能算是後台功能中較簡單的，而且大部份的程式碼都和管理權限設置相似，因此這邊建議是接在管理權限設置功能做完後順著做下來把它先完成。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T15:31:03.000Z">
-<meta property="article:modified_time" content="2021-09-23T15:40:56.031Z">
+<meta property="article:modified_time" content="2021-12-28T06:06:23.504Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 23:31:03 / 修改時間：23:40:56" itemprop="dateCreated datePublished" datetime="2021-09-23T23:31:03+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 23:31:03" itemprop="dateCreated datePublished" datetime="2021-09-23T23:31:03+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-28 14:06:23" itemprop="dateModified" datetime="2021-12-28T14:06:23+08:00">2021-12-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -216,8 +222,8 @@
         <p>會員管理功能算是後台功能中較簡單的，而且大部份的程式碼都和管理權限設置相似，因此這邊建議是接在管理權限設置功能做完後順著做下來把它先完成。</p>
 <span id="more"></span>
 <ol>
-<li>複製 <code>./admin/admin.php</code> 的內容貼到 <code>./admin/mem.php</code> 中，接著修改相關的程式碼及表格欄位，連結參數等，即可快速完成會員列表的功能。</li>
-<li>在 <code>./admin</code> 目錄中建立 <code>edit_mem.php</code> ，並撰寫編輯會員的表單頁面</li>
+<li>複製 <code>./back/admin.php</code> 的內容貼到 <code>./back/mem.php</code> 中，接著修改相關的程式碼及表格欄位，連結參數等，即可快速完成會員列表的功能。</li>
+<li>在 <code>./back</code> 目錄中建立 <code>edit_mem.php</code> ，並撰寫編輯會員的表單頁面</li>
 <li>複製 <code>./api/save_admin.php</code> ，並更名為 <code>save_mem.php</code>，修改相關的資料表名，及最後要導向的位置，即可完會編輯會員資料的功能。</li>
 </ol>
 

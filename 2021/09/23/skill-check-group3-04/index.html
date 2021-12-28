@@ -28,7 +28,7 @@
 <meta property="og:description" content="示意圖給的做法是把新增和管理都做在同一個畫面中，我們也採用一樣的畫面配置，但是美化先不考量； 另外，示意圖中並沒有給出轉場動畫的設定方式為何，因此要採用全區設定也可以，我這邊使用的做法是每個海報都可以單獨設定一個轉場動畫。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T04:32:02.000Z">
-<meta property="article:modified_time" content="2021-09-23T04:45:15.611Z">
+<meta property="article:modified_time" content="2021-12-28T05:53:52.749Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 12:32:02 / 修改時間：12:45:15" itemprop="dateCreated datePublished" datetime="2021-09-23T12:32:02+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 12:32:02" itemprop="dateCreated datePublished" datetime="2021-09-23T12:32:02+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-28 13:53:52" itemprop="dateModified" datetime="2021-12-28T13:53:52+08:00">2021-12-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -218,7 +224,7 @@
 <span id="more"></span>
 <p>最後，示意圖中給出的排序方式是採用按鈕往上或往下來改變順序，但依照題意只要可以設定排序都可以，因此這邊的做法也可以採用直接填入數值的方式來達到排序的目的，我這邊使用的是ajax的方式以按鈕動作來改變排序。</p>
 <ol>
-<li>在 <code>./backend/</code> 中建立 <code>poster.php</code> </li>
+<li>在 <code>./back/</code> 中建立 <code>poster.php</code> </li>
 <li>撰寫<strong>新增預告片海報</strong>的表單。</li>
 <li>在 <code>./api/</code> 目錄中建立 <code>add_poster.php</code>，並撰寫新增預告片寫入資料表的相關程式</li>
 <li>撰寫<strong>預告片清單</strong>中的表單格式及區塊配置</li>

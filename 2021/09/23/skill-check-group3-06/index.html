@@ -28,7 +28,7 @@
 <meta property="og:description" content="院線片管理的功能分成三個部份來處理：  首先是資料的手動增加及列表功能； 再來是處理院線片的刪除&#x2F;顯示&#x2F;排序功能； 最後是新增&#x2F;編輯院線片的功能；">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T04:32:28.000Z">
-<meta property="article:modified_time" content="2021-09-23T04:45:04.322Z">
+<meta property="article:modified_time" content="2021-12-28T05:56:13.622Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 12:32:28 / 修改時間：12:45:04" itemprop="dateCreated datePublished" datetime="2021-09-23T12:32:28+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 12:32:28" itemprop="dateCreated datePublished" datetime="2021-09-23T12:32:28+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-28 13:56:13" itemprop="dateModified" datetime="2021-12-28T13:56:13+08:00">2021-12-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -219,7 +225,7 @@
 <li>再來是處理院線片的刪除/顯示/排序功能；</li>
 <li>最後是新增/編輯院線片的功能；<span id="more"></span>
 之所以會這樣安排是因為新增/編輯的表單欄位較多又有上傳檔案的功能，會花比較多時間來製作，加上分數只有十分，所以我個人都會先跳過這兩個小功能，先把佔分比較多且製作可以較快速的列表及按鈕功能做完再回頭來補，這樣的解題策略因人而異，同學們可以自行安排。</li>
-<li>在 <code>./backend/</code> 目錄中新增 <code>movie.php</code> 檔案，這是院線片管理的主要頁面。</li>
+<li>在 <code>./back/</code> 目錄中新增 <code>movie.php</code> 檔案，這是院線片管理的主要頁面。</li>
 <li>由於題目沒有提供院線片的文字素材，因此我們可以先建立一個 <code>tmp.php</code> 自行寫一支小程式來快速建立需要的資料內容，執行完畢後資料表就會產生一堆院線片的資料，之後這個 <code>tmp.php</code> 檔可以刪除；除了寫程式的方式，也可以直接利用phpmyadmin來新增及複製數筆資料。</li>
 </ol>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;base.php&quot;</span>;</span><br><span class="line"><span class="comment">//手動加入資料的方式之一，撰寫程式來插入資料</span></span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">1</span>;<span class="variable">$i</span>&lt;=<span class="number">10</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="variable">$data</span>[<span class="string">&#x27;level&#x27;</span>]=rand(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="variable">$data</span>[<span class="string">&#x27;name&#x27;</span>]=<span class="string">&quot;院線片&quot;</span>.<span class="variable">$i</span>;</span><br><span class="line">    <span class="variable">$data</span>[<span class="string">&#x27;length&#x27;</span>]=<span class="number">90</span>;</span><br><span class="line">    <span class="variable">$data</span>[<span class="string">&#x27;ondate&#x27;</span>]=date(<span class="string">&quot;Y-m-d&quot;</span>,strtotime(<span class="string">&quot;+&quot;</span>.((<span class="variable">$i</span>-<span class="number">2</span>)%<span class="number">5</span>).<span class="string">&quot; days&quot;</span>));</span><br><span class="line">    <span class="variable">$data</span>[<span class="string">&#x27;publish&#x27;</span>]=<span class="string">&quot;發行商&quot;</span>.<span class="variable">$i</span>;</span><br><span class="line">    <span class="variable">$data</span>[<span class="string">&#x27;director&#x27;</span>]=<span class="string">&quot;導演&quot;</span>.<span class="variable">$i</span>;</span><br><span class="line">    <span class="variable">$data</span>[<span class="string">&#x27;trailer&#x27;</span>]=<span class="string">&quot;03B&quot;</span>.sprintf(<span class="string">&quot;%02d&quot;</span>,<span class="variable">$i</span>).<span class="string">&quot;v.mp4&quot;</span>;</span><br><span class="line">    <span class="variable">$data</span>[<span class="string">&#x27;poster&#x27;</span>]=<span class="string">&quot;03B&quot;</span>.sprintf(<span class="string">&quot;%02d&quot;</span>,<span class="variable">$i</span>).<span class="string">&quot;.png&quot;</span>;</span><br><span class="line">    <span class="variable">$data</span>[<span class="string">&#x27;intro&#x27;</span>]=<span class="string">&quot;院線片&quot;</span>.<span class="variable">$i</span>.<span class="string">&quot;的劇情簡介&quot;</span>.<span class="string">&quot;院線片&quot;</span>.<span class="variable">$i</span>.<span class="string">&quot;的劇情簡介&quot;</span>.<span class="string">&quot;院線片&quot;</span>.<span class="variable">$i</span>.<span class="string">&quot;的劇情簡介&quot;</span>.<span class="string">&quot;院線片&quot;</span>.<span class="variable">$i</span>.<span class="string">&quot;的劇情簡介&quot;</span>.<span class="string">&quot;院線片&quot;</span>.<span class="variable">$i</span>.<span class="string">&quot;的劇情簡介&quot;</span>.<span class="string">&quot;院線片&quot;</span>.<span class="variable">$i</span>.<span class="string">&quot;的劇情簡介&quot;</span>;</span><br><span class="line">    <span class="variable">$data</span>[<span class="string">&#x27;rank&#x27;</span>]=<span class="variable">$i</span>;</span><br><span class="line">    <span class="variable">$data</span>[<span class="string">&#x27;sh&#x27;</span>]=<span class="number">1</span>;</span><br><span class="line">    save(<span class="string">&quot;movie&quot;</span>,<span class="variable">$data</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>

@@ -28,7 +28,7 @@
 <meta property="og:description" content="這裏題目的描述方式明顯在指的是後台的商品分類與管理的功能，由於截圖的內容並不完全，我們不清楚這兩個功能是在同一個頁面呈現的還有不同的分頁，基於時間的考慮，我們直接把兩個功能做在同一頁即可。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T15:31:35.000Z">
-<meta property="article:modified_time" content="2021-09-23T15:42:02.948Z">
+<meta property="article:modified_time" content="2021-12-28T06:07:27.756Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 23:31:35 / 修改時間：23:42:02" itemprop="dateCreated datePublished" datetime="2021-09-23T23:31:35+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 23:31:35" itemprop="dateCreated datePublished" datetime="2021-09-23T23:31:35+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-28 14:07:27" itemprop="dateModified" datetime="2021-12-28T14:07:27+08:00">2021-12-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -216,9 +222,9 @@
         <p>這裏題目的描述方式明顯在指的是後台的商品分類與管理的功能，由於截圖的內容並不完全，我們不清楚這兩個功能是在同一個頁面呈現的還有不同的分頁，基於時間的考慮，我們直接把兩個功能做在同一頁即可。</p>
 <span id="more"></span>
 <ol>
-<li>在 <code>./backend/th.php</code> 中建立商品分類的表單，這邊我們採用ajax來傳遞資料。</li>
+<li>在 <code>./back/th.php</code> 中建立商品分類的表單，這邊我們採用ajax來傳遞資料。</li>
 <li>撰寫新增大分類和新增中分類的js函式程式碼，需要多個ajax函式來控制所有的行為</li>
-<li>在 <code>./backend/th.php</code> 中接著使用ajax的方式來載入商品分類的列表</li>
+<li>在 <code>./back/th.php</code> 中接著使用ajax的方式來載入商品分類的列表</li>
 <li>這邊示意圖是以主副分類的順序來顯示，我們在 <code>api</code>目錄中新增一個 <code>get_type_list.php</code> 專門用來產生前端需要的分類頁面。</li>
 <li>最後撰寫編輯分類的功能，這邊我們使用js內建的prompt()來提供編輯的彈出畫面，然後再以ajax的方式將修改後的文字送到 <code>./api/save_type.php</code> 去做資料表的更新</li>
 <li>在更新完分類資料表後，我們可以利用dom的操作來直接更改頁面上的分類文字，也可以在資料表更新完成後reload()一下頁面。</li>
