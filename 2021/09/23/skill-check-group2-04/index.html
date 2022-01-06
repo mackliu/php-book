@@ -22,13 +22,13 @@
 
   <meta name="description" content="這邊其實幾乎算送分了，因為主選單的內容己經在版型檔案中先做好了，連背景圖都設定好了，所以這邊唯一需要做的是把動態文字廣告的字打上去即可，這邊要注意的是動態文字廣告區的右側要留點空間給登入資訊使用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[技能檢定]題組二 步驟4  建置主選單區及動態文字廣告">
+<meta property="og:title" content="[技能檢定]題組二 步驟4  建置主選單區、動態文字廣告及頁尾版權區">
 <meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group2-04/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
 <meta property="og:description" content="這邊其實幾乎算送分了，因為主選單的內容己經在版型檔案中先做好了，連背景圖都設定好了，所以這邊唯一需要做的是把動態文字廣告的字打上去即可，這邊要注意的是動態文字廣告區的右側要留點空間給登入資訊使用。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T04:04:49.000Z">
-<meta property="article:modified_time" content="2021-09-23T04:17:40.489Z">
+<meta property="article:modified_time" content="2022-01-05T00:37:08.015Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>[技能檢定]題組二 步驟4  建置主選單區及動態文字廣告 | 月光林地的網頁技術部</title>
+  <title>[技能檢定]題組二 步驟4  建置主選單區、動態文字廣告及頁尾版權區 | 月光林地的網頁技術部</title>
   
 
 
@@ -175,7 +175,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [技能檢定]題組二 步驟4  建置主選單區及動態文字廣告
+          [技能檢定]題組二 步驟4  建置主選單區、動態文字廣告及頁尾版權區
         </h1>
 
         <div class="post-meta">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-09-23 12:04:49 / 修改時間：12:17:40" itemprop="dateCreated datePublished" datetime="2021-09-23T12:04:49+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 12:04:49" itemprop="dateCreated datePublished" datetime="2021-09-23T12:04:49+08:00">2021-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-01-05 08:37:08" itemprop="dateModified" datetime="2022-01-05T08:37:08+08:00">2022-01-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -215,11 +221,16 @@
       
         <p>這邊其實幾乎算送分了，因為主選單的內容己經在版型檔案中先做好了，連背景圖都設定好了，所以這邊唯一需要做的是把動態文字廣告的字打上去即可，這邊要注意的是動態文字廣告區的右側要留點空間給登入資訊使用。</p>
 <span id="more"></span>
-<ul>
+<ol>
 <li>在 <code>index.php</code> 中加入動態文字廣告區的文字，我們使用 <code>&lt;marquee&gt;&lt;/marquee&gt;</code> 標籤來完成即可</li>
 <li>將 <code>&lt;marquee&gt;</code> 標籤設定為寬度80%的inline-block區塊和會員登入的文字區塊放在一起</li>
-</ul>
-
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;span style=<span class="string">&quot;width:80%; display:inline-block;&quot;</span>&gt;</span><br><span class="line">    &lt;marquee&gt;請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章&lt;/marquee&gt;</span><br><span class="line">&lt;/span&gt;</span><br><span class="line">&lt;span style=<span class="string">&quot;width:18%; display:inline-block;&quot;</span>&gt;</span><br><span class="line">    &lt;a href=<span class="string">&quot;?do=login&quot;</span>&gt;會員登入&lt;/a&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>頁尾版權區只須更改年份及QR Code圖檔的連結路徑即可。</li>
+</ol>
+<p><strong>index.php</strong> 或 <strong>front/footer.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;bottom&quot;</span>&gt;</span><br><span class="line">    本網站建議使用：IE9.<span class="number">0</span>以上版本，<span class="number">1024</span> x <span class="number">768</span> pixels 以上觀賞瀏覽 ， Copyright © <span class="number">2022</span>健康促進網社群平台 All Right Reserved</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    服務信箱：health@test.labor.gov.tw&lt;img src=<span class="string">&quot;./icon/02B02.jpg&quot;</span> width=<span class="string">&quot;45&quot;</span>&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -352,7 +363,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

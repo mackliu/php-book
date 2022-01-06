@@ -28,7 +28,7 @@
 <meta property="og:description" content="在上一步時我們完成了會員登入相關的功能，題組二前後台共用的部份只剩下登入顯示：">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T04:05:44.000Z">
-<meta property="article:modified_time" content="2021-12-28T05:45:15.736Z">
+<meta property="article:modified_time" content="2022-01-05T00:37:08.015Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-28 13:45:15" itemprop="dateModified" datetime="2021-12-28T13:45:15+08:00">2021-12-28</time>
+                <time title="修改時間：2022-01-05 08:37:08" itemprop="dateModified" datetime="2022-01-05T08:37:08+08:00">2022-01-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,12 +226,12 @@
 <li>在前面進行會員登入功能製作時，我們尚未做完登出及前後台登入區的顯示，我們放在這一步一起完成</li>
 </ul>
 <ol>
-<li>在 <code>./api/chk_pw.php</code> 中增加一個session用來紀錄會員的登入狀態，其中session的值我們直接紀錄會員帳號</li>
-<li>修改 <code>index.php</code> 中的會員登入按鈕，依據session的狀態來決定要顯示的內容，這裹也要一併考慮管理者登入時的顯示內容</li>
+<li>確認 <code>./api/chk_pw.php</code> 中有一個session用來紀錄會員的登入狀態，其中session的值我們直接紀錄會員帳號</li>
+<li>修改 <code>index.php</code> 中的會員登入按鈕，依據session的狀態來決定要顯示的內容，這裹也要一併考慮管理者登入時的顯示內容<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;span style=<span class="string">&quot;width:18%; display:inline-block;&quot;</span>&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]))&#123;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">    &lt;a href=<span class="string">&quot;?do=login&quot;</span>&gt;會員登入&lt;/a&gt;</span><br><span class="line"><span class="meta">&lt;?php</span> &#125;<span class="keyword">else</span>&#123; </span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]!=<span class="string">&#x27;admin&#x27;</span>)&#123;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line">    &lt;a href=<span class="string">&quot;?do=login&quot;</span>&gt;</span><br><span class="line">        歡迎，<span class="meta">&lt;?=</span><span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>];<span class="meta">?&gt;</span></span><br><span class="line">        &lt;button onclick=<span class="string">&quot;logout()&quot;</span>&gt;登出&lt;/button&gt;</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span> &#125;<span class="keyword">else</span>&#123; <span class="meta">?&gt;</span></span><br><span class="line">    &lt;a href=<span class="string">&quot;?do=login&quot;</span>&gt;</span><br><span class="line">        歡迎，<span class="meta">&lt;?=</span><span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>];<span class="meta">?&gt;</span></span><br><span class="line">        &lt;button onclick=<span class="string">&quot;location.href=&#x27;back.php&#x27;&quot;</span>&gt;管理&lt;/button&gt;</span><br><span class="line">        |&lt;button onclick=<span class="string">&quot;logout()&quot;</span>&gt;登出&lt;/button&gt;</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line"><span class="meta">&lt;?php</span> &#125;</span><br><span class="line">    &#125; <span class="meta">?&gt;</span></span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure></li>
 <li>將 <code>index.php</code> 複製一份成為 <code>back.php</code></li>
 <li>修改 <code>back.php</code> 中，include <code>./front/</code> 的路徑改成 <code>./back/</code></li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;admin.php&quot;的選單文字內容及include的路徑可以等到做後台功能時再來處理即可，</span><br><span class="line">當然，如果覺得順手的話，也可以在複製後直接進行相應的修改</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;back.php&quot;的選單文字內容及include的路徑可以等到做後台功能時再來處理即可，</span><br><span class="line">當然，如果覺得順手的話，也可以在複製後直接進行相應的修改</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -251,8 +251,8 @@
       <i class="fa fa-chevron-left"></i> [技能檢定]題組二 步驟5  建置會員登入/登出/註冊及忘記密碼功能
     </a></div>
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/23/skill-check-group2-07/" rel="next" title="[技能檢定]題組二 步驟7  建置主題內容顯示區／分類網誌及頁尾版權區">
-      [技能檢定]題組二 步驟7  建置主題內容顯示區／分類網誌及頁尾版權區 <i class="fa fa-chevron-right"></i>
+    <a href="/php-book/2021/09/23/skill-check-group2-07/" rel="next" title="[技能檢定]題組二 步驟7  建置主題內容顯示區 / 分類網誌">
+      [技能檢定]題組二 步驟7  建置主題內容顯示區 / 分類網誌 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -365,7 +365,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
