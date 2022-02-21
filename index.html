@@ -182,10 +182,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2022-02-15 21:26:24 / 修改時間：22:37:23" itemprop="dateCreated datePublished" datetime="2022-02-15T21:26:24+08:00">2022-02-15</time>
+              <time title="創建時間：2022-02-15 21:26:24" itemprop="dateCreated datePublished" datetime="2022-02-15T21:26:24+08:00">2022-02-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-02-21 20:46:52" itemprop="dateModified" datetime="2022-02-21T20:46:52+08:00">2022-02-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -213,26 +219,14 @@
       
           <h2 id="RESTful-API"><a href="#RESTful-API" class="headerlink" title="RESTful API"></a>RESTful API</h2><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2">Wiki解釋</a></p>
 <p><a target="_blank" rel="noopener" href="https://medium.com/itsems-frontend/api-%E6%98%AF%E4%BB%80%E9%BA%BC-restful-api-%E5%8F%88%E6%98%AF%E4%BB%80%E9%BA%BC-a001a85ab638">API 與 RESTful API</a></p>
-<h2 id="HTTP-Method"><a href="#HTTP-Method" class="headerlink" title="HTTP Method"></a>HTTP Method</h2><ul>
-<li>GET</li>
-<li>POST</li>
-<li>PUT</li>
-<li>DELETE</li>
-<li>GET</li>
-</ul>
-<h2 id="HTTP-狀態碼"><a href="#HTTP-狀態碼" class="headerlink" title="HTTP 狀態碼"></a>HTTP 狀態碼</h2><ul>
-<li>2xx = Success(成功)</li>
-<li>3xx = Redirect(重定向)</li>
-<li>4xx = User error(客戶端錯誤)</li>
-<li>5xx = Server error(伺服器端錯誤)</li>
-</ul>
-<h2 id="網址導向-htaccess"><a href="#網址導向-htaccess" class="headerlink" title="網址導向 .htaccess"></a>網址導向 .htaccess</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine on</span><br><span class="line"></span><br><span class="line"># 檢測網址狀態是否為檔案或目錄</span><br><span class="line"># RewriteCond %&#123;REQUEST_URI&#125; !-f</span><br><span class="line"># RewriteCond %&#123;REQUEST_URI&#125; !-d</span><br><span class="line"></span><br><span class="line"># 檢測網址的是否為檔案或目錄,</span><br><span class="line"># 如果不是檔案或目錄的話,則執行後面的重寫rule ,如</span><br><span class="line"># 果是檔案或目錄的話,則不映射</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</span><br><span class="line"></span><br><span class="line"># 設定條件及映射路徑到index.php</span><br><span class="line"># RewriteRule ^(.*)$ index.php?path=$1 [NC,L,QSA]</span><br><span class="line">RewriteRule ^(.*)$ index.php [NC,L,QSA]</span><br></pre></td></tr></table></figure>
-
-<h2 id="PHP相關函式"><a href="#PHP相關函式" class="headerlink" title="PHP相關函式"></a>PHP相關函式</h2><ul>
-<li>$_SERVER[‘REQUEST_URI’]</li>
-<li>$_SERVER[‘REQUEST_METHOD’]</li>
-</ul>
-<h2 id="RESTful-API-簡單實作-PHP"><a href="#RESTful-API-簡單實作-PHP" class="headerlink" title="RESTful API 簡單實作(PHP)"></a>RESTful API 簡單實作(PHP)</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$uri=$_SERVER[&#x27;REQUEST_URI&#x27;]; //取得路徑字串，至少會有&quot;/&quot;</span><br><span class="line">$parseUri=explode(&quot;/&quot;,$uri);  //使用&quot;/&quot;把字串拆成陣列</span><br><span class="line"></span><br><span class="line">// 判斷陣列[1]是否為空,空表示路徑只到根目錄,回傳&quot;/&quot;,</span><br><span class="line">// 否則表示有東西,回傳路由字串</span><br><span class="line">$route=(!empty($parseUri[1]))?$parseUri[1]:&quot;/&quot;;</span><br><span class="line"></span><br><span class="line">//根據請求的類型去執行不同的動作</span><br><span class="line">switch($_SERVER[&#x27;REQUEST_METHOD&#x27;])&#123;</span><br><span class="line">case &quot;POST&quot;:</span><br><span class="line">    //判斷路由字串來決定要做什麼事，或是導向其它路由</span><br><span class="line">    </span><br><span class="line">break;</span><br><span class="line">case &quot;GET&quot;:</span><br><span class="line">    //判斷路由字串來決定要做什麼事，或是導向其它路由</span><br><span class="line"></span><br><span class="line">break;</span><br><span class="line">case &quot;PUT&quot;:</span><br><span class="line">    //判斷路由字串來決定要做什麼事，或是導向其它路由</span><br><span class="line"></span><br><span class="line">break;</span><br><span class="line">case &quot;DELETE&quot;:</span><br><span class="line">    //判斷路由字串來決定要做什麼事，或是導向其它路由</span><br><span class="line"></span><br><span class="line">break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2022/02/15/php-lesson-09/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

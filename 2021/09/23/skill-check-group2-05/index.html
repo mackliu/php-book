@@ -28,7 +28,7 @@
 <meta property="og:description" content="這邊我們會一鼓作氣的把會員註冊&#x2F;登入&#x2F;登出及忘記密碼都做完，一共11個項目可以拿到55分，依據題意，這邊要使用ajax來製作會比較適當，也比較好呈現題目要求的各項提示訊息。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T04:05:19.000Z">
-<meta property="article:modified_time" content="2022-01-02T14:52:37.115Z">
+<meta property="article:modified_time" content="2022-02-21T12:48:20.065Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-01-02 22:52:37" itemprop="dateModified" datetime="2022-01-02T22:52:37+08:00">2022-01-02</time>
+                <time title="修改時間：2022-02-21 20:48:20" itemprop="dateModified" datetime="2022-02-21T20:48:20+08:00">2022-02-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,7 +258,11 @@
 <p><strong>api/logout.php</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;../base.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]);</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">由於版型素材提供的css並不是全部都可用，因此如果要畫面美觀的話，很多的css要自己寫，</span><br><span class="line">美化的工作建議可以等功能都做完時再回頭來改就可以了。</span><br></pre></td></tr></table></figure>
+<p><strong>js/js.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.get(<span class="string">&quot;api/logout.php&quot;</span>,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        location.reloadk();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>由於版型素材提供的css並不是全部都可用，因此如果要畫面美觀的話，很多的css要自己寫，<br>美化的工作建議可以等功能都做完時再回頭來改就可以了。</p>
+<pre><code>
+</code></pre>
 
     </div>
 
