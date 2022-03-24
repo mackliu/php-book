@@ -23,27 +23,27 @@
   <meta name="description" content="在預設的xampp環境下，每次如果換了新的專案目錄，可能就要去改一次 documentroot 的設定，一但同時要管理的專案變多時，會一直在修改這個設定，很不方便，因此web server大多有提供設置虛擬主機(virtual host)的功能，讓我們可以透過 port 或 host 對應的方式，來簡化對documentroot的修改">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虛擬主機設定">
-<meta property="og:url" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-08/index.html">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-09/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
 <meta property="og:description" content="在預設的xampp環境下，每次如果換了新的專案目錄，可能就要去改一次 documentroot 的設定，一但同時要管理的專案變多時，會一直在修改這個設定，很不方便，因此web server大多有提供設置虛擬主機(virtual host)的功能，讓我們可以透過 port 或 host 對應的方式，來簡化對documentroot的修改">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-08/dev-tools-08-001.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-08/dev-tools-08-002.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-08/dev-tools-08-003.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-08/dev-tools-08-004.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-08/dev-tools-08-005.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-08/dev-tools-08-006.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-08/dev-tools-08-007.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-09/dev-tools-09-001.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-09/dev-tools-09-002.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-09/dev-tools-09-003.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-09/dev-tools-09-004.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-09/dev-tools-09-005.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-09/dev-tools-09-006.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-09/dev-tools-09-007.png">
 <meta property="article:published_time" content="2022-02-07T02:47:14.000Z">
-<meta property="article:modified_time" content="2022-02-10T05:54:31.413Z">
+<meta property="article:modified_time" content="2022-03-24T00:14:27.366Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="xampp">
 <meta property="article:tag" content="apache">
 <meta property="article:tag" content="virtual host">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-08/dev-tools-08-001.png">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book/2022/02/07/dev-tools-09/dev-tools-09-001.png">
 
-<link rel="canonical" href="https://mackliu.github.io/php-book/2022/02/07/dev-tools-08/">
+<link rel="canonical" href="https://mackliu.github.io/php-book/2022/02/07/dev-tools-09/">
 
 
 <script id="page-configurations">
@@ -172,7 +172,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2022/02/07/dev-tools-08/">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2022/02/07/dev-tools-09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/php-book/images/avatar.gif">
@@ -202,7 +202,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2022-02-10 13:54:31" itemprop="dateModified" datetime="2022-02-10T13:54:31+08:00">2022-02-10</time>
+                <time title="修改時間：2022-03-24 08:14:27" itemprop="dateModified" datetime="2022-03-24T08:14:27+08:00">2022-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,10 +231,10 @@
       
         <p>在預設的xampp環境下，每次如果換了新的專案目錄，可能就要去改一次 <code>documentroot</code> 的設定，一但同時要管理的專案變多時，會一直在修改這個設定，很不方便，因此web server大多有提供設置虛擬主機(virtual host)的功能，讓我們可以透過 <strong>port</strong> 或 <strong>host</strong> 對應的方式，來簡化對documentroot的修改</p>
 <span id="more"></span>
-<h2 id="檢查Apache是否有啟用Virtual-Host模組"><a href="#檢查Apache是否有啟用Virtual-Host模組" class="headerlink" title="檢查Apache是否有啟用Virtual Host模組"></a>檢查Apache是否有啟用Virtual Host模組</h2><p>使用文字編輯器打開apache的http.conf檔案<br><img src="dev-tools-08-001.png"></p>
-<p>可以使用關鍵字 <strong>hosts</strong> 來找到相關的設定，確認模組前的 <strong>#</strong> 已經拿掉了，而這個模組的路徑也代表了這個web server存放虛擬主機設定檔的地方<br><img src="dev-tools-08-002.png"></p>
-<p>接著到 xampp 的目錄下找到這個httpd-vhosts.conf檔，並使用文字編輯器來打開<br><img src="dev-tools-08-003.png"></p>
-<p>預設的設定檔內容有一些設定的範例可供參考：<br><img src="dev-tools-08-004.png"></p>
+<h2 id="檢查Apache是否有啟用Virtual-Host模組"><a href="#檢查Apache是否有啟用Virtual-Host模組" class="headerlink" title="檢查Apache是否有啟用Virtual Host模組"></a>檢查Apache是否有啟用Virtual Host模組</h2><p>使用文字編輯器打開apache的http.conf檔案<br><img src="dev-tools-09-001.png"></p>
+<p>可以使用關鍵字 <strong>hosts</strong> 來找到相關的設定，確認模組前的 <strong>#</strong> 已經拿掉了，而這個模組的路徑也代表了這個web server存放虛擬主機設定檔的地方<br><img src="dev-tools-09-002.png"></p>
+<p>接著到 xampp 的目錄下找到這個httpd-vhosts.conf檔，並使用文字編輯器來打開<br><img src="dev-tools-09-003.png"></p>
+<p>預設的設定檔內容有一些設定的範例可供參考：<br><img src="dev-tools-09-004.png"></p>
 <h2 id="針對不同的專案目錄進行虛擬主機的設定"><a href="#針對不同的專案目錄進行虛擬主機的設定" class="headerlink" title="針對不同的專案目錄進行虛擬主機的設定"></a>針對不同的專案目錄進行虛擬主機的設定</h2><p>虛擬主機的用意在於可以讓一組IP去對應多個不同的專案目錄，為了達到這個目的，所以需要有一個中間層來指派什麼條件下，此唯一的IP要去連到那個專案目錄；此中間層有兩種做法：</p>
 <h3 id="一、使用port號來指定虛擬主機"><a href="#一、使用port號來指定虛擬主機" class="headerlink" title="一、使用port號來指定虛擬主機"></a>一、使用port號來指定虛擬主機</h3><p>這是最簡單快速的方式，有點像是同一個地址，透過不同的樓層來指定不同的住家一樣。<br>在D槽建立兩個資料夾，隨意放入一個index.html，並寫上簡單的識別內容<br>在httpd-vhosts.conf中建立如下的設定檔，即可使用同一個localhost來對應不同的專案目錄:</p>
 <ul>
@@ -245,13 +245,13 @@
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">## 記得要先建立對應port號的傾聽</span><br><span class="line">Listen 8080</span><br><span class="line">Listen 8090</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost *:8080&gt;</span><br><span class="line">    DocumentRoot &quot;D:/web01&quot;</span><br><span class="line">    ServerName localhost</span><br><span class="line"></span><br><span class="line">    ## 以下是針對目錄做的權限及開放功能設定</span><br><span class="line">    &lt;Directory D:/web01&gt;</span><br><span class="line">        Options Indexes Includes FollowSymLinks MultiViews</span><br><span class="line">        AllowOverride All</span><br><span class="line">        Require all granted</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost *:8090&gt;</span><br><span class="line">    DocumentRoot &quot;D:/web02&quot;</span><br><span class="line">    ServerName localhost</span><br><span class="line">    &lt;Directory D:/web02&gt;</span><br><span class="line">        Options Indexes Includes FollowSymLinks MultiViews</span><br><span class="line">        AllowOverride All</span><br><span class="line">        Require all granted</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
 <p>設定完成後儲存，並且重開apache server，在網址後填入對應的port號就可以看到不同的網站內容</p>
-<p><img src="dev-tools-08-005.png"></p>
+<p><img src="dev-tools-09-005.png"></p>
 <h3 id="二、使用域名來指定虛擬主機"><a href="#二、使用域名來指定虛擬主機" class="headerlink" title="二、使用域名來指定虛擬主機"></a>二、使用域名來指定虛擬主機</h3><p>這個方式可以模擬真實網站擁有獨立域名的運作模式，在使用一些框架類的開發環境時，通常會預設有獨立的域名狀況下運作，這類開發環境就適合使用這種指定域名的方式來建立虛擬主機，或是當成正式上線前的網站路徑設定檢查也可以。<br>先在httpd-vhosts.conf中建立如下的設定檔，port號都是80，但是ServerName各自指定不同的域名:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 只須要傾聽 80 port即可，如果在http.conf中己經有傾聽80 port，則在此檔中不需要再寫一次</span><br><span class="line">Listen 80</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    DocumentRoot &quot;D:/web01&quot;</span><br><span class="line"></span><br><span class="line">    ##更改ServerName為自己指定的域名</span><br><span class="line">    ServerName web01.com</span><br><span class="line"></span><br><span class="line">    ## 以下是針對目錄做的權限及開放功能設定</span><br><span class="line">    &lt;Directory D:/web01&gt;</span><br><span class="line">        Options Indexes Includes FollowSymLinks MultiViews</span><br><span class="line">        AllowOverride All</span><br><span class="line">        Require all granted</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    DocumentRoot &quot;D:/web02&quot;</span><br><span class="line">    ServerName web02.com</span><br><span class="line">    &lt;Directory D:/web02&gt;</span><br><span class="line">        Options Indexes Includes FollowSymLinks MultiViews</span><br><span class="line">        AllowOverride All</span><br><span class="line">        Require all granted</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
-<p>接著到windows目錄下找到hosts檔(此檔沒有副檔名)<br><img src="dev-tools-08-006.png"></p>
+<p>接著到windows目錄下找到hosts檔(此檔沒有副檔名)<br><img src="dev-tools-09-006.png"></p>
 <p>使用文字編輯器打開後，建立IP和域名的對應關係</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1       localhost</span><br><span class="line">::1             localhost</span><br><span class="line">   127.0.0.1       web01.com</span><br><span class="line">   127.0.0.1       web02.com</span><br></pre></td></tr></table></figure>
-<p>設定完成後儲存，並且重開apache server，在網址後填入對應的port號就可以看到不同的網站內容，<br>如果是windows10以上的作業系統，應該hosts儲存完畢後會立刻生效，如果是windows10以下或是沒有生效的話，重開機後讓作業系統重新載入一次hosts檔即可<br><img src="dev-tools-08-007.png"></p>
+<p>設定完成後儲存，並且重開apache server，在網址後填入對應的port號就可以看到不同的網站內容，<br>如果是windows10以上的作業系統，應該hosts儲存完畢後會立刻生效，如果是windows10以下或是沒有生效的話，重開機後讓作業系統重新載入一次hosts檔即可<br><img src="dev-tools-09-007.png"></p>
 
     </div>
 
@@ -276,7 +276,7 @@
       <i class="fa fa-chevron-left"></i> javascript 計數器應用
     </a></div>
       <div class="post-nav-item">
-    <a href="/php-book/2022/02/08/dev-tools-09/" rel="next" title="Docker認識與基礎安裝操作">
+    <a href="/php-book/2022/02/08/dev-tools-10/" rel="next" title="Docker認識與基礎安裝操作">
       Docker認識與基礎安裝操作 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -351,7 +351,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
