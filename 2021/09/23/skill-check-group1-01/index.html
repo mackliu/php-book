@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/php-book/js/main.css">
+<link rel="stylesheet" href="/php-book/css/main.css">
 
 
 <link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="月光林地的網頁技術部">
 <meta property="og:description" content="開立.&#x2F;css, .&#x2F;js, .&#x2F;upload, .&#x2F;icon等常用目錄以利檔案分類及管理 將素材檔中的.css, .js, 及icon圖檔複製到相應的目錄下 更改版型素材的相關檔名，以符合解題的需要 01P01.html &#x3D;&gt; login.php 01P02.html &#x3D;&gt; index.php 01P03.html &amp;#x">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-01/skill-check-group1-001.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-01/skill-check-group1-002.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/skill-check-group1-001.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/skill-check-group1-002.png">
 <meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-01/skill-check-group1-003.png">
 <meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-01/skill-check-group1-004.png">
 <meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-01/skill-check-group1-005.png">
@@ -37,7 +37,7 @@
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-01/skill-check-group1-001.png">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book/skill-check-group1-001.png">
 
 <link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-01/">
 
@@ -246,12 +246,12 @@
 <ol start="5">
 <li>開啟 <code>xampp</code> 及 <code>apache</code> 伺服器，使用 <code>localhost</code> 或 <code>127.0.0.1</code> 檢視網頁是否正確顯示，css 的載入是否正確</li>
 </ol>
-<p><img src="/php-book/2021/09/23/skill-check-group1-01/skill-check-group1-001.png"></p>
+<p><img src="/php-book/skill-check-group1-001.png"></p>
 <ol>
 <li>建立 <code>front</code>及 <code>back</code> 兩個目錄，一個代表前台的相關檔案，一個代表後台的相關檔案，前後台共用的元件則先放在根目錄下，或另開一個 <code>comm</code> 目錄用來存放共用的元件</li>
 <li>從<code>index.php</code>及<code>back.php</code>中分離出中間需要變動的區塊，採用<code>include</code>的方式來動態載入主要的內容區，可以利用<code>f12</code>的開發者工具來檢視要分離的區塊的位置</li>
 </ol>
-<p><img src="/php-book/2021/09/23/skill-check-group1-01/skill-check-group1-002.png"></p>
+<p><img src="/php-book/skill-check-group1-002.png"></p>
 <ol start="8">
 <li>前台的 <code>login.php</code> 及 <code>news.php</code> 去除和 <code>index.php</code> 相同的部份，只留下中間區塊即可，並將兩個檔案移到 <code>./front</code> 目錄下</li>
 <li>前台的 <code>index.php</code> 控出的中間區塊成為獨立的 <code>home.php</code> 檔案，並搬移到 <code>./front/</code> 目錄下</li>
