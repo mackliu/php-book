@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/php-book/css/main.css">
+<link rel="stylesheet" href="/php-book/js/main.css">
 
 
 <link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
@@ -226,20 +226,18 @@
 <span id="more"></span></li>
 <li><p>更改版型素材的相關檔名，以符合解題的需要，雖然素材僅提供一個html檔，但根據題意，我們需要有一個後台的功能在，只不過標題區和登入及頁尾區的內容都是一樣的，因此我們會把這些地方的功能完成後，再直接複製成兩個檔案一個做為前台的版型，一個做為後台的版型。</p>
 <ul>
-<li>02P01.htm =&gt; index.php</li>
-<li>02P01.htm =&gt; back.php (先不做，之後做完共同的功能後再複製改名)</li>
+<li>02P01.htm &#x3D;&gt; index.php</li>
+<li>02P01.htm &#x3D;&gt; back.php (先不做，之後做完共同的功能後再複製改名)</li>
 </ul>
 </li>
 <li><p>更改版型素材的相關連結及匯入檔內容</p>
 <ul>
-<li><p>修改 <code>index.php</code> 中 <code>&lt;link&gt;</code> 及 <code>&lt;script&gt;</code> 中的連結路徑，指向正確的位置</p>
-</li>
-<li><p>修改 <code>./css/css.css</code> 中的圖片 <code>url</code> ，指向根目錄下的 <code>../icon</code> 目錄</p>
-</li>
-<li><p><em>index.php</em>*</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=<span class="string">&quot;./css/css.css&quot;</span> rel=<span class="string">&quot;stylesheet&quot;</span> type=<span class="string">&quot;text/css&quot;</span>&gt;</span><br><span class="line">&lt;script src=<span class="string">&quot;./js/jquery-1.9.1.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">&quot;./js/js.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>刪除 <code>index.php</code> 中的 <code>&lt;iframe&gt;...&lt;/iframe&gt;</code> ，我們會使用 <code>ajax</code> 來取代 <code>&lt;iframe&gt;</code></p>
-</li>
+<li>修改 <code>index.php</code> 中 <code>&lt;link&gt;</code> 及 <code>&lt;script&gt;</code> 中的連結路徑，指向正確的位置</li>
+<li>修改 <code>./css/css.css</code> 中的圖片 <code>url</code> ，指向根目錄下的 <code>../icon</code> 目錄</li>
+</ul>
+<p> <strong>index.php</strong><br> <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=<span class="string">&quot;./css/css.css&quot;</span> rel=<span class="string">&quot;stylesheet&quot;</span> type=<span class="string">&quot;text/css&quot;</span>&gt;</span><br><span class="line">&lt;script src=<span class="string">&quot;./js/jquery-1.9.1.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">&quot;./js/js.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>刪除 <code>index.php</code> 中的 <code>&lt;iframe&gt;...&lt;/iframe&gt;</code> ，我們會使用 <code>ajax</code> 來取代 <code>&lt;iframe&gt;</code></li>
 </ul>
 </li>
 <li><p>開啟 <code>xampp</code> 及 <code>apache</code> 伺服器，使用 <code>localhost</code> 或 <code>127.0.0.1</code> 檢視網頁是否正確顯示，css 的載入是否正確</p>
@@ -249,13 +247,13 @@
 <li><p>分離出頁首標題及頁尾頁腳的區塊成為 <code>header.php</code> 及 <code>footer.php</code>，不過因為此題的頁首頁尾是寫死的，所以不切出來也沒有關係。</p>
 </li>
 </ol>
-<p><strong>./front/header.php</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;title&quot;</span>&gt;</span><br><span class="line">    <span class="meta">&lt;?=</span>date(<span class="string">&quot;m月d號 l&quot;</span>);<span class="meta">?&gt;</span> | 今日瀏覽: <span class="number">1</span> | 累積瀏覽: <span class="number">36</span> &lt;/div&gt;</span><br><span class="line">&lt;div id=<span class="string">&quot;title2&quot;</span>&gt;</span><br><span class="line">    &lt;a href=<span class="string">&quot;index.php&quot;</span> title=<span class="string">&quot;健康促進網-回首頁&quot;</span>&gt;</span><br><span class="line">        &lt;img src=<span class="string">&quot;icon/02B01.jpg&quot;</span> alt=<span class="string">&quot;&quot;</span>&gt;</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>.&#x2F;front&#x2F;header.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;title&quot;</span>&gt;</span><br><span class="line">    <span class="meta">&lt;?=</span><span class="title function_ invoke__">date</span>(<span class="string">&quot;m月d號 l&quot;</span>);<span class="meta">?&gt;</span> | 今日瀏覽: <span class="number">1</span> | 累積瀏覽: <span class="number">36</span> &lt;/div&gt;</span><br><span class="line">&lt;div id=<span class="string">&quot;title2&quot;</span>&gt;</span><br><span class="line">    &lt;a href=<span class="string">&quot;index.php&quot;</span> title=<span class="string">&quot;健康促進網-回首頁&quot;</span>&gt;</span><br><span class="line">        &lt;img src=<span class="string">&quot;icon/02B01.jpg&quot;</span> alt=<span class="string">&quot;&quot;</span>&gt;</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
 <p><strong>index.php</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div id=<span class="string">&quot;all&quot;</span>&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span> <span class="keyword">include</span> <span class="string">&quot;front/header.php&quot;</span>;<span class="meta">?&gt;</span></span><br><span class="line">    &lt;div id=<span class="string">&quot;mm&quot;</span>&gt;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
 
-<p><strong>./front/footer.php</strong></p>
+<p><strong>.&#x2F;front&#x2F;footer.php</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;bottom&quot;</span>&gt;</span><br><span class="line">    本網站建議使用：IE9.<span class="number">0</span>以上版本，<span class="number">1024</span> x <span class="number">768</span> pixels 以上觀賞瀏覽 ， Copyright © <span class="number">2022</span>健康促進網社群平台 All Right Reserved</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    服務信箱：health@test.labor.gov.tw&lt;img src=<span class="string">&quot;./icon/02B02.jpg&quot;</span> width=<span class="string">&quot;45&quot;</span>&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><strong>index.php</strong></p>

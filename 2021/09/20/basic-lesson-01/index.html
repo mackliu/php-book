@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/php-book/css/main.css">
+<link rel="stylesheet" href="/php-book/js/main.css">
 
 
 <link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
@@ -230,11 +230,12 @@
 <h2 id="值的指定"><a href="#值的指定" class="headerlink" title="值的指定"></a>值的指定</h2><p>PHP的變數在指定時有很大的彈性和自由，以下的方式都可以用來把值或結果指定給變數:</p>
 <ol>
 <li><p>直接指定</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$price</span>=<span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$name</span>=<span class="string">&quot;劉勤永&quot;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$price</span>=<span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$name</span>=<span class="string">&quot;劉勤永&quot;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>運算後指定</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$price</span>=<span class="number">50</span>*<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$full_name</span>=<span class="variable">$first_name</span> . <span class="variable">$last_name</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 <li><p>函式結果指定</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$total</span>=count(<span class="variable">$array</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$merge</span>=array_merge(<span class="variable">$array1</span>,<span class="variable">$array2</span>,.....);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$total</span>=<span class="title function_ invoke__">count</span>(<span class="variable">$array</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$merge</span>=<span class="title function_ invoke__">array_merge</span>(<span class="variable">$array1</span>,<span class="variable">$array2</span>,.....);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="區域性"><a href="#區域性" class="headerlink" title="區域性"></a>區域性</h2><p>程式的運作通常具有區域性，指的是一個變數可以在程式檔案中被呼叫及引用的範圍，大多數狀況下，在單一php檔案中的變數都是全域變數，一旦宣告了，之後的程式都可以引用這個變數。</p>
 <p>只有在函式和類別中，變數會變成區域變數，只在該函式及該類別中有效果。</p>
@@ -259,9 +260,9 @@
 <li><strong>++<strong>、</strong>–</strong></li>
 </ol>
 <h2 id="二元運算子"><a href="#二元運算子" class="headerlink" title="二元運算子"></a>二元運算子</h2><ol>
-<li>算術運算子 - +、-、*、/、%</li>
-<li>指派運算子 - =、=&gt;</li>
-<li>比較運算子 - ==、!=、&gt;、&lt;=</li>
+<li>算術運算子 - +、-、*、&#x2F;、%</li>
+<li>指派運算子 - &#x3D;、&#x3D;&gt;</li>
+<li>比較運算子 - &#x3D;&#x3D;、!&#x3D;、&gt;、&lt;&#x3D;</li>
 <li>字串運算子 - .</li>
 <li>邏輯運算子 - &amp;&amp;、AND、||、OR、XOR</li>
 </ol>
@@ -271,7 +272,7 @@
 <h1 id="基礎練習"><a href="#基礎練習" class="headerlink" title="基礎練習"></a>基礎練習</h1><div class="note success">
 
 <p><strong>給定兩個變數，請思考如何交換兩個變數的值</strong></p>
-<p>例：<br>$a = 10; $b = 50;<br>交換後<br>$a = 50; $b = 10;</p>
+<p>例：<br>$a &#x3D; 10; $b &#x3D; 50;<br>交換後<br>$a &#x3D; 50; $b &#x3D; 10;</p>
 </div>
     </div>
 

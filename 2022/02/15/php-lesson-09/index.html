@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/php-book/css/main.css">
+<link rel="stylesheet" href="/php-book/js/main.css">
 
 
 <link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
@@ -232,10 +232,10 @@
 <li>DELETE</li>
 </ul>
 <h2 id="HTTP-狀態碼"><a href="#HTTP-狀態碼" class="headerlink" title="HTTP 狀態碼"></a>HTTP 狀態碼</h2><ul>
-<li>2xx = Success(成功)</li>
-<li>3xx = Redirect(重定向)</li>
-<li>4xx = User error(客戶端錯誤)</li>
-<li>5xx = Server error(伺服器端錯誤)</li>
+<li>2xx &#x3D; Success(成功)</li>
+<li>3xx &#x3D; Redirect(重定向)</li>
+<li>4xx &#x3D; User error(客戶端錯誤)</li>
+<li>5xx &#x3D; Server error(伺服器端錯誤)</li>
 </ul>
 <h2 id="網址導向-htaccess"><a href="#網址導向-htaccess" class="headerlink" title="網址導向 .htaccess"></a>網址導向 .htaccess</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine on</span><br><span class="line"></span><br><span class="line"># 檢測網址狀態是否為檔案或目錄</span><br><span class="line"># RewriteCond %&#123;REQUEST_URI&#125; !-f</span><br><span class="line"># RewriteCond %&#123;REQUEST_URI&#125; !-d</span><br><span class="line"></span><br><span class="line"># 檢測網址的是否為檔案或目錄,</span><br><span class="line"># 如果不是檔案或目錄的話,則執行後面的重寫rule ,如</span><br><span class="line"># 果是檔案或目錄的話,則不映射</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</span><br><span class="line"></span><br><span class="line"># 設定條件及映射路徑到index.php</span><br><span class="line"># RewriteRule ^(.*)$ index.php?path=$1 [NC,L,QSA]</span><br><span class="line">RewriteRule ^(.*)$ index.php [NC,L,QSA]</span><br></pre></td></tr></table></figure>
 

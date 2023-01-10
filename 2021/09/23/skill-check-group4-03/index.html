@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/php-book/css/main.css">
+<link rel="stylesheet" href="/php-book/js/main.css">
 
 
 <link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
@@ -228,15 +228,16 @@
 <li><p>在 <code>./front/</code> 中的 <code>news.php</code> 中建置最新消息內容，參考項目(六)</p>
 </li>
 <li><p>題目提到的跑馬燈是 <code>0402.txt</code> 中的兩個標題，而此題並沒有提到標題資料需要從資料庫中讀取，因此我們只要直接在 index.php  中加入最新消息的兩則跑馬燈消息即可：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span>&gt;</span></span><br><span class="line">    情人節特惠活動 <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span> 年終特賣會開跑了  </span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">marquee</span>&gt;</span></span><br><span class="line">    情人節特惠活動 <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span> 年終特賣會開跑了  </span><br><span class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>最新消息的文字描述中，並沒有提到點擊標題後顯示詳細內容，再加上後台也沒有最新消息管理的功能，因此這邊我們只先做到顯示兩則消息的標題即可，後續功能做完再回頭來補，而詳細內容的功能，我建議是使用jQuery的hide()和show()來做切換顯示即可，參考以下寫法：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;ct&quot;</span>&gt;</span>最新消息<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&#x27;all&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span> <span class="attr">class</span>=<span class="string">&#x27;tt ct&#x27;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span> <span class="attr">class</span>=<span class="string">&quot;pp&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>年終特賣會開跑了<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span> <span class="attr">class</span>=<span class="string">&#x27;pp&#x27;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>情人節特惠活動<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<p><img src="skill-check-group4-03-001.png"></p>
+<p><img src="/php-book/2021/09/23/skill-check-group4-03/skill-check-group4-03-001.png"></p>
 <ol start="4">
 <li>在 <code>./front/</code> 中的 <code>look.php</code> 中加入購物流程圖片<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ct&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;icon/0401.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<p><img src="skill-check-group4-03-002.png"></p>
+<p><img src="/php-book/2021/09/23/skill-check-group4-03/skill-check-group4-03-002.png"></p>
 
     </div>
 

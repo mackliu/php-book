@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/php-book/css/main.css">
+<link rel="stylesheet" href="/php-book/js/main.css">
 
 
 <link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="每個題組依狀況不同，在這一步有不同的做法，視自己對題目的熟悉程度來做應變，可以一次把全部資料表建完，也可以視解題的進度來逐步建立或修改資料表。這裏我們採用的做法是利用phpmyadmin的複製資料表功能，快速的複製五張欄位相同的資料表（title,ad,mvim,image,news)，五張類似的資料表並不是所有的欄位都會用得上，我們只是取巧來節省建資料表的時間。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T01:33:53.000Z">
-<meta property="article:modified_time" content="2021-12-19T23:58:34.871Z">
+<meta property="article:modified_time" content="2023-01-07T05:36:10.658Z">
 <meta property="article:author" content="Mack liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-20 07:58:34" itemprop="dateModified" datetime="2021-12-20T07:58:34+08:00">2021-12-20</time>
+                <time title="修改時間：2023-01-07 13:36:10" itemprop="dateModified" datetime="2023-01-07T13:36:10+08:00">2023-01-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,7 +251,7 @@
 <td align="center"></td>
 <td align="center"></td>
 <td align="center"></td>
-<td align="center">檔名/路徑</td>
+<td align="center">檔名&#x2F;路徑</td>
 </tr>
 <tr>
 <td align="center">text</td>
@@ -290,14 +290,6 @@
 <td align="center"></td>
 <td align="center">yes</td>
 <td align="center">流水號</td>
-</tr>
-<tr>
-<td align="center">img</td>
-<td align="center">text</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">檔名/路徑</td>
 </tr>
 <tr>
 <td align="center">text</td>
@@ -343,15 +335,7 @@
 <td align="center"></td>
 <td align="center"></td>
 <td align="center"></td>
-<td align="center">檔名/路徑</td>
-</tr>
-<tr>
-<td align="center">text</td>
-<td align="center">text</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">文字</td>
+<td align="center">檔名&#x2F;路徑</td>
 </tr>
 <tr>
 <td align="center">sh</td>
@@ -389,15 +373,7 @@
 <td align="center"></td>
 <td align="center"></td>
 <td align="center"></td>
-<td align="center">檔名/路徑</td>
-</tr>
-<tr>
-<td align="center">text</td>
-<td align="center">text</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">文字</td>
+<td align="center">檔名&#x2F;路徑</td>
 </tr>
 <tr>
 <td align="center">sh</td>
@@ -488,14 +464,6 @@
 <td align="center"></td>
 <td align="center">yes</td>
 <td align="center">流水號</td>
-</tr>
-<tr>
-<td align="center">img</td>
-<td align="center">text</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">檔名/路徑</td>
 </tr>
 <tr>
 <td align="center">text</td>
@@ -608,13 +576,13 @@
 </tbody></table>
 </li>
 </ul>
-<ol start="2">
+<ol>
 <li>total,bottom,admin這三張表可以先直接手動塞一筆資料進去，如果對資料夠熟悉，也可以每張表都先塞資料進去，這樣在後續製作功能時，可以更快看到成果。</li>
 <li>為了解題順利，可以把資料表中的一些欄位設為可接受空值的狀況，這樣即使未設定內容，也能正常新增或更改資料，不過這個做法只是為了先求解題完成而做的取巧，實務上應該根據需求及功能來決定欄位是否可以接受空值，並在程式端檢查來源資料是否為空值。</li>
 <li>建完資料表後，為了後續的操作方便，可以先在共用函式檔中先宣告好每個資料表的物件實體。</li>
 </ol>
 <p><a href="https://mackliu.github.io/php-book/2021/09/22/skill-check-init-04/"><strong>撰寫共用函式檔</strong></a></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$Title</span>=<span class="keyword">new</span> DB(<span class="string">&#x27;title&#x27;</span>);</span><br><span class="line"><span class="variable">$Ad</span>=<span class="keyword">new</span> DB(<span class="string">&#x27;ad&#x27;</span>);</span><br><span class="line"><span class="variable">$Mvim</span>=<span class="keyword">new</span> DB(<span class="string">&#x27;mvim&#x27;</span>);</span><br><span class="line"><span class="variable">$Image</span>=<span class="keyword">new</span> DB(<span class="string">&#x27;image&#x27;</span>);</span><br><span class="line"><span class="variable">$News</span>=<span class="keyword">new</span> DB(<span class="string">&#x27;news&#x27;</span>);</span><br><span class="line"><span class="variable">$Admin</span>=<span class="keyword">new</span> DB(<span class="string">&#x27;admin&#x27;</span>);</span><br><span class="line"><span class="variable">$Menu</span>=<span class="keyword">new</span> DB(<span class="string">&#x27;menu&#x27;</span>);</span><br><span class="line"><span class="variable">$Bottom</span>=<span class="keyword">new</span> DB(<span class="string">&#x27;bottom&#x27;</span>);</span><br><span class="line"><span class="variable">$Total</span>=<span class="keyword">new</span> DB(<span class="string">&#x27;total&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$Title</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;title&#x27;</span>);</span><br><span class="line"><span class="variable">$Ad</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;ad&#x27;</span>);</span><br><span class="line"><span class="variable">$Mvim</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;mvim&#x27;</span>);</span><br><span class="line"><span class="variable">$Image</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;image&#x27;</span>);</span><br><span class="line"><span class="variable">$News</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;news&#x27;</span>);</span><br><span class="line"><span class="variable">$Admin</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;admin&#x27;</span>);</span><br><span class="line"><span class="variable">$Menu</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;menu&#x27;</span>);</span><br><span class="line"><span class="variable">$Bottom</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;bottom&#x27;</span>);</span><br><span class="line"><span class="variable">$Total</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;total&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
     </div>
 
     
