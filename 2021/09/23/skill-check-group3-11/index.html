@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="這邊題目給出的指示需要摸擬一個影廳的座位狀況，然後使用者可以點選座位來訂票，所以會需要一些建置前端頁面的工作； 這邊會先由前端頁面使用ajax來傳送電影id，日期，場次等資訊到api，然後在api程式中使用php來取出已訂位的資料，建置完座位區後，再以js來完成前端劃位的操作，最後再把訂單資料送到後端去儲存，完成整個訂票的功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[技能檢定]題組三 步驟11 前台線上訂票功能-劃位功能及訂票完成">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group3-11/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="這邊題目給出的指示需要摸擬一個影廳的座位狀況，然後使用者可以點選座位來訂票，所以會需要一些建置前端頁面的工作； 這邊會先由前端頁面使用ajax來傳送電影id，日期，場次等資訊到api，然後在api程式中使用php來取出已訂位的資料，建置完座位區後，再以js來完成前端劃位的操作，最後再把訂單資料送到後端去儲存，完成整個訂票的功能。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group3-11/skill-check-group3-11-001.gif">
+<meta property="article:published_time" content="2021-09-23T06:40:02.000Z">
+<meta property="article:modified_time" content="2022-01-24T03:13:50.056Z">
+<meta property="article:author" content="Mack Liu">
+<meta property="article:tag" content="php,web,javascript,html,mysql,css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group3-11/skill-check-group3-11-001.gif">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group3-11/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[技能檢定]題組三 步驟11 前台線上訂票功能-劃位功能及訂票完成 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group3-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [技能檢定]題組三 步驟11 前台線上訂票功能-劃位功能及訂票完成
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-23 14:40:02" itemprop="dateCreated datePublished" datetime="2021-09-23T14:40:02+08:00">2021-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-01-24 11:13:50" itemprop="dateModified" datetime="2022-01-24T11:13:50+08:00">2022-01-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%A1%8C%E7%B5%84%E4%B8%89/" itemprop="url" rel="index"><span itemprop="name">題組三</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>這邊題目給出的指示需要摸擬一個影廳的座位狀況，然後使用者可以點選座位來訂票，所以會需要一些建置前端頁面的工作；</p>
+<p>這邊會先由前端頁面使用ajax來傳送電影id，日期，場次等資訊到api，然後在api程式中使用php來取出已訂位的資料，建置完座位區後，再以js來完成前端劃位的操作，最後再把訂單資料送到後端去儲存，完成整個訂票的功能。</p>
+<span id="more"></span>
+
+<ol>
+<li><p>在劃位的功能的處理上，我們不使用表單跳頁的方式，而是使用js來控制畫面區塊的切換，這樣就能保留表單的選擇狀態，回上一步時只要切換區塊即可。</p>
+</li>
+<li><p>我們也同時使用ajax的方式把選單的內容傳送到後端去產生一份劃位的頁面，並放在<code>#booking</code>區塊中</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;booking()&quot;</span>&gt;</span>確定<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">booking</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="comment">//先將#order及#booking的顯示狀態做切換</span></span><br><span class="line">    $(<span class="string">&quot;#order,#booking&quot;</span>).<span class="title function_">toggle</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment">//建立一個js物件存入目前各選單的值</span></span><br><span class="line">    <span class="keyword">let</span> order=&#123;<span class="attr">id</span>:$(<span class="string">&quot;#movie&quot;</span>).<span class="title function_">val</span>(),</span><br><span class="line">               <span class="attr">date</span>:$(<span class="string">&quot;#date&quot;</span>).<span class="title function_">val</span>(),</span><br><span class="line">               <span class="attr">session</span>:$(<span class="string">&quot;#session&quot;</span>).<span class="title function_">val</span>()&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//建立ajax動作向api傳送選單的內容</span></span><br><span class="line">    $.<span class="title function_">get</span>(<span class="string">&quot;api/booking.php&quot;</span>,order,<span class="function">(<span class="params">booking</span>)=&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//api處理完後會回傳座位表頁面，將座位表頁面放作booking區中</span></span><br><span class="line">        $(<span class="string">&quot;#booking&quot;</span>).<span class="title function_">html</span>(booking)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>劃位頁面的產生及劃位行為應該是本題組最複雜的一部份了，這邊要注意的細節比較多，同時也有很多的技巧用來簡化程式碼的撰寫。<br><strong>api&#x2F;booking.php</strong><br><strong>處理訂單資料，撈出該場次的已訂位資訊</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;../base.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根據ajax傳來的訂單資料建立電影資料,觀看日期,場次等變數</span></span><br><span class="line"><span class="variable">$movie</span>=<span class="variable">$Movie</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>]);</span><br><span class="line"><span class="variable">$date</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;date&#x27;</span>];</span><br><span class="line"><span class="variable">$session</span>=<span class="variable">$ss</span>[<span class="variable">$_GET</span>[<span class="string">&#x27;session&#x27;</span>]];</span><br><span class="line"></span><br><span class="line"><span class="comment">//根據電影名稱，觀看日期，場次等條件，</span></span><br><span class="line"><span class="comment">//找出訂單資料表中符合的所有訂單</span></span><br><span class="line"><span class="variable">$ords</span>=<span class="variable">$Ord</span>-&gt;<span class="title function_ invoke__">all</span>([<span class="string">&#x27;movie&#x27;</span>=&gt;<span class="variable">$movie</span>[<span class="string">&#x27;name&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;date&#x27;</span>=&gt;<span class="variable">$date</span>,</span><br><span class="line">                 <span class="string">&#x27;session&#x27;</span>=&gt;<span class="variable">$session</span>]);</span><br><span class="line"><span class="comment">//先建立一個空陣列</span></span><br><span class="line"><span class="variable">$seats</span>=[];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$ords</span> <span class="keyword">as</span> <span class="variable">$ord</span>)&#123;</span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 每一次的迴圈，都把每一筆訂單中的座位資訊還原成陣列</span></span><br><span class="line"><span class="comment">     * 再將此陣列和seats陣列合併，形成一個該場次所有已訂位的訂位陣列</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="variable">$seats</span>=<span class="title function_ invoke__">array_merge</span>(<span class="variable">$seats</span>,<span class="title function_ invoke__">unserialize</span>(<span class="variable">$ord</span>[<span class="string">&#x27;seat&#x27;</span>]));</span><br><span class="line">&#125;                 </span><br></pre></td></tr></table></figure>
+<p><strong>建立座位表的css設定，可以儘量簡化，節省時間</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#seats</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">&#x27;icon/03D04.png&#x27;</span>);</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">540px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">370px</span>;</span><br><span class="line">    <span class="attribute">margin</span>:auto;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">19px</span> <span class="number">112px</span> <span class="number">12px</span> <span class="number">112px</span>;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.seat</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">63px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">85px</span>;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.check</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.null</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">&#x27;icon/03D02.png&#x27;</span>);</span><br><span class="line">    <span class="attribute">background-position</span>:center;</span><br><span class="line">    <span class="attribute">background-repeat</span>:no-repeat;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.booked</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">&#x27;icon/03D03.png&#x27;</span>);</span><br><span class="line">    <span class="attribute">background-position</span>:center;</span><br><span class="line">    <span class="attribute">background-repeat</span>:no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>建立座位表html及可訂位資訊</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;seats&quot;</span>&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">20</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">        <span class="variable">$num</span>=(<span class="title function_ invoke__">floor</span>(<span class="variable">$i</span>/<span class="number">5</span>)+<span class="number">1</span>).<span class="string">&quot;排&quot;</span>.(<span class="variable">$i</span>%<span class="number">5</span>+<span class="number">1</span>).<span class="string">&quot;號&quot;</span>;</span><br><span class="line">        <span class="variable">$booked</span>=<span class="title function_ invoke__">in_array</span>(<span class="variable">$i</span>,<span class="variable">$seats</span>)?<span class="string">&quot;booked&quot;</span>:<span class="string">&quot;null&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;div class=&#x27;seat <span class="subst">$booked</span>&#x27;&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;div class=&#x27;ct&#x27;&gt;<span class="subst">$num</span>&lt;/div&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="title function_ invoke__">in_array</span>(<span class="variable">$i</span>,<span class="variable">$seats</span>))&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;input type=&#x27;checkbox&#x27; name=&#x27;seat&#x27; class=&#x27;check&#x27; value=&#x27;<span class="subst">$i</span>&#x27;&gt;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;/div&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div style=<span class="string">&quot;width:540px;margin:auto;background:#eee&quot;</span>&gt;</span><br><span class="line">&lt;div&gt;您選擇的電影是：<span class="meta">&lt;?=</span><span class="variable">$movie</span>[<span class="string">&#x27;name&#x27;</span>];<span class="meta">?&gt;</span>&lt;/div&gt;</span><br><span class="line">&lt;div&gt;您選擇的時刻是：<span class="meta">&lt;?=</span><span class="variable">$date</span>;<span class="meta">?&gt;</span> <span class="meta">&lt;?=</span><span class="variable">$session</span>;<span class="meta">?&gt;</span>&lt;/div&gt;</span><br><span class="line">&lt;div&gt;您已經勾選&lt;span id=<span class="string">&quot;tickets&quot;</span>&gt;&lt;/span&gt;張票，最多可以購買四張票&lt;/div&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span>=&quot;<span class="title">ct</span>&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">button</span> <span class="title">onclick</span>=&quot;<span class="title">prev</span>()&quot;&gt;上一步&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">button</span> <span class="title">onclick</span>=&quot;<span class="title">order</span>()&quot;&gt;訂購&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>撰寫訂位行為的js程式碼</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立一個js陣列用來儲存使用者選中的座位</span></span><br><span class="line"><span class="keyword">let</span> seats=<span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//監聽checkbox的改變事件</span></span><br><span class="line">$(<span class="string">&quot;.check&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;change&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//根據屬性checked的狀態來決定下一步</span></span><br><span class="line">    <span class="keyword">if</span>($(<span class="variable language_">this</span>).<span class="title function_">prop</span>(<span class="string">&#x27;checked&#x27;</span>))&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//如果是選中的狀態，</span></span><br><span class="line">        <span class="comment">//先判斷目前選中的座位有沒有超過四個</span></span><br><span class="line">        <span class="keyword">if</span>(seats.<span class="property">length</span>&lt;<span class="number">4</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//如果選中的座位數還沒有超過四個</span></span><br><span class="line">            <span class="comment">//就把座位號碼放入陣列中</span></span><br><span class="line">            seats.<span class="title function_">push</span>($(<span class="variable language_">this</span>).<span class="title function_">val</span>())</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//如果選中的座位已經四張了，</span></span><br><span class="line">            <span class="comment">//就會出現警告</span></span><br><span class="line">            <span class="title function_">alert</span>(<span class="string">&quot;最多只能選四張票&quot;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment">//將選中的座位改為不選中的狀態</span></span><br><span class="line">            $(<span class="variable language_">this</span>).<span class="title function_">prop</span>(<span class="string">&quot;checked&quot;</span>,<span class="literal">false</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//如果是要取消選中的座位，</span></span><br><span class="line">        <span class="comment">//則同時也在座位中移除該座位號</span></span><br><span class="line">        seats.<span class="title function_">splice</span>(seats.<span class="title function_">indexOf</span>($(<span class="variable language_">this</span>).<span class="title function_">val</span>()),<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//每次不管選中或取消座位</span></span><br><span class="line">        <span class="comment">//都會更新一下目前的座位總數資訊</span></span><br><span class="line">        $(<span class="string">&quot;#tickets&quot;</span>).<span class="title function_">text</span>(seats.<span class="property">length</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//回上步的函式</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">prev</span>(<span class="params"></span>)&#123;</span><br><span class="line">    $(<span class="string">&quot;#order,#booking&quot;</span>).<span class="title function_">toggle</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//確認購買的函式</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">order</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//取得目前的選單資料及座位陣列</span></span><br><span class="line">    <span class="comment">//雖然此時選單區塊是隱藏的狀態</span></span><br><span class="line">    <span class="comment">//但是js還是能取得選單的值</span></span><br><span class="line">    <span class="keyword">let</span> order=&#123;<span class="attr">id</span>:$(<span class="string">&quot;#movie&quot;</span>).<span class="title function_">val</span>(),</span><br><span class="line">               <span class="attr">date</span>:$(<span class="string">&quot;#date&quot;</span>).<span class="title function_">val</span>(),</span><br><span class="line">               <span class="attr">session</span>:$(<span class="string">&quot;#session&quot;</span>).<span class="title function_">val</span>(),</span><br><span class="line">               seats&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用ajax向api傳送訂單的資料</span></span><br><span class="line">    $.<span class="title function_">post</span>(<span class="string">&quot;api/order.php&quot;</span>,order,<span class="function">(<span class="params">result</span>)=&gt;</span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//取得訂單完成的頁面，並更新到#mm區塊中</span></span><br><span class="line">        $(<span class="string">&quot;#mm&quot;</span>).<span class="title function_">html</span>(result)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>最後是製作訂單結果頁面，我們在劃位的最後按下訂購時，並沒有做頁面導向的動作，這邊一樣是利用ajax的方式把訂購資訊及劃位結果送去後端處理，等後端處理完後，再返回訂單的頁面給前端，然後我們再把訂單結果頁面整個取代掉原本的主要內容區塊<code>#mm</code><br><strong>api&#x2F;order.php</strong><br><strong>根據訂單資料，處理成可以存入資料表的格式，並存入資料表</strong><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;../base.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$movie</span>=<span class="variable">$Movie</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;id&#x27;</span>]);</span><br><span class="line"><span class="variable">$date</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;date&#x27;</span>];</span><br><span class="line"><span class="variable">$session</span>=<span class="variable">$ss</span>[<span class="variable">$_POST</span>[<span class="string">&#x27;session&#x27;</span>]];</span><br><span class="line"><span class="title function_ invoke__">sort</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;seats&#x27;</span>]); <span class="comment">//先將座位陣列排序過</span></span><br><span class="line"><span class="variable">$seats</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;seats&#x27;</span>];</span><br><span class="line"><span class="variable">$id</span>=<span class="variable">$Ord</span>-&gt;<span class="title function_ invoke__">math</span>(<span class="string">&#x27;max&#x27;</span>,<span class="string">&quot;id&quot;</span>)+<span class="number">1</span>;  <span class="comment">//取得資料的id值用來製作編號</span></span><br><span class="line"><span class="variable">$no</span>=<span class="title function_ invoke__">date</span>(<span class="string">&quot;Ymd&quot;</span>).<span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;%04d&quot;</span>,<span class="variable">$id</span>); <span class="comment">//利用sprintf來自動補0</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$Ord</span>-&gt;<span class="title function_ invoke__">save</span>([</span><br><span class="line">    <span class="string">&#x27;no&#x27;</span>=&gt;<span class="variable">$no</span>,</span><br><span class="line">    <span class="string">&#x27;movie&#x27;</span>=&gt;<span class="variable">$movie</span>[<span class="string">&#x27;name&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;date&#x27;</span>=&gt;<span class="variable">$date</span>,</span><br><span class="line">    <span class="string">&#x27;session&#x27;</span>=&gt;<span class="variable">$session</span>,</span><br><span class="line">    <span class="string">&#x27;qt&#x27;</span>=&gt;<span class="title function_ invoke__">count</span>(<span class="variable">$seats</span>), //計算訂單的座位數</span><br><span class="line">    <span class="string">&#x27;seat&#x27;</span>=&gt;<span class="title function_ invoke__">serialize</span>(<span class="variable">$seats</span>) //使用serialize來將陣列轉成字串</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<strong>建立訂單完成頁面</strong><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-id">#order</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>:<span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>:auto;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">padding</span>:<span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background</span>:<span class="number">#eee</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border</span>:<span class="number">1px</span> solid <span class="number">#ddd</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.row</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>:flex;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.row</span> <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>)&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>:<span class="number">20%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">padding</span>:<span class="number">5px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.row</span> <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>)&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>:<span class="number">80%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">padding</span>:<span class="number">5px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;order&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">        感謝您的訂購，您的訂單編號是：&lt;?=$no;?&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>電影名稱：<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            &lt;?=$movie[&#x27;name&#x27;];?&gt;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>日期：<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        &lt;?=$date;?&gt;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>場次時間：<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        &lt;?=$session;?&gt;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        座位：<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        <span class="meta">&lt;?php</span></span><br><span class="line"><span class="meta">            foreach($seats as $seat)&#123;</span></span><br><span class="line"><span class="meta">                echo (floor($seat/5)+1).&quot;排&quot;.($seat%5+1).&quot;號&quot;;</span></span><br><span class="line"><span class="meta">                echo &quot;&lt;br&gt;&quot;;</span></span><br><span class="line"><span class="meta">            &#125;</span></span><br><span class="line"><span class="meta">        ?&gt;</span></span><br><span class="line">        共&lt;?=count($seats);?&gt;張電影票</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ct&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:100%&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;location.href=&#x27;index.php&#x27;&quot;</span>&gt;</span>確定<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h3><p>上述的做法重點只在決定座位的資訊，然後送出訂單完成交易，但在實務上，只有checkbox的勾選在使用者互動上是有點薄弱的，因此我們可以在選中及取消座位時，使用我們設定的兩個class來做切換，讓劃位的視覺互動感受更具體一些：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;.check&quot;</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>($(<span class="variable language_">this</span>).<span class="title function_">prop</span>(<span class="string">&#x27;checked&#x27;</span>))&#123;</span><br><span class="line">        <span class="keyword">if</span>(seats.<span class="property">length</span>&lt;<span class="number">4</span>)&#123;</span><br><span class="line">            seats.<span class="title function_">push</span>($(<span class="variable language_">this</span>).<span class="title function_">val</span>())</span><br><span class="line"></span><br><span class="line">            <span class="comment">//如果是要增加座位的話則把已訂位的class加上去</span></span><br><span class="line">            $(<span class="variable language_">this</span>).<span class="title function_">parents</span>(<span class="string">&quot;.seat&quot;</span>).<span class="title function_">addClass</span>(<span class="string">&quot;booked&quot;</span>)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="title function_">alert</span>(<span class="string">&quot;最多只能勾選四張票&quot;</span>)</span><br><span class="line">            $(<span class="variable language_">this</span>).<span class="title function_">prop</span>(<span class="string">&#x27;checked&#x27;</span>,<span class="literal">false</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">         seats.<span class="title function_">splice</span>(seats.<span class="title function_">indexOf</span>($(<span class="variable language_">this</span>).<span class="title function_">val</span>()),<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">         <span class="comment">//如果是要取消座位的話則把已訂位的class移除後</span></span><br><span class="line">         <span class="comment">//加上未訂位的class</span></span><br><span class="line">         $(<span class="variable language_">this</span>).<span class="title function_">parents</span>(<span class="string">&quot;.seat&quot;</span>).<span class="title function_">removeClass</span>(<span class="string">&quot;booked&quot;</span>)</span><br><span class="line">         $(<span class="variable language_">this</span>).<span class="title function_">parents</span>(<span class="string">&quot;.seat&quot;</span>).<span class="title function_">addClass</span>(<span class="string">&quot;null&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    $(<span class="string">&quot;#tickets&quot;</span>).<span class="title function_">text</span>(seats.<span class="property">length</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="skill-check-group3-11-001.gif"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/23/skill-check-group3-10/" rel="prev" title="[技能檢定]題組三 步驟10 前台線上訂票功能-電影及場次選擇">
+      <i class="fa fa-chevron-left"></i> [技能檢定]題組三 步驟10 前台線上訂票功能-電影及場次選擇
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/23/skill-check-group3-12/" rel="next" title="[技能檢定]題組三 步驟12 後台電影票訂單管理">
+      [技能檢定]題組三 步驟12 後台電影票訂單管理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%9C%E5%85%85"><span class="nav-number">1.</span> <span class="nav-text">補充</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack Liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">主題</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack Liu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/pisces.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

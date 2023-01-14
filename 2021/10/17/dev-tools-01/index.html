@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Xampp 整合型網頁開發套件xampp為一個整合型的網頁開發環境套件，裏頭已經先行整合了網頁常用的開發環境需要的設定和套件，包含了 **網頁伺服器(Apache)、資料庫(MySQL)、程式語言(PHP)、資料庫管理軟體(PhpMyAdmin)**，因此推薦給剛入門的新手來安裝使用，省去逐個下載安裝設定的麻煩。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[開發環境]xampp安裝與設定">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="Xampp 整合型網頁開發套件xampp為一個整合型的網頁開發環境套件，裏頭已經先行整合了網頁常用的開發環境需要的設定和套件，包含了 **網頁伺服器(Apache)、資料庫(MySQL)、程式語言(PHP)、資料庫管理軟體(PhpMyAdmin)**，因此推薦給剛入門的新手來安裝使用，省去逐個下載安裝設定的麻煩。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/zCY6qKD.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/dev-tools-01-001.png">
+<meta property="og:image" content="https://i.imgur.com/Owm4aCs.png">
+<meta property="og:image" content="https://i.imgur.com/HPcUmeh.png">
+<meta property="og:image" content="https://i.imgur.com/xTpMNAr.png">
+<meta property="og:image" content="https://i.imgur.com/Tp3ZinB.png">
+<meta property="og:image" content="https://i.imgur.com/sycCFEJ.png">
+<meta property="og:image" content="https://i.imgur.com/NUOBP5P.png">
+<meta property="og:image" content="https://i.imgur.com/6Q949w9.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/dev-tools-01-002.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/dev-tools-01-003.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/dev-tools-01-010.png">
+<meta property="og:image" content="https://i.imgur.com/rByxrhS.png">
+<meta property="og:image" content="https://i.imgur.com/rBZmHtd.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/dev-tools-01-004.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/dev-tools-01-005.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/dev-tools-01-006.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/dev-tools-01-007.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/dev-tools-01-008.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/dev-tools-01-009.png">
+<meta property="og:image" content="https://i.imgur.com/amlRCKc.png">
+<meta property="og:image" content="https://i.imgur.com/L8iQ9Oq.png">
+<meta property="og:image" content="https://i.imgur.com/GWabSDW.png">
+<meta property="og:image" content="https://i.imgur.com/1VuU5MF.png">
+<meta property="og:image" content="https://i.imgur.com/NfHli5b.png">
+<meta property="og:image" content="https://i.imgur.com/BKR9epx.png">
+<meta property="og:image" content="https://i.imgur.com/VuATEhP.png">
+<meta property="og:image" content="https://i.imgur.com/9nyypJe.png">
+<meta property="og:image" content="https://i.imgur.com/iJuEE6N.png">
+<meta property="og:image" content="https://i.imgur.com/T7LwUCc.png">
+<meta property="og:image" content="https://i.imgur.com/ZzbJz8J.png">
+<meta property="og:image" content="https://i.imgur.com/HK890qK.png">
+<meta property="og:image" content="https://i.imgur.com/mOCzW8A.png">
+<meta property="og:image" content="https://i.imgur.com/y0thnw6.png">
+<meta property="article:published_time" content="2021-10-17T12:06:52.000Z">
+<meta property="article:modified_time" content="2022-10-21T03:49:15.499Z">
+<meta property="article:author" content="Mack Liu">
+<meta property="article:tag" content="xampp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/zCY6qKD.png">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[開發環境]xampp安裝與設定 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/10/17/dev-tools-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [開發環境]xampp安裝與設定
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-10-17 20:06:52" itemprop="dateCreated datePublished" datetime="2021-10-17T20:06:52+08:00">2021-10-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-10-21 11:49:15" itemprop="dateModified" datetime="2022-10-21T11:49:15+08:00">2022-10-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E8%88%87%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">開發環境與工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Xampp-整合型網頁開發套件"><a href="#Xampp-整合型網頁開發套件" class="headerlink" title="Xampp 整合型網頁開發套件"></a>Xampp 整合型網頁開發套件</h1><p>xampp為一個整合型的網頁開發環境套件，裏頭已經先行整合了網頁常用的開發環境需要的設定和套件，包含了 **網頁伺服器(Apache)<strong>、</strong>資料庫(MySQL)<strong>、</strong>程式語言(PHP)<strong>、</strong>資料庫管理軟體(PhpMyAdmin)**，因此推薦給剛入門的新手來安裝使用，省去逐個下載安裝設定的麻煩。</p>
+<span id="more"></span>
+
+<p>該套件有不同平台的版本，也有虛擬機的版本，長期有專人在更新版本，為本機端開發者常用的整合型套件。</p>
+<ul>
+<li><p><strong>Apache</strong> - 目前主流的網頁伺服器，負責所有http及https的請求和回應，同類選擇還有 <strong>nginx</strong></p>
+</li>
+<li><p><strong>MySQL</strong> - 目前被Orcale收購，但有社群免費版本，原作者另外開發了全免費的 <strong>mariaDB</strong> 開放給大眾使用，不過一般人還是會用MySQL來同時稱呼MySQL及mariaDB</p>
+</li>
+<li><p><strong>phpmyadmin</strong> - 可以搭配 <strong>MySQL</strong> 及 <strong>mariaDB</strong> 使用的圖形化資料庫管理軟體</p>
+</li>
+<li><p><strong>PHP</strong> - PHP為目前網站後端使用頗多的程式語言，加上歷史悠久，相關的維護及更新需求一直都存在，同類的選擇有<strong>C#<strong>、</strong>Java</strong>、<strong>Ruby</strong>、<strong>Python</strong>、<strong>node.js</strong> …etc</p>
+</li>
+</ul>
+<h2 id="1-下載Xampp"><a href="#1-下載Xampp" class="headerlink" title="1.下載Xampp"></a>1.下載Xampp</h2><p>首先，直接在瀏灠器上輸入關鍵字 <code>xampp</code> ，即可找到xampp的官網或下載頁面：</p>
+<p><img src="https://i.imgur.com/zCY6qKD.png"></p>
+<p>進入下載頁面後，請下載8.x以上版本，7.x系列的PHP版本將在2022年停止生命周期(EOL)，本課程屬於網頁程式設計的基礎，內容適用於各個PHP版本，但為統一課程的進行，所以選擇最新的版本做為課程的開發環境：</p>
+<p><img src="dev-tools-01-001.png"></p>
+<h2 id="2-執行安裝"><a href="#2-執行安裝" class="headerlink" title="2.執行安裝"></a>2.執行安裝</h2><p>使用瀏灠器下載完成後會在左下角顯示下載已完成的提示，點擊左下角的下載檔名稱即可開始安裝，如果是下載後將安裝檔放在別的目錄或磁碟機的，則找到安裝檔後，直接連點安裝檔即可開始安裝。</p>
+<p><img src="https://i.imgur.com/Owm4aCs.png"></p>
+<p><img src="https://i.imgur.com/HPcUmeh.png"></p>
+<p>點擊<code>next</code>按鈕後即可以開始安裝</p>
+<p><img src="https://i.imgur.com/xTpMNAr.png"></p>
+<p>接著進入安裝細節畫面，由於我們先以PHP網頁設計為目標，因此可以先取消勾選無關的其它套件和軟體，這可以加快安裝的速度，同時也提高開發環境的穩定性。</p>
+<p><img src="https://i.imgur.com/Tp3ZinB.png"></p>
+<p>在解壓縮安裝前，<code>xampp</code>會先跳出一個瀏灠器視窗來宣傳<code>xampp</code>的官網，請先關閉這個視窗或最小化，可以看到安裝畫面在瀏灠器後面，此時再點擊<code>next</code>按鈕後才算真正開始安裝</p>
+<p><img src="https://i.imgur.com/sycCFEJ.png"><br><img src="https://i.imgur.com/NUOBP5P.png"></p>
+<p>安裝過程大約三至五分鐘，完成後會跳出安裝完成的訊息畫面，點選<code>finish</code>按鈕來完成安裝並啟動xampp</p>
+<p><img src="https://i.imgur.com/6Q949w9.png"><br>在啟動視窗中點選<code>Apache</code>項目的<code>start</code>按鈕及<code>MySql</code>的<code>start</code>按鈕，如果兩個都呈現綠燈即表示安裝成功，如果無法正常啟動，則查看錯誤訊息來排除，或重新安裝。</p>
+<p><img src="dev-tools-01-002.png"><br><img src="dev-tools-01-003.png"></p>
+<p>點選<code>admin</code>按鈕會開啟瀏灠器，如果畫面顯示正常，表示<code>Apache</code>運作正常。</p>
+<p><img src="dev-tools-01-010.png"></p>
+<p>如果在啟用<code>Apache</code>和<code>MySQL</code>時跳出防火牆警告，表示電腦是第一次安裝<code>Xampp</code>相關的軟體，請按<code>允許存取</code>來讓這兩個軟體可以通過防火牆來運作.</p>
+<p><img src="https://i.imgur.com/rByxrhS.png"><br><img src="https://i.imgur.com/rBZmHtd.png"></p>
+<p>在部份windows 10的環境下，如果xampp安裝在c槽，有可能會在關閉或退出xampp時出現如下的警告：</p>
+<p><img src="dev-tools-01-004.png"></p>
+<p>這是因為xampp中的設定檔<code>xampp-control.ini</code>被設為唯讀或是使用者沒有修改檔案權限的關係。<br>請先到C槽中的xampp安裝目錄中找到<code>xampp-control.ini</code></p>
+<p><img src="dev-tools-01-005.png"></p>
+<p>點擊滑鼠右鍵叫出功能選單，選擇最下方的 <strong>內容</strong> 功能</p>
+<p><img src="dev-tools-01-006.png"></p>
+<p>將檔案屬性中的 <strong>唯讀</strong> 勾選取消，之後就可以正常關閉xampp並更新設定</p>
+<p><img src="dev-tools-01-007.png"></p>
+<p>如果取消唯讀還是有錯，請進一步變更使用者權限<br>在 <strong>內容</strong> 功能選單中選擇 <strong>安全性</strong> 頁籤，並選擇 <strong>Everyone</strong> 或登入的使用者類型</p>
+<p><img src="dev-tools-01-008.png"></p>
+<p>選擇 <strong>編輯</strong> 按鈕進入修改權限，將權限從唯讀變更至可寫入及修改以上，之後確定即可</p>
+<p><img src="dev-tools-01-009.png"></p>
+<h2 id="3、變更網站根目錄"><a href="#3、變更網站根目錄" class="headerlink" title="3、變更網站根目錄"></a>3、變更網站根目錄</h2><p>網站的開發一般是以<code>專案</code>為一個單位，反應在電腦中的具體呈現方式就是<code>資料夾目錄</code>，因此我們會習慣一個網站的內容都放在同一個資料夾來保存維護，如果要建立新的網站或新的專案，則會開啟另外的資料夾目錄來存放；但是<code>Apache</code>安裝完成時，預設的網站目錄為c槽下的<code>\xampp\htdocs</code>目錄，如果我們想開啟新的專案或將網站存放在別的位置時，則需要變更<code>Apache</code>管理的網站目錄路徑，這樣<code>Apache</code>才會認識我們自己建立的網站目錄，並且呈現網站內容。</p>
+<p>首先，先在電腦中的任何磁碟區位置，建立一個用來存放專案網頁檔的資料夾，這裏以F槽為例，建立了一個<code>web</code>目錄<br><img src="https://i.imgur.com/amlRCKc.png"></p>
+<p>接著在<code>xampp</code>的控制台視窗 中，點選<code>Apache</code>項目後的<code>config</code>按鈕，在彈出選單中找到<code>Apache(httpd.conf)</code>項目：<br><img src="https://i.imgur.com/L8iQ9Oq.png"></p>
+<p>預設會以記事本的方式來開啟<code>httpd.conf</code>檔，這個檔案中記錄了所有<code>Apache</code>這個軟體在啟動及運作時會用到的設定值，請按下鍵盤上的<code>Ctrl+F</code>組合鍵來開啟尋找視窗，在輸入框中輸入<code>documentroot</code>來尋找根目錄路徑的設定值：<br><img src="https://i.imgur.com/GWabSDW.png"><br>如下圖；在DocumentRoot及Directory兩個設定項目的後方將原本的<code>C:/xampp/htdocs</code>改成我們在F槽建立的web目錄，改完後記得存檔，並且需要先關閉Apache再開啟才會生效。<br><img src="https://i.imgur.com/1VuU5MF.png"></p>
+<p>重啟<code>Apache</code>後再按下<code>Admin</code>按鈕即可發現瀏灠器呈現的頁面內容和剛安裝時的內容不一樣，此時因為目錄中沒有任何檔案，因此畫面應該會是和下圖一樣：<br><img src="https://i.imgur.com/NfHli5b.png"></p>
+<div class="note danger">
+在重啟Apache前，請務必確認根目資料夾已經先建立完成了，否則會因為Apache重啟時找不到目錄，而發生無法啟動Apache的問題
+</div>
+<div class="note info">
+Xampp預設的根目錄在C:\xampp\htdocs，因此要直接在這個預設目錄下開發網頁也是可以的，只是習慣上為了方便專案管理的需要，會將專案的目錄移至其它地方，因此會需要根據專案的需要而變動Apache根目錄。
+</div>
+
+<h1 id="其它相關設定"><a href="#其它相關設定" class="headerlink" title="其它相關設定"></a>其它相關設定</h1><h2 id="xampp的預設編輯器修改"><a href="#xampp的預設編輯器修改" class="headerlink" title="xampp的預設編輯器修改"></a>xampp的預設編輯器修改</h2><p>Xampp預設使用windows內建的記事本做為編輯器，但某些設定檔在記事本中沒有斷行，使用上不是很方便，因此我們可以修改預設編輯器，指定其它編輯器來替代</p>
+<p>在Xampp control Panel中選擇最右側功能按鈕中的<strong>config</strong>按鈕<br><img src="https://i.imgur.com/BKR9epx.png"></p>
+<p>畫面跳出設定畫面，其中第一個項目就是預設編輯器的設定，填入替代的編輯器執行路徑即可</p>
+<p><img src="https://i.imgur.com/VuATEhP.png"></p>
+<p>VS Code 預設路徑為 <strong>C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe</strong></p>
+<h2 id="資料庫帳號密碼變更"><a href="#資料庫帳號密碼變更" class="headerlink" title="資料庫帳號密碼變更"></a>資料庫帳號密碼變更</h2><p>在Xampp安裝完成時，預設的資料庫是沒有密碼的，在學習和單機開發階段，為了方便，通常會保持無密碼的狀態，但如果要正式上線或對外公開時，則需要設定密碼，以防任何人都可以連入資料庫進行存取。<br>這裏我們透過phpmyadmin來進行資料庫帳號密碼的修改，首先在Xampp control panel中的MySQL模組中按下<strong>admin</strong>項目按鈕或是在瀏灠器的網址列鍵入<code>http://localhost/phpmyadmin</code>，即可連上Phpmyadmin<br><img src="https://i.imgur.com/9nyypJe.png"></p>
+<p><img src="https://i.imgur.com/iJuEE6N.png"></p>
+<p>在php的首頁上點選<strong>使用者帳號</strong>項目，即可看到MySQL的使用者帳號；<br><img src="https://i.imgur.com/T7LwUCc.png"></p>
+<p>點選root帳號的<strong>編輯權限</strong>功能即可修改密碼</p>
+<p><img src="https://i.imgur.com/ZzbJz8J.png"><br><img src="https://i.imgur.com/HK890qK.png"></p>
+<h2 id="Phpmyadmin登入密碼修改"><a href="#Phpmyadmin登入密碼修改" class="headerlink" title="Phpmyadmin登入密碼修改"></a>Phpmyadmin登入密碼修改</h2><p>由於Phpmyadmin只是一個MySQL的輔助管理工具，因此Phpmyadmin需要有MySQL的帳號密碼才能連線使用，資料庫的預設密碼被修改後，Phpmyadmin就無法連線進資料庫進行管理作業，因此需要一併修改phpmyadmin的連線設定，才能正常使用。</p>
+<p>在Xampp control panel中的Apache模組中，選擇<strong>config</strong>按鈕，並執行 <strong>phpMyAdmin(config.inc.php)</strong> 項目，即會開啟phpmyadmin的設定檔，</p>
+<p><img src="https://i.imgur.com/mOCzW8A.png"></p>
+<p>找到其中 <strong>&#x2F;</strong> *<strong>Authentication type and info</strong> ***&#x2F;** 的認證設定區塊，可以看到phpmyadmin的預設認證方式是透過 <strong>config</strong> 檔來連線資料庫的，因此必須在 <strong>config</strong> 檔中先提供資料庫的帳號密碼給phpmyadmin。</p>
+<p><img src="https://i.imgur.com/y0thnw6.png"></p>
+<p>在下方的設定項目中的[‘password’]中填入你資料庫的密碼，存檔後再次連線MySQL或是在網址鍵入<code>http://localhost/phpmyadmin</code>，即可重新連入資料庫</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;auth_type&#x27;</span>] = <span class="string">&#x27;config&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;user&#x27;</span>] = <span class="string">&#x27;root&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;password&#x27;</span>] = <span class="string">&#x27;填入密碼&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><p>在初學階段，Xampp預設的PHP環境己經足夠使用，所以不太需要再做什麼設定上的修改，以下提供幾項常見的設定供學員了解：<br>PHP的設定檔名為php.ini，一樣可以在Apache的<strong>config</strong>按鈕中找到。</p>
+<h4 id="短標籤"><a href="#短標籤" class="headerlink" title="短標籤"></a>短標籤</h4><p>原本PHP的語法需要包在<code>&lt;?php......?&gt;</code>區塊中才能被執行，短標籤的作用是讓區塊語法可以縮短成<code>&lt;?.....?&gt;</code>，大多數的虛擬空間都有開啟短標籤的設定，但是要小心和其它類似語法衝突。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">short_open_tag=On</span><br></pre></td></tr></table></figure>
+<h4 id="時區設定"><a href="#時區設定" class="headerlink" title="時區設定"></a>時區設定</h4><p>在php.ini中進行時區設定的話，則全伺服器都會共用這個設定，因此在設定時要先確認網站要服務的地區為何；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Date]</span><br><span class="line">date.timezone=Asia/Taipei</span><br></pre></td></tr></table></figure>
+<h4 id="上傳檔案大小限制"><a href="#上傳檔案大小限制" class="headerlink" title="上傳檔案大小限制"></a>上傳檔案大小限制</h4><p>原本的PHP設定限制上傳單一檔案的大小為2mb，不過目前Xampp預設的上傳限制已經調升到40mb了，足夠一般的使用；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upload_max_filesize=40M</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/php-book/tags/xampp/" rel="tag"># xampp</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/23/skill-check-group4-14/" rel="prev" title="[技能檢定]題組四 步驟14 後台訂單功能製作-訂單詳細內容">
+      <i class="fa fa-chevron-left"></i> [技能檢定]題組四 步驟14 後台訂單功能製作-訂單詳細內容
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2021/10/17/dev-tools-02/" rel="next" title="[開發環境]Visual Studio Code安裝與設定">
+      [開發環境]Visual Studio Code安裝與設定 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Xampp-%E6%95%B4%E5%90%88%E5%9E%8B%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC%E5%A5%97%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">Xampp 整合型網頁開發套件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BC%89Xampp"><span class="nav-number">1.1.</span> <span class="nav-text">1.下載Xampp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9F%B7%E8%A1%8C%E5%AE%89%E8%A3%9D"><span class="nav-number">1.2.</span> <span class="nav-text">2.執行安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%AE%8A%E6%9B%B4%E7%B6%B2%E7%AB%99%E6%A0%B9%E7%9B%AE%E9%8C%84"><span class="nav-number">1.3.</span> <span class="nav-text">3、變更網站根目錄</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E7%9B%B8%E9%97%9C%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.</span> <span class="nav-text">其它相關設定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xampp%E7%9A%84%E9%A0%90%E8%A8%AD%E7%B7%A8%E8%BC%AF%E5%99%A8%E4%BF%AE%E6%94%B9"><span class="nav-number">2.1.</span> <span class="nav-text">xampp的預設編輯器修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%BA%AB%E5%B8%B3%E8%99%9F%E5%AF%86%E7%A2%BC%E8%AE%8A%E6%9B%B4"><span class="nav-number">2.2.</span> <span class="nav-text">資料庫帳號密碼變更</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phpmyadmin%E7%99%BB%E5%85%A5%E5%AF%86%E7%A2%BC%E4%BF%AE%E6%94%B9"><span class="nav-number">2.3.</span> <span class="nav-text">Phpmyadmin登入密碼修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP"><span class="nav-number">2.4.</span> <span class="nav-text">PHP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%AD%E6%A8%99%E7%B1%A4"><span class="nav-number">2.4.0.1.</span> <span class="nav-text">短標籤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%82%E5%8D%80%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.4.0.2.</span> <span class="nav-text">時區設定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8A%E5%82%B3%E6%AA%94%E6%A1%88%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6"><span class="nav-number">2.4.0.3.</span> <span class="nav-text">上傳檔案大小限制</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack Liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">主題</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack Liu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/pisces.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

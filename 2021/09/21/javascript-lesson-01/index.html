@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="根據維基百科的介紹：AJAX即「Asynchronous JavaScript and XML」（非同步的JavaScript與XML技術），指的是一套綜合了多項技術的瀏覽器端網頁開發技術。Ajax的概念由傑西·詹姆士·賈瑞特所提出。 傳統的Web應用允許使用者端填寫表單（form），當送出表單時就向網頁伺服器傳送一個請求。伺服器接收並處理傳來的表單，然後送回一個新的網頁，但這個做法浪費了許多頻寬">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[javascript] Lesson 1 AJAX技術介紹">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/21/javascript-lesson-01/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="根據維基百科的介紹：AJAX即「Asynchronous JavaScript and XML」（非同步的JavaScript與XML技術），指的是一套綜合了多項技術的瀏覽器端網頁開發技術。Ajax的概念由傑西·詹姆士·賈瑞特所提出。 傳統的Web應用允許使用者端填寫表單（form），當送出表單時就向網頁伺服器傳送一個請求。伺服器接收並處理傳來的表單，然後送回一個新的網頁，但這個做法浪費了許多頻寬">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/JKWa3Xk.png">
+<meta property="article:published_time" content="2021-09-21T08:08:34.000Z">
+<meta property="article:modified_time" content="2021-12-28T06:12:53.326Z">
+<meta property="article:author" content="Mack Liu">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="jQuery">
+<meta property="article:tag" content="api">
+<meta property="article:tag" content="ajax">
+<meta property="article:tag" content="axios">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/JKWa3Xk.png">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/21/javascript-lesson-01/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[javascript] Lesson 1 AJAX技術介紹 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/21/javascript-lesson-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [javascript] Lesson 1 AJAX技術介紹
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-21 16:08:34" itemprop="dateCreated datePublished" datetime="2021-09-21T16:08:34+08:00">2021-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-12-28 14:12:53" itemprop="dateModified" datetime="2021-12-28T14:12:53+08:00">2021-12-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">網頁技術</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>根據維基百科的介紹：<br>AJAX即「Asynchronous JavaScript and XML」（非同步的JavaScript與XML技術），指的是一套綜合了多項技術的瀏覽器端網頁開發技術。Ajax的概念由傑西·詹姆士·賈瑞特所提出。</p>
+<p>傳統的Web應用允許使用者端填寫表單（form），當送出表單時就向網頁伺服器傳送一個請求。伺服器接收並處理傳來的表單，然後送回一個新的網頁，但這個做法浪費了許多頻寬，因為在前後兩個頁面中的大部分HTML碼往往是相同的。由於每次應用的溝通都需要向伺服器傳送請求，應用的回應時間依賴於伺服器的回應時間。這導致了使用者介面的回應比本機應用慢得多。</p>
+<span id="more"></span>
+
+<p>與此不同，AJAX應用可以僅向伺服器傳送並取回必須的資料，並在客戶端採用JavaScript處理來自伺服器的回應。因為在伺服器和瀏覽器之間交換的資料大量減少，伺服器回應更快了。同時，很多的處理工作可以在發出請求的客戶端機器上完成，因此Web伺服器的負荷也減少了。</p>
+<p>類似於DHTML或LAMP，AJAX不是指一種單一的技術，而是有機地利用了一系列相關的技術。雖然其名稱包含XML，但實際上資料格式可以由JSON代替以進一步減少資料量。而客戶端與伺服器也並不需要非同步。</p>
+<h2 id="AJAX-全名"><a href="#AJAX-全名" class="headerlink" title="AJAX 全名"></a>AJAX 全名</h2><ul>
+<li>A - Asynchronous &#x3D;&gt; 非同步(異步)</li>
+<li>J - Javascript</li>
+<li>A - And</li>
+<li>X - XML &#x3D;&gt; 擴增式標記語言</li>
+</ul>
+<h2 id="AJAX的簡單歷史"><a href="#AJAX的簡單歷史" class="headerlink" title="AJAX的簡單歷史"></a>AJAX的簡單歷史</h2><p>1995年 - 由java applets先實現異步載入功能<br>1996年 - 微軟的IE瀏灠器使用的iframe元素有類似功能<br>2005年 - google在其GMAIL產品上大量使用此一技術，同時有技術專家撰文發表Ajax一詞</p>
+<h3 id="AJAX的優點"><a href="#AJAX的優點" class="headerlink" title="AJAX的優點"></a>AJAX的優點</h3><ul>
+<li>不需要重載整個頁面就能回應用戶行為或傳輸資料</li>
+<li>傳輸資料可以精簡一些。</li>
+<li>傳輸的資料結構化</li>
+</ul>
+<h3 id="AJAX的缺點"><a href="#AJAX的缺點" class="headerlink" title="AJAX的缺點"></a>AJAX的缺點</h3><ul>
+<li>網站SEO挑戰變高</li>
+<li>瀏灠器相容性問題仍在</li>
+<li>網路延遲問題可能影響使用者體驗</li>
+</ul>
+<h2 id="AJAX的應用"><a href="#AJAX的應用" class="headerlink" title="AJAX的應用"></a>AJAX的應用</h2><ul>
+<li>串接API</li>
+<li>背景載入內容</li>
+</ul>
+<h2 id="AJAX請求的方式"><a href="#AJAX請求的方式" class="headerlink" title="AJAX請求的方式"></a>AJAX請求的方式</h2><p>由於AJAX有多種實作方式，因此本章節我們使用同一個實例，但分別採用四種請求方式來實現AJAX的應用，同學可以根據實際應用場景的需求來選擇不同的方案。</p>
+<h3 id="原生XMLHttpRequest"><a href="#原生XMLHttpRequest" class="headerlink" title="原生XMLHttpRequest"></a>原生XMLHttpRequest</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr=<span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span></span><br><span class="line">xhr.<span class="title function_">open</span>(“<span class="variable constant_">GET</span>”,” <span class="attr">https</span>:<span class="comment">//kktix.com/events.json”,true);</span></span><br><span class="line"><span class="comment">//預設所有的請求都是”非同步“，避免瀏灠器有卡死，停住的狀況</span></span><br><span class="line">xhr.<span class="property">onload</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;  <span class="comment">//處理回應</span></span><br><span class="line"><span class="keyword">var</span> type=xhr.<span class="title function_">getResponseHeader</span>(“<span class="title class_">Content</span>-<span class="title class_">Type</span>”);</span><br><span class="line"><span class="keyword">var</span> status=xhr.<span class="property">status</span></span><br><span class="line"><span class="keyword">var</span> response=xhr.<span class="property">responseText</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">write</span>(response)</span><br><span class="line">&#125;</span><br><span class="line">xhr.<span class="title function_">send</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="函式庫jQuery"><a href="#函式庫jQuery" class="headerlink" title="函式庫jQuery"></a>函式庫jQuery</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="attr">type</span>:get/post/patch/<span class="keyword">delete</span>/update….</span><br><span class="line">    <span class="attr">url</span>:</span><br><span class="line">    <span class="attr">success</span>: (callback)</span><br><span class="line">    <span class="attr">error</span>: (callback)</span><br><span class="line">    <span class="attr">data</span>:json/xml/string</span><br><span class="line">    <span class="attr">complete</span>: (callback)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.<span class="title function_">get</span>(url,data,callback)</span><br><span class="line"></span><br><span class="line">$.<span class="title function_">post</span>(url,data,callback)</span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;selector&#x27;</span>).<span class="title function_">load</span>(url)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="原生Fetch"><a href="#原生Fetch" class="headerlink" title="原生Fetch"></a>原生Fetch</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Fetch</span>(url,&#123;<span class="attr">method</span>:<span class="string">&#x27;get&#x27;</span>&#125;)</span><br><span class="line">.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">response</span>)&#123;</span><br><span class="line">    <span class="comment">//處理回應</span></span><br><span class="line"></span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">	<span class="comment">//處理資料</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">.<span class="title function_">catch</span>(<span class="keyword">function</span>(<span class="params">err</span>)&#123;</span><br><span class="line"><span class="comment">//error</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="套件axios"><a href="#套件axios" class="headerlink" title="套件axios"></a>套件axios</h3><p>cdn:<a target="_blank" rel="noopener" href="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js">https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(url)</span><br><span class="line">.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">response</span>)&#123;</span><br><span class="line"><span class="comment">//處理回應</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">.<span class="title function_">catch</span>(<span class="keyword">function</span>(<span class="params">err</span>)&#123;</span><br><span class="line"><span class="comment">//error</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="CORS問題"><a href="#CORS問題" class="headerlink" title="CORS問題"></a>CORS問題</h2><p>全名為 <strong>Cross-Origin Resource Sharing</strong> 跨來源資源共享</p>
+<ul>
+<li>基於安全的理由，目前的網頁伺服器大多會預設拒絕非本地端的資源請求</li>
+</ul>
+<p><img src="https://i.imgur.com/JKWa3Xk.png"></p>
+<ul>
+<li>大多數的網站會遵守同源政策(Same-origin policy)</li>
+<li>公開的網頁服務或API必須開放CORS才能讓其他的應用程式或裝置存取服務</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">CORS參考資料</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/php-book/tags/php/" rel="tag"># php</a>
+              <a href="/php-book/tags/jQuery/" rel="tag"># jQuery</a>
+              <a href="/php-book/tags/api/" rel="tag"># api</a>
+              <a href="/php-book/tags/ajax/" rel="tag"># ajax</a>
+              <a href="/php-book/tags/axios/" rel="tag"># axios</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/21/php-lesson-07/" rel="prev" title="[PHP] Lesson 7 PHP的物件導向程式設計">
+      <i class="fa fa-chevron-left"></i> [PHP] Lesson 7 PHP的物件導向程式設計
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/21/php-lesson-08/" rel="next" title="[PHP] Lesson 8 Web API介紹與設計">
+      [PHP] Lesson 8 Web API介紹與設計 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX-%E5%85%A8%E5%90%8D"><span class="nav-number">1.</span> <span class="nav-text">AJAX 全名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX%E7%9A%84%E7%B0%A1%E5%96%AE%E6%AD%B7%E5%8F%B2"><span class="nav-number">2.</span> <span class="nav-text">AJAX的簡單歷史</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX%E7%9A%84%E5%84%AA%E9%BB%9E"><span class="nav-number">2.1.</span> <span class="nav-text">AJAX的優點</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX%E7%9A%84%E7%BC%BA%E9%BB%9E"><span class="nav-number">2.2.</span> <span class="nav-text">AJAX的缺點</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX%E7%9A%84%E6%87%89%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">AJAX的應用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX%E8%AB%8B%E6%B1%82%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">AJAX請求的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%94%9FXMLHttpRequest"><span class="nav-number">4.1.</span> <span class="nav-text">原生XMLHttpRequest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E5%BC%8F%E5%BA%ABjQuery"><span class="nav-number">4.2.</span> <span class="nav-text">函式庫jQuery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%94%9FFetch"><span class="nav-number">4.3.</span> <span class="nav-text">原生Fetch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%97%E4%BB%B6axios"><span class="nav-number">4.4.</span> <span class="nav-text">套件axios</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS%E5%95%8F%E9%A1%8C"><span class="nav-number">5.</span> <span class="nav-text">CORS問題</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack Liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">主題</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack Liu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/pisces.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

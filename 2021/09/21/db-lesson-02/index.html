@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="實務上，大多數的資料庫都會不只一張資料表，而資料表和資料表之間也不會是完全獨立的關係，當某個資料表中的特定欄位內容是來自於另外一張資料表時，我們就會稱這兩張資料表是有關聯的。 資料表的關聯型態非常多，我們只先介紹最簡單的關聯觀念，進一步的應用會在後續的補充內容中再提到。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[資料庫] Lesson 2 關聯式資料表操作">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/21/db-lesson-02/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="實務上，大多數的資料庫都會不只一張資料表，而資料表和資料表之間也不會是完全獨立的關係，當某個資料表中的特定欄位內容是來自於另外一張資料表時，我們就會稱這兩張資料表是有關聯的。 資料表的關聯型態非常多，我們只先介紹最簡單的關聯觀念，進一步的應用會在後續的補充內容中再提到。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/21/db-lesson-02/db-lesson-02-001.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/21/db-lesson-02/db-lesson-02-002.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/21/db-lesson-02/db-lesson-02-003.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/21/db-lesson-02/db-lesson-02-004.png">
+<meta property="article:published_time" content="2021-09-21T03:29:40.000Z">
+<meta property="article:modified_time" content="2021-11-10T03:39:34.684Z">
+<meta property="article:author" content="Mack Liu">
+<meta property="article:tag" content="phpmyadmin">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="mariaDB">
+<meta property="article:tag" content="CRUD">
+<meta property="article:tag" content="relation">
+<meta property="article:tag" content="關聯式資料表">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book/2021/09/21/db-lesson-02/db-lesson-02-001.png">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/21/db-lesson-02/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[資料庫] Lesson 2 關聯式資料表操作 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/21/db-lesson-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [資料庫] Lesson 2 關聯式資料表操作
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-21 11:29:40" itemprop="dateCreated datePublished" datetime="2021-09-21T11:29:40+08:00">2021-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-11-10 11:39:34" itemprop="dateModified" datetime="2021-11-10T11:39:34+08:00">2021-11-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">網頁技術</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/%E8%B3%87%E6%96%99%E5%BA%AB/" itemprop="url" rel="index"><span itemprop="name">資料庫</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>實務上，大多數的資料庫都會不只一張資料表，而資料表和資料表之間也不會是完全獨立的關係，當某個資料表中的特定欄位內容是來自於另外一張資料表時，我們就會稱這兩張資料表是有<strong>關聯</strong>的。</p>
+<p>資料表的關聯型態非常多，我們只先介紹最簡單的關聯觀念，進一步的應用會在後續的補充內容中再提到。</p>
+<span id="more"></span>
+
+<h2 id="關聯式資料表的特性"><a href="#關聯式資料表的特性" class="headerlink" title="關聯式資料表的特性"></a>關聯式資料表的特性</h2><ul>
+<li>多個資料表之間各以某個或多個欄位來建立關係的特性稱為關聯資料表</li>
+<li>建立關聯資料表有以下好處:<ul>
+<li>減少重覆</li>
+<li>減少容量</li>
+<li>簡化資料管理</li>
+<li>避免資料異動時錯誤</li>
+</ul>
+</li>
+<li>建立關聯資料表也可能有缺點:<ul>
+<li>資料太多時，關聯混亂</li>
+<li>查詢語法變複雜</li>
+<li>關聯查詢時效率差</li>
+</ul>
+</li>
+</ul>
+<h2 id="關聯式資料表的種類"><a href="#關聯式資料表的種類" class="headerlink" title="關聯式資料表的種類"></a>關聯式資料表的種類</h2><h3 id="一對一"><a href="#一對一" class="headerlink" title="一對一"></a>一對一</h3><p>一對一是最簡單的關聯模式，一對一的資料表通常都是附屬的資料或是基於安全考量需要權限控管的資料。</p>
+<p><img src="db-lesson-02-001.png"></p>
+<h3 id="一對多"><a href="#一對多" class="headerlink" title="一對多"></a>一對多</h3><p>一對多是最常見的關聯模式，主要在於避免資料更新發生異常，同時也具有減少重覆資料的功能。</p>
+<p><img src="db-lesson-02-002.png"></p>
+<h4 id="外鍵"><a href="#外鍵" class="headerlink" title="外鍵"></a>外鍵</h4><p>在一對多的關聯中，外鍵是用來確認關聯性用的；外鍵的命名要注意識別是否容易，避免額外的欄位命名，儘量可以直接和關聯資料表產生對應。</p>
+<p>一對一和多對多也可以存在外鍵，只是其重要性或功用不比一對多關聯。</p>
+<h3 id="多對多"><a href="#多對多" class="headerlink" title="多對多"></a>多對多</h3><p>多對多的關係通常用在有多個共用資料時，比如一位學生可以選擇多個課程，而一個課程可以被多個學生選擇。</p>
+<p><img src="db-lesson-02-003.png"></p>
+<p>多對多的關係在SQL指令上的操作難以去正確的找到目標內容，因此通常的做法是增加一個中間表，把一組多對多的關係改成兩組一對多的關係，這樣就可以解決資料查詢的困難</p>
+<p><img src="db-lesson-02-004.png"></p>
+<h2 id="關聯式資料表練習"><a href="#關聯式資料表練習" class="headerlink" title="關聯式資料表練習"></a>關聯式資料表練習</h2><div class="note success">
+
+<p><strong>請將上一章節的每日記帳表拆成關聯式資料表</strong></p>
+<ul>
+<li>觀察有那些資料是大量重覆出現的</li>
+<li>如果要拆成不同的資料表，那些欄位可以建立關聯</li>
+<li>思考下列動作執行時，那些欄位的內容或關聯的方式可能會造成問題，如何改善？<ul>
+<li>新增資料時</li>
+<li>更新資料時</li>
+<li>刪除資料時</li>
+<li>查詢資料時</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/php-book/tags/phpmyadmin/" rel="tag"># phpmyadmin</a>
+              <a href="/php-book/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/php-book/tags/mariaDB/" rel="tag"># mariaDB</a>
+              <a href="/php-book/tags/CRUD/" rel="tag"># CRUD</a>
+              <a href="/php-book/tags/relation/" rel="tag"># relation</a>
+              <a href="/php-book/tags/%E9%97%9C%E8%81%AF%E5%BC%8F%E8%B3%87%E6%96%99%E8%A1%A8/" rel="tag"># 關聯式資料表</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/21/db-lesson-01/" rel="prev" title="[資料庫] Lesson 1 SQL資料庫基本操作">
+      <i class="fa fa-chevron-left"></i> [資料庫] Lesson 1 SQL資料庫基本操作
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/21/db-lesson-03/" rel="next" title="[資料庫] Lesson 3 SQL 語法">
+      [資料庫] Lesson 3 SQL 語法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%9C%E8%81%AF%E5%BC%8F%E8%B3%87%E6%96%99%E8%A1%A8%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">關聯式資料表的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%9C%E8%81%AF%E5%BC%8F%E8%B3%87%E6%96%99%E8%A1%A8%E7%9A%84%E7%A8%AE%E9%A1%9E"><span class="nav-number">2.</span> <span class="nav-text">關聯式資料表的種類</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%B0%8D%E4%B8%80"><span class="nav-number">2.1.</span> <span class="nav-text">一對一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%B0%8D%E5%A4%9A"><span class="nav-number">2.2.</span> <span class="nav-text">一對多</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%96%E9%8D%B5"><span class="nav-number">2.2.1.</span> <span class="nav-text">外鍵</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%B0%8D%E5%A4%9A"><span class="nav-number">2.3.</span> <span class="nav-text">多對多</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%9C%E8%81%AF%E5%BC%8F%E8%B3%87%E6%96%99%E8%A1%A8%E7%B7%B4%E7%BF%92"><span class="nav-number">3.</span> <span class="nav-text">關聯式資料表練習</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack Liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">主題</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack Liu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/pisces.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

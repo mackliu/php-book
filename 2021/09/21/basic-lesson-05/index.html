@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="日期與時間的處理一直是許多程式語言中必備的功能，相關的函式也非常多，在各式問題的解決上，時間與日期經常都是同時要考量的項目之一。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[基礎課程] Lesson 5 時間及日期處理">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/21/basic-lesson-05/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="日期與時間的處理一直是許多程式語言中必備的功能，相關的函式也非常多，在各式問題的解決上，時間與日期經常都是同時要考量的項目之一。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/21/basic-lesson-05/basic-lesson-05-001.jpg">
+<meta property="article:published_time" content="2021-09-20T16:02:42.000Z">
+<meta property="article:modified_time" content="2021-10-21T08:19:39.218Z">
+<meta property="article:author" content="Mack Liu">
+<meta property="article:tag" content="日期">
+<meta property="article:tag" content="時間">
+<meta property="article:tag" content="DATE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book/2021/09/21/basic-lesson-05/basic-lesson-05-001.jpg">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/21/basic-lesson-05/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[基礎課程] Lesson 5 時間及日期處理 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/21/basic-lesson-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [基礎課程] Lesson 5 時間及日期處理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-21 00:02:42" itemprop="dateCreated datePublished" datetime="2021-09-21T00:02:42+08:00">2021-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-10-21 16:19:39" itemprop="dateModified" datetime="2021-10-21T16:19:39+08:00">2021-10-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E/" itemprop="url" rel="index"><span itemprop="name">程式設計基礎</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>日期與時間的處理一直是許多程式語言中必備的功能，相關的函式也非常多，在各式問題的解決上，時間與日期經常都是同時要考量的項目之一。</p>
+<span id="more"></span>
+
+<h2 id="日期函式基本用法"><a href="#日期函式基本用法" class="headerlink" title="日期函式基本用法"></a>日期函式基本用法</h2><ul>
+<li>date(“Y-m-d”,$time)</li>
+<li>strtotime(“+1 days”,$date_string)</li>
+<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.date.php">日期函式參數表</a></li>
+<li>基本單位是秒</li>
+<li>date_default_timezone_set() - 設置程式執行期間的時區</li>
+</ul>
+<h2 id="日期函式應用練習"><a href="#日期函式應用練習" class="headerlink" title="日期函式應用練習"></a>日期函式應用練習</h2><div class="note success">
+
+<p><strong>給定兩個日期，計算中間間隔天數</strong></p>
+</div>
+
+<div class="note success">
+
+<p><strong>計算距離自己下一次生日還有幾天</strong></p>
+</div>
+
+<div class="note success">
+
+<p><strong>利用date()函式的格式化參數，完成以下的日期格式呈現</strong></p>
+<ul>
+<li>2021&#x2F;10&#x2F;05</li>
+<li>10月5日 Tuesday</li>
+<li>2021-10-5 12:9:5</li>
+<li>2021-10-5 12:09:05</li>
+<li>今天是西元2021年10月5日 上班日(或假日)</li>
+</ul>
+</div>
+
+<div class="note success">
+
+<p><strong>利用迴圈來計算連續五個周一的日期</strong><br>例:</p>
+<ol>
+<li>2021-10-04 星期一</li>
+<li>2021-10-11 星期一</li>
+<li>2021-10-18 星期一</li>
+<li>2021-10-25 星期一</li>
+<li>2021-11-01 星期一</li>
+</ol>
+</div>
+
+<div class="note success">
+
+<p><strong>線上月曆製作</strong></p>
+<ul>
+<li>以表格方式呈現整個月份的日期</li>
+<li>可以在特殊日期中顯示資訊(假日或紀念日)</li>
+<li>嘗試以block box或flex box的方式製作月曆</li>
+</ul>
+<p><img src="basic-lesson-05-001.jpg"></p>
+</div>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/php-book/tags/%E6%97%A5%E6%9C%9F/" rel="tag"># 日期</a>
+              <a href="/php-book/tags/%E6%99%82%E9%96%93/" rel="tag"># 時間</a>
+              <a href="/php-book/tags/DATE/" rel="tag"># DATE</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/20/basic-lesson-04/" rel="prev" title="[基礎課程] Lesson 4 字串處理">
+      <i class="fa fa-chevron-left"></i> [基礎課程] Lesson 4 字串處理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/21/php-lesson-01/" rel="next" title="[PHP] Lesson 1 網頁傳值">
+      [PHP] Lesson 1 網頁傳值 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E5%87%BD%E5%BC%8F%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">日期函式基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E5%87%BD%E5%BC%8F%E6%87%89%E7%94%A8%E7%B7%B4%E7%BF%92"><span class="nav-number">2.</span> <span class="nav-text">日期函式應用練習</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack Liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">主題</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack Liu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/pisces.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

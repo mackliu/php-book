@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="題組三的三個前台功能中，院線片清單算是簡單的，主要就是照題意來列出四部院線片再加上分頁功能就可以了； 但是由於素材提供的css樣式和題目的不一樣，所以在這很容易就造成版面過擠不好看，但美觀的事可以晚點再做，我們先把功能完成，再回頭修一下 CSS 即可。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[技能檢定]題組三 步驟7 前台院線片清單製作">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group3-07/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="題組三的三個前台功能中，院線片清單算是簡單的，主要就是照題意來列出四部院線片再加上分頁功能就可以了； 但是由於素材提供的css樣式和題目的不一樣，所以在這很容易就造成版面過擠不好看，但美觀的事可以晚點再做，我們先把功能完成，再回頭修一下 CSS 即可。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-09-23T06:00:25.000Z">
+<meta property="article:modified_time" content="2022-01-20T01:18:52.115Z">
+<meta property="article:author" content="Mack Liu">
+<meta property="article:tag" content="php,web,javascript,html,mysql,css">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group3-07/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[技能檢定]題組三 步驟7 前台院線片清單製作 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group3-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [技能檢定]題組三 步驟7 前台院線片清單製作
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-23 14:00:25" itemprop="dateCreated datePublished" datetime="2021-09-23T14:00:25+08:00">2021-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-01-20 09:18:52" itemprop="dateModified" datetime="2022-01-20T09:18:52+08:00">2022-01-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%A1%8C%E7%B5%84%E4%B8%89/" itemprop="url" rel="index"><span itemprop="name">題組三</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>題組三的三個前台功能中，院線片清單算是簡單的，主要就是照題意來列出四部院線片再加上分頁功能就可以了；</p>
+<p>但是由於素材提供的css樣式和題目的不一樣，所以在這很容易就造成版面過擠不好看，但美觀的事可以晚點再做，我們先把功能完成，再回頭修一下 CSS 即可。</p>
+<span id="more"></span>
+<ol>
+<li>先在 <code>index.php</code> 的最上頭引入 <code>base.php</code> 檔</li>
+<li>先前在切版時，我們把首頁中間的區塊切出去成為<code>main.php</code>，而這塊<code>main.php</code>其實包含了兩個功能，為了避免程式碼太多不好管理，所以我們再切成兩個獨立的檔案<code>trailer.php</code>及<code>movie.php</code>，這樣之後只要專注一個檔案一個功能就可以了。<br><strong>front&#x2F;main.php</strong><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="string">&quot;trailer.php&quot;</span>;</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;movie.php&quot;</span>;</span><br></pre></td></tr></table></figure>
+<strong>front&#x2F;trailer.php</strong><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;half&quot;</span> <span class="attr">style</span>=<span class="string">&quot;vertical-align:top;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>預告片介紹<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;rb tab&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:95%;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;abgne-block-20111227&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;lists&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;controls&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<strong>front&#x2F;movie.php</strong><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;half&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>院線片清單<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;rb tab&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:95%;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">tr</span>&gt;</span> <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ct&quot;</span>&gt;</span> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>可以在前台顯示的院線片有以下條件：<ul>
+<li>在後台管理中被設為 <strong>顯示</strong> 的影片</li>
+<li>上映日起算(含)的三天日期為觀影日</li>
+</ul>
+</li>
+<li>由於院線片清單需要製作分頁功能，一頁四部院線片，所以在製作時，我們會一同連分頁的程式碼一起撰寫。</li>
+<li>這邊要小心的是因為條件為日期區間，所以需要撰寫一個稍微複雜的查詢條件。</li>
+<li>刪除原本的 <strong>table</strong> 標籤區段，由於版型css已經不一樣了，使用表格來做排版反而麻煩，因此這邊我們建立一個新的容器，並使用flex及自己定義的css來做版面的簡單設定</li>
+<li>利用迴圈將題意所需的圖片，資訊及連結分頁輸出至頁面上 </li>
+<li>撰寫基本的css來控制畫面的呈現，不用寫得太複雜太漂亮，能看就好，主要調整的是圖片的大小，位置排列的關係，字形大小，我會使用flex來做控制，並直接使用inline style的方式。</li>
+</ol>
+<p><strong>front&#x2F;movie.php 前台院線片清單</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span>=&quot;<span class="title">half</span>&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">h1</span>&gt;院線片清單&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">div</span> <span class="title">class</span>=&quot;<span class="title">rb</span> <span class="title">tab</span>&quot; <span class="title">style</span>=&quot;<span class="title">width</span>:95%;<span class="title">display</span>:<span class="title">flex</span>;<span class="title">flex</span>-<span class="title">wrap</span>:<span class="title">wrap</span>&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;?<span class="title">php</span></span></span><br><span class="line"><span class="class">        //先取得今天的日期字串，我們需要撈出的院線片日期區間為:</span></span><br><span class="line"><span class="class">        //上映日期&gt;=(今天-2天)及(&amp;&amp;) 上映日期&lt;=今天</span></span><br><span class="line"><span class="class">        //也就是說兩天前到今天為止還在上映中的院線片</span></span><br><span class="line"><span class="class">        $<span class="title">today</span>=<span class="title">date</span>(&quot;<span class="title">Y</span>-<span class="title">m</span>-<span class="title">d</span>&quot;);</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">        //取得兩天前的日期</span></span><br><span class="line"><span class="class">        $<span class="title">ondate</span>=<span class="title">date</span>(&quot;<span class="title">Y</span>-<span class="title">m</span>-<span class="title">d</span>&quot;,<span class="title">strtotime</span>(&quot;-2 <span class="title">days</span>&quot;));</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">        //製作分頁需要的各項變數</span></span><br><span class="line"><span class="class">        $<span class="title">all</span>=$<span class="title">Movie</span>-&gt;<span class="title">math</span>(&#x27;<span class="title">count</span>&#x27;,&#x27;*&#x27;,&quot; <span class="title">where</span> `<span class="title">sh</span>`=1 &amp;&amp; `<span class="title">ondate</span>` <span class="title">between</span> &#x27;$<span class="title">ondate</span>&#x27; <span class="title">AND</span> &#x27;$<span class="title">today</span>&#x27;&quot;);</span></span><br><span class="line"><span class="class">        $<span class="title">div</span>=4;</span></span><br><span class="line"><span class="class">        $<span class="title">pages</span>=<span class="title">ceil</span>($<span class="title">all</span>/$<span class="title">div</span>);</span></span><br><span class="line"><span class="class">        $<span class="title">now</span>=$<span class="title">_GET</span>[&#x27;<span class="title">p</span>&#x27;]??1;</span></span><br><span class="line"><span class="class">        $<span class="title">start</span>=($<span class="title">now</span>-1)*$<span class="title">div</span>;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">        //注意這裏使用的查詢語法，要找出的資料為一個日期區間</span></span><br><span class="line"><span class="class">        $<span class="title">rows</span>=$<span class="title">Movie</span>-&gt;<span class="title">all</span>(&quot; <span class="title">where</span> `<span class="title">sh</span>`=1 &amp;&amp; `<span class="title">ondate</span>` <span class="title">between</span> &#x27;$<span class="title">ondate</span>&#x27; <span class="title">AND</span> &#x27;$<span class="title">today</span>&#x27; <span class="title">order</span> <span class="title">by</span> `<span class="title">rank</span>` <span class="title">limit</span> $<span class="title">start</span>,$<span class="title">div</span>&quot;);</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">        <span class="title">foreach</span>($<span class="title">rows</span> <span class="title">as</span> $<span class="title">row</span>)</span>&#123;</span><br><span class="line">        <span class="meta">?&gt;</span></span><br><span class="line">        &lt;div style=<span class="string">&quot;width:49%;</span></span><br><span class="line"><span class="string">                    margin:0.5%;</span></span><br><span class="line"><span class="string">                    box-sizing:border-box;</span></span><br><span class="line"><span class="string">                    border:1px solid #ccc;</span></span><br><span class="line"><span class="string">                    border-radius:5px&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">            &lt;div style=<span class="string">&quot;display:flex&quot;</span>&gt;</span><br><span class="line">                &lt;img src=<span class="string">&quot;img/&lt;?=<span class="subst">$row</span>[&#x27;poster&#x27;];?&gt;&quot;</span> </span><br><span class="line">                   style=<span class="string">&quot;width:60px;</span></span><br><span class="line"><span class="string">                          border:1px solid white;</span></span><br><span class="line"><span class="string">                          margin:5px;</span></span><br><span class="line"><span class="string">                          display:block&quot;</span>&gt;</span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                    &lt;div style=<span class="string">&quot;font-size:20px;font-weight:bolder&quot;</span>&gt;<span class="meta">&lt;?=</span><span class="variable">$row</span>[<span class="string">&#x27;name&#x27;</span>];<span class="meta">?&gt;</span>&lt;/div&gt;</span><br><span class="line">                    &lt;div&gt;分級:</span><br><span class="line">                        &lt;img src=<span class="string">&quot;icon/&lt;?=<span class="subst">$row</span>[&#x27;level&#x27;];?&gt;.png&quot;</span> style=<span class="string">&quot;width:25px;vertical-align:middle&quot;</span>&gt;</span><br><span class="line">                        <span class="meta">&lt;?=</span><span class="variable">$Movie</span>-&gt;<span class="title function_ invoke__">level</span>(<span class="variable">$row</span>[<span class="string">&#x27;level&#x27;</span>]);<span class="meta">?&gt;</span></span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;div&gt;上映日期 :&lt;br&gt;<span class="meta">&lt;?=</span><span class="variable">$row</span>[<span class="string">&#x27;ondate&#x27;</span>];<span class="meta">?&gt;</span>&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;!--建立劇情簡介點擊事件，載入對應id的劇情簡介頁面--&gt;</span><br><span class="line">                &lt;button onclick=<span class="string">&quot;location.href=&#x27;?do=intro&amp;id=&lt;?=<span class="subst">$row</span>[&#x27;id&#x27;];?&gt;&#x27;&quot;</span>&gt;劇情簡介&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">                &lt;!--建立線上訂票點擊事件，跳到訂票畫面比帶入對應id的院線片id--&gt;</span><br><span class="line">                &lt;button onclick=<span class="string">&quot;location.href=&#x27;?do=order&amp;id=&lt;?=<span class="subst">$row</span>[&#x27;id&#x27;];?&gt;&#x27;&quot;</span>&gt;線上訂票&lt;/button&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        <span class="meta">&lt;?php</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line">        &lt;!--分頁的連結放在最下方的獨立區塊中--&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span>=&quot;<span class="title">ct</span>&quot; <span class="title">style</span>=&quot;<span class="title">width</span>:100%&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;?<span class="title">php</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">                <span class="title">if</span>(($<span class="title">now</span>-1)&gt;0)</span>&#123;</span><br><span class="line">                    <span class="variable">$prev</span>=<span class="variable">$now</span>-<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot;&lt;a href=&#x27;index.php?p=<span class="subst">$prev</span>&#x27;&gt; &quot;</span>;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot;&lt;&quot;</span>;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot; &lt;/a&gt;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">1</span>;<span class="variable">$i</span>&lt;=<span class="variable">$pages</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">                    <span class="variable">$size</span>=(<span class="variable">$now</span>==<span class="variable">$i</span>)?<span class="string">&quot;24px&quot;</span>:<span class="string">&quot;16px&quot;</span>;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot;&lt;a href=&#x27;index.php?p=<span class="subst">$i</span>&#x27; style=&#x27;font-size:<span class="subst">$size</span>&#x27;&gt; &quot;</span>;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="variable">$i</span>;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot; &lt;/a&gt;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>((<span class="variable">$now</span>+<span class="number">1</span>)&lt;=<span class="variable">$pages</span>)&#123;</span><br><span class="line">                    <span class="variable">$next</span>=<span class="variable">$now</span>+<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot;&lt;a href=&#x27;index.php?p=<span class="subst">$next</span>&#x27;&gt; &quot;</span>;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot;&gt;&quot;</span>;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot; &lt;/a&gt;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="meta">?&gt;</span></span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/23/skill-check-group3-06/" rel="prev" title="[技能檢定]題組三 步驟6 後台院線片管理二">
+      <i class="fa fa-chevron-left"></i> [技能檢定]題組三 步驟6 後台院線片管理二
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/23/skill-check-group3-08/" rel="next" title="[技能檢定]題組三 步驟8 前台預告片展示製作一">
+      [技能檢定]題組三 步驟8 前台預告片展示製作一 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack Liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">主題</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack Liu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/pisces.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

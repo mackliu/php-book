@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本題組有些項目的配分明顯的CP值不同，比如頁尾版權區合計有四項描述共二十分，但實際完成這個功能的前後台，可能不用到五分鐘，所以我們會優先把這些項目做完，爭取時間來處理其它的項目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[技能檢定]題組四 步驟4 製作後台頁尾版權區">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group4-04/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="本題組有些項目的配分明顯的CP值不同，比如頁尾版權區合計有四項描述共二十分，但實際完成這個功能的前後台，可能不用到五分鐘，所以我們會優先把這些項目做完，爭取時間來處理其它的項目">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group4-04/skill-check-group4-04-001.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group4-04/skill-check-group4-04-002.png">
+<meta property="article:published_time" content="2021-09-23T15:29:49.000Z">
+<meta property="article:modified_time" content="2022-02-11T06:52:23.652Z">
+<meta property="article:author" content="Mack Liu">
+<meta property="article:tag" content="php,web,javascript,html,mysql,css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group4-04/skill-check-group4-04-001.png">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group4-04/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[技能檢定]題組四 步驟4 製作後台頁尾版權區 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group4-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [技能檢定]題組四 步驟4 製作後台頁尾版權區
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-23 23:29:49" itemprop="dateCreated datePublished" datetime="2021-09-23T23:29:49+08:00">2021-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-02-11 14:52:23" itemprop="dateModified" datetime="2022-02-11T14:52:23+08:00">2022-02-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%A1%8C%E7%B5%84%E5%9B%9B/" itemprop="url" rel="index"><span itemprop="name">題組四</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本題組有些項目的配分明顯的CP值不同，比如頁尾版權區合計有四項描述共二十分，但實際完成這個功能的前後台，可能不用到五分鐘，所以我們會優先把這些項目做完，爭取時間來處理其它的項目</p>
+<span id="more"></span>
+
+<ol>
+<li>分別先在 <code>index.php</code> 及 <code>back.php</code> 的最前頭加上 <code>&lt;?php include_once &quot;base.php&quot;;?&gt;</code> 這樣可以方便之後的引入檔來使用<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">include_once</span> <span class="string">&quot;base.php&quot;</span>;<span class="meta">?&gt;</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;!-- saved <span class="keyword">from</span> url=(<span class="number">0039</span>) --&gt;</span><br><span class="line">&lt;html xmlns=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li>先在 <code>bottom</code> 資料表中增加一筆頁尾版權資料。</li>
+</ol>
+<p><img src="skill-check-group4-04-001.png"></p>
+<ol start="2">
+<li>先在 <code>index.php</code> 及 <code>back.php</code> 的最後頁尾版權區加上取出版權文字的語法。<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;bottom&quot;</span> </span><br><span class="line">  style=<span class="string">&quot;line-height:70px;</span></span><br><span class="line"><span class="string">         background:url(icon/bot.png); </span></span><br><span class="line"><span class="string">         color:#FFF;&quot;</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span>=&quot;<span class="title">ct</span>&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;?=$<span class="title">Bottom</span>-&gt;<span class="title">find</span>(1)[&#x27;<span class="title">bottom</span>&#x27;];?&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>接著在 <code>./back/</code> 目錄中的 <code>bot.php</code> 檔，建置後台需要的表單及功能<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 <span class="class"><span class="keyword">class</span>=&quot;<span class="title">ct</span>&quot;&gt;編輯頁尾版權區&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">form</span> <span class="title">action</span>=&quot;?<span class="title">do</span>=<span class="title">bot</span>&quot; <span class="title">method</span>=&quot;<span class="title">post</span>&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">table</span> <span class="title">class</span>=&quot;<span class="title">all</span>&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">tt</span> <span class="title">ct</span>&quot;&gt;頁尾宣告內容&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">pp</span>&quot;&gt;</span></span><br><span class="line"><span class="class">                &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">text</span>&quot; <span class="title">name</span>=&quot;<span class="title">bottom</span>&quot;</span></span><br><span class="line"><span class="class">                      <span class="title">value</span>=&quot;&lt;?=$<span class="title">Bottom</span>-&gt;<span class="title">find</span>(1)[&#x27;<span class="title">bottom</span>&#x27;];?&gt;&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">table</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">div</span> <span class="title">class</span>=&quot;<span class="title">ct</span>&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">submit</span>&quot; <span class="title">value</span>=&quot;編輯&quot;&gt; |</span></span><br><span class="line"><span class="class">        &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">reset</span>&quot; <span class="title">value</span>=&quot;重置&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">form</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="skill-check-group4-04-002.png"></p>
+<ol start="4">
+<li>這邊我們不另外寫一個API檔來處理更新資料，而是在form表單的action中指定傳送表單到 <code>?do=bot</code> 也就是當前的頁面直接處理，這樣會比較省時間</li>
+<li>我們直接在 <code>back/bot.php</code> 中判斷是否有版權宣告的表單送出的動作，同時更新頁尾版權的內容<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;bottom&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$Bottom</span>-&gt;<span class="title function_ invoke__">save</span>([</span><br><span class="line">        <span class="string">&#x27;id&#x27;</span>=&gt;<span class="number">1</span>,   //需要確認資料表中只有唯一一筆id為<span class="number">1</span>的資料</span><br><span class="line">        <span class="string">&#x27;bottom&#x27;</span>=&gt;<span class="variable">$_POST</span>[<span class="string">&#x27;bottom&#x27;</span>]</span><br><span class="line">    ]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;h1 <span class="class"><span class="keyword">class</span>=&quot;<span class="title">ct</span>&quot;&gt;編輯頁尾版權區&lt;/<span class="title">h1</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/23/skill-check-group4-03/" rel="prev" title="[技能檢定]題組四 步驟3 建置首頁標題區及相關頁面內容-最新消息及購物流程">
+      <i class="fa fa-chevron-left"></i> [技能檢定]題組四 步驟3 建置首頁標題區及相關頁面內容-最新消息及購物流程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2021/09/23/skill-check-group4-05/" rel="next" title="[技能檢定]題組四 步驟5 製作會員註冊及會員登入功能">
+      [技能檢定]題組四 步驟5 製作會員註冊及會員登入功能 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mack Liu</p>
+  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">主題</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack Liu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/pisces.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
