@@ -27,17 +27,17 @@
 <meta property="og:site_name" content="月光林地的網頁技術部">
 <meta property="og:description" content="資料庫的應用場境並不倨限在網頁技術上，行動裝置或企業內部應用都有資料庫系統可以發揮的地方。 目前大多數所稱的資料庫系統以關聯式資料庫為主流，其他類型的資料庫則依照應用場境的需求而有不同。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/db-lesson-01-001.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/db-lesson-01-002.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/db-lesson-01-003.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/db-lesson-01-004.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/db-lesson-01-005.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/db-lesson-01-006.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/db-lesson-01-008.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/db-lesson-01-007.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/db-lesson-01-009.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/db-lesson-01-010.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/db-lesson-01-011.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-001.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-002.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-003.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-004.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-005.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-006.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-008.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-007.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-009.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-010.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-011.png">
 <meta property="article:published_time" content="2021-09-21T03:06:52.000Z">
 <meta property="article:modified_time" content="2021-11-10T07:08:14.520Z">
 <meta property="article:author" content="Mack Liu">
@@ -46,7 +46,7 @@
 <meta property="article:tag" content="mariaDB">
 <meta property="article:tag" content="CRUD">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mackliu.github.io/php-book2/db-lesson-01-001.png">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/db-lesson-01-001.png">
 
 <link rel="canonical" href="https://mackliu.github.io/php-book2/2021/09/21/db-lesson-01/">
 
@@ -252,16 +252,16 @@
 <li>適合中小型的應用</li>
 </ul>
 <h2 id="資料庫管理系統-phpmyadmin"><a href="#資料庫管理系統-phpmyadmin" class="headerlink" title="資料庫管理系統 - phpmyadmin"></a>資料庫管理系統 - phpmyadmin</h2><p>資料庫系統本身可以獨立成一項網路服務存在，但是需要透過終端機指令的方式來登入和操作，因此有許多第三方的開發者另外建立了各式的管理系統來和資料庫系統做搭配，具有圖像式界面的管理系統會是比較受歡迎的，我們選用Xampp在安裝時就內建的phpmyadmin來做為mariaDB的管理系統，學習資料庫的操作。</p>
-<h3 id="新建資料庫-Create"><a href="#新建資料庫-Create" class="headerlink" title="新建資料庫(Create)"></a>新建資料庫(Create)</h3><p><img src="/php-book2/db-lesson-01-001.png"></p>
-<p><img src="/php-book2/db-lesson-01-002.png"></p>
-<h3 id="新建資料表-Create"><a href="#新建資料表-Create" class="headerlink" title="新建資料表(Create)"></a>新建資料表(Create)</h3><p><img src="/php-book2/db-lesson-01-003.png"></p>
-<p><img src="/php-book2/db-lesson-01-004.png"></p>
-<h3 id="新增資料-Insert"><a href="#新增資料-Insert" class="headerlink" title="新增資料(Insert)"></a>新增資料(Insert)</h3><p><img src="/php-book2/db-lesson-01-005.png"></p>
-<h3 id="更新資料-Update"><a href="#更新資料-Update" class="headerlink" title="更新資料(Update)"></a>更新資料(Update)</h3><p><img src="/php-book2/db-lesson-01-006.png"><br><img src="/php-book2/db-lesson-01-008.png"></p>
-<p><img src="/php-book2/db-lesson-01-007.png"></p>
-<h3 id="查詢資料-Select"><a href="#查詢資料-Select" class="headerlink" title="查詢資料(Select)"></a>查詢資料(Select)</h3><p><img src="/php-book2/db-lesson-01-009.png"></p>
-<h3 id="刪除資料-Delete"><a href="#刪除資料-Delete" class="headerlink" title="刪除資料(Delete)"></a>刪除資料(Delete)</h3><p><img src="/php-book2/db-lesson-01-010.png"></p>
-<p><img src="/php-book2/db-lesson-01-011.png"></p>
+<h3 id="新建資料庫-Create"><a href="#新建資料庫-Create" class="headerlink" title="新建資料庫(Create)"></a>新建資料庫(Create)</h3><p><img src="db-lesson-01-001.png"></p>
+<p><img src="db-lesson-01-002.png"></p>
+<h3 id="新建資料表-Create"><a href="#新建資料表-Create" class="headerlink" title="新建資料表(Create)"></a>新建資料表(Create)</h3><p><img src="db-lesson-01-003.png"></p>
+<p><img src="db-lesson-01-004.png"></p>
+<h3 id="新增資料-Insert"><a href="#新增資料-Insert" class="headerlink" title="新增資料(Insert)"></a>新增資料(Insert)</h3><p><img src="db-lesson-01-005.png"></p>
+<h3 id="更新資料-Update"><a href="#更新資料-Update" class="headerlink" title="更新資料(Update)"></a>更新資料(Update)</h3><p><img src="db-lesson-01-006.png"><br><img src="db-lesson-01-008.png"></p>
+<p><img src="db-lesson-01-007.png"></p>
+<h3 id="查詢資料-Select"><a href="#查詢資料-Select" class="headerlink" title="查詢資料(Select)"></a>查詢資料(Select)</h3><p><img src="db-lesson-01-009.png"></p>
+<h3 id="刪除資料-Delete"><a href="#刪除資料-Delete" class="headerlink" title="刪除資料(Delete)"></a>刪除資料(Delete)</h3><p><img src="db-lesson-01-010.png"></p>
+<p><img src="db-lesson-01-011.png"></p>
 <h2 id="資料庫系統操作練習"><a href="#資料庫系統操作練習" class="headerlink" title="資料庫系統操作練習"></a>資料庫系統操作練習</h2><div class="note success">
 
 <p><strong>請設計一個紀錄每日花費流水帳的資料庫及資料表</strong></p>

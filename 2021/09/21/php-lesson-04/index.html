@@ -27,15 +27,15 @@
 <meta property="og:site_name" content="月光林地的網頁技術部">
 <meta property="og:description" content="大多數的程式執行狀況都一樣，把程式碼載入到記憶體中再由上到下執行，所以理論上，只要把程式碼都寫在同一個檔案中，就能執行完整的程式內容；但是這種把全部程式碼都集在一個檔案的做法會讓整個系統變得擁腫難以維護，因此大多數的程式語言都有其專屬的一套機制來讓程式之間可以互相引入或彼此呼叫的做法；">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/php-lesson-04-001.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/php-lesson-04-002.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/php-lesson-04/php-lesson-04-001.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/09/21/php-lesson-04/php-lesson-04-002.png">
 <meta property="article:published_time" content="2021-09-21T06:15:10.000Z">
 <meta property="article:modified_time" content="2021-11-30T00:15:42.351Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="include">
 <meta property="article:tag" content="require">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mackliu.github.io/php-book2/php-lesson-04-001.png">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book2/2021/09/21/php-lesson-04/php-lesson-04-001.png">
 
 <link rel="canonical" href="https://mackliu.github.io/php-book2/2021/09/21/php-lesson-04/">
 
@@ -228,8 +228,8 @@
 <p>在PHP中，用來引入檔案的主要指令有兩個include和require．</p>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>對初學者來說，把原本一個檔案的東西拆解成多個檔案似乎是把事情變得麻煩，而且在修改時要在檔案之間跳來跳去的很不直覺；</p>
 <p>但是當專案的規模擴張，團隊工作的人也變多時，原本在單一檔案的工作方式會受到比較大的挑戰，比如A沒有完成某個程式的功能時，B就無法工作，而A和B其實是負責不同的功能，只是因為功能都在同一個檔案中，所以無法同時工作。</p>
-<p><strong>傳統網頁的做法，每個頁面都是獨立的檔案</strong><br><img src="/php-book2/php-lesson-04-001.png"></p>
-<p><strong>PHP中把重覆的內容獨立出來，以引入的方式來產生網頁</strong><br><img src="/php-book2/php-lesson-04-002.png"></p>
+<p><strong>傳統網頁的做法，每個頁面都是獨立的檔案</strong><br><img src="php-lesson-04-001.png"></p>
+<p><strong>PHP中把重覆的內容獨立出來，以引入的方式來產生網頁</strong><br><img src="php-lesson-04-002.png"></p>
 <p>因此在實務面來說，這種拆解程式碼的做法主要目的為以下幾點：</p>
 <ul>
 <li>方便分工，將不同人負責的程式碼拆分成不同的檔案，各自開發和維護</li>

@@ -27,28 +27,28 @@
 <meta property="og:site_name" content="月光林地的網頁技術部">
 <meta property="og:description" content="Docker簡介Docker起源於一個開放原始碼的專案，該專案的目標是利用linux上的容器化(containers)技術，來隔離應用軟體和系統。 Docker和傳統的虛擬器不同，傳統的虛擬器是把實體的硬體資源切割出來，模擬成一台獨立硬體，因此可以做到在windows系統中模擬一台linux主機或是在linux系統中模擬一台windows主機。 Docker目前只能在linux環境下運作，它隔離的">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-001.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-002.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-003.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-004.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-005.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-006.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-007.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-008.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-009.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-010.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-011.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-012.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-013.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-014.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-015.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/dev-tools-10-016.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-001.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-002.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-003.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-004.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-005.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-006.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-007.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-008.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-009.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-010.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-011.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-012.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-013.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-014.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-015.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-016.png">
 <meta property="article:published_time" content="2022-02-08T12:28:16.000Z">
 <meta property="article:modified_time" content="2022-03-24T00:14:27.409Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mackliu.github.io/php-book2/dev-tools-10-001.png">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/dev-tools-10-001.png">
 
 <link rel="canonical" href="https://mackliu.github.io/php-book2/2022/02/08/dev-tools-10/">
 
@@ -244,31 +244,31 @@
 <h3 id="二、多版本測試較容易"><a href="#二、多版本測試較容易" class="headerlink" title="二、多版本測試較容易"></a>二、多版本測試較容易</h3><p>在傳統的環境下，如果要測試不同PHP版本上的專案狀況，可能要搭配PHP版本切換的機制，一次只能測試一種版本的環境，如果考慮Apache、PHP、MySQL各有不同版本的組合，那測試時光是版本的組合切換就是個問題。</p>
 <h3 id="三、交付及部署較有效率"><a href="#三、交付及部署較有效率" class="headerlink" title="三、交付及部署較有效率"></a>三、交付及部署較有效率</h3><p>由於是虛擬化的容器交付，因此正式環境並不需要準備和開發同一套的<br>環境，直接讓Docker的容器跑起來就可以了，因此只要本地端開發和測試是沒問題的，交付部署也幾乎不會有問題，因為環境和設定檔都是唯一且一致的。</p>
 <h2 id="Docker安裝-windows-10"><a href="#Docker安裝-windows-10" class="headerlink" title="Docker安裝(windows 10)"></a>Docker安裝(windows 10)</h2><ol>
-<li><p>先到docker官網下載Docker Desktop圖形化管理程式，依照自己的作業環境來下載，最新版本支援Windows及Mac，Linux的環境建議是使用命令行指令模式來運作<br><img src="/php-book2/dev-tools-10-001.png"></p>
+<li><p>先到docker官網下載Docker Desktop圖形化管理程式，依照自己的作業環境來下載，最新版本支援Windows及Mac，Linux的環境建議是使用命令行指令模式來運作<br><img src="dev-tools-10-001.png"></p>
 </li>
-<li><p>安裝時會偵測作業系統環境需求，並提醒要額外安裝的軟體，以windows來說會要求安裝WSL2及啟用windows的虛擬化(Hyper-V)支援服務。<br><img src="/php-book2/dev-tools-10-002.png"><br><img src="/php-book2/dev-tools-10-003.png"></p>
+<li><p>安裝時會偵測作業系統環境需求，並提醒要額外安裝的軟體，以windows來說會要求安裝WSL2及啟用windows的虛擬化(Hyper-V)支援服務。<br><img src="dev-tools-10-002.png"><br><img src="dev-tools-10-003.png"></p>
 </li>
-<li><p>安裝完成後會要求重啟電腦。<br><img src="/php-book2/dev-tools-10-004.png"><br><img src="/php-book2/dev-tools-10-005.png"></p>
+<li><p>安裝完成後會要求重啟電腦。<br><img src="dev-tools-10-004.png"><br><img src="dev-tools-10-005.png"></p>
 </li>
-<li><p>windows上第一次啟動時會偵測是否有WSL2的環境，如果沒有會提示下載安裝。<br><img src="/php-book2/dev-tools-10-006.png"></p>
+<li><p>windows上第一次啟動時會偵測是否有WSL2的環境，如果沒有會提示下載安裝。<br><img src="dev-tools-10-006.png"></p>
 </li>
-<li><p>到指定的微軟WSL2網站下載WSL2安裝程式<br><img src="/php-book2/dev-tools-10-007.png"></p>
+<li><p>到指定的微軟WSL2網站下載WSL2安裝程式<br><img src="dev-tools-10-007.png"></p>
 </li>
-<li><p>下載WSL2安裝程式完成後，點擊安裝程式讓它安裝<br><img src="/php-book2/dev-tools-10-008.png"><br><img src="/php-book2/dev-tools-10-009.png"></p>
+<li><p>下載WSL2安裝程式完成後，點擊安裝程式讓它安裝<br><img src="dev-tools-10-008.png"><br><img src="dev-tools-10-009.png"></p>
 </li>
-<li><p>WSL2安裝完成後，到右下角的狀態列來點開docker常駐程式，<br><img src="/php-book2/dev-tools-10-010.png"></p>
+<li><p>WSL2安裝完成後，到右下角的狀態列來點開docker常駐程式，<br><img src="dev-tools-10-010.png"></p>
 </li>
-<li><p>使用滑鼠右鍵叫出選單，選擇 <code>Restart Docker</code> 來重啟Docker服務<br><img src="/php-book2/dev-tools-10-011.png"></p>
+<li><p>使用滑鼠右鍵叫出選單，選擇 <code>Restart Docker</code> 來重啟Docker服務<br><img src="dev-tools-10-011.png"></p>
 </li>
-<li><p>這個提示是指重啟Docker會讓運行中的容器都中止，因為我們還沒有執行任何容器，所以不用擔心。<br><img src="/php-book2/dev-tools-10-012.png"></p>
+<li><p>這個提示是指重啟Docker會讓運行中的容器都中止，因為我們還沒有執行任何容器，所以不用擔心。<br><img src="dev-tools-10-012.png"></p>
 </li>
-<li><p>重新啟動Docker需要一點時間…<br><img src="/php-book2/dev-tools-10-013.png"></p>
+<li><p>重新啟動Docker需要一點時間…<br><img src="dev-tools-10-013.png"></p>
 </li>
-<li><p>啟動成功的畫面如下，<br><img src="/php-book2/dev-tools-10-014.png"></p>
+<li><p>啟動成功的畫面如下，<br><img src="dev-tools-10-014.png"></p>
 </li>
 </ol>
-<h3 id="虛擬化錯誤"><a href="#虛擬化錯誤" class="headerlink" title="虛擬化錯誤"></a>虛擬化錯誤</h3><p>如果安裝後出現如下的錯誤訊息，指的是你的電腦硬體沒有支援虛擬化技術，可能要進BIOS去調整設定。<br><img src="/php-book2/dev-tools-10-015.png"></p>
-<p>每台電腦BIOS的設定方式不一定相同，通常會是在進階選項目可以找到虛擬化支援的設定，如果沒有這項設定，表示電腦不支援虛擬化技術<br><img src="/php-book2/dev-tools-10-016.png"></p>
+<h3 id="虛擬化錯誤"><a href="#虛擬化錯誤" class="headerlink" title="虛擬化錯誤"></a>虛擬化錯誤</h3><p>如果安裝後出現如下的錯誤訊息，指的是你的電腦硬體沒有支援虛擬化技術，可能要進BIOS去調整設定。<br><img src="dev-tools-10-015.png"></p>
+<p>每台電腦BIOS的設定方式不一定相同，通常會是在進階選項目可以找到虛擬化支援的設定，如果沒有這項設定，表示電腦不支援虛擬化技術<br><img src="dev-tools-10-016.png"></p>
 
     </div>
 
