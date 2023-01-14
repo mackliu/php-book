@@ -1168,7 +1168,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #acff63;
+  background: #df625b;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1586,7 +1586,7 @@ pre .javascript .function {
 .posts-collapse .collection-year {
   font-size: 1.5em;
   font-weight: bold;
-  margin: 60px 0;
+  margin: 2rem 0;
   position: relative;
 }
 .posts-collapse .collection-year::before {
@@ -1611,7 +1611,7 @@ pre .javascript .function {
 }
 .posts-collapse .post-header {
   border-bottom: 1px dashed #ccc;
-  margin: 30px 0;
+  margin: 1.25rem 0;
   padding-left: 15px;
   position: relative;
   transition-property: border;
@@ -1962,6 +1962,9 @@ pre .javascript .function {
 #qr p {
   text-align: center;
 }
+.category-all-page * {
+  box-sizing: border-box;
+}
 .category-all-page .category-all-title {
   text-align: center;
 }
@@ -1972,9 +1975,14 @@ pre .javascript .function {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.category-all-page .category-list > .category-list-item {
+  width: 33%;
 }
 .category-all-page .category-list-item {
-  margin: 5px 10px;
+  padding: 1rem;
 }
 .category-all-page .category-list-count {
   color: #bbb;
@@ -1988,7 +1996,10 @@ pre .javascript .function {
   display: inline;
 }
 .category-all-page .category-list-child {
-  padding-left: 10px;
+  padding-left: 2rem;
+}
+.category-all-page .category-list-child .category-list-item {
+  padding: 0.25rem 0.5rem;
 }
 .event-list {
   padding: 0;

@@ -5,39 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 6.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book2/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book2/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book2/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book2/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/php-book/css/main.css">
+<link rel="stylesheet" href="/php-book2/css/main.css">
 
 
-<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/php-book2/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book2/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="除了 total及bottom，其他七項後台的功能版面都很像，我們先以網站標題管理這個功能來做示範，先完成這個功能後，相同的程式碼可以快速套用到其它功能去；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[技能檢定]題組一 步驟5 製作後台網站標題管理功能">
-<meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-05/index.html">
+<meta property="og:url" content="https://mackliu.github.io/php-book2/2021/09/23/skill-check-group1-05/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
 <meta property="og:description" content="除了 total及bottom，其他七項後台的功能版面都很像，我們先以網站標題管理這個功能來做示範，先完成這個功能後，相同的程式碼可以快速套用到其它功能去；">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-05/skill-check-group1-05-01.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-05/skill-check-group1-05-02.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-05/skill-check-group1-05-03.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/skill-check-group1-05-01.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/skill-check-group1-05-02.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book2/skill-check-group1-05-03.png">
 <meta property="article:published_time" content="2021-09-23T01:39:42.000Z">
 <meta property="article:modified_time" content="2023-01-07T07:22:37.902Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-05/skill-check-group1-05-01.png">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book2/skill-check-group1-05-01.png">
 
-<link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-05/">
+<link rel="canonical" href="https://mackliu.github.io/php-book2/2021/09/23/skill-check-group1-05/">
 
 
 <script id="page-configurations">
@@ -99,7 +99,7 @@
 
   <div class="site-meta">
 
-    <a href="/php-book/" class="brand" rel="start">
+    <a href="/php-book2/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">月光林地的網頁技術部</h1>
       <span class="logo-line-after"><i></i></span>
@@ -120,22 +120,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+    <a href="/php-book2/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+    <a href="/php-book2/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
+    <a href="/php-book2/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+    <a href="/php-book2/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
 
   </li>
   </ul>
@@ -166,10 +166,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-05/">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book2/2021/09/23/skill-check-group1-05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.gif">
+      <meta itemprop="image" content="/php-book2/images/avatar.gif">
       <meta itemprop="name" content="Mack Liu">
       <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
     </span>
@@ -204,11 +204,11 @@
               </span>
               <span class="post-meta-item-text">歸屬於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                  <a href="/php-book2/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%A1%8C%E7%B5%84%E4%B8%80/" itemprop="url" rel="index"><span itemprop="name">題組一</span></a>
+                  <a href="/php-book2/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%A1%8C%E7%B5%84%E4%B8%80/" itemprop="url" rel="index"><span itemprop="name">題組一</span></a>
                 </span>
             </span>
 
@@ -229,7 +229,7 @@
 <p>另外，觀察題目所給的後台各項功能參考畫面，可以發現每個功能的結構都差不多，包括功能的標題文字，新增按鈕的文字及列表表格的文字等，因此我們可以利用原本宣告的<code>DB</code>類別，把各功能的文字都加進去，讓物件本身就具有提供文字資訊的功能。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在base.php中的class DB中開放部份成員屬性為公開可讀取</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$table</span>;   <span class="comment">//資料表名稱</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$title</span>;   <span class="comment">//後台功能名稱</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$button</span>;  <span class="comment">//新增功能按鈕</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$header</span>;  <span class="comment">//列表第一欄標題</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$append</span>;  <span class="comment">//列表第二欄標題</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$upload</span>;  <span class="comment">//更新圖片彈出視窗用</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//在class DB中的建構式呼叫文字設定方法，</span></span><br><span class="line"><span class="comment">//把各公開的屬性依資料表名稱設定為對應的內容</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$table</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;table=<span class="variable">$table</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;pdo=<span class="keyword">new</span> <span class="title function_ invoke__">PDO</span>(<span class="variable">$this</span>-&gt;dsn,<span class="variable">$this</span>-&gt;user,<span class="variable">$this</span>-&gt;pw);</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">setStr</span>(<span class="variable">$table</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立class DB內部方法，建立各個字串的對應關係</span></span><br><span class="line"><span class="comment">//由於這個方法僅在物件被實體化時執行一次，不開放給外部使用</span></span><br><span class="line"><span class="comment">//因此權限設為private私有即可</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">setStr</span>(<span class="params"><span class="variable">$table</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">switch</span>(<span class="variable">$table</span>)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;title&quot;</span>:</span><br><span class="line">                <span class="variable language_">$this</span>-&gt;title=<span class="string">&quot;網站標題管理&quot;</span>;</span><br><span class="line">                <span class="variable language_">$this</span>-&gt;button=<span class="string">&quot;新增網站標題圖片&quot;</span>;</span><br><span class="line">                <span class="variable language_">$this</span>-&gt;header=<span class="string">&quot;網站標題&quot;</span>;</span><br><span class="line">                <span class="variable language_">$this</span>-&gt;append=<span class="string">&quot;替代文字&quot;</span>;</span><br><span class="line">                <span class="variable language_">$this</span>-&gt;upload=<span class="string">&quot;網站標題圖片&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;ad&quot;</span>:</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;title=<span class="string">&quot;動態文字廣告管理&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;button=<span class="string">&quot;新增動態文字廣告&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;header=<span class="string">&quot;動態文字廣告&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;mvim&quot;</span>:</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;title=<span class="string">&quot;動畫圖片管理&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;button=<span class="string">&quot;新增動畫圖片&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;header=<span class="string">&quot;動畫圖片&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;upload=<span class="string">&quot;動畫圖片&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;image&quot;</span>:</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;title=<span class="string">&quot;校園映像資料管理&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;button=<span class="string">&quot;新增校園映像圖片&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;header=<span class="string">&quot;校園映像資料圖片&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;upload=<span class="string">&quot;校園映像圖片&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;total&quot;</span>:</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;title=<span class="string">&quot;進站總人數管理&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;button=<span class="string">&quot;&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;header=<span class="string">&quot;進站總人數:&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;bottom&quot;</span>:</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;title=<span class="string">&quot;頁尾版權資料管理&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;button=<span class="string">&quot;&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;header=<span class="string">&quot;頁尾版權資料&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;news&quot;</span>:</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;title=<span class="string">&quot;最新消息資料管理&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;button=<span class="string">&quot;新增最新消息資料&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;header=<span class="string">&quot;最新消息資料內容&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;admin&quot;</span>:</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;title=<span class="string">&quot;管理者帳號管理&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;button=<span class="string">&quot;新增管理者帳號&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;header=<span class="string">&quot;帳號&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;append=<span class="string">&quot;密碼&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;menu&quot;</span>:</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;title=<span class="string">&quot;選單管理&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;button=<span class="string">&quot;新增主選單&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;header=<span class="string">&quot;主選單名稱&quot;</span>;</span><br><span class="line">               <span class="variable language_">$this</span>-&gt;append=<span class="string">&quot;選單連結網址&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="skill-check-group1-05-01.png"></p>
+<p><img src="/php-book2/skill-check-group1-05-01.png"></p>
 <p>再者，我們也發現在本題組中每一個功能的畫面都只會關聯到單一資料表，不像首頁那樣一個畫面中同時會有多個資料表的內容需要顯示；因此，我們可以利用PHP程式的特性，在後台載入(include)每個功能的PHP程式內容時，我們把原本分開宣告的不同資料表物件都轉成同一個變數來使用；簡單來說，當首頁在顯示時，使用的是以各資料表名宣告的物件，如$Title、$News….etc，但是在後台頁面時，使用的是統一的變數，如$DB；我們利用base.php會在各頁面被include的特性，依據每個頁面可以透過網址拿到的參數來決定這個$DB的變數會是代表那資料表：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$tt</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;do&#x27;</span>]??<span class="string">&#x27;&#x27;</span>;  <span class="comment">//取得網址參數do的值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span>(<span class="variable">$tt</span>)&#123;   <span class="comment">//利用網址參數來轉換$DB代表的資料表</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;ad&quot;</span>:</span><br><span class="line">        <span class="variable">$DB</span>=<span class="variable">$Ad</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;mvim&quot;</span>:</span><br><span class="line">        <span class="variable">$DB</span>=<span class="variable">$Mvim</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;image&quot;</span>:</span><br><span class="line">        <span class="variable">$DB</span>=<span class="variable">$Image</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;total&quot;</span>:</span><br><span class="line">        <span class="variable">$DB</span>=<span class="variable">$Total</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;bottom&quot;</span>:</span><br><span class="line">        <span class="variable">$DB</span>=<span class="variable">$Bottom</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;news&quot;</span>:</span><br><span class="line">        <span class="variable">$DB</span>=<span class="variable">$News</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;admin&quot;</span>:</span><br><span class="line">        <span class="variable">$DB</span>=<span class="variable">$Admin</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;menu&quot;</span>:</span><br><span class="line">        <span class="variable">$DB</span>=<span class="variable">$Menu</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="variable">$DB</span>=<span class="variable">$Title</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -251,7 +251,7 @@
 <li><p>建立一個 <code>modal</code> 資料夾來存放使用ajax載入的彈出視窗內容</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>新增標題圖片<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;api/add.php&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>標題區圖片：<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;img&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>標題區替代文字：<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;text&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;table&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Title&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;新增&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">value</span>=<span class="string">&quot;重置&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<p><img src="skill-check-group1-05-02.png"></p>
+<p><img src="/php-book2/skill-check-group1-05-02.png"></p>
 <ol start="7">
 <li><p>指定新增資料&#x2F;更新圖片&#x2F;編輯資料三個不同功能對應的api檔案及路徑名，如果需要帶入參數的也需一併填寫。</p>
 <ul>
@@ -267,7 +267,7 @@
 </li>
 <li><p>建立資料列表程式碼，這邊要注意的是在顯示和刪除這兩個功能，由於radio和checkbox的特性，我們會視功能要求來進行不同的設定。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//取出所有的資料</span></span><br><span class="line"><span class="variable">$rows</span>=<span class="variable">$Title</span>-&gt;<span class="title function_ invoke__">all</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用迴圈把每筆資料都列出來</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$rows</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//檢查資料中的sh欄位是否為1，是的話把checked字串存到變數$checked中,</span></span><br><span class="line">    <span class="comment">//否的話則是把空值存到變數$checked中</span></span><br><span class="line">    <span class="variable">$checked</span>=(<span class="variable">$row</span>[<span class="string">&#x27;sh&#x27;</span>]==<span class="number">1</span>)?<span class="string">&#x27;checked&#x27;</span>:<span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;tr&gt;</span><br><span class="line">    &lt;td width=<span class="string">&quot;45%&quot;</span>&gt;</span><br><span class="line">        &lt;!--依題意，標題圖片以<span class="number">300</span>x30來顯示，使用行內樣式直接設定--&gt;</span><br><span class="line">        &lt;img src=<span class="string">&quot;./upload/&lt;?=<span class="subst">$row</span>[&#x27;img&#x27;];?&gt;&quot;</span> style=<span class="string">&quot;width:300px;height:30px&quot;</span>&gt;</span><br><span class="line">    &lt;/td&gt;</span><br><span class="line">    &lt;td width=<span class="string">&quot;23%&quot;</span>&gt;</span><br><span class="line">        &lt;!--因為編輯資料會以多筆的方式送出，</span><br><span class="line">        所以在name的屬性上使用陣列的方式，確保每筆資料都能被傳送出去--&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;text[]&quot;</span> value=<span class="string">&quot;&lt;?=<span class="subst">$row</span>[&#x27;text&#x27;];?&gt;&quot;</span>&gt;</span><br><span class="line">    &lt;/td&gt;</span><br><span class="line">    &lt;td width=<span class="string">&quot;7%&quot;</span>&gt;</span><br><span class="line">        &lt;!--因為radio預設是單選，只會有一個值傳送出去，所以name的屬性不用加陣列；</span><br><span class="line">            這邊要注意的是，我們要呈現資料被選取的狀態，</span><br><span class="line">            所以在input的屬性中加上在迴圈一開始時設定的\<span class="variable">$checked</span>，如果sh值為<span class="number">1</span>，</span><br><span class="line">            則會在標籤中顯示checked，radio會呈現選中的狀態，如果sh值為<span class="number">0</span>，</span><br><span class="line">            則會在標籤中顯示空值，radio會呈現未選中的狀態--&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;radio&quot;</span> name=<span class="string">&quot;sh&quot;</span> value=<span class="string">&quot;&lt;?=<span class="subst">$row</span>[&#x27;id&#x27;];?&gt;&quot;</span> <span class="meta">&lt;?=</span><span class="variable">$checked</span>;<span class="meta">?&gt;</span>&gt;</span><br><span class="line">    &lt;/td&gt;</span><br><span class="line">    &lt;td width=<span class="string">&quot;7%&quot;</span>&gt;</span><br><span class="line">        &lt;!--刪除的功能因為是多選，所以以陣列的方式來收集資料，在value中填入id值，</span><br><span class="line">            則會以陣列的方式把被勾選要刪除的資料id傳送出去--&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;del[]&quot;</span> value=<span class="string">&quot;&lt;?=<span class="subst">$row</span>[&#x27;id&#x27;];?&gt;&quot;</span>&gt;</span><br><span class="line">    &lt;/td&gt;</span><br><span class="line">    &lt;td&gt;</span><br><span class="line">        &lt;!--我們放一個隱藏欄位id，用來對應text欄位，</span><br><span class="line">            這樣才能知道每一個文字欄位各是那個id的資料--&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;hidden&quot;</span> name=<span class="string">&quot;id[]&quot;</span> value=<span class="string">&quot;&lt;?=<span class="subst">$row</span>[&#x27;id&#x27;];?&gt;&quot;</span>&gt;</span><br><span class="line">        &lt;!--更新圖片的功能會使用到modal彈出視窗，所以要指定一個檔案來載入更新時的表單畫面；</span><br><span class="line">            但我們也需要讓表單知道要更新的是那一筆資料的圖片，因此要再加上一個參數id，</span><br><span class="line">            把id資料帶去表單畫面使用--&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;button&quot;</span></span><br><span class="line">            onclick=<span class="string">&quot;op(&#x27;#cover&#x27;,&#x27;#cvr&#x27;,&#x27;modal/upload_title.php?id=&lt;?=<span class="subst">$row</span>[&#x27;id&#x27;];?&gt;&#x27;)&quot;</span> </span><br><span class="line">              value=<span class="string">&quot;更新圖片&quot;</span>&gt;</span><br><span class="line">    &lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"><span class="meta">&lt;?php</span> &#125; <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="skill-check-group1-05-03.png"></p>
+<p><img src="/php-book2/skill-check-group1-05-03.png"></p>
 </li>
 <li><p>做到這邊可以發現不論是modal的檔案名稱或是檔案間的傳值，我們會大量的重覆使用到資料表名來呈現，而我們在DB這個物件中原本就有設計可以使用$DB-&gt;table來顯示資料表名稱，因此我們可以把後台功能的程式碼中會使用到資料表名稱的地方都使用$DB-&gt;table來替換，只要維持這樣的規範，將可以大量的節省我們複製到其他功能時需要修改的時間。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=<span class="string">&quot;post&quot;</span>  action=<span class="string">&quot;api/edit.php&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 本題組中有三個功能會使用到彈出視窗來更新圖片，我們統一檔名的規則為</span></span><br><span class="line"><span class="comment"> * uploade.php?do=[table]&amp;id=[id]</span></span><br><span class="line"><span class="comment"> * 因此可以把資料表名代換進去</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&lt;input type=<span class="string">&quot;button&quot;</span></span><br><span class="line">    onclick=<span class="string">&quot;op(&#x27;#cover&#x27;,</span></span><br><span class="line"><span class="string">                &#x27;#cvr&#x27;,</span></span><br><span class="line"><span class="string">                &#x27;modal/upload_title.php?id=&lt;?=<span class="subst">$row</span>[&#x27;id&#x27;];?&gt;&#x27;)&quot;</span> </span><br><span class="line">      value=<span class="string">&quot;更新圖片&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 新增資料的功能按鈕中會使用到彈出視窗來更新圖片*/</span></span><br><span class="line">&lt;input type=<span class="string">&quot;button&quot;</span></span><br><span class="line">    onclick=<span class="string">&quot;op(&#x27;#cover&#x27;,&#x27;#cvr&#x27;,&#x27;modal/title.php&#x27;)&quot;</span> </span><br><span class="line">      value=<span class="string">&quot;新增網站標題圖片&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
@@ -298,11 +298,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/23/skill-check-group1-04/" rel="prev" title="[技能檢定]題組一 步驟4 製作後台訪客計數器及頁尾版權文字管理">
+    <a href="/php-book2/2021/09/23/skill-check-group1-04/" rel="prev" title="[技能檢定]題組一 步驟4 製作後台訪客計數器及頁尾版權文字管理">
       <i class="fa fa-chevron-left"></i> [技能檢定]題組一 步驟4 製作後台訪客計數器及頁尾版權文字管理
     </a></div>
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/23/skill-check-group1-06/" rel="next" title="[技能檢定]題組一 步驟6 套用後台的title頁面設計到其他後台功能中">
+    <a href="/php-book2/2021/09/23/skill-check-group1-06/" rel="next" title="[技能檢定]題組一 步驟6 套用後台的title頁面設計到其他後台功能中">
       [技能檢定]題組一 步驟6 套用後台的title頁面設計到其他後台功能中 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -374,20 +374,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/php-book/archives/">
+          <a href="/php-book2/archives/">
         
           <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/php-book/categories/">
+            <a href="/php-book2/categories/">
           
         <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">主題</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/php-book/tags/">
+            <a href="/php-book2/tags/">
           
         <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">標籤</span></a>
@@ -439,19 +439,19 @@
   </div>
 
   
-  <script src="/php-book/lib/anime.min.js"></script>
-  <script src="/php-book/lib/velocity/velocity.min.js"></script>
-  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/php-book2/lib/anime.min.js"></script>
+  <script src="/php-book2/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book2/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/php-book/js/utils.js"></script>
+<script src="/php-book2/js/utils.js"></script>
 
-<script src="/php-book/js/motion.js"></script>
-
-
-<script src="/php-book/js/schemes/pisces.js"></script>
+<script src="/php-book2/js/motion.js"></script>
 
 
-<script src="/php-book/js/next-boot.js"></script>
+<script src="/php-book2/js/schemes/pisces.js"></script>
+
+
+<script src="/php-book2/js/next-boot.js"></script>
 
 
 
