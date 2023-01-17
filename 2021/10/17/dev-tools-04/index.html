@@ -5,42 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 6.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/php-book2/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/php-book2/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/php-book2/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/php-book2/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/php-book2/css/main.css">
+<link rel="stylesheet" href="/php-book/css/main.css">
 
 
-<link rel="stylesheet" href="/php-book2/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book2/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":24,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="Git - 版本管理工具git 是繼subversion後最多人使用的版本管理工具，並結合雲端服務衍生許多應用來。git 本身可以只在單機上執行版本管理的工具，建立起server端的托管倉庫後則又可以提供多人合作開發的應用，使用上非常有彈性。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[開發環境]git 版本管理系統">
-<meta property="og:url" content="https://mackliu.github.io/php-book2/2021/10/17/dev-tools-04/index.html">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-04/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
 <meta property="og:description" content="Git - 版本管理工具git 是繼subversion後最多人使用的版本管理工具，並結合雲端服務衍生許多應用來。git 本身可以只在單機上執行版本管理的工具，建立起server端的托管倉庫後則又可以提供多人合作開發的應用，使用上非常有彈性。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/10/17/dev-tools-04/dev-tools-04-001.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/10/17/dev-tools-04/dev-tools-04-002.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/10/17/dev-tools-04/dev-tools-04-003.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/10/17/dev-tools-04/dev-tools-04-004.png">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/10/17/dev-tools-04/dev-tools-04-005.jpg">
-<meta property="og:image" content="https://mackliu.github.io/php-book2/2021/10/17/dev-tools-04/dev-tools-04-006.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-04/dev-tools-04-001.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-04/dev-tools-04-002.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-04/dev-tools-04-003.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-04/dev-tools-04-004.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-04/dev-tools-04-005.jpg">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-04/dev-tools-04-006.jpg">
 <meta property="article:published_time" content="2021-10-17T12:26:27.000Z">
 <meta property="article:modified_time" content="2021-10-17T15:54:17.236Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="chrome devtool">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mackliu.github.io/php-book2/2021/10/17/dev-tools-04/dev-tools-04-001.jpg">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book/2021/10/17/dev-tools-04/dev-tools-04-001.jpg">
 
-<link rel="canonical" href="https://mackliu.github.io/php-book2/2021/10/17/dev-tools-04/">
+<link rel="canonical" href="https://mackliu.github.io/php-book/2021/10/17/dev-tools-04/">
 
 
 <script id="page-configurations">
@@ -102,7 +102,7 @@
 
   <div class="site-meta">
 
-    <a href="/php-book2/" class="brand" rel="start">
+    <a href="/php-book/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">月光林地的網頁技術部</h1>
       <span class="logo-line-after"><i></i></span>
@@ -123,22 +123,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/php-book2/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/php-book2/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/php-book2/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/php-book2/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
 
   </li>
   </ul>
@@ -156,6 +156,8 @@
     <span>0%</span>
   </div>
 
+  <a href="https://github.com/mackliu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
 
     <main class="main">
       <div class="main-inner">
@@ -169,12 +171,12 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book2/2021/10/17/dev-tools-04/">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/10/17/dev-tools-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book2/images/avatar.gif">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
       <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="php資料庫網頁設計班相關資料倉庫">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -201,11 +203,11 @@
               </span>
               <span class="post-meta-item-text">歸屬於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book2/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
+                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book2/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E8%88%87%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">開發環境與工具</span></a>
+                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E8%88%87%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">開發環境與工具</span></a>
                 </span>
             </span>
 
@@ -226,16 +228,16 @@
 <h2 id="安裝與設定"><a href="#安裝與設定" class="headerlink" title="安裝與設定"></a>安裝與設定</h2><ol>
 <li>連上<a target="_blank" rel="noopener" href="https://git-scm.com/">Git官網</a>，依據使用的作業系統(win&#x2F;mac&#x2F;linux)平台下載相符的安裝程式</li>
 </ol>
-<p><img src="dev-tools-04-001.jpg"></p>
-<p><img src="dev-tools-04-002.jpg"></p>
+<p><img src="/php-book/2021/10/17/dev-tools-04/dev-tools-04-001.jpg"></p>
+<p><img src="/php-book/2021/10/17/dev-tools-04/dev-tools-04-002.jpg"></p>
 <ol start="2">
 <li>windows平台的話下載安裝程式後，點擊安裝程式就可以進行安裝，其它平台請見官網說明使用shell指令進行安裝</li>
 </ol>
-<p><img src="dev-tools-04-003.jpg"></p>
+<p><img src="/php-book/2021/10/17/dev-tools-04/dev-tools-04-003.jpg"></p>
 <ol start="3">
 <li>在安裝項目中，當出現選擇預設編輯器時，建議選擇已經有安裝的vs code做為預設編輯器，原始的git附的編輯器是vim，操作方式和windows的軟體不太一樣</li>
 </ol>
-<p><img src="dev-tools-04-004.png"></p>
+<p><img src="/php-book/2021/10/17/dev-tools-04/dev-tools-04-004.png"></p>
 <div class="note danger">
 
 <p>如果不小心在安裝時忘了選擇預設編輯器，可以在安裝完成後在命令列輸入以下指令來指定vs code為預設編輯器</p>
@@ -256,14 +258,14 @@
 <ol start="4">
 <li>開啟終端機程式輸入 <code>git --version</code> 如果有看到版本訊息則是安裝成功</li>
 </ol>
-<p><img src="dev-tools-04-005.jpg"></p>
+<p><img src="/php-book/2021/10/17/dev-tools-04/dev-tools-04-005.jpg"></p>
 <ol start="5">
 <li>部份windows 7或是舊型的電腦及作業系統可能需要重新啟動電腦才能看到版本訊息。</li>
 </ol>
 <h2 id="基本操作介紹"><a href="#基本操作介紹" class="headerlink" title="基本操作介紹"></a>基本操作介紹</h2><ol>
 <li>git init - 初始化專案資料夾，只需在建立專案時做一次。</li>
 </ol>
-<p><img src="dev-tools-04-006.jpg"></p>
+<p><img src="/php-book/2021/10/17/dev-tools-04/dev-tools-04-006.jpg"></p>
 <ol start="2">
 <li>git add . - 將有變動的檔案加入git的監控中</li>
 <li>git status - 查看目前專案的檔案狀況</li>
@@ -280,7 +282,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/php-book2/tags/chrome-devtool/" rel="tag"># chrome devtool</a>
+              <a href="/php-book/tags/chrome-devtool/" rel="tag"># chrome devtool</a>
           </div>
 
         
@@ -289,11 +291,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/php-book2/2021/10/17/dev-tools-03/" rel="prev" title="[開發環境]瀏灠器開發者工具">
+    <a href="/php-book/2021/10/17/dev-tools-03/" rel="prev" title="[開發環境]瀏灠器開發者工具">
       <i class="fa fa-chevron-left"></i> [開發環境]瀏灠器開發者工具
     </a></div>
       <div class="post-nav-item">
-    <a href="/php-book2/2021/10/17/dev-tools-05/" rel="next" title="[開發環境]github 遠端程式碼托管">
+    <a href="/php-book/2021/10/17/dev-tools-05/" rel="next" title="[開發環境]github 遠端程式碼托管">
       [開發環境]github 遠端程式碼托管 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -360,34 +362,60 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mack Liu"
+      src="/php-book/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">Mack Liu</p>
-  <div class="site-description" itemprop="description">php資料庫網頁設計班相關資料倉庫</div>
+  <div class="site-description" itemprop="description">網頁程式設計教學相關資料</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/php-book2/archives/">
+          <a href="/php-book/archives/">
         
           <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/php-book2/categories/">
+            <a href="/php-book/categories/">
           
         <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">主題</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/php-book2/tags/">
+            <a href="/php-book/tags/">
           
         <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mackliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mackliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:macklun@gmail.com" title="E-Mail → mailto:macklun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情連結
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.mackliu.com/" title="https:&#x2F;&#x2F;blog.mackliu.com&#x2F;" rel="noopener" target="_blank">mack的自言自語</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bquiz.mackliu.com/" title="https:&#x2F;&#x2F;bquiz.mackliu.com&#x2F;" rel="noopener" target="_blank">網頁乙級解題網</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wdaweb.github.io/" title="https:&#x2F;&#x2F;wdaweb.github.io&#x2F;" rel="noopener" target="_blank">從零開始的網頁設計課程</a>
+        </li>
+    </ul>
+  </div>
 
       </div>
 
@@ -414,7 +442,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Mack Liu</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
   </div>
 
         
@@ -431,19 +459,19 @@
   </div>
 
   
-  <script src="/php-book2/lib/anime.min.js"></script>
-  <script src="/php-book2/lib/velocity/velocity.min.js"></script>
-  <script src="/php-book2/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/php-book2/js/utils.js"></script>
+<script src="/php-book/js/utils.js"></script>
 
-<script src="/php-book2/js/motion.js"></script>
-
-
-<script src="/php-book2/js/schemes/pisces.js"></script>
+<script src="/php-book/js/motion.js"></script>
 
 
-<script src="/php-book2/js/next-boot.js"></script>
+<script src="/php-book/js/schemes/pisces.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
 
 
 
