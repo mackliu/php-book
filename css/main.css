@@ -10,7 +10,7 @@
   --brand-hover-color: #fff;
   --table-row-odd-bg-color: #f9f9f9;
   --table-row-hover-bg-color: #f5f5f5;
-  --menu-item-bg-color: #f5f5f5;
+  --menu-item-bg-color: #cfc;
   --btn-default-bg: #fff;
   --btn-default-color: #555;
   --btn-default-border-color: #555;
@@ -1282,7 +1282,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ecb45b;
+  background: #4d38b6;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1428,7 +1428,7 @@ pre .javascript .function {
   transition-timing-function: ease-in-out;
 }
 .post-toc .nav-item {
-  line-height: 1.8;
+  line-height: 2.5;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1650,6 +1650,28 @@ pre .javascript .function {
   line-height: 1;
   margin: -20px auto 15px;
   text-align: center;
+}
+.post-body h1 {
+  border-bottom: 2px solid #999;
+}
+.post-body h2 {
+  font-size: 1.35rem;
+  color: #555;
+  border-bottom: 1px solid #ccc;
+  border-left: 3px solid #999;
+  background: #eee;
+  padding: 0.25rem 0 0.25rem 0.75rem !important;
+}
+.post-body h3 {
+  font-size: 1.25rem;
+  width: max-content;
+  color: #555;
+  border-bottom: 3px double #999;
+  padding: 0 3rem 0.25rem 0 !important;
+}
+.post-body h4::before {
+  content: ">> ";
+  color: #55f;
 }
 .post-sticky-flag {
   display: inline-block;
@@ -2578,4 +2600,30 @@ ul.breadcrumb li + li:last-child {
   background-color: #eee;
   box-shadow: 1px 1px 3px #ccc;
   font-weight: bolder;
+}
+.content.index .post-block {
+  padding: 1.5rem 1rem;
+  border: 1px solid #ddd;
+  margin: 2rem 0;
+  box-shadow: 1px 1px 5px #eee;
+  border-radius: 0.5rem;
+  transition: box-shadow 0.5s;
+}
+.content.index .post-block:hover {
+  box-shadow: 2px 2px 15px #ccc;
+  transition: box-shadow 0.5s;
+  border: 1px solid #ccc;
+}
+.content.index .post-block .post-footer {
+  display: none;
+}
+.content.index .post-block .post-button .btn {
+  border-radius: 0.5rem;
+  background: #555;
+  color: #fff;
+}
+.content.index .post-block .post-button .btn:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #999;
 }
