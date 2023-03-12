@@ -28,7 +28,7 @@
 <meta property="og:description" content="每個題組依狀況不同，在這一步有不同的做法，視自己對題目的熟悉程度來做應變，可以一次把全部資料表建完，也可以視解題的進度來逐步建立或修改資料表。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-23T15:28:39.000Z">
-<meta property="article:modified_time" content="2023-01-20T01:59:34.743Z">
+<meta property="article:modified_time" content="2023-03-12T10:45:23.112Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -194,7 +194,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-01-20 09:59:34" itemprop="dateModified" datetime="2023-01-20T09:59:34+08:00">2023-01-20</time>
+                <time title="修改時間：2023-03-12 18:45:23" itemprop="dateModified" datetime="2023-03-12T18:45:23+08:00">2023-03-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -228,8 +228,8 @@
 <li>admin - 管理員資料表</li>
 <li>bottom - 頁尾版權資料表</li>
 <li>goods - 商品資料表</li>
-<li>member - 會員資料表</li>
-<li>ord - 訂單資料表</li>
+<li>mem - 會員資料表</li>
+<li>orders - 訂單資料表</li>
 <li>type - 分類資料表</li>
 </ul>
 <ol>
@@ -414,7 +414,7 @@
 </tr>
 </tbody></table>
 </li>
-<li><p>member</p>
+<li><p>mem</p>
 <table>
 <thead>
 <tr>
@@ -483,24 +483,16 @@
 <td align="center">電子郵件</td>
 </tr>
 <tr>
-<td align="center">regdate</td>
+<td align="center">reg_date</td>
 <td align="center">timestamp</td>
 <td align="center"></td>
 <td align="center">current_timestamp()</td>
 <td align="center"></td>
 <td align="center">註冊日期</td>
 </tr>
-<tr>
-<td align="center">total</td>
-<td align="center">int(10)</td>
-<td align="center"></td>
-<td align="center">0</td>
-<td align="center"></td>
-<td align="center">總價</td>
-</tr>
 </tbody></table>
 </li>
-<li><p>ord</p>
+<li><p>orders</p>
 <table>
 <thead>
 <tr>
@@ -577,7 +569,7 @@
 <td align="center">總價</td>
 </tr>
 <tr>
-<td align="center">goods</td>
+<td align="center">cart</td>
 <td align="center">text</td>
 <td align="center"></td>
 <td align="center"></td>
@@ -585,7 +577,7 @@
 <td align="center">商品</td>
 </tr>
 <tr>
-<td align="center">orddate</td>
+<td align="center">ord_date</td>
 <td align="center">timestamp</td>
 <td align="center"></td>
 <td align="center">current_timestamp()</td>
