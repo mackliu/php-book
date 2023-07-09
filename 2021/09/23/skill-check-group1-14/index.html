@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":24,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="題目並沒有很明確的指出登入功能一定要綁管理者帳號的資料表，所以這裹就算是寫死的，只要可以做到題目要求的登入後跳到後台頁面就可以了，但是這邊我們還是採用比較正常合理的方式來製作登入功能，因此我們要先在資料表中建立一個管理者帳號，帳號是 admin，密碼是 1234。">
+  <meta name="description" content="選單功能是前台功能中較為複雜的一個項目，因為有主次選單的關係，很多人會在這邊搞混，要特別注意巢狀迴圈應用上容易犯錯的地方；">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[技能檢定]題組一 步驟14 處理登入功能及相關連結修改">
+<meta property="og:title" content="[技能檢定]題組一 步驟14 完成選單功能">
 <meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/23/skill-check-group1-14/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
-<meta property="og:description" content="題目並沒有很明確的指出登入功能一定要綁管理者帳號的資料表，所以這裹就算是寫死的，只要可以做到題目要求的登入後跳到後台頁面就可以了，但是這邊我們還是採用比較正常合理的方式來製作登入功能，因此我們要先在資料表中建立一個管理者帳號，帳號是 admin，密碼是 1234。">
+<meta property="og:description" content="選單功能是前台功能中較為複雜的一個項目，因為有主次選單的關係，很多人會在這邊搞混，要特別注意巢狀迴圈應用上容易犯錯的地方；">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-09-23T01:46:45.000Z">
-<meta property="article:modified_time" content="2023-01-20T01:59:34.733Z">
+<meta property="article:published_time" content="2021-09-23T01:45:50.000Z">
+<meta property="article:modified_time" content="2023-07-09T13:13:40.826Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>[技能檢定]題組一 步驟14 處理登入功能及相關連結修改 | 月光林地的網頁技術部</title>
+  <title>[技能檢定]題組一 步驟14 完成選單功能 | 月光林地的網頁技術部</title>
   
 
 
@@ -177,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [技能檢定]題組一 步驟14 處理登入功能及相關連結修改
+          [技能檢定]題組一 步驟14 完成選單功能
         </h1>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2021-09-23 09:46:45" itemprop="dateCreated datePublished" datetime="2021-09-23T09:46:45+08:00">2021-09-23</time>
+              <time title="創建時間：2021-09-23 09:45:50" itemprop="dateCreated datePublished" datetime="2021-09-23T09:45:50+08:00">2021-09-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-01-20 09:59:34" itemprop="dateModified" datetime="2023-01-20T09:59:34+08:00">2023-01-20</time>
+                <time title="修改時間：2023-07-09 21:13:40" itemprop="dateModified" datetime="2023-07-09T21:13:40+08:00">2023-07-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,52 +221,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>題目並沒有很明確的指出登入功能一定要綁管理者帳號的資料表，所以這裹就算是寫死的，只要可以做到題目要求的登入後跳到後台頁面就可以了，但是這邊我們還是採用比較正常合理的方式來製作登入功能，因此我們要先在資料表中建立一個管理者帳號，帳號是 <code>admin</code>，密碼是 <code>1234</code>。</p>
+        <p>選單功能是前台功能中較為複雜的一個項目，因為有主次選單的關係，很多人會在這邊搞混，要特別注意巢狀迴圈應用上容易犯錯的地方；</p>
 <span id="more"></span>
-<p>根據版型的暗示，前台的有一個登理登入的按鈕可以連到登入畫面，登入後到後台時有一個按鈕可以登出，而如果在登入的狀態下停在前台時，原本的管理登入按鈕會變成是可以跳到後台的按鈕，這表示我們需要有一個機制來記錄管理員的登入狀態，才能根據這個狀態對按鈕做出不同的功能，而後台的管理登出按鈕，題目只要求可以跳到管理登入的畫面，並沒有要求要做出真正的登出功能，比如清除session來登出，因此如果時間來不及，可以做成連結跳轉到登入畫面就可以了。時間足夠的話，可以把清除session的真正登出功能也做上。</p>
-<p>登入及登出的按鈕功能在題目中並沒有特別的要求，如果正常解題時間來不及的話，可以不用處理按鈕的問題，先以符合題目要求的項目優先製作。</p>
-<ul>
-<li>修改 <code>admin.php</code> 的管理登出按鈕中的onclick事件，我們這裹示範利用session登出的做法</li>
-<li>撰寫 <code>./api/logout.php</code> 的登出功能，清除session後，要配合題目指示回到管理登入頁面(<code>index.php?do=login</code>)</li>
-<li>在 <code>./front/login.php</code> 中撰寫登入功能，登入成功時增加一個session來記錄登入狀態</li>
-<li>題組一中並沒有要求要使用session或cookie來處理登入的功能，所以額外的功能建議是時間足夠時再來製作。</li>
-<li>在 <code>index.php</code> 中修改管理登入連結的按鈕，依據session來決定要顯示的文字及連結內容．</li>
-</ul>
-<h3 id="ADMIN-前台管理登入功能"><a href="#ADMIN-前台管理登入功能" class="headerlink" title="ADMIN-前台管理登入功能"></a>ADMIN-前台管理登入功能</h3><p><strong>front&#x2F;login.php</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//在載入這個登入區塊前先檢查登入的狀態</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]))&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果使用者是已經登入的狀態，則直接導向管理後台</span></span><br><span class="line">    <span class="title function_ invoke__">to</span>(<span class="string">&quot;back.php&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判斷是否有登入錯誤，如果有錯誤則彈出提示訊息</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;error&#x27;</span>]))&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;&quot;</span>;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;alert(&#x27;<span class="subst">&#123;$_GET[&#x27;error&#x27;]&#125;</span>&#x27;)&quot;</span>;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;/script&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--正中央--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--修改action的目的為api/login.php，記得去掉原本有的target屬性--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;api/login.php&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;t botli&quot;</span>&gt;</span>管理員登入區<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;cent&quot;</span>&gt;</span>帳號 ： <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;acc&quot;</span> <span class="attr">autofocus</span>=<span class="string">&quot;&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--修改欄位的name名稱符合我們資料表的設定--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;cent&quot;</span>&gt;</span>密碼 ： <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;pw&quot;</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;cent&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">&quot;送出&quot;</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">value</span>=<span class="string">&quot;清除&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>api&#x2F;login.php</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;base.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判斷$_POST[&#x27;acc&#x27;]是否存在，用以確認有表單送出的動作</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;acc&#x27;</span>]))&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判斷帳密是否正確</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$Admin</span>-&gt;<span class="title function_ invoke__">count</span>([<span class="string">&#x27;acc&#x27;</span>=&gt;<span class="variable">$_POST</span>[<span class="string">&#x27;acc&#x27;</span>],<span class="string">&#x27;pw&#x27;</span>=&gt;<span class="variable">$_POST</span>[<span class="string">&#x27;pw&#x27;</span>]])&gt;<span class="number">0</span>)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//帳密正確則導向後台管理頁面</span></span><br><span class="line">		<span class="title function_ invoke__">to</span>(<span class="string">&quot;../back.php&quot;</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//表單沒有正確傳送資料，或是帳密錯誤等情形，一律導回登入頁，並帶上錯誤訊息</span></span><br><span class="line"><span class="title function_ invoke__">to</span>(<span class="string">&quot;../index.php?do=login&amp;error=帳號或密碼錯誤&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<p><strong>api&#x2F;logout.php</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;../base.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用unset()來清掉session的內容即可達到登出的目的</span></span><br><span class="line"><span class="keyword">unset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]);</span><br><span class="line"><span class="title function_ invoke__">to</span>(<span class="string">&quot;../index.php?do=login&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>另外，版型檔案雖然有提供了相關的JS及CSS，但是經過測試可能不是很完整，因為直接套用內建的css及js做出來的選單功能和題目示意圖的不太一樣，如果擔心會有爭議的話，可以再做一些修正，讓選單的顯示和題目的示意圖一致。</p>
+<p>記得在後台配合題目要求將相關選單的項目先建好。</p>
+<h3 id="MENU-前台選單顯示區"><a href="#MENU-前台選單顯示區" class="headerlink" title="MENU-前台選單顯示區"></a>MENU-前台選單顯示區</h3><p><strong>index.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;menuput&quot;</span> <span class="class"><span class="keyword">class</span>=&quot;<span class="title">dbor</span>&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;!--主選單放此--&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">span</span> <span class="title">class</span>=&quot;<span class="title">t</span> <span class="title">botli</span>&quot;&gt;主選單區&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;?<span class="title">php</span></span></span><br><span class="line"><span class="class">    //先把要顯示的主選單撈出來</span></span><br><span class="line"><span class="class">    $<span class="title">mains</span>=$<span class="title">Menu</span>-&gt;<span class="title">all</span>([&quot;<span class="title">sh</span>&quot;=&gt;1,&quot;<span class="title">parent</span>&quot;=&gt;0]);</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    //使用迴圈把主選單內容顯示出來</span></span><br><span class="line"><span class="class">    <span class="title">foreach</span>($<span class="title">mains</span> <span class="title">as</span> $<span class="title">main</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//調整一下html元素和內容的關係，並且利用到題組本身提供的class</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;div class=&#x27;mainmu&#x27;&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//把主選單資料的href資訊放到a標籤的href屬性中</span></span><br><span class="line">        <span class="comment">//把主選單資料的name資訊放在a標籤的文字內容區中</span></span><br><span class="line">        <span class="keyword">echo</span>    <span class="string">&quot;&lt;a href=&#x27;<span class="subst">&#123;$main[&#x27;href&#x27;]&#125;</span>&#x27;&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">echo</span>        <span class="variable">$main</span>[<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line">        <span class="keyword">echo</span>    <span class="string">&quot;&lt;/a&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//利用計數的功能來判斷主選單是否有任何次選單存在</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$Menu</span>-&gt;<span class="title function_ invoke__">count</span>([<span class="string">&#x27;parent&#x27;</span>=&gt;<span class="variable">$main</span>[<span class="string">&#x27;id&#x27;</span>]])&gt;<span class="number">0</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//在有次選單的主選單區塊中再建立一個class為mw的div區塊</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;  &lt;div class=&#x27;mw&#x27; style=&#x27;display:none&#x27;&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//撈出該主選單的所有次選單</span></span><br><span class="line">            <span class="variable">$subs</span>=<span class="variable">$Menu</span>-&gt;<span class="title function_ invoke__">all</span>([<span class="string">&#x27;parent&#x27;</span>=&gt;<span class="variable">$main</span>[<span class="string">&#x27;id&#x27;</span>]]);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//使用迴圈把所有的次選單顯示出來</span></span><br><span class="line">            <span class="keyword">foreach</span>(<span class="variable">$subs</span> <span class="keyword">as</span> <span class="variable">$sub</span>)&#123;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//加上題目本身提供的class樣式mainmu2，可以有不同顏色的背景</span></span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;&lt;div class=&#x27;mainmu2&#x27;&gt;&quot;</span>;</span><br><span class="line">                <span class="keyword">echo</span>    <span class="string">&quot;&lt;a  href=&#x27;<span class="subst">&#123;$sub[&#x27;href&#x27;]&#125;</span>&#x27;&gt;&quot;</span>;</span><br><span class="line">                <span class="keyword">echo</span>        <span class="variable">$sub</span>[<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line">                <span class="keyword">echo</span>    <span class="string">&quot;&lt;/a&gt;&quot;</span>;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;&lt;/div&gt;&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;/div&gt;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;/div&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>css&#x2F;css.css</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mainmu</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">    <span class="attribute">border-radius</span>:<span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">../icon/menu.fw.png</span>) center no-repeat;</span><br><span class="line">    <span class="attribute">background-size</span>:cover;</span><br><span class="line">    <span class="attribute">line-height</span>:<span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">2px</span> <span class="number">10px</span> <span class="number">2px</span> <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">7px</span> <span class="number">1px</span> <span class="number">7px</span> <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">30px</span>;  <span class="comment">/*增加一個固定高度來避免被內容撐開*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*增加一個.mw的css設定，用來調整次選單的位置及寬度</span></span><br><span class="line"><span class="comment"> *並且預設為不顯示次選單，直到滑鼠移到主選單上時才顯示</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="selector-class">.mw</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>: relative;</span><br><span class="line">	<span class="attribute">top</span>:-<span class="number">15px</span>;</span><br><span class="line">	<span class="attribute">left</span>:<span class="number">75px</span>;</span><br><span class="line">	<span class="attribute">z-index</span>:<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*以下兩個css設定非必要，只是增加視覺效果及操作感*/</span></span><br><span class="line"><span class="selector-class">.mainmu</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:block;</span><br><span class="line">    <span class="attribute">text-decoration</span>:none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.mainmu</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>:underline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>index.php</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//判斷session的有無來決定要顯示的button是那一個</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]))&#123;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;button style=<span class="string">&quot;width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;&quot;</span></span><br><span class="line">    onclick=<span class="string">&quot;lo(&#x27;back.php&#x27;)&quot;</span>&gt;返回管理&lt;/button&gt;</span><br><span class="line"><span class="meta">&lt;?php</span> &#125;<span class="keyword">else</span>&#123; <span class="meta">?&gt;</span></span><br><span class="line">&lt;button style=<span class="string">&quot;width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;&quot;</span></span><br><span class="line">    onclick=<span class="string">&quot;lo(&#x27;index.php?do=login&#x27;)&quot;</span>&gt;管理登入&lt;/button&gt;</span><br><span class="line"><span class="meta">&lt;?php</span> &#125; <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>back.php</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;location.replace(&#x27;api/logout.php&#x27;)&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">style</span>=<span class="string">&quot;width:99%; margin-right:2px; height:50px;&quot;</span>&gt;</span>管理登出<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="最後檢查"><a href="#最後檢查" class="headerlink" title="最後檢查"></a>最後檢查</h2><p>完成所有功能後，如果有時間，請記得完整的檢查一次所有的功能，尤其實是進站人數的功能需要關掉全部的瀏灠器再開，一定要確實檢查session有沒有正常運作：</p>
-<ol>
-<li>關掉全部的瀏灠器。</li>
-<li>打開瀏灠器輸入<a target="_blank" rel="noopener" href="http://localhost/">http://localhost</a> 或 <a target="_blank" rel="noopener" href="http://127.0.0.1/">http://127.0.0.1</a> 確認首頁是正常的</li>
-<li>檢查首頁的各個區塊是否都顯示正常:<ul>
-<li>主次選單的顯示狀況是否正常</li>
-<li>動畫輪播是否正常</li>
-<li>最新消息的顯示及彈出視窗是否常正</li>
-<li>校園映像圖片輪播是否正常</li>
-<li>按F5看一下進站人數是否正常</li>
-<li>頁尾版權顯示是否正常</li>
-<li>標題區圖片顯示是否正常</li>
-</ul>
-</li>
-<li>檢查首頁所有的連結，是否都能導向到正確的頁面</li>
-<li>檢查更多消息頁面的各功能及分頁是否正常</li>
-<li>檢查登入頁面及功能是否正常</li>
-<li>登入後是否導向後台管理頁面</li>
-<li>檢查後台所有功能的運作是否都正常</li>
-<li>點選管理登出是否正確回到管理登入頁</li>
-</ol>
 
     </div>
 
@@ -282,12 +246,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/23/skill-check-group1-13/" rel="prev" title="[技能檢定]題組一 步驟13 完成選單功能">
-      <i class="fa fa-chevron-left"></i> [技能檢定]題組一 步驟13 完成選單功能
+    <a href="/php-book/2021/09/23/skill-check-group1-13/" rel="prev" title="[技能檢定]題組一 步驟13 完成更多最新消息功能">
+      <i class="fa fa-chevron-left"></i> [技能檢定]題組一 步驟13 完成更多最新消息功能
     </a></div>
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/23/skill-check-group2-01/" rel="next" title="[技能檢定]題組二 步驟1  切版、建置前後台畫面">
-      [技能檢定]題組二 步驟1  切版、建置前後台畫面 <i class="fa fa-chevron-right"></i>
+    <a href="/php-book/2021/09/23/skill-check-group1-15/" rel="next" title="[技能檢定]題組一 步驟15 處理登入功能及相關連結修改">
+      [技能檢定]題組一 步驟15 處理登入功能及相關連結修改 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -347,7 +311,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ADMIN-%E5%89%8D%E5%8F%B0%E7%AE%A1%E7%90%86%E7%99%BB%E5%85%A5%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">ADMIN-前台管理登入功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%BE%8C%E6%AA%A2%E6%9F%A5"><span class="nav-number"></span> <span class="nav-text">最後檢查</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MENU-%E5%89%8D%E5%8F%B0%E9%81%B8%E5%96%AE%E9%A1%AF%E7%A4%BA%E5%8D%80"><span class="nav-number">1.</span> <span class="nav-text">MENU-前台選單顯示區</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -363,7 +327,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>

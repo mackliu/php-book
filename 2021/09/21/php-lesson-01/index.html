@@ -28,11 +28,11 @@
 <meta property="og:description" content="目前的網站通常不會是只有單一靜態頁面，為了增加網站的互動性和功能性，我們會透過表單或連結來傳遞資料到其他頁面去，這個步驟就是在進行網頁傳值。比如我們在google.com的搜尋欄輸入關鍵字，按下搜尋後，會轉移到別的頁面去，而這個轉移後的頁面必須能接收傳過來的關鍵字，最後把搜尋的結果呈現在頁面上。目前表單功能只支援兩種傳遞資料的方式：  GET POST">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-21T01:21:51.000Z">
-<meta property="article:modified_time" content="2021-09-25T13:38:41.565Z">
+<meta property="article:modified_time" content="2023-07-07T23:53:15.804Z">
 <meta property="article:author" content="Mack Liu">
-<meta property="article:tag" content="狀態管理">
 <meta property="article:tag" content="GET">
 <meta property="article:tag" content="POST">
+<meta property="article:tag" content="狀態管理">
 <meta property="article:tag" content="表單">
 <meta name="twitter:card" content="summary">
 
@@ -197,7 +197,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-09-25 21:38:41" itemprop="dateModified" datetime="2021-09-25T21:38:41+08:00">2021-09-25</time>
+                <time title="修改時間：2023-07-08 07:53:15" itemprop="dateModified" datetime="2023-07-08T07:53:15+08:00">2023-07-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,10 +246,187 @@
 </ul>
 <h2 id="表單元件"><a href="#表單元件" class="headerlink" title="表單元件"></a>表單元件</h2><p>使用網頁表單元件時，需要註明要傳送的目的地及使用的傳送方式:</p>
 <ul>
-<li>使用 <strong>GET</strong> 傳送<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&#x27;api/get/book/1&#x27;</span> <span class="attr">method</span>=<span class="string">&#x27;GET&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;text&#x27;</span> <span class="attr">name</span>=<span class="string">&#x27;book&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;submit&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;送出&#x27;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>使用 <strong>POST</strong> 傳送<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&#x27;api/get/book/1&#x27;</span> <span class="attr">method</span>=<span class="string">&#x27;POST&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;text&#x27;</span> <span class="attr">name</span>=<span class="string">&#x27;book&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;submit&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;送出&#x27;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>使用 <strong>POST</strong> 傳送，並且有檔案上傳<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&#x27;api/get/book/1&#x27;</span> <span class="attr">method</span>=<span class="string">&#x27;POST&#x27;</span> <span class="attr">enctype</span>=<span class="string">&#x27;multipart/form-data&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;text&#x27;</span> <span class="attr">name</span>=<span class="string">&#x27;book&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;submit&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;送出&#x27;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>使用 <strong>GET</strong> 傳送</li>
 </ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&#x27;api/get/book/1&#x27;</span> <span class="attr">method</span>=<span class="string">&#x27;GET&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;text&#x27;</span> <span class="attr">name</span>=<span class="string">&#x27;book&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;submit&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;送出&#x27;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 <strong>POST</strong> 傳送</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&#x27;api/get/book/1&#x27;</span> <span class="attr">method</span>=<span class="string">&#x27;POST&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;text&#x27;</span> <span class="attr">name</span>=<span class="string">&#x27;book&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;submit&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;送出&#x27;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 <strong>POST</strong> 傳送，並且有檔案上傳</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&#x27;api/get/book/1&#x27;</span> <span class="attr">method</span>=<span class="string">&#x27;POST&#x27;</span> <span class="attr">enctype</span>=<span class="string">&#x27;multipart/form-data&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;text&#x27;</span> <span class="attr">name</span>=<span class="string">&#x27;book&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;submit&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;送出&#x27;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;</p>
+
+<h2 id="PHP檔頭管理指令-header"><a href="#PHP檔頭管理指令-header" class="headerlink" title="PHP檔頭管理指令-header()"></a>PHP檔頭管理指令-header()</h2><p>header指令可以在檔案轉送時在檔頭加入一些資訊供接收方使用，我們常用的其中一項是用來指定檔案要轉送的位址或頁面：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//從目前的檔案A，轉移至檔案B</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;location:target.php&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>使用location時，等同於是對目標檔案發出一個請求，因此可以在連結目標後加上查詢參數，以get的方式來送出請求</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//從目前的檔案A，轉移至檔案B，並帶上一個error的參數，參數內容為fail</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;location:target.php?error=fail&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+
+<h2 id="isset-vs-empty"><a href="#isset-vs-empty" class="headerlink" title="isset() vs empty()"></a>isset() vs empty()</h2><p>在處理網頁間傳值時，我們經常會需要先判斷是否有傳值發生或是否存在特定內容，再進一步做處理，isset()及empty()可做為初步判斷之用，但需注意其使用上的差異。<br><strong><span style='font-size:26px'>isset()</span></strong> - 判斷變數是否已被宣告，或已宣告，但值不為null<br><strong><span style='font-size:26px'>empty()</span></strong> - 判斷變數的值是否為空的，0也會被判斷為空，未宣告也會被判斷為空<br>以下為簡易的函數差異對照表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">變數</th>
+<th align="center">值型態</th>
+<th align="center">isset()</th>
+<th align="center">empty()</th>
+<th align="center">is_null()</th>
+<th align="center">boolean:if($x)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$x&#x3D;””;</td>
+<td align="center">string</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;null;</td>
+<td align="center">NULL</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">var $c;</td>
+<td align="center">NULL</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">$x is undefined</td>
+<td align="center">NULL</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;array();</td>
+<td align="center">array</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;array(‘a’,’b’);</td>
+<td align="center">array</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;false;</td>
+<td align="center">boolean</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;true;</td>
+<td align="center">boolean</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;1;</td>
+<td align="center">integer</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;42;</td>
+<td align="center">integer</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;0;</td>
+<td align="center">integer</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;-1;</td>
+<td align="center">integer</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;”1”;</td>
+<td align="center">string</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;”0”;</td>
+<td align="center">string</td>
+<td align="center">TRUE</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;”-1”;</td>
+<td align="center">string</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;”php”;</td>
+<td align="center">string</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;”true”;</td>
+<td align="center">string</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+</tr>
+<tr>
+<td align="center">$x&#x3D;”false”;</td>
+<td align="center">string</td>
+<td align="center">TRUE</td>
+<td align="center">FALSE</td>
+<td align="center">FALSE</td>
+<td align="center">TRUE</td>
+</tr>
+</tbody></table>
+<p>&nbsp;</p>
+
 <h2 id="網頁傳值練習"><a href="#網頁傳值練習" class="headerlink" title="網頁傳值練習"></a>網頁傳值練習</h2><div class="note success">
 
 <p><strong>BMI 計算</strong></p>
@@ -287,9 +464,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/php-book/tags/%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" rel="tag"># 狀態管理</a>
               <a href="/php-book/tags/GET/" rel="tag"># GET</a>
               <a href="/php-book/tags/POST/" rel="tag"># POST</a>
+              <a href="/php-book/tags/%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" rel="tag"># 狀態管理</a>
               <a href="/php-book/tags/%E8%A1%A8%E5%96%AE/" rel="tag"># 表單</a>
           </div>
 
@@ -364,7 +541,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GET"><span class="nav-number">1.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POST"><span class="nav-number">2.</span> <span class="nav-text">POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E5%96%AE%E5%85%83%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">表單元件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%B2%E9%A0%81%E5%82%B3%E5%80%BC%E7%B7%B4%E7%BF%92"><span class="nav-number">4.</span> <span class="nav-text">網頁傳值練習</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GET"><span class="nav-number">1.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POST"><span class="nav-number">2.</span> <span class="nav-text">POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E5%96%AE%E5%85%83%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">表單元件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E6%AA%94%E9%A0%AD%E7%AE%A1%E7%90%86%E6%8C%87%E4%BB%A4-header"><span class="nav-number">4.</span> <span class="nav-text">PHP檔頭管理指令-header()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isset-vs-empty"><span class="nav-number">5.</span> <span class="nav-text">isset() vs empty()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%B2%E9%A0%81%E5%82%B3%E5%80%BC%E7%B7%B4%E7%BF%92"><span class="nav-number">6.</span> <span class="nav-text">網頁傳值練習</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -380,7 +557,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
