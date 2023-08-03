@@ -20,18 +20,22 @@
     var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":24,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="開立.&#x2F;css, .&#x2F;js, .&#x2F;api, .&#x2F;icon, 等常用目錄以利檔案分類及管理 將素材檔中的.css, .js, 及icon圖檔複製到相應的目錄下 更改版型素材的相關檔名，以符合解題的需要： 03P01.htm &#x3D;&gt; index.php 03P02.htm &#x3D;&gt; intro.php 03P03.htm &#x3D;">
+  <meta name="description" content="開立.&#x2F;css, .&#x2F;js, .&#x2F;api, .&#x2F;icon, .&#x2F;upload, .&#x2F;view 等常用目錄以利檔案分類及管理 將素材檔中的.css, .js, 及icon圖檔複製到相應的目錄下 更改版型素材的相關檔名，以符合解題的需要： 03P01.htm &#x3D;&gt; index.php 03P02.htm &#x3D;&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[技能檢定]題組三 步驟1  切版、建置前後台畫面">
 <meta property="og:url" content="https://mackliu.github.io/php-book/2021/09/25/skill-check-group3-01/index.html">
 <meta property="og:site_name" content="月光林地的網頁技術部">
-<meta property="og:description" content="開立.&#x2F;css, .&#x2F;js, .&#x2F;api, .&#x2F;icon, 等常用目錄以利檔案分類及管理 將素材檔中的.css, .js, 及icon圖檔複製到相應的目錄下 更改版型素材的相關檔名，以符合解題的需要： 03P01.htm &#x3D;&gt; index.php 03P02.htm &#x3D;&gt; intro.php 03P03.htm &#x3D;">
+<meta property="og:description" content="開立.&#x2F;css, .&#x2F;js, .&#x2F;api, .&#x2F;icon, .&#x2F;upload, .&#x2F;view 等常用目錄以利檔案分類及管理 將素材檔中的.css, .js, 及icon圖檔複製到相應的目錄下 更改版型素材的相關檔名，以符合解題的需要： 03P01.htm &#x3D;&gt; index.php 03P02.htm &#x3D;&gt;">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/25/skill-check-group3-01/skill-check-group3-01-001.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/25/skill-check-group3-01/skill-check-group3-01-002.png">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2021/09/25/skill-check-group3-01/skill-check-group3-01-003.png">
 <meta property="article:published_time" content="2021-09-24T17:00:00.000Z">
-<meta property="article:modified_time" content="2023-07-26T12:08:39.874Z">
+<meta property="article:modified_time" content="2023-08-03T02:47:26.255Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book/2021/09/25/skill-check-group3-01/skill-check-group3-01-001.png">
 
 <link rel="canonical" href="https://mackliu.github.io/php-book/2021/09/25/skill-check-group3-01/">
 
@@ -194,7 +198,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-07-26 20:08:39" itemprop="dateModified" datetime="2023-07-26T20:08:39+08:00">2023-07-26</time>
+                <time title="修改時間：2023-08-03 10:47:26" itemprop="dateModified" datetime="2023-08-03T10:47:26+08:00">2023-08-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,26 +226,43 @@
 
       
         <ol>
-<li>開立.&#x2F;css, .&#x2F;js, .&#x2F;api, .&#x2F;icon, 等常用目錄以利檔案分類及管理</li>
+<li>開立.&#x2F;css, .&#x2F;js, .&#x2F;api, .&#x2F;icon, .&#x2F;upload, .&#x2F;view 等常用目錄以利檔案分類及管理</li>
 <li>將素材檔中的.css, .js, 及icon圖檔複製到相應的目錄下</li>
 <li>更改版型素材的相關檔名，以符合解題的需要：<ul>
 <li>03P01.htm &#x3D;&gt; index.php</li>
 <li>03P02.htm &#x3D;&gt; intro.php</li>
-<li>03P03.htm &#x3D;&gt; back.php<span id="more"></span></li>
+<li>03P03.htm &#x3D;&gt; backend.php</li>
 </ul>
 </li>
+</ol>
+<span id="more"></span>
+
+<ol>
 <li>更改版型素材的相關連結及匯入檔內容<ul>
 <li>修改 <code>index.php</code> 中 <code>&lt;link&gt;</code> 及 <code>&lt;script&gt;</code> 中的連結路徑，指向正確的位置</li>
-<li>修改 <code>./css/css.css</code> 中的圖片 <code>url</code> ，指向根目錄下的 <code>../icon</code> 目錄，不過在此題組中，body設定中的 <code>b.png</code> 圖檔不存在，所以直接移除這個設定就可以了。 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">    background:url(../icon/b.png); /* 移除這行即可 */</span><br><span class="line">    font-family:微軟正黑體;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<li>修改 <code>./css/css.css</code> 中的圖片 <code>url</code> ，指向根目錄下的 <code>../icon</code> 目錄，不過在此題組中，body設定中的 <code>b.png</code> 圖檔不存在，所以直接移除這個設定就可以了。 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="comment">/* background:url(../icon/b.png); */</span> </span><br><span class="line">    <span class="attribute">font-family</span>:微軟正黑體;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li>開立 <code>./upload/</code> 目錄，把素材目錄中的預告片海報、院線片海報及影片檔都先複製過來</li>
 <li>以上步驟是為了方便之後在製作列表和上傳檔案功能時，可以減少一些功夫，同時我們為了速度考量，並不會對上傳的檔案做更名之類的多餘動作，因此我們在做列表功能時，可以直接指定目錄及檔名來顯示相關的圖片或影片，而不用等到完成上傳檔案的功能後，才一個一個上傳</li>
+</ol>
+<p><img src="/php-book/2021/09/25/skill-check-group3-01/skill-check-group3-01-001.png"></p>
+<ol>
 <li>開啟 <code>xampp</code> 及 <code>apache</code> 伺服器，使用 <code>localhost</code> 或 <code>127.0.0.1</code> 檢視網頁是否正確顯示，css 的載入是否正確</li>
-<li>建立 <code>front</code>及 <code>back</code> 兩個目錄，一個代表前台的相關檔案，一個代表後台的相關檔案，前後台共用的元件則先放在根目錄下。</li>
-<li>在 <code>index.php</code> 中找到中間主要內容區的區塊，切出去成為 <code>main.php</code> 放在 <code>./front/</code> 目錄中。</li>
-<li>在 <code>intro.php</code> 中找到中間主要內容區的區塊，排除首尾後成為 <code>intro.php</code> 移動到 <code>./front/</code> 目錄中。</li>
-<li>在 <code>back.php</code> 中找到中間主要內容區的區塊，可以先把後台選單的部份，切出去成為 <code>nav.php</code> 放在 <code>./back/</code> 目錄中，其中，針對題目需要製作的預告片、院線片及訂票修改一下連結的參數，提高可讀性。</li>
+</ol>
+<p><img src="/php-book/2021/09/25/skill-check-group3-01/skill-check-group3-01-002.png"></p>
+<ol start="2">
+<li>建立 <code>/view/front</code>及 <code>/view/backend</code> 兩個目錄，一個代表前台的相關檔案，一個代表後台的相關檔案，前後台共用的元件則先放在根目錄下。</li>
+<li>在 <code>index.php</code> 中找到中間主要內容區的區塊，切出去成為 <code>main.php</code> 放在 <code>/view/front/</code> 目錄中。</li>
+</ol>
+<p><img src="/php-book/2021/09/25/skill-check-group3-01/skill-check-group3-01-003.png"></p>
+<ol start="4">
+<li><p>在 <code>intro.php</code> 中找到中間主要內容區的區塊，排除首尾後成為 <code>intro.php</code> 移動到 <code>/view/front/</code> 目錄中。</p>
+</li>
+<li><p>在 <code>backend.php</code> 中找到中間主要內容區的區塊，切出去成為 <code>main.php</code> 放在 <code>/view/backend/</code> 目錄中。</p>
+</li>
+<li><p>修改 <code>index.php</code>及<code>backend.php</code>中的主選單連結及後台功能連結。</p>
+</li>
 </ol>
 <p><strong>back&#x2F;nav.php</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ct a rb&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;&quot;</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;?do=tit&quot;</span>&gt;</span>網站標題管理<span class="tag">&lt;/<span class="name">a</span>&gt;</span>| </span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;?do=go&quot;</span>&gt;</span>動態文字管理<span class="tag">&lt;/<span class="name">a</span>&gt;</span>| </span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;?do=poster&quot;</span>&gt;</span>預告片海報管理<span class="tag">&lt;/<span class="name">a</span>&gt;</span>| </span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;?do=movie&quot;</span>&gt;</span>院線片管理<span class="tag">&lt;/<span class="name">a</span>&gt;</span>| </span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;?do=order&quot;</span>&gt;</span>電影訂票管理<span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -260,7 +281,7 @@
 </ol>
 <p><strong>index.php</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;mm&quot;</span>&gt;</span><br><span class="line">  <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$do</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;do&#x27;</span>]??<span class="string">&#x27;main&#x27;</span>;</span><br><span class="line">    <span class="variable">$file</span>=<span class="string">&#x27;front/&#x27;</span>.<span class="variable">$do</span>.<span class="string">&quot;.php&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">file_exists</span>(<span class="variable">$file</span>))&#123;</span><br><span class="line">      <span class="keyword">include</span> <span class="variable">$file</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">include</span> <span class="string">&#x27;./front/main.php&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="meta">?&gt;</span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>back.php</strong></p>
+<p><strong>backend.php</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//根據網址的GET參數來決定要在主要內容區載入那個功能的檔案</span></span><br><span class="line"><span class="variable">$do</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;do&#x27;</span>]??<span class="string">&#x27;main&#x27;</span>;</span><br><span class="line"><span class="variable">$file</span>=<span class="string">&#x27;./back/&#x27;</span>.<span class="variable">$do</span>.<span class="string">&quot;.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//載入後台上方的功能選單</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;./back/nav.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判斷要載入的檔案是否存在，如果不存在，則預設載入main.php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">file_exists</span>(<span class="variable">$file</span>))&#123;</span><br><span class="line">    <span class="keyword">include</span> <span class="variable">$file</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">include</span> <span class="string">&quot;./back/main.php&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
