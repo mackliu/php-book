@@ -28,7 +28,7 @@
 <meta property="og:description" content="每個題組依狀況不同，在這一步有不同的做法，視自己對題目的熟悉程度來做應變，可以一次把全部資料表建完，也可以視解題的進度來逐步建立或修改資料表。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-24T17:30:00.000Z">
-<meta property="article:modified_time" content="2023-07-26T12:08:39.874Z">
+<meta property="article:modified_time" content="2023-08-03T05:55:29.518Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -194,7 +194,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-07-26 20:08:39" itemprop="dateModified" datetime="2023-07-26T20:08:39+08:00">2023-07-26</time>
+                <time title="修改時間：2023-08-03 13:55:29" itemprop="dateModified" datetime="2023-08-03T13:55:29+08:00">2023-08-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,14 +225,76 @@
 <span id="more"></span>
 <p>根據題意，題組三會需要用到以下的資料表：</p>
 <ul>
+<li>poster - 預告片資料表</li>
 <li>movie - 院線片資料表</li>
 <li>ord - 訂單資料表</li>
-<li>poster - 預告片資料表</li>
 </ul>
 <ol>
 <li>依序建立功能需要的三張資料表:</li>
 </ol>
 <ul>
+<li><p>poster</p>
+<table>
+<thead>
+<tr>
+<th align="center">name</th>
+<th align="center">type</th>
+<th align="center">pk</th>
+<th align="center">default</th>
+<th align="center">A_I</th>
+<th align="center">note</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">id</td>
+<td align="center">int(10)</td>
+<td align="center">yes</td>
+<td align="center"></td>
+<td align="center">yes</td>
+<td align="center">流水號</td>
+</tr>
+<tr>
+<td align="center">name</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">片名</td>
+</tr>
+<tr>
+<td align="center">img</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">檔案路徑</td>
+</tr>
+<tr>
+<td align="center">sh</td>
+<td align="center">int(1)</td>
+<td align="center"></td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">顯示</td>
+</tr>
+<tr>
+<td align="center">rank</td>
+<td align="center">int(5)</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">排序</td>
+</tr>
+<tr>
+<td align="center">ani</td>
+<td align="center">int(1)</td>
+<td align="center"></td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">轉場動畫</td>
+</tr>
+</tbody></table>
+</li>
 <li><p>movie</p>
 <table>
 <thead>
@@ -413,70 +475,8 @@
 </tr>
 </tbody></table>
 </li>
-<li><p>poster</p>
-<table>
-<thead>
-<tr>
-<th align="center">name</th>
-<th align="center">type</th>
-<th align="center">pk</th>
-<th align="center">default</th>
-<th align="center">A_I</th>
-<th align="center">note</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">id</td>
-<td align="center">int(10)</td>
-<td align="center">yes</td>
-<td align="center"></td>
-<td align="center">yes</td>
-<td align="center">流水號</td>
-</tr>
-<tr>
-<td align="center">name</td>
-<td align="center">text</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">片名</td>
-</tr>
-<tr>
-<td align="center">img</td>
-<td align="center">text</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">檔案路徑</td>
-</tr>
-<tr>
-<td align="center">sh</td>
-<td align="center">int(1)</td>
-<td align="center"></td>
-<td align="center">1</td>
-<td align="center"></td>
-<td align="center">顯示</td>
-</tr>
-<tr>
-<td align="center">rank</td>
-<td align="center">int(5)</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">排序</td>
-</tr>
-<tr>
-<td align="center">ani</td>
-<td align="center">int(1)</td>
-<td align="center"></td>
-<td align="center">1</td>
-<td align="center"></td>
-<td align="center">轉場動畫</td>
-</tr>
-</tbody></table>
-</li>
 </ul>
-<ol>
+<ol start="2">
 <li>為了解題順利，可以把資料表中的一些欄位設為可接受空值的狀況，這樣即使未設定內容，也能正常新增或更改資料，不過這個做法只是為了先求解題完成而做的取巧，實務上應該根據需求及功能來決定欄位是否可以接受空值，並在程式端檢查來源資料是否為空值</li>
 </ol>
 
@@ -498,8 +498,8 @@
       <i class="fa fa-chevron-left"></i> [技能檢定]題組三 步驟1  切版、建置前後台畫面
     </a></div>
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/25/skill-check-group3-03/" rel="next" title="[技能檢定]題組三 步驟3 管理登入">
-      [技能檢定]題組三 步驟3 管理登入 <i class="fa fa-chevron-right"></i>
+    <a href="/php-book/2021/09/25/skill-check-group3-03/" rel="next" title="[技能檢定]題組三 步驟3 建立Controller及共用函式檔">
+      [技能檢定]題組三 步驟3 建立Controller及共用函式檔 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -574,7 +574,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">113</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
