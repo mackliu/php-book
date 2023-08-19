@@ -28,7 +28,7 @@
 <meta property="og:description" content="每個題組依狀況不同，在這一步有不同的做法，視自己對題目的熟悉程度來做應變，可以一次把全部資料表建完，也可以視解題的進度來逐步建立或修改資料表。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-09-25T17:30:00.000Z">
-<meta property="article:modified_time" content="2023-07-26T12:08:39.880Z">
+<meta property="article:modified_time" content="2023-08-19T04:15:49.931Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -194,7 +194,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-07-26 20:08:39" itemprop="dateModified" datetime="2023-07-26T20:08:39+08:00">2023-07-26</time>
+                <time title="修改時間：2023-08-19 12:15:49" itemprop="dateModified" datetime="2023-08-19T12:15:49+08:00">2023-08-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,18 +225,18 @@
 <span id="more"></span>
 <p>根據題意，題組四會需要用到以下的資料表：</p>
 <ul>
-<li>admin - 管理員資料表</li>
-<li>bottom - 頁尾版權資料表</li>
+<li>admins - 管理員資料表</li>
+<li>bottoms - 頁尾版權資料表</li>
 <li>goods - 商品資料表</li>
-<li>mem - 會員資料表</li>
+<li>users - 會員資料表</li>
 <li>orders - 訂單資料表</li>
-<li>type - 分類資料表</li>
+<li>types - 分類資料表</li>
 </ul>
 <ol>
 <li>依序建立功能需要的六張資料表:</li>
 </ol>
 <ul>
-<li><p>admin</p>
+<li><p>admins</p>
 <table>
 <thead>
 <tr>
@@ -282,7 +282,7 @@
 </tr>
 </tbody></table>
 </li>
-<li><p>bottom</p>
+<li><p>bottoms</p>
 <table>
 <thead>
 <tr>
@@ -414,7 +414,7 @@
 </tr>
 </tbody></table>
 </li>
-<li><p>mem</p>
+<li><p>users</p>
 <table>
 <thead>
 <tr>
@@ -483,10 +483,10 @@
 <td align="center">電子郵件</td>
 </tr>
 <tr>
-<td align="center">reg_date</td>
-<td align="center">timestamp</td>
+<td align="center">regdate</td>
+<td align="center">date</td>
 <td align="center"></td>
-<td align="center">current_timestamp()</td>
+<td align="center"></td>
 <td align="center"></td>
 <td align="center">註冊日期</td>
 </tr>
@@ -577,16 +577,16 @@
 <td align="center">商品</td>
 </tr>
 <tr>
-<td align="center">ord_date</td>
-<td align="center">timestamp</td>
+<td align="center">orderdate</td>
+<td align="center">date</td>
 <td align="center"></td>
-<td align="center">current_timestamp()</td>
+<td align="center"></td>
 <td align="center"></td>
 <td align="center">訂購日期</td>
 </tr>
 </tbody></table>
 </li>
-<li><p>type</p>
+<li><p>types</p>
 <table>
 <thead>
 <tr>
@@ -615,7 +615,7 @@
 <td align="center">選單名稱</td>
 </tr>
 <tr>
-<td align="center">parent</td>
+<td align="center">big</td>
 <td align="center">int(2)</td>
 <td align="center"></td>
 <td align="center">0</td>
@@ -647,8 +647,8 @@
       <i class="fa fa-chevron-left"></i> [技能檢定]題組四 步驟1  切版、建置前後台畫面
     </a></div>
       <div class="post-nav-item">
-    <a href="/php-book/2021/09/26/skill-check-group4-03/" rel="next" title="[技能檢定]題組四 步驟3 建置首頁標題區及相關頁面內容-最新消息及購物流程">
-      [技能檢定]題組四 步驟3 建置首頁標題區及相關頁面內容-最新消息及購物流程 <i class="fa fa-chevron-right"></i>
+    <a href="/php-book/2021/09/26/skill-check-group4-03/" rel="next" title="[技能檢定]步驟3 建立Controller及共用函式檔">
+      [技能檢定]步驟3 建立Controller及共用函式檔 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -723,7 +723,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">122</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
