@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-04/skill-check1-group1-04-004.png">
 <meta property="og:image" content="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-04/skill-check1-group1-04-005.png">
 <meta property="article:published_time" content="2024-01-03T01:30:00.000Z">
-<meta property="article:modified_time" content="2024-01-04T02:01:30.774Z">
+<meta property="article:modified_time" content="2024-01-04T14:16:08.274Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-04 10:01:30" itemprop="dateModified" datetime="2024-01-04T10:01:30+08:00">2024-01-04</time>
+                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,22 +237,13 @@
 <li>打開 <strong>phpmyadmin</strong> ，分別在 <code>total</code> 及 <code>bottom</code> 資料表中先新增一筆資料：</li>
 </ol>
 <p><img src="/php-book/2024/01/03/skill-check1-group1-04/skill-check1-group1-04-001.png"><br><img src="/php-book/2024/01/03/skill-check1-group1-04/skill-check1-group1-04-002.png"><br><img src="/php-book/2024/01/03/skill-check1-group1-04/skill-check1-group1-04-003.png"><br><img src="/php-book/2024/01/03/skill-check1-group1-04/skill-check1-group1-04-004.png"></p>
-<ol start="2">
-<li><p>在 <code>/Controller/Total.php</code> 中增加一個可以讀取到目前的訪客人數的方法：<br><strong>&#x2F;Controller&#x2F;Total.php</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;DB.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Total</span> <span class="keyword">extends</span> <span class="title">DB</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">parent</span>::<span class="title function_ invoke__">__construct</span>(<span class="string">&#x27;total&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 增加一個方法名為show()</span></span><br><span class="line"><span class="comment">     * 這個方法會找到total資料表中，id為1的資料，</span></span><br><span class="line"><span class="comment">     * 並回傳這筆資料中的total欄位值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="number">1</span>)[<span class="string">&#x27;total&#x27;</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>由於 <strong>show()</strong> 這個方法是公開的，因此我們可以直接在頁面上進行存取：<br><strong>&#x2F;index.php</strong> 及 <strong>&#x2F;backend.php</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;dbor&quot;</span> <span class="attr">style</span>=<span class="string">&quot;margin:3px; width:95%; height:20%; line-height:100px;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;t&quot;</span>&gt;</span>進站總人數 :&lt;?=$Total-&gt;show();?&gt;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如果可以看到進站總人數的結果，那就表示資料庫的連線及DB類別的內容都是正確的。</p>
-</li>
+<ol>
+<li>由於我們已經在 db.php中宣告了total這張資料表的物件變數，並引入到index.php中，因此我們可以直接在頁面上進行存取：<br><strong>&#x2F;index.php</strong> 及 <strong>&#x2F;backend.php</strong><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;dbor&quot;</span> <span class="attr">style</span>=<span class="string">&quot;margin:3px; width:95%; height:20%; line-height:100px;&quot;</span>&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!--透過$Total取出id為1的資料並取得欄位為total的內容--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;t&quot;</span>&gt;</span>進站總人數 : &lt;?=$Total-&gt;find(1)[&#x27;total&#x27;];?&gt;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+如果可以看到進站總人數的結果，那就表示資料庫的連線及DB類別的內容都是正確的。</li>
 </ol>
 <p><img src="/php-book/2024/01/03/skill-check1-group1-04/skill-check1-group1-04-005.png"></p>
-<ol start="4">
-<li><p>完成進站人數的顯示後，可以按照一樣的流程來顯示頁尾版權文字。<br><strong>&#x2F;Controller&#x2F;Bottom.php</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;DB.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bottom</span> <span class="keyword">extends</span> <span class="title">DB</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">parent</span>::<span class="title function_ invoke__">__construct</span>(<span class="string">&#x27;bottom&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 增加一個方法名為show()</span></span><br><span class="line"><span class="comment">     * 這個方法會找到bottom資料表中，id為1的資料，</span></span><br><span class="line"><span class="comment">     * 並回傳這筆資料中的bottom欄位值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="number">1</span>)[<span class="string">&#x27;bottom&#x27;</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 <strong>index.php</strong> 及 <strong>backend.php</strong> 中顯示頁尾版權資料</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width:1024px; left:0px; position:relative; background:#FC3; </span></span></span><br><span class="line"><span class="string"><span class="tag">            margin-top:4px; height:123px; display:block;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;t&quot;</span> <span class="attr">style</span>=<span class="string">&quot;line-height:123px;&quot;</span>&gt;</span>&lt;?=$Bottom-&gt;show();?&gt;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<ol start="2">
+<li>完成進站人數的顯示後，可以按照一樣的流程來顯示頁尾版權文字，並且在 <strong>index.php</strong> 及 <strong>backend.php</strong> 中都可以顯示進站人數及頁尾版權資料<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;&quot;</span>&gt;</span></span><br><span class="line">                                     <span class="comment">&lt;!--透過$Bottom取出id為1的資料並取得欄位為bottom的內容--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;t&quot;</span> <span class="attr">style</span>=<span class="string">&quot;line-height:123px;&quot;</span>&gt;</span>&lt;?=$Bottom-&gt;find(1)[&#x27;bottom&#x27;];?&gt;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>快速的先完成這兩個只做讀取資料的功能，確認資料庫和類別都是可以正常運作的，接下來的開發也會比較順利</p>
 
@@ -270,8 +261,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/php-book/2024/01/03/skill-check1-group1-03/" rel="prev" title="[技能檢定]題組一 步驟3 建立Controller及共用函式檔">
-      <i class="fa fa-chevron-left"></i> [技能檢定]題組一 步驟3 建立Controller及共用函式檔
+    <a href="/php-book/2024/01/03/skill-check1-group1-03/" rel="prev" title="[技能檢定]題組一 步驟3 建立共用函式檔">
+      <i class="fa fa-chevron-left"></i> [技能檢定]題組一 步驟3 建立共用函式檔
     </a></div>
       <div class="post-nav-item">
     <a href="/php-book/2024/01/03/skill-check1-group1-05/" rel="next" title="[技能檢定]題組一 步驟5 整理後台選單連結">
@@ -357,7 +348,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/php-book/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">主題</span></a>
       </div>
       <div class="site-state-item site-state-tags">
