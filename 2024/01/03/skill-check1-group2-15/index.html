@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":24,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="最新文章區和人氣文章區的功能非常類似，只差在顯示文章內容和排序方式而，所以先做最新文章區，做完後可以直接複製到人氣文章區做修改即可，這邊比較麻煩的地方就在於登入前和登入後的顯示內容及功能會不同，而且同時會影響到三張資料表，因此在製作上要格外小心和細心：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[技能檢定]題組二 步驟15  建置最新文章列表、分頁及按讚功能">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-15/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="最新文章區和人氣文章區的功能非常類似，只差在顯示文章內容和排序方式而，所以先做最新文章區，做完後可以直接複製到人氣文章區做修改即可，這邊比較麻煩的地方就在於登入前和登入後的顯示內容及功能會不同，而且同時會影響到三張資料表，因此在製作上要格外小心和細心：">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-15/skill-check1-group2-15-001.png">
+<meta property="article:published_time" content="2024-01-03T07:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-04T02:01:30.803Z">
+<meta property="article:author" content="Mack Liu">
+<meta property="article:tag" content="php,web,javascript,html,mysql,css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-15/skill-check1-group2-15-001.png">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-15/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[技能檢定]題組二 步驟15  建置最新文章列表、分頁及按讚功能 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mackliu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [技能檢定]題組二 步驟15  建置最新文章列表、分頁及按讚功能
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 15:00:00" itemprop="dateCreated datePublished" datetime="2024-01-03T15:00:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-04 10:01:30" itemprop="dateModified" datetime="2024-01-04T10:01:30+08:00">2024-01-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8402/" itemprop="url" rel="index"><span itemprop="name">題組02</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>最新文章區和人氣文章區的功能非常類似，只差在顯示文章內容和排序方式而，所以先做最新文章區，做完後可以直接複製到人氣文章區做修改即可，這邊比較麻煩的地方就在於登入前和登入後的顯示內容及功能會不同，而且同時會影響到三張資料表，因此在製作上要格外小心和細心：</p>
+<span id="more"></span>
+
+<ol>
+<li><p>建立 <code>./view/front/news.php</code> 檔案</p>
+</li>
+<li><p>在 <code>news.php</code> 檔案中撰寫列出文章及分頁功能的程式碼</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;fieldset&gt;</span><br><span class="line">    &lt;legend&gt;目前位置：首頁 &gt; 最新文章區&lt;/legend&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td width=<span class="string">&quot;30%&quot;</span>&gt;標題&lt;/td&gt;</span><br><span class="line">            &lt;td width=<span class="string">&quot;40%&quot;</span>&gt;內容&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$rows</span>=<span class="variable">$News</span>-&gt;<span class="title function_ invoke__">paginate</span>(<span class="number">5</span>,[<span class="string">&#x27;sh&#x27;</span>=&gt;<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$rows</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">    <span class="meta">?&gt;</span>        </span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td width=<span class="string">&quot;30%&quot;</span> <span class="class"><span class="keyword">class</span>=&#x27;<span class="title">title</span>&#x27;&gt;&lt;?=$<span class="title">row</span>[&#x27;<span class="title">title</span>&#x27;];?&gt;&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">td</span> <span class="title">width</span>=&quot;40%&quot; <span class="title">class</span>=&#x27;<span class="title">content</span>&#x27;&gt;</span></span><br><span class="line"><span class="class">                &lt;!--建立兩個區塊分別放置部份內容及全部內容--&gt;</span></span><br><span class="line"><span class="class">                &lt;<span class="title">div</span> <span class="title">class</span>=&#x27;<span class="title">short</span>&#x27;&gt;&lt;?=<span class="title">mb_substr</span>($<span class="title">row</span>[&#x27;<span class="title">text</span>&#x27;],0,25);?&gt;...&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="class">                &lt;!--全部內容預設為不顯示--&gt;</span></span><br><span class="line"><span class="class">                &lt;<span class="title">div</span> <span class="title">class</span>=&quot;<span class="title">all</span>&quot; <span class="title">style</span>=&quot;<span class="title">display</span>:<span class="title">none</span>&quot;&gt;&lt;?=$<span class="title">row</span>[&#x27;<span class="title">text</span>&#x27;];?&gt;&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">td</span>&gt;&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;?<span class="title">php</span>  &#125; ?&gt;        </span></span><br><span class="line"><span class="class">    &lt;/<span class="title">table</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">div</span>&gt;&lt;?=$<span class="title">News</span>-&gt;<span class="title">links</span>();?&gt;&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">fieldset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>news.php</code> 檔案中撰寫控制顯示文章內容的js程式碼</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//同時對class title及content進行點擊事件註冊</span></span><br><span class="line">$(<span class="string">&quot;.title,.content&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;click&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//利用dom tree找到class short及all，進行顯示切換</span></span><br><span class="line">    $(<span class="variable language_">this</span>).<span class="title function_">parent</span>().<span class="title function_">find</span>(<span class="string">&quot;.short,.all&quot;</span>).<span class="title function_">toggle</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>在類別中建立判斷要顯示按讚文字的方法<br><strong>&#x2F;Controller&#x2F;Log.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showGoods</span>(<span class="params"><span class="variable">$news</span></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//根據使用者的登入及傳入的文章id來判斷使用者是否點讚過這篇文章</span></span><br><span class="line">    <span class="variable">$chk</span>=<span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">count</span>([<span class="string">&#x27;user&#x27;</span>=&gt;<span class="variable">$_SESSION</span>[<span class="string">&#x27;user&#x27;</span>],<span class="string">&#x27;news&#x27;</span>=&gt;<span class="variable">$news</span>]);</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$chk</span>&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;收回讚&quot;</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;讚&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在第三欄中加入根據登入狀態來顯示讚的程式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;td&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;user&#x27;</span>]))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;a href=&#x27;#&#x27; class=&#x27;goods&#x27; data-id=&#x27;<span class="subst">&#123;$row[&#x27;id&#x27;]&#125;</span>&#x27;&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$Log</span>-&gt;<span class="title function_ invoke__">showGoods</span>(<span class="variable">$row</span>[<span class="string">&#x27;id&#x27;</span>]);</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;/a&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line">&lt;/td&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>撰寫紀錄按讚功能的程式，這邊使用ajax來完成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;.goods&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;click&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> news,type</span><br><span class="line">    <span class="comment">//取得點擊文章的id</span></span><br><span class="line">    news=$(<span class="variable language_">this</span>).<span class="title function_">data</span>(<span class="string">&quot;id&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//根據點擊的文字來決定動作</span></span><br><span class="line">    <span class="keyword">switch</span>($(<span class="variable language_">this</span>).<span class="title function_">text</span>())&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;讚&quot;</span>:</span><br><span class="line">            <span class="comment">//如果按下的字是&quot;讚&quot;，則替換成&quot;收回讚&quot;</span></span><br><span class="line">            $(<span class="variable language_">this</span>).<span class="title function_">text</span>(<span class="string">&quot;收回讚&quot;</span>);</span><br><span class="line">            <span class="comment">//設定動作類型為1</span></span><br><span class="line">            type=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;收回讚&quot;</span>:</span><br><span class="line">            <span class="comment">//如果按下的字是&quot;收回讚&quot;，則替換成&quot;讚&quot;</span></span><br><span class="line">            $(<span class="variable language_">this</span>).<span class="title function_">text</span>(<span class="string">&quot;讚&quot;</span>)</span><br><span class="line">            <span class="comment">//設定動作類型為2</span></span><br><span class="line">            type=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//使用ajax的方式將文章id及動作類型傳送到後端去處理</span></span><br><span class="line">        $.<span class="title function_">post</span>(<span class="string">&quot;./api/goods.php&quot;</span>,&#123;news,type&#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>撰寫後端按讚紀錄程式<br><strong>&#x2F;api&#x2F;goods.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;../base.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//取得動作類型</span></span><br><span class="line"><span class="variable">$type</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;type&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//將動作type變數從$_POST陣列中移除</span></span><br><span class="line"><span class="keyword">unset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;type&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在$_POST陣列中增加登入的使用者帳號</span></span><br><span class="line"><span class="variable">$_POST</span>[<span class="string">&#x27;user&#x27;</span>]=<span class="variable">$_SESSION</span>[<span class="string">&#x27;user&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//根據文章id找到文章資料</span></span><br><span class="line"><span class="variable">$news</span>=<span class="variable">$News</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;news&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//依據動作類型來進行不同的作業</span></span><br><span class="line"><span class="keyword">switch</span>(<span class="variable">$type</span>)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>: <span class="comment">//按讚-&gt;新增log</span></span><br><span class="line">        <span class="comment">//增加一筆log紀錄文章id及帳號</span></span><br><span class="line">        <span class="variable">$Log</span>-&gt;<span class="title function_ invoke__">save</span>(<span class="variable">$_POST</span>);</span><br><span class="line">        <span class="comment">//文章的按讚數加1</span></span><br><span class="line">        <span class="variable">$news</span>[<span class="string">&#x27;goods&#x27;</span>]++;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        <span class="comment">//依據文章id及登入帳號刪除按讚紀錄</span></span><br><span class="line">        <span class="variable">$Log</span>-&gt;<span class="title function_ invoke__">del</span>(<span class="variable">$_POST</span>);</span><br><span class="line">        <span class="comment">//文章按讚數減1</span></span><br><span class="line">        <span class="variable">$news</span>[<span class="string">&#x27;goods&#x27;</span>]--;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//更新文章資料</span></span><br><span class="line"><span class="variable">$News</span>-&gt;<span class="title function_ invoke__">save</span>(<span class="variable">$news</span>);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/php-book/2024/01/03/skill-check1-group2-15/skill-check1-group2-15-001.png"></p>
+<ol start="8">
+<li>複製 <strong>news.php</strong> 為 <strong>pop.php</strong> 人氣文章的列表、分頁、按讚和最新文章是一樣的</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2024/01/03/skill-check1-group2-14/" rel="prev" title="[技能檢定]題組二 步驟14  製作問卷管理功能">
+      <i class="fa fa-chevron-left"></i> [技能檢定]題組二 步驟14  製作問卷管理功能
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2024/01/03/skill-check1-group2-16/" rel="next" title="[技能檢定]題組二 步驟16  建置人氣文章區彈出視窗功能及人氣排序功能">
+      [技能檢定]題組二 步驟16  建置人氣文章區彈出視窗功能及人氣排序功能 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mack Liu"
+      src="/php-book/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Mack Liu</p>
+  <div class="site-description" itemprop="description">網頁程式設計教學相關資料</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">205</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">主題</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mackliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mackliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:macklun@gmail.com" title="E-Mail → mailto:macklun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情連結
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.mackliu.com/" title="https:&#x2F;&#x2F;blog.mackliu.com&#x2F;" rel="noopener" target="_blank">mack的自言自語</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bquiz.mackliu.com/" title="https:&#x2F;&#x2F;bquiz.mackliu.com&#x2F;" rel="noopener" target="_blank">網頁乙級解題網</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wdaweb.github.io/" title="https:&#x2F;&#x2F;wdaweb.github.io&#x2F;" rel="noopener" target="_blank">從零開始的網頁設計課程</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack Liu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/pisces.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
