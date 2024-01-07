@@ -161,6 +161,814 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2024/01/03/skill-check1-group1-22/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟22 處理登入功能及相關連結修改</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 12:30:00" itemprop="dateCreated datePublished" datetime="2024-01-03T12:30:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-07 18:36:54" itemprop="dateModified" datetime="2024-01-07T18:36:54+08:00">2024-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>根據版型的提示，前台有一個登理登入的按鈕可以連到登入畫面，登入後到後台時有一個按鈕可以登出，而如果在登入的狀態下停在前台時，原本的管理登入按鈕會變成是可以跳到後台的按鈕，這表示我們需要有一個機制來記錄管理員的登入狀態，才能根據這個狀態對按鈕做出不同的功能，而後台的管理登出按鈕，題目只要求可以跳到管理登入的畫面，並沒有要求要做出真正的登出功能，比如清除session來登出，因此如果時間來不及，可以做成連結跳轉到登入畫面就可以了。時間足夠的話，可以把清除session的真正登出功能也做上。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-22/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2024/01/03/skill-check1-group1-21/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟21 完成選單功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 12:20:00" itemprop="dateCreated datePublished" datetime="2024-01-03T12:20:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-07 17:15:27" itemprop="dateModified" datetime="2024-01-07T17:15:27+08:00">2024-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>選單功能是前台功能中較為複雜的一個項目，因為有主次選單的關係，很多人會在這邊搞混，要特別注意巢狀迴圈應用上容易犯錯的地方；</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-21/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2024/01/03/skill-check1-group1-20/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟20 完成更多最新消息功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 12:10:00" itemprop="dateCreated datePublished" datetime="2024-01-03T12:10:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-07 16:54:23" itemprop="dateModified" datetime="2024-01-07T16:54:23+08:00">2024-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>當設定為顯示的最新消息超過五筆時會在首頁出現 <code>More...</code> 的連結，並導引使用者跳轉到 <code>index.php?do=news</code> 頁面。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-20/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2024/01/03/skill-check1-group1-19/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟19 完成校園映像檔輪播功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 12:00:00" itemprop="dateCreated datePublished" datetime="2024-01-03T12:00:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-07 16:46:33" itemprop="dateModified" datetime="2024-01-07T16:46:33+08:00">2024-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>版型檔案己經有提供了js程式來做圖片輪播的功能，不過程式本身有點小BUG，最後三張圖片有可能不會出現，這個問題可修可不修，現場評核時只看功能有沒有做出來，不會去驗證程式的小問題，所以我們要做的就是把圖片讀出來，然後讓JS程式去控制要顯示那幾張圖片。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-19/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2024/01/03/skill-check1-group1-18/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟18 完成前台動畫圖片輪播及最新消息顯示</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 11:50:00" itemprop="dateCreated datePublished" datetime="2024-01-03T11:50:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-07 16:34:00" itemprop="dateModified" datetime="2024-01-07T16:34:00+08:00">2024-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>首頁的動畫及最新消息只需要修改 <code>/front/main.php</code> </li>
+<li>搬移動畫 <code>&lt;script&gt;</code> 的位置到動畫區塊後面，不然會發生畫面先空白三秒才開始輪播的問題</li>
+<li>要在網頁載入後先寫入第一張動畫圖片，不然動畫區塊會先呈現空白</li>
+<li>最新消息區要先判斷需要顯示的筆數是否超過五筆，決定是否會出現”more…”文字連結</li>
+<li>處理最新消息的字串以配合內建JS的彈出視窗功能</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-18/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2024/01/03/skill-check1-group1-17/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟17 完成標題圖片/動態文字前台功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 11:40:00" itemprop="dateCreated datePublished" datetime="2024-01-03T11:40:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-07 16:17:55" itemprop="dateModified" datetime="2024-01-07T16:17:55+08:00">2024-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>前台的功能大多都是讀取資料，然後顯示出來，除了選單功能較複雜外，其他的功能就只是要細心點，別打錯字就可以了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-17/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2024/01/03/skill-check1-group1-16/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟16 製作後台訪客計數器及頁尾版權文字管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 11:30:00" itemprop="dateCreated datePublished" datetime="2024-01-03T11:30:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-07 16:07:20" itemprop="dateModified" datetime="2024-01-07T16:07:20+08:00">2024-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="建立訪客計數器畫面"><a href="#建立訪客計數器畫面" class="headerlink" title="建立訪客計數器畫面"></a>建立訪客計數器畫面</h2><p>修改原本的後台頁面內容，整理成符合題意的畫面</p>
+<p><img src="/php-book/2024/01/03/skill-check1-group1-16/skill-check1-group1-16-001.png"></p>
+<h2 id="撰寫表單內容"><a href="#撰寫表單內容" class="headerlink" title="撰寫表單內容"></a>撰寫表單內容</h2><p>建立一個可供修改的表單<br><strong>&#x2F;back&#x2F;total.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=<span class="string">&quot;width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;&quot;</span>&gt;</span><br><span class="line">    &lt;p <span class="class"><span class="keyword">class</span>=&quot;<span class="title">t</span> <span class="title">cent</span> <span class="title">botli</span>&quot;&gt;進站總人數管理&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">form</span> <span class="title">method</span>=&quot;<span class="title">post</span>&quot; <span class="title">action</span>=&quot;/<span class="title">api</span>/<span class="title">edit_info</span>.<span class="title">php</span>&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">table</span> <span class="title">style</span>=&quot;<span class="title">width</span>:50%;<span class="title">margin</span>:<span class="title">auto</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">tr</span> <span class="title">class</span>=&quot;<span class="title">yel</span>&quot;&gt;</span></span><br><span class="line"><span class="class">                &lt;<span class="title">td</span> <span class="title">width</span>=&quot;50%&quot;&gt;網站標題&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">                &lt;<span class="title">td</span> <span class="title">width</span>=&quot;50%&quot;&gt;</span></span><br><span class="line"><span class="class">                    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">number</span>&quot; <span class="title">name</span>=&quot;<span class="title">total</span>&quot; <span class="title">value</span>=&quot;&lt;?=$<span class="title">Total</span>-&gt;<span class="title">find</span>(1)[&#x27;<span class="title">total</span>&#x27;];?&gt;&quot;&gt;</span></span><br><span class="line"><span class="class">                    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">hidden</span>&quot; <span class="title">name</span>=&quot;<span class="title">table</span>&quot; <span class="title">value</span>=&quot;&lt;?=$<span class="title">do</span>;?&gt;&quot;&gt;</span></span><br><span class="line"><span class="class">                &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">table</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">table</span> <span class="title">style</span>=&quot;<span class="title">margin</span>-<span class="title">top</span>:40<span class="title">px</span>; <span class="title">width</span>:70%;&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">                &lt;<span class="title">td</span> <span class="title">width</span>=&quot;200<span class="title">px</span>&quot;&gt;&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">                &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">cent</span>&quot;&gt;</span></span><br><span class="line"><span class="class">                    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">submit</span>&quot; <span class="title">value</span>=&quot;修改確定&quot;&gt;</span></span><br><span class="line"><span class="class">                    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">reset</span>&quot; <span class="title">value</span>=&quot;重置&quot;&gt;</span></span><br><span class="line"><span class="class">                &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">table</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="建立頁尾版權文字畫面"><a href="#建立頁尾版權文字畫面" class="headerlink" title="建立頁尾版權文字畫面"></a>建立頁尾版權文字畫面</h2><p>可以複製訪客計數器的頁面內容，修改成頁尾版權頁的內容</p>
+<p><img src="/php-book/2024/01/03/skill-check1-group1-16/skill-check1-group1-16-002.png"></p>
+<h2 id="撰寫表單內容-1"><a href="#撰寫表單內容-1" class="headerlink" title="撰寫表單內容"></a>撰寫表單內容</h2><p>建立一個可供修改的表單<br><strong>&#x2F;back&#x2F;bottom.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=<span class="string">&quot;width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;&quot;</span>&gt;</span><br><span class="line">    &lt;p <span class="class"><span class="keyword">class</span>=&quot;<span class="title">t</span> <span class="title">cent</span> <span class="title">botli</span>&quot;&gt;頁尾版權資料管理&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">form</span> <span class="title">method</span>=&quot;<span class="title">post</span>&quot; <span class="title">action</span>=&quot;/<span class="title">api</span>/<span class="title">edit_info</span>.<span class="title">php</span>&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">table</span> <span class="title">style</span>=&quot;<span class="title">width</span>:50%;<span class="title">margin</span>:<span class="title">auto</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">tr</span> <span class="title">class</span>=&quot;<span class="title">yel</span>&quot;&gt;</span></span><br><span class="line"><span class="class">                &lt;<span class="title">td</span> <span class="title">width</span>=&quot;50%&quot;&gt;頁尾版權資料&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">                &lt;<span class="title">td</span> <span class="title">width</span>=&quot;50%&quot;&gt;</span></span><br><span class="line"><span class="class">                    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">text</span>&quot; <span class="title">name</span>=&quot;<span class="title">bottom</span>&quot; <span class="title">value</span>=&quot;&lt;?=$<span class="title">Bottom</span>-&gt;<span class="title">find</span>(1)[&#x27;<span class="title">bottom</span>&#x27;];?&gt;&quot;&gt;</span></span><br><span class="line"><span class="class">                    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">hidden</span>&quot; <span class="title">name</span>=&quot;<span class="title">table</span>&quot; <span class="title">value</span>=&quot;&lt;?=$<span class="title">do</span>;?&gt;&quot;&gt;</span></span><br><span class="line"><span class="class">                &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">table</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">table</span> <span class="title">style</span>=&quot;<span class="title">margin</span>-<span class="title">top</span>:40<span class="title">px</span>; <span class="title">width</span>:70%;&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">                &lt;<span class="title">td</span> <span class="title">width</span>=&quot;200<span class="title">px</span>&quot;&gt;&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">                &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">cent</span>&quot;&gt;</span></span><br><span class="line"><span class="class">                    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">submit</span>&quot; <span class="title">value</span>=&quot;修改確定&quot;&gt;</span></span><br><span class="line"><span class="class">                    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">reset</span>&quot; <span class="title">value</span>=&quot;重置&quot;&gt;</span></span><br><span class="line"><span class="class">                &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">table</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2024/01/03/skill-check1-group1-15/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟15 製作編輯次選單功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 11:20:00" itemprop="dateCreated datePublished" datetime="2024-01-03T11:20:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-07 16:02:01" itemprop="dateModified" datetime="2024-01-07T16:02:01+08:00">2024-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>次選單功能是本題組中較為複雜，但說明卻相對模糊的功能，依照題目給出的參考圖來看，題目希望次選單的新增&#x2F;修改&#x2F;刪除都在彈出視窗中完成。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-15/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2024/01/03/skill-check1-group1-14/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟14 製作分頁功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 11:10:00" itemprop="dateCreated datePublished" datetime="2024-01-03T11:10:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-07 18:40:19" itemprop="dateModified" datetime="2024-01-07T18:40:19+08:00">2024-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本題組一共有三個地方會使用到分頁功能， <code>校園映像圖片</code>、<code>最新消息資料</code>、<code>更多消息</code>，其中兩個在後台，一個在前台，在撰寫校園映像功能的後台時，已經先製作過一次分頁的功能了，只要將相關的變數設定好，其他的分頁功能就只需複製程式碼就可以套用了。</p>
+<p>在乙級的四個題組中，分頁功能的使用有三題，因此一定要熟悉分頁的製作方式。<br>請參考 <strong><a href="http://mackliu.github.io/php-book/2024/01/03/skill-check1-init-04/">前置作業-程式功能整合測試</a></strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-14/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -244,816 +1052,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2024/01/03/skill-check1-group1-12/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟12 快速套用所有功能的列表及編輯功能</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2024-01-03 10:50:00" itemprop="dateCreated datePublished" datetime="2024-01-03T10:50:00+08:00">2024-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-07 14:56:50" itemprop="dateModified" datetime="2024-01-07T14:56:50+08:00">2024-01-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>列表功能的部份除了欄位有差異外，程式的邏輯是一樣的，因此可以參考 <strong>.&#x2F;back&#x2F;title.php</strong> 中的程式碼片段來快速套用到其他的功能中，因此我們可以直接複製 <strong>.&#x2F;back&#x2F;title.php</strong> ，將檔名改成各個功能的名稱，再進行欄位的修改，即可快速套用。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-12/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2024/01/03/skill-check1-group1-11/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟11 快速套用所有功能的新增</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2024-01-03 10:40:00" itemprop="dateCreated datePublished" datetime="2024-01-03T10:40:00+08:00">2024-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-07 14:18:19" itemprop="dateModified" datetime="2024-01-07T14:18:19+08:00">2024-01-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>完成網站標題圖片管理的功能後，其它六個後台項目的畫面及功能都差不多，所以可以使用相同的模式來快速的套用到其它功能去，在套用之前，我們先來快速回想一下，我們做了那些事來完成<strong>網站標題管理</strong>的功能，這樣我們在套用的時候才會有效率，而不是複製貼上而已：</p>
-<ol>
-<li>我們整理了後台的頁面，其中每個功能的資料列表欄位不同，新增彈出視窗中的表單也不同，有些功能有更新圖片。</li>
-<li>我們建立了add,edit,update三支api,每支api都可以依據table名來對應不只一個功能，</li>
-<li>我們透過網址傳參數的方式讓表單可以取得隱藏的資料，比如資料表名稱或資料id</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-11/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2024/01/03/skill-check1-group1-10/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟10 撰寫更新圖片api</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2024-01-03 10:30:00" itemprop="dateCreated datePublished" datetime="2024-01-03T10:30:00+08:00">2024-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-07 14:08:26" itemprop="dateModified" datetime="2024-01-07T14:08:26+08:00">2024-01-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>更新圖片的表單我們在步驟6時已經建立好了，但是更新圖片的按鈕是到步驟8時列出資料才看到，我們在按下按鈕時會同時發出table及id兩個參數供表單放入隱蔵欄位中；<br>一共有三個功能會使用到類似的表單，而我們的設計方便讓我們只需要專注在表單中文字差異的部份即可。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-10/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-09/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2024/01/03/skill-check1-group1-09/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟9 撰寫編輯資料api</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2024-01-03 10:20:00" itemprop="dateCreated datePublished" datetime="2024-01-03T10:20:00+08:00">2024-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-07 13:13:12" itemprop="dateModified" datetime="2024-01-07T13:13:12+08:00">2024-01-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>由題組提供的參考圖，原題意是要求可以同時編輯更新多筆資料，因此我們將資料列表及可輸入資料的表單元件都放在同一個 <code>&lt;form&gt;</code> 表單中，這樣當按下送出按鈕時，所有的表單資料都會被送往後端去處理。<br>我們的設計希望一支api可以儘可能的處理更多的功能，因此我們設計了隱藏欄位來增加各種屬性，提供後端程式做為判斷的依據。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-09/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-08/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2024/01/03/skill-check1-group1-08/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟8 撰寫後台資料列表功能</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2024-01-03 10:10:00" itemprop="dateCreated datePublished" datetime="2024-01-03T10:10:00+08:00">2024-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>完成新增資料後，接下來就是要可以在畫面上看到新增資料的結果，也就是把資料表中存入的資料，在網頁上顯示出來，這邊我們採用直接在網頁上取用並echo 相關html標籤的方式來完成資料列表。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-08/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2024/01/03/skill-check1-group1-07/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟7 撰寫新增功能api</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2024-01-03 10:00:00" itemprop="dateCreated datePublished" datetime="2024-01-03T10:00:00+08:00">2024-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>題組一中除了total和bottom沒有新增功能外，其它的功能都是能新增資料的，因此我們在設計後台儲存時，希望能使用一支程式就可以完成所有資料表的新增資料，所以我們要考慮如何判斷表單過來的資料是那一張資料表，同時有些功能可以上傳圖片，因此也要考慮是否有上傳圖片的情形。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-07/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2024/01/03/skill-check1-group1-06/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟6 製作後台網站標題管理功能</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2024-01-03 09:50:00" itemprop="dateCreated datePublished" datetime="2024-01-03T09:50:00+08:00">2024-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>除了 <code>total</code>及<code>bottom</code>，其他七項後台的功能版面都很像，我們先以<code>網站標題管理</code>這個功能來做示範，先完成這個功能後，相同的程式碼可以快速套用到其它功能去；</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-06/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2024/01/03/skill-check1-group1-05/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟5 整理後台選單連結</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2024-01-03 09:40:00" itemprop="dateCreated datePublished" datetime="2024-01-03T09:40:00+08:00">2024-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在開始製作後台的功能前，因為題組素材提供的版型並不全然是正確的，所以在正式開始製作前，我們要先把一些素材的內容再做一下調整。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-05/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group1-04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2024/01/03/skill-check1-group1-04/" class="post-title-link" itemprop="url">[技能檢定]題組一 步驟4 製作訪客計數器及頁尾版權文字</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2024-01-03 09:30:00" itemprop="dateCreated datePublished" datetime="2024-01-03T09:30:00+08:00">2024-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8401/" itemprop="url" rel="index"><span itemprop="name">題組01</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>由於第一題的前置作業較多，因此建議先把訪客計數器先完成，確認自訂函式及資料庫的存取正常，一來是先看到有個功能完成會比較心安，二來是確認一下前置作業的自訂函式部份有沒有問題。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group1-04/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/php-book/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/php-book/page/14/">14</a><a class="extend next" rel="next" href="/php-book/page/2/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/php-book/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/php-book/page/15/">15</a><a class="extend next" rel="next" href="/php-book/page/2/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1121,7 +1123,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">136</span>
+          <span class="site-state-item-count">145</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
