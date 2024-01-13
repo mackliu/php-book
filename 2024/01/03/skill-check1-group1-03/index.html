@@ -28,7 +28,7 @@
 <meta property="og:description" content="我們使用到了物件導向來宣告了一個類別DB，這個類別足夠可以處理題組一大多數的功能，為了更好的在解題是可以快速的應用到這個類別的功能，因為我們建立一個共用函式檔，將整個題組都會用到的變數及函式都集中放到這個檔案中，再透過include的方式將檔案匯入到最主要的index.php及back.php，由於這兩個檔案會再include各個子頁面，因此相當於所有的頁面都可以使用到這個共用函式檔的變數。 同時">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2024-01-03T01:20:00.000Z">
-<meta property="article:modified_time" content="2024-01-04T14:16:08.273Z">
+<meta property="article:modified_time" content="2024-01-13T10:42:47.928Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -194,7 +194,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
+                <time title="修改時間：2024-01-13 18:42:47" itemprop="dateModified" datetime="2024-01-13T18:42:47+08:00">2024-01-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,7 +234,7 @@
 <p><strong>&#x2F;index.php</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php include_once &quot;db.php&quot;;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span></span></span><br><span class="line"><span class="meta">    <span class="keyword">PUBLIC</span> <span class="string">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span> <span class="string">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><strong>&#x2F;backend.php</strong></p>
+<p><strong>&#x2F;back.php</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php include_once &quot;db.php&quot;;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span></span></span><br><span class="line"><span class="meta">    <span class="keyword">PUBLIC</span> <span class="string">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span> <span class="string">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
     </div>
 
@@ -331,7 +331,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">151</span>
+          <span class="site-state-item-count">157</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
