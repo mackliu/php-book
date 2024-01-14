@@ -161,6 +161,285 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/26/skill-check-group4-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/26/skill-check-group4-16/" class="post-title-link" itemprop="url">[技能檢定]題組四 步驟16 製作後台商品分類管理-商品新增與修改</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-26 07:00:00" itemprop="dateCreated datePublished" datetime="2021-09-26T07:00:00+08:00">2021-09-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">進階解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8404/" itemprop="url" rel="index"><span itemprop="name">題組04</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>在 <code>./view/backend/</code> 目錄中新增 <code>add_goods.php</code>，並撰寫新增商品需要的表單內容<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">&quot;ct&quot;</span>&gt;</span>新增商品<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;./api/save_goods.php&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&quot;all&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;tt ct&quot;</span>&gt;</span>所屬大分類<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;pp&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;big&quot;</span> <span class="attr">id</span>=<span class="string">&quot;big&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;tt ct&quot;</span>&gt;</span>所屬中分類<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;pp&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;mid&quot;</span> <span class="attr">id</span>=<span class="string">&quot;mid&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;tt ct&quot;</span>&gt;</span>商品編號<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;pp&quot;</span> <span class="attr">id</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br><span class="line">            完成分類後自動分配</span><br><span class="line">        <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;tt ct&quot;</span>&gt;</span>商品名稱<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;pp&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">id</span>=<span class="string">&quot;name&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;tt ct&quot;</span>&gt;</span>商品價格<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;pp&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;number&quot;</span> <span class="attr">name</span>=<span class="string">&quot;price&quot;</span> <span class="attr">id</span>=<span class="string">&quot;price&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;tt ct&quot;</span>&gt;</span>規格<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;pp&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;spec&quot;</span> <span class="attr">id</span>=<span class="string">&quot;spec&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;tt ct&quot;</span>&gt;</span>庫存量<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;pp&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;number&quot;</span> <span class="attr">name</span>=<span class="string">&quot;stock&quot;</span> <span class="attr">id</span>=<span class="string">&quot;stock&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;tt ct&quot;</span>&gt;</span>商品圖片<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;pp&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;img&quot;</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;tt ct&quot;</span>&gt;</span>商品介紹<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&quot;pp&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">&quot;intro&quot;</span> <span class="attr">id</span>=<span class="string">&quot;intro&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:80%;height:150px&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ct&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;新增&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">value</span>=<span class="string">&quot;重置&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;返回&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;location.href=&#x27;?do=th&#x27;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/php-book/2021/09/26/skill-check-group4-16/skill-check-group4-16-002.png"></p>
+<ol start="3">
+<li>製作大分類和中分類的選單連動功能，這邊我們利用和題組三訂票功能一樣的ajax方式來達成<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">getBigs</span>();</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;#big&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;change&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">getMids</span>($(<span class="string">&quot;#big&quot;</span>).<span class="title function_">val</span>())</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getBigs</span>(<span class="params"></span>)&#123;</span><br><span class="line">    $.<span class="title function_">get</span>(<span class="string">&quot;./api/bigs.php&quot;</span>,<span class="function">(<span class="params">bigs</span>)=&gt;</span>&#123;</span><br><span class="line">        $(<span class="string">&quot;#big&quot;</span>).<span class="title function_">html</span>(bigs)</span><br><span class="line"></span><br><span class="line">        <span class="title function_">getMids</span>($(<span class="string">&quot;#big&quot;</span>).<span class="title function_">val</span>())</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getMids</span>(<span class="params">id</span>)&#123;</span><br><span class="line">    $.<span class="title function_">get</span>(<span class="string">&quot;./api/mids.php&quot;</span>,&#123;id&#125;,<span class="function">(<span class="params">mids</span>)=&gt;</span>&#123;</span><br><span class="line">        $(<span class="string">&quot;#mid&quot;</span>).<span class="title function_">html</span>(mids)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/php-book/2021/09/26/skill-check-group4-16/skill-check-group4-16-003.png"></p>
+<ol start="4">
+<li>在 <code>./api/</code> 目錄中新增 <code>save_goods.php</code>，並撰寫新增商品資料到資料表的程式碼，此時要記得產生一組商品編號後才寫入到資料表<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;../base.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;img&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>]))&#123;</span><br><span class="line">    <span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;img&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>],<span class="string">&#x27;../upload/&#x27;</span>.<span class="variable">$_FILES</span>[<span class="string">&#x27;img&#x27;</span>][<span class="string">&#x27;name&#x27;</span>]);</span><br><span class="line">    <span class="variable">$_POST</span>[<span class="string">&#x27;img&#x27;</span>]=<span class="variable">$_FILES</span>[<span class="string">&#x27;img&#x27;</span>][<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判斷表單資料中是否有id這個欄位來決定是新增資料還是更新資料</span></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;id&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$_POST</span>[<span class="string">&#x27;no&#x27;</span>]=<span class="title function_ invoke__">rand</span>(<span class="number">100000</span>,<span class="number">999999</span>);</span><br><span class="line">    <span class="variable">$_POST</span>[<span class="string">&#x27;sh&#x27;</span>]=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$Goods</span>-&gt;<span class="title function_ invoke__">save</span>(<span class="variable">$_POST</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">to</span>(<span class="string">&quot;../backend.php?do=th&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+<li>新增商品功能完成後就可以先回到商品管理頁面把商品列表的程式碼完成<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;table <span class="class"><span class="keyword">class</span>=&quot;<span class="title">all</span>&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">tr</span> <span class="title">class</span>=&quot;<span class="title">tt</span> <span class="title">ct</span>&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span>&gt;編號&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span>&gt;商品名稱&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span>&gt;庫存量&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span>&gt;狀態&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span>&gt;操作&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;?<span class="title">php</span></span></span><br><span class="line"><span class="class">    $<span class="title">rows</span>=$<span class="title">Goods</span>-&gt;<span class="title">all</span>();</span></span><br><span class="line"><span class="class">    <span class="title">foreach</span>($<span class="title">rows</span> <span class="title">as</span> $<span class="title">row</span>)</span>&#123;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line">    &lt;tr <span class="class"><span class="keyword">class</span>=&quot;<span class="title">pp</span> <span class="title">ct</span>&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span>&gt;&lt;?=$<span class="title">row</span>[&#x27;<span class="title">no</span>&#x27;];?&gt;&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span>&gt;&lt;?=$<span class="title">row</span>[&#x27;<span class="title">name</span>&#x27;];?&gt;&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span>&gt;&lt;?=$<span class="title">row</span>[&#x27;<span class="title">stock</span>&#x27;];?&gt;&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span>&gt;&lt;?=($<span class="title">row</span>[&#x27;<span class="title">sh</span>&#x27;]==1)?&quot;販售中&quot;:&quot;已下架&quot;;?&gt;&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">button</span> <span class="title">onclick</span>=&quot;<span class="title">location</span>.<span class="title">href</span>=&#x27;?<span class="title">do</span>=<span class="title">edit_goods</span>&amp;<span class="title">id</span>=&lt;?=$<span class="title">row</span>[&#x27;<span class="title">id</span>&#x27;];?&gt;&#x27;&quot;&gt;修改&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">button</span> <span class="title">onclick</span>=&quot;<span class="title">del</span>(&#x27;<span class="title">Goods</span>&#x27;,&lt;?=$<span class="title">row</span>[&#x27;<span class="title">id</span>&#x27;];?&gt;)&quot;&gt;刪除&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">button</span> <span class="title">onclick</span>=&quot;<span class="title">sw</span>(&lt;?=$<span class="title">row</span>[&#x27;<span class="title">id</span>&#x27;];?&gt;,1)&quot;&gt;上架&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">button</span> <span class="title">onclick</span>=&quot;<span class="title">sw</span>(&lt;?=$<span class="title">row</span>[&#x27;<span class="title">id</span>&#x27;];?&gt;,0)&quot;&gt;下架&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;?<span class="title">php</span> &#125;   ?&gt;    </span></span><br><span class="line"><span class="class">&lt;/<span class="title">table</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/php-book/2021/09/26/skill-check-group4-16/skill-check-group4-16-004.png"></p>
+<ol start="6">
+<li>複製 <code>./view/backend/add_goods.php</code>，改名為 <code>edit_goods.php</code>，並將商品資料填入對應的表單欄位中，要記得加入隱藏欄位id <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="variable">$row</span>=<span class="variable">$Goods</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>]);<span class="meta">?&gt;</span></span><br><span class="line">&lt;h2 <span class="class"><span class="keyword">class</span>=&quot;<span class="title">ct</span>&quot;&gt;修改商品&lt;/<span class="title">h2</span>&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">form</span> <span class="title">action</span>=&quot;./<span class="title">api</span>/<span class="title">save_goods</span>.<span class="title">php</span>&quot; <span class="title">method</span>=&quot;<span class="title">post</span>&quot; <span class="title">enctype</span>=&quot;<span class="title">multipart</span>/<span class="title">form</span>-<span class="title">data</span>&quot;&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">table</span> <span class="title">class</span>=&quot;<span class="title">all</span>&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">tt</span> <span class="title">ct</span>&quot;&gt;所屬大分類&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">pp</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">select</span> <span class="title">name</span>=&quot;<span class="title">big</span>&quot; <span class="title">id</span>=&quot;<span class="title">big</span>&quot;&gt;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">            &lt;/<span class="title">select</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">tt</span> <span class="title">ct</span>&quot;&gt;所屬中分類&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">pp</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">select</span> <span class="title">name</span>=&quot;<span class="title">mid</span>&quot; <span class="title">id</span>=&quot;<span class="title">mid</span>&quot;&gt;&lt;/<span class="title">select</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">tt</span> <span class="title">ct</span>&quot;&gt;商品編號&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">pp</span>&quot; <span class="title">id</span>=&quot;<span class="title">no</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;?=$<span class="title">row</span>[&#x27;<span class="title">no</span>&#x27;];?&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">tt</span> <span class="title">ct</span>&quot;&gt;商品名稱&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">pp</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">text</span>&quot; <span class="title">name</span>=&quot;<span class="title">name</span>&quot; <span class="title">value</span>=&quot;&lt;?=$<span class="title">row</span>[&#x27;<span class="title">name</span>&#x27;];?&gt;&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">tt</span> <span class="title">ct</span>&quot;&gt;商品價格&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">pp</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">number</span>&quot; <span class="title">name</span>=&quot;<span class="title">price</span>&quot; <span class="title">value</span>=&quot;&lt;?=$<span class="title">row</span>[&#x27;<span class="title">price</span>&#x27;];?&gt;&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">tt</span> <span class="title">ct</span>&quot;&gt;規格&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">pp</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">text</span>&quot; <span class="title">name</span>=&quot;<span class="title">spec</span>&quot; <span class="title">value</span>=&quot;&lt;?=$<span class="title">row</span>[&#x27;<span class="title">spec</span>&#x27;];?&gt;&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">tt</span> <span class="title">ct</span>&quot;&gt;庫存量&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">pp</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">number</span>&quot; <span class="title">name</span>=&quot;<span class="title">stock</span>&quot; <span class="title">value</span>=&quot;&lt;?=$<span class="title">row</span>[&#x27;<span class="title">stock</span>&#x27;];?&gt;&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">tt</span> <span class="title">ct</span>&quot;&gt;商品圖片&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">pp</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">file</span>&quot; <span class="title">name</span>=&quot;<span class="title">img</span>&quot; <span class="title">id</span>=&quot;<span class="title">img</span>&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">tt</span> <span class="title">ct</span>&quot;&gt;商品介紹&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">td</span> <span class="title">class</span>=&quot;<span class="title">pp</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;<span class="title">textarea</span> <span class="title">name</span>=&quot;<span class="title">intro</span>&quot; <span class="title">id</span>=&quot;<span class="title">intro</span>&quot; <span class="title">style</span>=&quot;<span class="title">width</span>:80%;<span class="title">height</span>:150<span class="title">px</span>&quot;&gt;&lt;?=$<span class="title">row</span>[&#x27;<span class="title">intro</span>&#x27;];?&gt;&lt;/<span class="title">textarea</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">table</span>&gt;    </span></span><br><span class="line"><span class="class">&lt;<span class="title">div</span> <span class="title">class</span>=&quot;<span class="title">ct</span>&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">hidden</span>&quot; <span class="title">name</span>=&quot;<span class="title">id</span>&quot; <span class="title">value</span>=&quot;&lt;?=$<span class="title">_GET</span>[&#x27;<span class="title">id</span>&#x27;];?&gt;&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">submit</span>&quot; <span class="title">value</span>=&quot;修改&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">reset</span>&quot; <span class="title">value</span>=&quot;重置&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">input</span> <span class="title">type</span>=&quot;<span class="title">button</span>&quot; <span class="title">value</span>=&quot;返回&quot; <span class="title">onclick</span>=&quot;<span class="title">location</span>.<span class="title">href</span>=&#x27;?<span class="title">do</span>=<span class="title">th</span>&#x27;&quot;&gt;&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">form</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/php-book/2021/09/26/skill-check-group4-16/skill-check-group4-16-005.png"></p>
+<ol start="7">
+<li>在修改商品的功能中，針對分類選單，除了原本新增商品的連動選單功能外，我們還要針對當前商品的分類來指定選單的選中項目，這邊利用到選擇器的屬性選擇器及jQuery的 <code>prop()</code> 函式來選定表單的選項<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建立頁面載入時的第一次選單內容</span></span><br><span class="line">$(<span class="string">&quot;#big&quot;</span>).<span class="title function_">load</span>(<span class="string">&quot;api/load_type.php&quot;</span>,&#123;<span class="attr">type</span>:<span class="string">&#x27;big&#x27;</span>&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//利用商品id來取得對大分類選單的選定狀態</span></span><br><span class="line">    $(<span class="string">&quot;#big option[value=&#x27;&lt;?=$row[&#x27;big&#x27;];?&gt;&#x27;]&quot;</span>).<span class="title function_">prop</span>(<span class="string">&quot;selected&quot;</span>,<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//載入大分類後，接著要依照大分類的選單內容來撈出中分類的選單內容</span></span><br><span class="line">    $(<span class="string">&quot;#mid&quot;</span>).<span class="title function_">load</span>(<span class="string">&quot;api/load_type.php&quot;</span>,&#123;<span class="attr">type</span>:<span class="string">&#x27;mid&#x27;</span>,<span class="attr">parent</span>:$(<span class="string">&quot;#big&quot;</span>).<span class="title function_">val</span>()&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//利用商品id來取得對中分類選單的選定狀態</span></span><br><span class="line">        $(<span class="string">&quot;#mid option[value=&#x27;&lt;?=$row[&#x27;mid&#x27;];?&gt;&#x27;]&quot;</span>).<span class="title function_">prop</span>(<span class="string">&quot;selected&quot;</span>,<span class="literal">true</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立大分類選單改變時的中分類選單內容</span></span><br><span class="line">$(<span class="string">&quot;#big&quot;</span>).<span class="title function_">on</span>(<span class="string">&#x27;change&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    $(<span class="string">&quot;#mid&quot;</span>).<span class="title function_">load</span>(<span class="string">&quot;api/load_type.php&quot;</span>,&#123;<span class="attr">type</span>:<span class="string">&#x27;mid&#x27;</span>,<span class="attr">parent</span>:$(<span class="string">&quot;#big&quot;</span>).<span class="title function_">val</span>()&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/26/skill-check-group4-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/26/skill-check-group4-15/" class="post-title-link" itemprop="url">[技能檢定]題組四 步驟15 製作後台商品分類管理-商品列表</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-26 06:30:00" itemprop="dateCreated datePublished" datetime="2021-09-26T06:30:00+08:00">2021-09-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">進階解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8404/" itemprop="url" rel="index"><span itemprop="name">題組04</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>商品管理功能算是後台功能中比較麻煩的項目，在製作上要儘量小心，同時也要掌握速度，因為這個項目比較花時間，但分數卻相對少，所以如果時間來不及，可以考慮先去完成前台的功能比較好。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2021/09/26/skill-check-group4-15/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/26/skill-check-group4-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/26/skill-check-group4-14/" class="post-title-link" itemprop="url">[技能檢定]題組四 步驟14 製作後台商品分類管理-商品分類</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-26 06:00:00" itemprop="dateCreated datePublished" datetime="2021-09-26T06:00:00+08:00">2021-09-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">進階解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8404/" itemprop="url" rel="index"><span itemprop="name">題組04</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>這裏題目的描述方式明顯在指的是後台的商品分類與管理的功能，由於截圖的內容並不完全，我們不清楚這兩個功能是在同一個頁面呈現的還有不同的分頁，基於解題時間的考量，我們直接把兩個功能做在同一頁即可。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2021/09/26/skill-check-group4-14/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/26/skill-check-group4-13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -794,277 +1073,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/26/skill-check-group4-06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2021/09/26/skill-check-group4-06/" class="post-title-link" itemprop="url">[技能檢定]題組四 步驟6 製作會員註冊功能</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-09-26 03:30:00" itemprop="dateCreated datePublished" datetime="2021-09-26T03:30:00+08:00">2021-09-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">進階解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8404/" itemprop="url" rel="index"><span itemprop="name">題組04</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本題組在會員註冊及登入的描述上有點不清楚，比如登入失敗時的處理並沒有說明，而驗證碼錯誤的提示則是放在管理登入的描述上，因此在解題前一定要先把題目看過一次，了解題目沒有提到的細節，然後自行判斷要採用什麼對策。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2021/09/26/skill-check-group4-06/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/26/skill-check-group4-05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2021/09/26/skill-check-group4-05/" class="post-title-link" itemprop="url">[技能檢定]題組四 步驟5 製作後台頁尾版權區</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-09-26 03:00:00" itemprop="dateCreated datePublished" datetime="2021-09-26T03:00:00+08:00">2021-09-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">進階解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8404/" itemprop="url" rel="index"><span itemprop="name">題組04</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本題組有些項目的配分明顯的CP值不同，比如頁尾版權區合計有四項描述共二十分，但實際完成這個功能的前後台，可能不用到五分鐘，所以我們會優先把這些項目做完，爭取時間來處理其它的項目</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2021/09/26/skill-check-group4-05/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/26/skill-check-group4-04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2021/09/26/skill-check-group4-04/" class="post-title-link" itemprop="url">[技能檢定]題組四 步驟4 建置首頁標題區及相關頁面內容-最新消息及購物流程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-09-26 02:30:00" itemprop="dateCreated datePublished" datetime="2021-09-26T02:30:00+08:00">2021-09-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">進階解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E9%80%B2%E9%9A%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8404/" itemprop="url" rel="index"><span itemprop="name">題組04</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>項目三提到的內容大多都是後面的功能有做完就會有的，但反過來說，如果後面的相關功能沒完成的話，這邊會再多扣五分，而題組四中有些功能是和資料庫無關的，因此我們會先在這步驟把這些相較之下可以快速完成的功能先做完。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2021/09/26/skill-check-group4-04/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/php-book/page/6/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/php-book/">1</a><span class="space">&hellip;</span><a class="page-number" href="/php-book/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/php-book/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/php-book/page/17/">17</a><a class="extend next" rel="next" href="/php-book/page/8/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <a class="extend prev" rel="prev" href="/php-book/page/6/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/php-book/">1</a><span class="space">&hellip;</span><a class="page-number" href="/php-book/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/php-book/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/php-book/page/18/">18</a><a class="extend next" rel="next" href="/php-book/page/8/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1132,7 +1144,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-count">172</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>

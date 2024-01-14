@@ -161,6 +161,412 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/20/db-lesson-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/20/db-lesson-06/" class="post-title-link" itemprop="url">[資料庫] Lesson 6 子查詢</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-20 17:00:00" itemprop="dateCreated datePublished" datetime="2021-09-20T17:00:00+08:00">2021-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-07-26 20:08:39" itemprop="dateModified" datetime="2023-07-26T20:08:39+08:00">2023-07-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">網頁技術</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/%E8%B3%87%E6%96%99%E5%BA%AB/" itemprop="url" rel="index"><span itemprop="name">資料庫</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>子查詢(SubQuery)算是比較進階的應用，在資料表關聯變得複雜或是要查詢特殊條件時就會用上子查詢。</p>
+<p>比如要查詢全班平均及格以上的同學時，就會先用一個子查詢來算出全班的平均分數，再用這個平均分數放到Where句子中去做為條件。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2021/09/20/db-lesson-06/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/20/db-lesson-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/20/db-lesson-05/" class="post-title-link" itemprop="url">[資料庫] Lesson 5 結合查詢 JOIN</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-20 16:00:00" itemprop="dateCreated datePublished" datetime="2021-09-20T16:00:00+08:00">2021-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-07-26 20:08:39" itemprop="dateModified" datetime="2023-07-26T20:08:39+08:00">2023-07-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">網頁技術</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/%E8%B3%87%E6%96%99%E5%BA%AB/" itemprop="url" rel="index"><span itemprop="name">資料庫</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>結合查詢通常使用在兩張以上有關聯的資料表上，依查詢目的不同，分為內部結合查詢(Inner join)和外部結合查詢(Out join)</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2021/09/20/db-lesson-05/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/20/db-lesson-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2021/09/20/db-lesson-04/" class="post-title-link" itemprop="url">[資料庫] Lesson 4 SQL 常見函式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-09-20 15:00:00" itemprop="dateCreated datePublished" datetime="2021-09-20T15:00:00+08:00">2021-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-07-26 20:08:39" itemprop="dateModified" datetime="2023-07-26T20:08:39+08:00">2023-07-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/" itemprop="url" rel="index"><span itemprop="name">網頁技術</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E6%8A%80%E8%A1%93/%E8%B3%87%E6%96%99%E5%BA%AB/" itemprop="url" rel="index"><span itemprop="name">資料庫</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="聚合函式"><a href="#聚合函式" class="headerlink" title="聚合函式"></a>聚合函式</h2><table>
+<thead>
+<tr>
+<th>函式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AVG</td>
+<td>計算欄位的平均值</td>
+</tr>
+<tr>
+<td>COUNT</td>
+<td>計算查詢結果的筆數</td>
+</tr>
+<tr>
+<td>MAX</td>
+<td>取出欄位中的最大值</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>取出欄位中的最小值</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>計算欄位的總計</td>
+</tr>
+</tbody></table>
+<h2 id="字串函式"><a href="#字串函式" class="headerlink" title="字串函式"></a>字串函式</h2><table>
+<thead>
+<tr>
+<th>函式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CHAR_LENGTH</td>
+<td>取得字串的長度(以多字元字集方式)</td>
+</tr>
+<tr>
+<td>LENGTH</td>
+<td>取得字串的長度(bytes)</td>
+</tr>
+<tr>
+<td>CONCAT</td>
+<td>字串合併</td>
+</tr>
+<tr>
+<td>GROUP_CONCAT</td>
+<td>將GROUP BY結果中的某個欄位內容串成一個字串</td>
+</tr>
+<tr>
+<td>LEFT</td>
+<td>取出由左邊開始的指定長度的字串</td>
+</tr>
+<tr>
+<td>RIGHT</td>
+<td>取出由右邊開始的指定長度的字串</td>
+</tr>
+<tr>
+<td>SUBSTRING</td>
+<td>取出指定位置開始的指定長度的字串</td>
+</tr>
+</tbody></table>
+<h2 id="日期-時間函式"><a href="#日期-時間函式" class="headerlink" title="日期&#x2F;時間函式"></a>日期&#x2F;時間函式</h2><table>
+<thead>
+<tr>
+<th>函式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CURRENT_DATE</td>
+<td>取出當前的系統日期</td>
+</tr>
+<tr>
+<td>CURRENT_TIME</td>
+<td>取出當前的系統時間</td>
+</tr>
+<tr>
+<td>NOW</td>
+<td>取出當前的系統日期及時間</td>
+</tr>
+<tr>
+<td>DATEDIFF</td>
+<td>計算兩個日期間差距的天數</td>
+</tr>
+<tr>
+<td>TIMESTAMPDIFF</td>
+<td>計算兩個日期時間差距的單位，可選擇要返回的數值是時間還是日期</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>取出日期時間格的資料中年的部份</td>
+</tr>
+<tr>
+<td>MONTH</td>
+<td>取出日期時間格的資料中月的部份</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>取出日期時間格的資料中日期的部份</td>
+</tr>
+<tr>
+<td>HOUR</td>
+<td>取出日期時間格的資料中小時的部份</td>
+</tr>
+<tr>
+<td>MINUTE</td>
+<td>取出日期時間格的資料中分鐘的部份</td>
+</tr>
+<tr>
+<td>SECOND</td>
+<td>取出日期時間格的資料中秒的部份</td>
+</tr>
+</tbody></table>
+<h2 id="流程控制函式"><a href="#流程控制函式" class="headerlink" title="流程控制函式"></a>流程控制函式</h2><table>
+<thead>
+<tr>
+<th>函式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CASE</td>
+<td>類似switch case的用法</td>
+</tr>
+<tr>
+<td>IF</td>
+<td>和if else一樣的用法</td>
+</tr>
+<tr>
+<td>IFNULL</td>
+<td>判斷第一個參數是否為null，決定返回的值</td>
+</tr>
+</tbody></table>
+<p><strong>CASE</strong><br>case運算式有兩種用法分別是和switch..case一樣的根據一個結果來決定回傳值；另一個用法則是和if..elseif…else一樣，可以做多個條件的判斷並回傳不同的結果</p>
+<ul>
+<li>用法一</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CASE</span> `gender`</span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">1</span> <span class="keyword">THEN</span> <span class="string">&#x27;男&#x27;</span></span><br><span class="line">         <span class="keyword">WHEN</span> <span class="number">2</span> <span class="keyword">THEN</span> <span class="string">&#x27;女&#x27;</span></span><br><span class="line">         <span class="keyword">ELSE</span> <span class="string">&#x27;多元性別&#x27;</span></span><br><span class="line">       <span class="keyword">END</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>用法二</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CASE</span> </span><br><span class="line">         <span class="keyword">WHEN</span> `salary` <span class="operator">&lt;=</span> <span class="number">30000</span> <span class="keyword">THEN</span> <span class="string">&#x27;年終一個月&#x27;</span></span><br><span class="line">         <span class="keyword">WHEN</span> `salary` <span class="operator">&gt;</span> <span class="number">30000</span> <span class="keyword">AND</span> `salary` <span class="operator">&lt;=</span><span class="number">45000</span>  <span class="keyword">THEN</span> <span class="string">&#x27;年終兩個月&#x27;</span></span><br><span class="line">         <span class="keyword">WHEN</span> `salary <span class="operator">&gt;</span> <span class="number">45000</span> <span class="keyword">THEN</span> <span class="string">&#x27;年終三個月&#x27;</span></span><br><span class="line">       <span class="keyword">END</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>IF</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> IF(`gender`<span class="operator">=</span><span class="number">1</span>,<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;女&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>IFNULL</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> IFNULL(`score`,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/20/db-lesson-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -758,265 +1164,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/19/basic-lesson-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2021/09/19/basic-lesson-01/" class="post-title-link" itemprop="url">[基礎課程] Lesson 1 PHP程式語言基礎</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-09-19 13:00:00" itemprop="dateCreated datePublished" datetime="2021-09-19T13:00:00+08:00">2021-09-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-07-26 20:08:39" itemprop="dateModified" datetime="2023-07-26T20:08:39+08:00">2023-07-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%9F%BA%E7%A4%8E/" itemprop="url" rel="index"><span itemprop="name">程式設計基礎</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我們選擇PHP做為了解程式語言的開始，這階段所提到的觀念和用法是大多數程式語言都相通的，差別只在於不同的程式語言會有不同的指令及撰寫的格式要求。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2021/09/19/basic-lesson-01/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/19/basic-lesson-00/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2021/09/19/basic-lesson-00/" class="post-title-link" itemprop="url">[基礎課程]Lesson 0 課程介紹與學習目標</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-09-19 12:00:00" itemprop="dateCreated datePublished" datetime="2021-09-19T12:00:00+08:00">2021-09-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-04 22:16:08" itemprop="dateModified" datetime="2024-01-04T22:16:08+08:00">2024-01-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本課程將教授學員認識網頁程式設計，涵蓋前端、後端、視覺、資料庫等知識，並期望學員能理解網頁技術的運作與整合，進而在結訓後能從事網頁程式技術相關的工作。</p>
-<p>本課程預設的訓練對像為高中畢業以上，對網頁程式技術有興趣並想從事相關工作的待業者。</p>
-<p>本課程預期結訓學員應有基本的網頁程式開發及視覺設計的基礎能力，能獨力處理第一線的程式碼編寫、除錯及維護的工作</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2021/09/19/basic-lesson-00/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2021/09/18/dev-tools-10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2021/09/18/dev-tools-10/" class="post-title-link" itemprop="url">Docker認識與基礎安裝操作</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-09-18 21:00:00" itemprop="dateCreated datePublished" datetime="2021-09-18T21:00:00+08:00">2021-09-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-07-26 20:08:39" itemprop="dateModified" datetime="2023-07-26T20:08:39+08:00">2023-07-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">基礎課程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E5%9F%BA%E7%A4%8E%E8%AA%B2%E7%A8%8B/%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E8%88%87%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">開發環境與工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Docker簡介"><a href="#Docker簡介" class="headerlink" title="Docker簡介"></a>Docker簡介</h2><p>Docker起源於一個開放原始碼的專案，該專案的目標是利用linux上的容器化(containers)技術，來隔離應用軟體和系統。</p>
-<p>Docker和傳統的虛擬器不同，傳統的虛擬器是把實體的硬體資源切割出來，模擬成一台獨立硬體，因此可以做到在windows系統中模擬一台linux主機或是在linux系統中模擬一台windows主機。</p>
-<p>Docker目前只能在linux環境下運作，它隔離的是作業系統和應用服務，而不是硬體資源，可以理解為Docker是一個虛擬化的輕量級linux系統，它只負責應用程式和作業系統之間的溝通。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/php-book/2021/09/18/dev-tools-10/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/php-book/page/15/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/php-book/">1</a><span class="space">&hellip;</span><a class="page-number" href="/php-book/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/php-book/page/17/">17</a><a class="extend next" rel="next" href="/php-book/page/17/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <a class="extend prev" rel="prev" href="/php-book/page/15/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/php-book/">1</a><span class="space">&hellip;</span><a class="page-number" href="/php-book/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/php-book/page/17/">17</a><a class="page-number" href="/php-book/page/18/">18</a><a class="extend next" rel="next" href="/php-book/page/17/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1084,7 +1235,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-count">172</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
