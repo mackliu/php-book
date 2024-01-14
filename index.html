@@ -534,7 +534,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-08/">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-14/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/php-book/images/avatar.jpg">
@@ -548,7 +548,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/php-book/2024/01/03/skill-check1-group2-08/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟8  建置忘記密碼功能</a>
+            <a href="/php-book/2024/01/03/skill-check1-group2-14/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟14  製作問卷管理功能</a>
         </h2>
 
         <div class="post-meta">
@@ -558,14 +558,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2024-01-03 13:50:00" itemprop="dateCreated datePublished" datetime="2024-01-03T13:50:00+08:00">2024-01-03</time>
+              <time title="創建時間：2024-01-03 14:50:00" itemprop="dateCreated datePublished" datetime="2024-01-03T14:50:00+08:00">2024-01-03</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-14 00:06:23" itemprop="dateModified" datetime="2024-01-14T00:06:23+08:00">2024-01-14</time>
+                <time title="修改時間：2024-01-14 16:13:44" itemprop="dateModified" datetime="2024-01-14T16:13:44+08:00">2024-01-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -596,100 +596,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>題組的密碼尋回功能是以明碼方式在前台顯示出來，實務上千萬不要這麼做，這裏只是在測驗應檢人知道資料庫的應用方式。</p>
-<h2 id="建立密碼尋回畫面"><a href="#建立密碼尋回畫面" class="headerlink" title="建立密碼尋回畫面"></a>建立密碼尋回畫面</h2><p><strong>.&#x2F;front&#x2F;forget.php 畫面html碼</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;fieldset&gt;</span><br><span class="line">    &lt;legend&gt;忘記密碼&lt;/legend&gt;</span><br><span class="line">    &lt;div&gt;請輸入信箱以查詢密碼&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;email&quot;</span> id=<span class="string">&quot;email&quot;</span>&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div id=<span class="string">&quot;result&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;button onclick=<span class="string">&quot;forget()&quot;</span>&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/fieldset&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/php-book/2024/01/03/skill-check1-group2-08/skill-check1-group2-08-001.png"></p>
-<h2 id="撰寫ajax取回結果函式"><a href="#撰寫ajax取回結果函式" class="headerlink" title="撰寫ajax取回結果函式"></a>撰寫ajax取回結果函式</h2><p><strong>&#x2F;view&#x2F;front&#x2F;forgot.php</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">forget</span>(<span class="params"></span>)&#123;</span><br><span class="line">    $.<span class="title function_">get</span>(<span class="string">&quot;./api/forget.php&quot;</span>,&#123;<span class="attr">email</span>:$(<span class="string">&quot;#email&quot;</span>).<span class="title function_">val</span>()&#125;,<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;</span><br><span class="line">        $(<span class="string">&quot;#result&quot;</span>).<span class="title function_">text</span>(res)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/php-book/2024/01/03/skill-check1-group2-08/skill-check1-group2-08-002.png"></p>
-<h2 id="撰寫後端回傳密碼程式"><a href="#撰寫後端回傳密碼程式" class="headerlink" title="撰寫後端回傳密碼程式"></a>撰寫後端回傳密碼程式</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;db.php&quot;</span>;</span><br><span class="line"><span class="comment">//根據郵件來取得使用者資料</span></span><br><span class="line"><span class="variable">$user</span>=<span class="variable">$User</span>-&gt;<span class="title function_ invoke__">find</span>([<span class="string">&#x27;email&#x27;</span>=&gt;<span class="variable">$_POST</span>[<span class="string">&#x27;email&#x27;</span>]]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//判斷是否有取得使用者資料</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">empty</span>(<span class="variable">$user</span>))&#123;</span><br><span class="line">    <span class="comment">//回傳查無使用者的狀況</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;查無此資料&quot;</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//回傳使用者密碼</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;您的密碼為：&quot;</span>.<span class="variable">$user</span>[<span class="string">&#x27;pw&#x27;</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/php-book/images/avatar.jpg">
-      <meta itemprop="name" content="Mack Liu">
-      <meta itemprop="description" content="網頁程式設計教學相關資料">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月光林地的網頁技術部">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/php-book/2024/01/03/skill-check1-group2-07/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟7  建置會員註冊功能</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2024-01-03 13:40:00" itemprop="dateCreated datePublished" datetime="2024-01-03T13:40:00+08:00">2024-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-13 23:52:13" itemprop="dateModified" datetime="2024-01-13T23:52:13+08:00">2024-01-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">歸屬於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8402/" itemprop="url" rel="index"><span itemprop="name">題組02</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>由於題目有先附帳號資料，所以我們可以先把資料表建好，並直接在資料表中建立資料，進而先完成會員登入的功能；接著我們要來製作註冊會員的功能。</p>
+          <p>後台的問卷管理功能只有做新增問卷而已，算是簡單的應用，唯一特別的要求是要前端可以直接點擊 <code>更多</code> 按鈕後在畫面上增加選項，而這個功能和題組一的 <strong>編輯次選單</strong> 一樣，所以我們只需要參照題組一的做法即可。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group2-07/#more" rel="contents">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group2-14/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -713,7 +623,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-06/">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/php-book/images/avatar.jpg">
@@ -727,7 +637,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/php-book/2024/01/03/skill-check1-group2-06/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟6  建置會員登入/登出功能</a>
+            <a href="/php-book/2024/01/03/skill-check1-group2-13/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟13  製作最新文章管理功能</a>
         </h2>
 
         <div class="post-meta">
@@ -737,14 +647,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2024-01-03 13:30:00" itemprop="dateCreated datePublished" datetime="2024-01-03T13:30:00+08:00">2024-01-03</time>
+              <time title="創建時間：2024-01-03 14:40:00" itemprop="dateCreated datePublished" datetime="2024-01-03T14:40:00+08:00">2024-01-03</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-13 23:31:50" itemprop="dateModified" datetime="2024-01-13T23:31:50+08:00">2024-01-13</time>
+                <time title="修改時間：2024-01-14 16:03:22" itemprop="dateModified" datetime="2024-01-14T16:03:22+08:00">2024-01-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -775,10 +685,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>我們先來製作登入&#x2F;登出功能，因為本題組有不少功能會使用登入狀態來區分使用者可以使用的功能，依據題意，這邊要使用ajax來製作會比較適當，也比較好呈現題目要求的各項提示訊息。</p>
+          <p>最新文章管理功能的步驟算是很簡單的應用，和題組一的後台幾乎一模一樣，只差在沒有內容編輯的要求而已，因此只要熟悉題組一的解法，這邊就照著做即可：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group2-06/#more" rel="contents">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group2-13/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -802,7 +712,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-05/">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/php-book/images/avatar.jpg">
@@ -816,7 +726,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/php-book/2024/01/03/skill-check1-group2-05/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟5 建置主選單區、動態文字廣告及頁尾版權區</a>
+            <a href="/php-book/2024/01/03/skill-check1-group2-12/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟12  後台頁面及後台帳號管理</a>
         </h2>
 
         <div class="post-meta">
@@ -826,14 +736,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2024-01-03 13:20:00" itemprop="dateCreated datePublished" datetime="2024-01-03T13:20:00+08:00">2024-01-03</time>
+              <time title="創建時間：2024-01-03 14:30:00" itemprop="dateCreated datePublished" datetime="2024-01-03T14:30:00+08:00">2024-01-03</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-13 23:07:10" itemprop="dateModified" datetime="2024-01-13T23:07:10+08:00">2024-01-13</time>
+                <time title="修改時間：2024-01-14 15:53:49" itemprop="dateModified" datetime="2024-01-14T15:53:49+08:00">2024-01-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -864,11 +774,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>這邊其實幾乎算送分了，因為主選單的內容己經在版型檔案中先做好了，連背景圖都設定好了，所以這邊唯一需要做的是把動態文字廣告的字打上去即可，這邊要注意的是動態文字廣告區的右側要留點空間給登入資訊使用。</p>
-<p><img src="/php-book/2024/01/03/skill-check1-group2-05/skill-check1-group2-05-001.png"></p>
+          <p>題組二的後台相較題組一簡單許多，甚至沒有新增文章的功能，所以我們需要手動先把文章匯入到資料庫去，也因此，所以題組二的後台容易拿分，可以安排在會員註冊登入完成後就先來製作後台的功能，確認這部份的分數是有先到手的。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group2-05/#more" rel="contents">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group2-12/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -892,7 +801,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-04/">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/php-book/images/avatar.jpg">
@@ -906,7 +815,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/php-book/2024/01/03/skill-check1-group2-04/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟4  建置網站標題區</a>
+            <a href="/php-book/2024/01/03/skill-check1-group2-11/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟11  建置分類網誌功能</a>
         </h2>
 
         <div class="post-meta">
@@ -916,14 +825,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2024-01-03 13:10:00" itemprop="dateCreated datePublished" datetime="2024-01-03T13:10:00+08:00">2024-01-03</time>
+              <time title="創建時間：2024-01-03 14:20:00" itemprop="dateCreated datePublished" datetime="2024-01-03T14:20:00+08:00">2024-01-03</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-13 19:08:49" itemprop="dateModified" datetime="2024-01-13T19:08:49+08:00">2024-01-13</time>
+                <time title="修改時間：2024-01-14 15:34:44" itemprop="dateModified" datetime="2024-01-14T15:34:44+08:00">2024-01-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -954,10 +863,108 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>這邊我們先來處理網站標題區，這邊比較麻煩的是瀏灠人次不是採總計，而是分日計算然後再總計；雖然題目沒有指示是否要和第一題一樣的機制，但我們在設計上為了避免瀏灠人次一直跳動，所以還是採用 <strong>session</strong> 來紀錄使用者的進站狀況，關閉瀏灠器再開才會重新計算；</p>
+          <p>依據題目描述，分類網誌不使用資料表也是可以的，但是因為我想節省一直開檔複製貼上的工作，所以我的做法是先把文章都匯入到資料庫，這樣後台的文章管理和前台的分類網誌、最新文章、人氣文章的功能都用得到<br>。<br><img src="/php-book/2024/01/03/skill-check1-group2-11/skill-check1-group2-11-001.png"></p>
+<h2 id="建立分類網誌畫面"><a href="#建立分類網誌畫面" class="headerlink" title="建立分類網誌畫面"></a>建立分類網誌畫面</h2><p><strong>.&#x2F;front&#x2F;po.php</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--建立一個麵包屑區塊，用來顯示當前的文章類別--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;nav&quot;</span>&gt;</span></span><br><span class="line">    目前位置:首頁 &gt; 分類網誌 &gt; <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;type&quot;</span>&gt;</span>健康新知<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--建立分類項目區塊，其中data-type為設定分類編號，和資料表中的type欄位一致--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">&#x27;types&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>分類網誌<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&#x27;type-item&#x27;</span> <span class="attr">data-type</span>=<span class="string">&quot;1&quot;</span>&gt;</span>健康新知<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&#x27;type-item&#x27;</span> <span class="attr">data-type</span>=<span class="string">&quot;2&quot;</span>&gt;</span>菸害防治<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&#x27;type-item&#x27;</span> <span class="attr">data-type</span>=<span class="string">&quot;3&quot;</span>&gt;</span>癌症防治<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&#x27;type-item&#x27;</span> <span class="attr">data-type</span>=<span class="string">&quot;4&quot;</span>&gt;</span>慢性病防治<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">&#x27;news-list&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>文章列表<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--建立一個區塊用來放置文章標題列表--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;list-items&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display:none&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--建立一個區塊用來放置文章內容--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;article&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="建立分類項目點擊置換上方導引文字功能"><a href="#建立分類項目點擊置換上方導引文字功能" class="headerlink" title="建立分類項目點擊置換上方導引文字功能"></a>建立分類項目點擊置換上方導引文字功能</h3><p><strong>.&#x2F;front&#x2F;po.php部份</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//註冊class type-item的點擊事件</span></span><br><span class="line">$(<span class="string">&quot;.type-item&quot;</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//取出點擊的文字並放入導航列中</span></span><br><span class="line">    $(<span class="string">&quot;.type&quot;</span>).<span class="title function_">text</span>($(<span class="variable language_">this</span>).<span class="title function_">text</span>())</span><br><span class="line"></span><br><span class="line">    <span class="comment">//點擊同時取得分類項目的代號</span></span><br><span class="line">    <span class="keyword">let</span> type=$(<span class="variable language_">this</span>).<span class="title function_">data</span>(<span class="string">&#x27;type&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//執行取得分類文章列表函式</span></span><br><span class="line">    <span class="title function_">getList</span>(type)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="建立取得分類項目文章標題列表功能"><a href="#建立取得分類項目文章標題列表功能" class="headerlink" title="建立取得分類項目文章標題列表功能"></a>建立取得分類項目文章標題列表功能</h3><p>這裏我們使用ajax來取得分類項目的文章標題</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先載入type=1的文章列表</span></span><br><span class="line"><span class="title function_">getList</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//註冊class cat的點擊事件</span></span><br><span class="line">$(<span class="string">&quot;.cat&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;click&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//取出點擊的文字並放入導航列中</span></span><br><span class="line">    $(<span class="string">&quot;#header&quot;</span>).<span class="title function_">text</span>($(<span class="variable language_">this</span>).<span class="title function_">text</span>());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//執行取得分類列表函式</span></span><br><span class="line">    <span class="keyword">let</span> type=$(<span class="variable language_">this</span>).<span class="title function_">data</span>(<span class="string">&#x27;type&#x27;</span>)</span><br><span class="line">    <span class="title function_">getList</span>(type)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//取得分類列表函式</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getList</span>(<span class="params">type</span>)&#123;</span><br><span class="line">    $.<span class="title function_">get</span>(<span class="string">&quot;./api/get_list.php&quot;</span>,&#123;type&#125;,<span class="function">(<span class="params">list</span>)=&gt;</span>&#123;</span><br><span class="line">        $(<span class="string">&quot;.list-items&quot;</span>).<span class="title function_">html</span>(list)</span><br><span class="line">        $(<span class="string">&quot;.article&quot;</span>).<span class="title function_">hide</span>();</span><br><span class="line">        $(<span class="string">&quot;.list-items&quot;</span>).<span class="title function_">show</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/php-book/2024/01/03/skill-check1-group2-11/skill-check1-group2-11-002.gif"></p>
+<h3 id="建立取得單一文章函式"><a href="#建立取得單一文章函式" class="headerlink" title="建立取得單一文章函式"></a>建立取得單一文章函式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取得指定文章內容函式</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getNews</span>(<span class="params">id</span>)&#123;</span><br><span class="line">    $.<span class="title function_">get</span>(<span class="string">&quot;./api/get_news.php&quot;</span>,&#123;id&#125;,<span class="function">(<span class="params">news</span>)=&gt;</span>&#123;</span><br><span class="line">        $(<span class="string">&quot;.article&quot;</span>).<span class="title function_">html</span>(news)</span><br><span class="line">        $(<span class="string">&quot;.article&quot;</span>).<span class="title function_">show</span>();</span><br><span class="line">        $(<span class="string">&quot;.list-items&quot;</span>).<span class="title function_">hide</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="撰寫後端回傳文章標題列表程式"><a href="#撰寫後端回傳文章標題列表程式" class="headerlink" title="撰寫後端回傳文章標題列表程式"></a>撰寫後端回傳文章標題列表程式</h2><p><strong>&#x2F;api&#x2F;get_list.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;db.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//取得所有指定分類的文章</span></span><br><span class="line"><span class="variable">$rows</span>=<span class="variable">$News</span>-&gt;<span class="title function_ invoke__">all</span>([<span class="string">&#x27;type&#x27;</span>=&gt;<span class="variable">$_GET</span>[<span class="string">&#x27;type&#x27;</span>],<span class="string">&#x27;sh&#x27;</span>=&gt;<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用迴圈來印出title文字及link內容</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$rows</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;div&gt;&quot;</span>;</span><br><span class="line">    <span class="comment">//在點擊title連結時的執行取得文章內容的函式，並傳入文章id</span></span><br><span class="line">    <span class="keyword">echo</span>    <span class="string">&quot;&lt;a href=&#x27;Javascript:getNews(<span class="subst">&#123;$row[&#x27;id&#x27;]&#125;</span>)&#x27;&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span>    <span class="variable">$row</span>[<span class="string">&#x27;title&#x27;</span>];</span><br><span class="line">    <span class="keyword">echo</span>    <span class="string">&quot;&lt;/a&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;/div&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="撰寫後端回傳文章程式"><a href="#撰寫後端回傳文章程式" class="headerlink" title="撰寫後端回傳文章程式"></a>撰寫後端回傳文章程式</h2><p><strong>&#x2F;api&#x2F;get_news.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;db.php&quot;</span>;</span><br><span class="line"><span class="comment">//取得指定id的文章</span></span><br><span class="line"><span class="variable">$news</span>=<span class="variable">$News</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//顯示文章標題</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;span style=&#x27;font-weight:bolder&#x27;&gt;&quot;</span>.<span class="variable">$news</span>[<span class="string">&#x27;title&#x27;</span>].<span class="string">&quot;&lt;/span&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//利用nl2br()函式把文章的斷行加上&lt;br&gt;</span></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">nl2br</span>(<span class="variable">$news</span>[<span class="string">&#x27;news&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+<p><img src="/php-book/2024/01/03/skill-check1-group2-11/skill-check1-group2-11-003.gif"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-book/2024/01/03/skill-check1-group2-10/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟10  建置主題內容顯示區</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 14:10:00" itemprop="dateCreated datePublished" datetime="2024-01-03T14:10:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-14 15:09:24" itemprop="dateModified" datetime="2024-01-14T15:09:24+08:00">2024-01-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8402/" itemprop="url" rel="index"><span itemprop="name">題組02</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>主題內容區是以頁籤形式來呈現，在解題時，如果考場有附 <strong>DreamWeaver</strong> 的話，可以考慮使用 <strong>DreamWeaver</strong> 的頁籤功能來做就可以了，不用五分鐘可以搞定．<br>題目並沒有說明頁籤的內容是否要從資料庫來取得，從參考圖來看則感覺是純靜態的頁面，因此我們這裏嘗試使用另一種前端的方式來呈現頁籤功能，以防考場沒有 <strong>DreamWeaver</strong>。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/php-book/2024/01/03/skill-check1-group2-04/#more" rel="contents">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group2-10/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
@@ -981,7 +988,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-03/">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/php-book/images/avatar.jpg">
@@ -995,7 +1002,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/php-book/2024/01/03/skill-check1-group2-03/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟3 建立共用函式檔</a>
+            <a href="/php-book/2024/01/03/skill-check1-group2-09/" class="post-title-link" itemprop="url">[技能檢定]題組二 步驟9  處理會員登入顯示及建置後台主頁</a>
         </h2>
 
         <div class="post-meta">
@@ -1005,14 +1012,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2024-01-03 13:00:00" itemprop="dateCreated datePublished" datetime="2024-01-03T13:00:00+08:00">2024-01-03</time>
+              <time title="創建時間：2024-01-03 14:00:00" itemprop="dateCreated datePublished" datetime="2024-01-03T14:00:00+08:00">2024-01-03</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-13 18:49:48" itemprop="dateModified" datetime="2024-01-13T18:49:48+08:00">2024-01-13</time>
+                <time title="修改時間：2024-01-14 14:48:31" itemprop="dateModified" datetime="2024-01-14T14:48:31+08:00">2024-01-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1043,17 +1050,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>我們使用到了物件導向來宣告了一個類別DB，這個類別足夠可以處理題組一大多數的功能，為了更好的在解題是可以快速的應用到這個類別的功能，因為我們建立一個共用函式檔，將整個題組都會用到的變數及函式都集中放到這個檔案中，再透過include的方式將檔案匯入到最主要的index.php及back.php，由於這兩個檔案會再include各個子頁面，因此相當於所有的頁面都可以使用到這個共用函式檔的變數。</p>
-<p>同時我們也把一些好用的小函式集中放在一個檔案中，透過include的方式讓各個頁面都能使用到這些類別及函式。</p>
-<h2 id="建立題組專用共用函式檔"><a href="#建立題組專用共用函式檔" class="headerlink" title="建立題組專用共用函式檔"></a>建立題組專用共用函式檔</h2><p><strong>api&#x2F;db.php</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">session_start</span>();       <span class="comment">//啟用session功能</span></span><br><span class="line"><span class="title function_ invoke__">date_default_timezone_set</span>(<span class="string">&quot;Asia/Taipei&quot;</span>);   <span class="comment">//設定網站的時區為亞洲台北</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//簡易的自訂函式</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用來顯示陣列內容-除錯時使用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dd</span>(<span class="params"><span class="variable">$array</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">print_r</span>(<span class="variable">$array</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;/pre&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 簡化header(&#x27;location:&#x27;)的使用</span></span><br><span class="line"><span class="comment"> * 將請求導向其他檔案或頁面</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">to</span>(<span class="params"><span class="variable">$url</span></span>)</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;location:&quot;</span>.<span class="variable">$url</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用來處理較複雜的sql語句，比如子查詢或聯表查詢</span></span><br><span class="line"><span class="comment"> * 預設回傳的資料是2維陣列</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">q</span>(<span class="params"><span class="variable">$sql</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$pdo</span>=<span class="keyword">new</span> <span class="title function_ invoke__">PDO</span>(<span class="string">&quot;mysql:host=localhost;charset=utf8;dbname=&#123;your db name&#125;&quot;</span>,<span class="string">&#x27;root&#x27;</span>,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$pdo</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>)-&gt;<span class="title function_ invoke__">fetchAll</span>(PDO::<span class="variable constant_">FETCH_ASSOC</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//宣告各個類別的物件變數</span></span><br><span class="line"><span class="variable">$Total</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;total&#x27;</span>);</span><br><span class="line"><span class="variable">$User</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;user&#x27;</span>);</span><br><span class="line"><span class="variable">$News</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;news&#x27;</span>);</span><br><span class="line"><span class="variable">$Que</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;que&#x27;</span>);</span><br><span class="line"><span class="variable">$Log</span>=<span class="keyword">new</span> <span class="title function_ invoke__">DB</span>(<span class="string">&#x27;log&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>接著將這個檔案引入到 <code>index.php</code> 及 <code>backend.php</code> 中：</p>
-<p><strong>&#x2F;index.php</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php include_once &quot;db.php&quot;;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span></span></span><br><span class="line"><span class="meta">    <span class="keyword">PUBLIC</span> <span class="string">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span> <span class="string">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>&#x2F;back.php</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php include_once &quot;db.php&quot;;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span></span></span><br><span class="line"><span class="meta">    <span class="keyword">PUBLIC</span> <span class="string">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span> <span class="string">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <p>在上一步時我們完成了會員登入相關的功能，題組二前後台共用的部份只剩下登入顯示，其中管理員的登入顯示又和一般會員的顯示不太一樣，在製作時要注意一下。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-book/2024/01/03/skill-check1-group2-09/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1071,7 +1076,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/php-book/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/php-book/page/16/">16</a><a class="extend next" rel="next" href="/php-book/page/2/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/php-book/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/php-book/page/17/">17</a><a class="extend next" rel="next" href="/php-book/page/2/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
   </nav>
 
 
@@ -1139,7 +1144,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">157</span>
+          <span class="site-state-item-count">163</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
