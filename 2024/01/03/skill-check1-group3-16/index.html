@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/php-book/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/php-book/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/php-book/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/php-book/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/php-book/css/main.css">
+
+
+<link rel="stylesheet" href="/php-book/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mackliu.github.io","root":"/php-book/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":24,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="線上訂票功能我們分兩部份來製作，一個是電影選擇的功能，一個是劃位及完成訂票的功能，這邊主要都是使用ajax來完成的，所以重點放在如何取得前端的資料並傳送給後端去做處理，相較題組一二的ajax功能，這邊使用到的ajax複雜度提升不少。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[技能檢定]題組三 步驟16 前台線上訂票功能-電影及場次選擇">
+<meta property="og:url" content="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group3-16/index.html">
+<meta property="og:site_name" content="月光林地的網頁技術部">
+<meta property="og:description" content="線上訂票功能我們分兩部份來製作，一個是電影選擇的功能，一個是劃位及完成訂票的功能，這邊主要都是使用ajax來完成的，所以重點放在如何取得前端的資料並傳送給後端去做處理，相較題組一二的ajax功能，這邊使用到的ajax複雜度提升不少。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group3-16/skill-check1-group3-16-004.png">
+<meta property="article:published_time" content="2024-01-03T10:20:00.000Z">
+<meta property="article:modified_time" content="2024-01-27T01:01:49.668Z">
+<meta property="article:author" content="Mack Liu">
+<meta property="article:tag" content="php,web,javascript,html,mysql,css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group3-16/skill-check1-group3-16-004.png">
+
+<link rel="canonical" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group3-16/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[技能檢定]題組三 步驟16 前台線上訂票功能-電影及場次選擇 | 月光林地的網頁技術部</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/php-book/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">月光林地的網頁技術部</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">網頁課程教材</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/php-book/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/php-book/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/php-book/categories/" rel="section"><i class="fa fa-th fa-fw"></i>主題</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/php-book/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mackliu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group3-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/php-book/images/avatar.jpg">
+      <meta itemprop="name" content="Mack Liu">
+      <meta itemprop="description" content="網頁程式設計教學相關資料">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月光林地的網頁技術部">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [技能檢定]題組三 步驟16 前台線上訂票功能-電影及場次選擇
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2024-01-03 18:20:00" itemprop="dateCreated datePublished" datetime="2024-01-03T18:20:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-27 09:01:49" itemprop="dateModified" datetime="2024-01-27T09:01:49+08:00">2024-01-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">歸屬於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/" itemprop="url" rel="index"><span itemprop="name">網頁設計乙級</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">基礎解題版</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/php-book/categories/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B9%99%E7%B4%9A/%E5%9F%BA%E7%A4%8E%E8%A7%A3%E9%A1%8C%E7%89%88/%E9%A1%8C%E7%B5%8403/" itemprop="url" rel="index"><span itemprop="name">題組03</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>線上訂票功能我們分兩部份來製作，一個是電影選擇的功能，一個是劃位及完成訂票的功能，這邊主要都是使用ajax來完成的，所以重點放在如何取得前端的資料並傳送給後端去做處理，相較題組一二的ajax功能，這邊使用到的ajax複雜度提升不少。</p>
+<span id="more"></span>
+
+<p>由於題組三會使用到時間的計算，而php預計的時區和台北這邊差了八小時，除了可以在php.ini中設定系統時區外，也可以直接在程式中下指令來設定程式執行期間的時區；<br><strong>db.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//設定時區</span></span><br><span class="line"><span class="title function_ invoke__">date_default_timezone_set</span>(<span class="string">&quot;Asia/Taipei&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="建立訂單畫面"><a href="#建立訂單畫面" class="headerlink" title="建立訂單畫面"></a>建立訂單畫面</h2><ol>
+<li>建立 <code>/front/order.php</code> 檔案，並撰寫基本的頁面html碼，這邊我們會建立三個下拉選單的項目，但是選項內容可以先空著，選單中的下拉選項會全部由ajax的方式從後端來取得，這邊的CSS美化都可以晚點再做，先把畫面該有的元素及功能完成即可<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--建立一個容器用來放置訂票選單--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&#x27;select&#x27;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">&quot;ct&quot;</span>&gt;</span>線上訂票<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;order&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>電影：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;movie&quot;</span> <span class="attr">id</span>=<span class="string">&quot;movie&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>日期：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;date&quot;</span> <span class="attr">id</span>=<span class="string">&quot;date&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>場次<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;session&quot;</span> <span class="attr">id</span>=<span class="string">&quot;session&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>確定<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/php-book/2024/01/03/skill-check1-group3-16/skill-check1-group3-16-004.png"></p>
+<h2 id="建立頁面互換機制"><a href="#建立頁面互換機制" class="headerlink" title="建立頁面互換機制"></a>建立頁面互換機制</h2><p>由於題目要求在劃位畫面的上一步功能回到訂票選單時要保留原本的選單狀況，如果使用cookie、session、GET、POST等方法來傳遞狀態，會比較花時間，考量時間解題時間有限的狀況下，我們透過js來控制區塊的呈現，這樣就只要切換畫面就可以了，不用去處理選單的狀態</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;select&quot;</span>&gt;</span></span><br><span class="line">    ......</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;確定&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;$(&#x27;#select,#booking&#x27;).toggle()&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">value</span>=<span class="string">&quot;重置&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;booking&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display:none&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;$(&#x27;#select,#booking&#x27;).toggle()&quot;</span>&gt;</span>上一步<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>訂購<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="建立ajax取得選單資料函式"><a href="#建立ajax取得選單資料函式" class="headerlink" title="建立ajax取得選單資料函式"></a>建立ajax取得選單資料函式</h2><p>由於三個選單是互有關聯的，因此我們需要建立三個函式來取得選單的資料，並且讓函式可以透過指定參數來取得內容</p>
+<ol>
+<li><p>解析網址參數，有兩種做法，前端js的方法和後端php的做法，目的是取得從院線片的 <strong>線上訂票</strong> 按鈕轉址過來時，網址中的 <code>id</code> 這個參數</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//利用URL API建立目前的網址物件</span></span><br><span class="line"><span class="keyword">let</span> url=<span class="keyword">new</span> <span class="title function_">URL</span>(<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用PHP來取得網址參數</span></span><br><span class="line"><span class="comment">//let id=&lt;?=$_GET[&#x27;id&#x27;]??0;?&gt;;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取得所有上映電影的函式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取得可訂票院線片清單</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getMovies</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//以ajax的請求去取得目前所有上映中的影片</span></span><br><span class="line">    $.<span class="title function_">get</span>(<span class="string">&quot;./api/get_movies.php&quot;</span>,<span class="function">(<span class="params">movies</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//將影片的選項放到#movie的選單中</span></span><br><span class="line">        $(<span class="string">&quot;#movie&quot;</span>).<span class="title function_">html</span>(movies);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 判斷網址中是否有id這個參數在</span></span><br><span class="line"><span class="comment">         * 如果有，表示是從某部電影按下訂票按鈕來的</span></span><br><span class="line"><span class="comment">         * 如果沒有，表示是直接點下主選項中的電影訂票連結來的</span></span><br><span class="line"><span class="comment">         */</span>        </span><br><span class="line">        <span class="keyword">if</span>(url.<span class="property">searchParams</span>.<span class="title function_">has</span>(<span class="string">&#x27;id&#x27;</span>))&#123;</span><br><span class="line">            <span class="comment">//如果網址中帶有id，則將選單定位到該部電影的選項中</span></span><br><span class="line">            $(<span class="string">`#movie option[value=&#x27;<span class="subst">$&#123;url.searchParams.get(<span class="string">&#x27;id&#x27;</span>)&#125;</span>&#x27;]`</span>).<span class="title function_">prop</span>(<span class="string">&#x27;selected&#x27;</span>,<span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//將電影選單中的值帶入到getDate()函式中，去執行可上映日期選單的內容</span></span><br><span class="line">        <span class="title function_">getDates</span>($(<span class="string">&quot;#movie&quot;</span>).<span class="title function_">val</span>())</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取得某電影的上映日期函式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取得選中的院線片可訂票日期</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getDates</span>(<span class="params">id</span>)&#123;</span><br><span class="line">    $.<span class="title function_">get</span>(<span class="string">&quot;./api/get_dates.php&quot;</span>,&#123;id&#125;,<span class="function">(<span class="params">dates</span>)=&gt;</span>&#123;</span><br><span class="line">            $(<span class="string">&quot;#date&quot;</span>).<span class="title function_">html</span>(dates);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//分別取得目前選中的電影與日期</span></span><br><span class="line">            <span class="keyword">let</span> movie=$(<span class="string">&quot;#movie&quot;</span>).<span class="title function_">val</span>()</span><br><span class="line">            <span class="keyword">let</span> date=$(<span class="string">&quot;#date&quot;</span>).<span class="title function_">val</span>()</span><br><span class="line"></span><br><span class="line">            <span class="comment">//執行一次可訂場次的函式，參數中帶入電影id及所選的日期</span></span><br><span class="line">            <span class="title function_">getSessions</span>(movie,date)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取得某電影在某個上映期的各場次資料函式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取得選中的院線片及指定日期的可訂票場次剩餘座位</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getSessions</span>(<span class="params">movie,date</span>)&#123;</span><br><span class="line">    $.<span class="title function_">get</span>(<span class="string">&quot;./api/get_sessions.php&quot;</span>,&#123;movie,date&#125;,<span class="function">(<span class="params">sessions</span>)=&gt;</span>&#123;</span><br><span class="line">            $(<span class="string">&quot;#session&quot;</span>).<span class="title function_">html</span>(sessions);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="建立後端api程式"><a href="#建立後端api程式" class="headerlink" title="建立後端api程式"></a>建立後端api程式</h2><p>由於我們會使到多次關於場次的字串，因此可以先在 <code>db.php</code> 建立全域的共同變數<br>5. 在 <code>db.php</code> 中建立共用變數</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sess</span>=[<span class="number">1</span>=&gt;<span class="string">&#x27;14:00~16:00&#x27;</span>,</span><br><span class="line">       <span class="number">2</span>=&gt;<span class="string">&#x27;16:00~18:00&#x27;</span>,</span><br><span class="line">       <span class="number">3</span>=&gt;<span class="string">&#x27;18:00~20:00&#x27;</span>,</span><br><span class="line">       <span class="number">4</span>=&gt;<span class="string">&#x27;20:00~22:00&#x27;</span>,</span><br><span class="line">       <span class="number">5</span>=&gt;<span class="string">&#x27;22:00~24:00&#x27;</span>,</span><br><span class="line">      ];</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li><p>回傳上映中電影資料<br><strong>.&#x2F;api&#x2F;get_movies.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&#x27;db.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得今天的日期</span></span><br><span class="line"><span class="variable">$today</span>=<span class="title function_ invoke__">date</span>(<span class="string">&quot;Y-m-d&quot;</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得兩天前的日期</span></span><br><span class="line"><span class="variable">$ondate</span>=<span class="title function_ invoke__">date</span>(<span class="string">&quot;Y-m-d&quot;</span>,<span class="title function_ invoke__">strtotime</span>(<span class="string">&quot;-2 days&quot;</span>)); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 從資料庫中取得符合條件的電影資料</span></span><br><span class="line"><span class="variable">$movies</span>=<span class="variable">$Movie</span>-&gt;<span class="title function_ invoke__">all</span>(<span class="string">&quot; where `ondate`&gt;=&#x27;<span class="subst">$ondate</span>&#x27;  &amp;&amp; `ondate` &lt;=&#x27;<span class="subst">$today</span>&#x27;  &amp;&amp; `sh`=1 order by rank&quot;</span>); </span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$movies</span> <span class="keyword">as</span> <span class="variable">$movie</span>)&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 回傳電影選項的html內容</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;option value=&#x27;<span class="subst">&#123;$movie[&#x27;id&#x27;]&#125;</span>&#x27;&gt;<span class="subst">&#123;$movie[&#x27;name&#x27;]&#125;</span>&lt;/option&gt;&quot;</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回傳指定電影的上映日期資料<br><strong>.&#x2F;api&#x2F;get_dates.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&#x27;db.php&#x27;</span>;</span><br><span class="line"><span class="comment">// 取得電影id</span></span><br><span class="line"><span class="variable">$movie</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>];</span><br><span class="line"><span class="comment">// 取得兩天前的日期</span></span><br><span class="line"><span class="variable">$ondate</span>=<span class="title function_ invoke__">strtotime</span>(<span class="variable">$Movie</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="variable">$movie</span>)[<span class="string">&#x27;ondate&#x27;</span>]);</span><br><span class="line"><span class="comment">// 計算可訂票的日期</span></span><br><span class="line"><span class="variable">$end</span>=<span class="title function_ invoke__">strtotime</span>(<span class="string">&quot;+2 days&quot;</span>,<span class="variable">$ondate</span>);</span><br><span class="line"><span class="comment">// 取得今天的日期秒數</span></span><br><span class="line"><span class="variable">$today</span>=<span class="title function_ invoke__">strtotime</span>(<span class="title function_ invoke__">date</span>(<span class="string">&quot;Y-m-d&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得可訂票的天數</span></span><br><span class="line"><span class="variable">$diff</span>=(<span class="variable">$end</span>-<span class="variable">$today</span>)/(<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以迴圈來產生可訂票的日期選項</span></span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;=<span class="variable">$diff</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="comment">// 產生日期字串</span></span><br><span class="line">    <span class="variable">$date</span>=<span class="title function_ invoke__">date</span>(<span class="string">&quot;Y-m-d&quot;</span>,<span class="title function_ invoke__">strtotime</span>(<span class="string">&quot;+<span class="subst">$i</span> days&quot;</span>));</span><br><span class="line">    <span class="comment">// 回傳日期選項的html內容</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;option value=&#x27;<span class="subst">$date</span>&#x27;&gt;<span class="subst">$date</span>&lt;/option&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>回傳指定電影及上映日期的場次資料<br><strong>.&#x2F;api&#x2F;get_sessions.php</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&#x27;db.php&#x27;</span>;</span><br><span class="line"><span class="comment">// 取得電影id</span></span><br><span class="line"><span class="variable">$movie</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;movie&#x27;</span>];</span><br><span class="line"><span class="comment">// 取得電影的名稱</span></span><br><span class="line"><span class="variable">$movieName</span>=<span class="variable">$Movie</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="variable">$movie</span>)[<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line"><span class="comment">// 取得訂購電影的日期</span></span><br><span class="line"><span class="variable">$date</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;date&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得目前的24小時制的小時數</span></span><br><span class="line"><span class="variable">$H</span>=<span class="title function_ invoke__">date</span>(<span class="string">&quot;G&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 如果訂票觀看的日期不是今天，或是目前的時間在下午兩點前</span></span><br><span class="line"><span class="comment"> * 那麼應該會有五個場次可以選擇；</span></span><br><span class="line"><span class="comment"> * 如果要訂票觀看的日期是今天，而且時間已經超過下午兩點了</span></span><br><span class="line"><span class="comment"> * 那麼只能訂兩點以後還沒上映的場次</span></span><br><span class="line"><span class="comment"> * 我們在這裏計算出可以選擇的起始場次</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="variable">$start</span>=(<span class="variable">$H</span>&gt;=<span class="number">14</span> &amp;&amp; <span class="variable">$date</span>==<span class="title function_ invoke__">date</span>(<span class="string">&quot;Y-m-d&quot;</span>))?<span class="number">7</span>-<span class="title function_ invoke__">ceil</span>((<span class="number">24</span>-<span class="variable">$H</span>)/<span class="number">2</span>):<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="variable">$start</span>;<span class="variable">$i</span>&lt;=<span class="number">5</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="comment">/***</span></span><br><span class="line"><span class="comment">     * 1. 去資料表撈出電影,日期,場次的訂單</span></span><br><span class="line"><span class="comment">     * 2. 根據訂單,計算座位數</span></span><br><span class="line"><span class="comment">     * 3. 在迴圈使用20-座位數來取得剩餘座位數</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="variable">$qt</span>=<span class="variable">$Order</span>-&gt;<span class="title function_ invoke__">sum</span>(<span class="string">&#x27;qt&#x27;</span>,[<span class="string">&#x27;movie&#x27;</span>=&gt;<span class="variable">$movieName</span>,<span class="string">&#x27;date&#x27;</span>=&gt;<span class="variable">$date</span>,<span class="string">&#x27;session&#x27;</span>=&gt;<span class="variable">$sess</span>[<span class="variable">$i</span>]]);</span><br><span class="line">    <span class="variable">$lave</span>=<span class="number">20</span>-<span class="variable">$qt</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;option value=&#x27;<span class="subst">&#123;$sess[$i]&#125;</span>&#x27;&gt;<span class="subst">&#123;$sess[$i]&#125;</span> 剩餘座位 <span class="subst">$lave</span>&lt;/option&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="建立聯動選單事件"><a href="#建立聯動選單事件" class="headerlink" title="建立聯動選單事件"></a>建立聯動選單事件</h2><ol start="9">
+<li>接著要來分別註冊電影及日期選單被選擇時的行為(onchange)，我們會在每個選單的選擇結束後，呼叫下一個選單的函式，並帶入需要的參數，以此達到選單連動的效果。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//註冊電影及日期選單的內容被選中時要連帶變動的下一個選單事件</span></span><br><span class="line">$(<span class="string">&quot;#movie&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;change&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">getDate</span>($(<span class="variable language_">this</span>).<span class="title function_">val</span>())</span><br><span class="line">&#125;)</span><br><span class="line">$(<span class="string">&quot;#date&quot;</span>).<span class="title function_">on</span>(<span class="string">&quot;change&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">getSessions</span>($(<span class="string">&quot;#movie option:selected&quot;</span>).<span class="title function_">text</span>(),$(<span class="variable language_">this</span>).<span class="title function_">val</span>())</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/php-book/2024/01/03/skill-check1-group3-15/" rel="prev" title="[技能檢定]題組三 步驟15 前台預告片展示 - javascript 動畫">
+      <i class="fa fa-chevron-left"></i> [技能檢定]題組三 步驟15 前台預告片展示 - javascript 動畫
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/php-book/2024/01/03/skill-check1-group3-17/" rel="next" title="[技能檢定]題組三 步驟17 前台線上訂票功能-劃位功能及訂票完成">
+      [技能檢定]題組三 步驟17 前台線上訂票功能-劃位功能及訂票完成 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E8%A8%82%E5%96%AE%E7%95%AB%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">建立訂單畫面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E9%A0%81%E9%9D%A2%E4%BA%92%E6%8F%9B%E6%A9%9F%E5%88%B6"><span class="nav-number">2.</span> <span class="nav-text">建立頁面互換機制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8Bajax%E5%8F%96%E5%BE%97%E9%81%B8%E5%96%AE%E8%B3%87%E6%96%99%E5%87%BD%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">建立ajax取得選單資料函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%BE%8C%E7%AB%AFapi%E7%A8%8B%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">建立後端api程式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E8%81%AF%E5%8B%95%E9%81%B8%E5%96%AE%E4%BA%8B%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">建立聯動選單事件</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mack Liu"
+      src="/php-book/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Mack Liu</p>
+  <div class="site-description" itemprop="description">網頁程式設計教學相關資料</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/php-book/archives/">
+        
+          <span class="site-state-item-count">192</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/php-book/categories/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">主題</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/php-book/tags/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mackliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mackliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:macklun@gmail.com" title="E-Mail → mailto:macklun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情連結
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.mackliu.com/" title="https:&#x2F;&#x2F;blog.mackliu.com&#x2F;" rel="noopener" target="_blank">mack的自言自語</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bquiz.mackliu.com/" title="https:&#x2F;&#x2F;bquiz.mackliu.com&#x2F;" rel="noopener" target="_blank">網頁乙級解題網</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://wdaweb.github.io/" title="https:&#x2F;&#x2F;wdaweb.github.io&#x2F;" rel="noopener" target="_blank">從零開始的網頁設計課程</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mack Liu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/php-book/lib/anime.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.min.js"></script>
+  <script src="/php-book/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/php-book/js/utils.js"></script>
+
+<script src="/php-book/js/motion.js"></script>
+
+
+<script src="/php-book/js/schemes/pisces.js"></script>
+
+
+<script src="/php-book/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
