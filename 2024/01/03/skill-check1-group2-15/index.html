@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://mackliu.github.io/php-book/2024/01/03/skill-check1-group2-15/skill-check1-group2-15-001.png">
 <meta property="article:published_time" content="2024-01-03T07:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-14T10:16:53.766Z">
+<meta property="article:modified_time" content="2025-04-06T04:56:55.356Z">
 <meta property="article:author" content="Mack Liu">
 <meta property="article:tag" content="php,web,javascript,html,mysql,css">
 <meta name="twitter:card" content="summary">
@@ -196,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2024-01-14 18:16:53" itemprop="dateModified" datetime="2024-01-14T18:16:53+08:00">2024-01-14</time>
+                <time title="修改時間：2025-04-06 12:56:55" itemprop="dateModified" datetime="2025-04-06T12:56:55+08:00">2025-04-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,7 +245,7 @@
 <li><p>撰寫紀錄按讚功能的程式，這邊使用ajax來完成</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">good</span>(<span class="params">news</span>)&#123;</span><br><span class="line">	$.<span class="title function_">post</span>(<span class="string">&quot;./api/good.php&quot;</span>,&#123;news&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//使用重整頁面的方式來更新按讚的結果</span></span><br><span class="line">		location.<span class="title function_">reload</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*或是使用前端的方式來更新頁面上的文字</span></span><br><span class="line"><span class="comment">        //根據點擊的文字來決定動作</span></span><br><span class="line"><span class="comment">		switch($(&quot;#n&quot;+news).text())&#123;</span></span><br><span class="line"><span class="comment">			case &quot;讚&quot;:</span></span><br><span class="line"><span class="comment">				//如果按下的字是&quot;讚&quot;，則替換成&quot;收回讚&quot;，並且讚數+1</span></span><br><span class="line"><span class="comment">				$(&quot;#n&quot;+news).text(&quot;收回讚&quot;)</span></span><br><span class="line"><span class="comment">				$(&quot;#g&quot;+news).text($(&quot;#g&quot;+news).text()*1+1)</span></span><br><span class="line"><span class="comment">			break;</span></span><br><span class="line"><span class="comment">			case &quot;收回讚&quot;:</span></span><br><span class="line"><span class="comment">				//如果按下的字是&quot;收回讚&quot;，則替換成&quot;讚&quot;，並且讚數-1</span></span><br><span class="line"><span class="comment">				$(&quot;#n&quot;+news).text(&quot;讚&quot;)</span></span><br><span class="line"><span class="comment">				$(&quot;#g&quot;+news).text($(&quot;#g&quot;+news).text()*1-1)</span></span><br><span class="line"><span class="comment">			break;</span></span><br><span class="line"><span class="comment">		&#125; */</span></span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>撰寫後端按讚紀錄程式<br><strong>&#x2F;api&#x2F;goods.php</strong></p>
+<li><p>撰寫後端按讚紀錄程式<br><strong>&#x2F;api&#x2F;good.php</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;db.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根據文章id找到文章資料</span></span><br><span class="line"><span class="variable">$news</span>=<span class="variable">$News</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;news&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//判斷log資料表中是否有這筆資料</span></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$Log</span>-&gt;<span class="title function_ invoke__">count</span>([<span class="string">&#x27;news&#x27;</span>=&gt;<span class="variable">$_POST</span>[<span class="string">&#x27;news&#x27;</span>],<span class="string">&#x27;acc&#x27;</span>=&gt;<span class="variable">$_SESSION</span>[<span class="string">&#x27;user&#x27;</span>]])&gt;<span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">//有的話就刪除這筆資料,並且讚數減1</span></span><br><span class="line">    <span class="variable">$Log</span>-&gt;<span class="title function_ invoke__">del</span>([<span class="string">&#x27;news&#x27;</span>=&gt;<span class="variable">$_POST</span>[<span class="string">&#x27;news&#x27;</span>],<span class="string">&#x27;acc&#x27;</span>=&gt;<span class="variable">$_SESSION</span>[<span class="string">&#x27;user&#x27;</span>]]);</span><br><span class="line">    <span class="variable">$news</span>[<span class="string">&#x27;good&#x27;</span>]--;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//沒有的話就新增這筆資料,並且讚數加1</span></span><br><span class="line">    <span class="variable">$Log</span>-&gt;<span class="title function_ invoke__">save</span>([<span class="string">&#x27;news&#x27;</span>=&gt;<span class="variable">$_POST</span>[<span class="string">&#x27;news&#x27;</span>],<span class="string">&#x27;acc&#x27;</span>=&gt;<span class="variable">$_SESSION</span>[<span class="string">&#x27;user&#x27;</span>]]);</span><br><span class="line">    <span class="variable">$news</span>[<span class="string">&#x27;good&#x27;</span>]++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//更新文章資料</span></span><br><span class="line"><span class="variable">$News</span>-&gt;<span class="title function_ invoke__">save</span>(<span class="variable">$news</span>);</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p><img src="/php-book/2024/01/03/skill-check1-group2-15/skill-check1-group2-15-001.png"></p>
@@ -347,7 +347,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/php-book/archives/">
         
-          <span class="site-state-item-count">199</span>
+          <span class="site-state-item-count">206</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -411,7 +411,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
